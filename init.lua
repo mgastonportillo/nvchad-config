@@ -5,7 +5,7 @@ for _, provider in ipairs { "python3_provider", "node_provider" } do
 end
 
 -- Set python3 executable path for faster startup
-vim.g.python3_host_prog = "/home/gale/.config/nvim/venv/bin/python"
+vim.g.python3_host_prog = "$HOME/.config/nvim/venv/bin/python"
 
 -- Enable dap virtual text
 vim.g.dap_virtual_text = true

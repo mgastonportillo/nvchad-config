@@ -1,6 +1,6 @@
 local spec = {
   "tpope/vim-fugitive",
-  event = "VimEnter",
+  event = "VeryLazy",
   dependencies = {
     "tpope/vim-rhubarb",
     "tpope/vim-obsession",

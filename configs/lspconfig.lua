@@ -7,13 +7,13 @@ local lspconfig = require "lspconfig"
 
 -- if you just want default config for the servers then put them in a table
 local servers = {
-  "html",
-  "cssls",
-  "tsserver",
+  "bashls",
   "clangd",
+  "cssls",
+  "html",
   "marksman",
   "pyright",
-  "bashls",
+  "tsserver",
 }
 
 for _, lsp in ipairs(servers) do
@@ -22,6 +22,14 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+lspconfig.ruff_lsp.setup {
+  on_attach = function(client, bufnr)
+    -- Disable hover in favor of Pyright
+    client.server_capabilities.hoverProvider = false
+  end,
+  capabilities = capabilities,
+}
 
 -- WARN: rust-tools sets this up already; having both enabled may cause conflicts
 

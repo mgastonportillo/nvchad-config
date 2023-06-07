@@ -29,6 +29,7 @@ local plugins = {
   { import = "custom.configs.user.fine-cmdline" },
   { import = "custom.configs.user.fugitive" },
   { import = "custom.configs.user.lspsaga" },
+  { import = "custom.configs.user.lsp-signature" },
   { import = "custom.configs.user.notify" },
   { import = "custom.configs.user.rust-tools" },
   { import = "custom.configs.user.searchbox" },

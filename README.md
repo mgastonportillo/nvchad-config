@@ -45,6 +45,8 @@ Required:
 - Python 3.10.6+ & pip
 - pip: `pynvim==0.4.3+`
 - npm: `neovim@4.10.1+`
-  Recommended:
+
+Recommended:
+
 - Node.js v21.3.0+
 - Cargo 1.74.1+

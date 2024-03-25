@@ -1,4 +1,4 @@
-require "nvchad.options"
+require("nvchad.options")
 
 local fn = vim.fn
 local g = vim.g
@@ -6,7 +6,7 @@ local o = vim.o
 local opt = vim.opt
 local wo = vim.wo
 
--- Sane defaults
+-- Sane defaults (for me at least)
 wo.statuscolumn = ""
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
@@ -14,8 +14,11 @@ opt.backup = false --- Recommended by coc
 opt.swapfile = false
 opt.scrolloff = 10 -- always show minimum n lines after current line
 opt.relativenumber = false -- Show relative numberline
-opt.wrap = false
-opt.iskeyword:append "-"
+opt.wrap = true
+opt.linebreak = true
+opt.textwidth = 0
+opt.wrapmargin = 0
+opt.iskeyword:append("-")
 opt.termguicolors = true -- True color support
 opt.autoindent = true --- Good auto indent
 opt.backspace = "indent,eol,start" --- Making sure backspace works
@@ -27,19 +30,19 @@ opt.foldnestmax = 0
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 vim.opt.fillchars = {
-  -- horiz     = '━',
-  -- horizup   = '┻',
-  -- horizdown = '┳',
-  -- vert      = '┃',
-  -- vertleft  = '┫',
-  -- vertright = '┣',
-  -- verthoriz = '╋',
-  fold = " ",
-  foldopen = "",
-  foldsep = " ",
-  foldclose = "",
-  stl = " ",
-  eob = " ",
+	-- horiz     = '━',
+	-- horizup   = '┻',
+	-- horizdown = '┳',
+	-- vert      = '┃',
+	-- vertleft  = '┫',
+	-- vertright = '┣',
+	-- verthoriz = '╋',
+	fold = " ",
+	foldopen = "",
+	foldsep = " ",
+	foldclose = "",
+	stl = " ",
+	eob = " ",
 }
 -- opt.foldmethod = "syntax"
 opt.foldmethod = "expr"
@@ -63,13 +66,13 @@ g.dap_virtual_text = true
 o.path = ".,src**"
 o.suffixesadd = ".js,.jsx"
 function LoadMainNodeModule(fname)
-  local nodeModules = "./node_modules/"
-  local packageJsonPath = nodeModules .. fname .. "/package.json"
-  if fn.filereadable(packageJsonPath) == 1 then
-    return nodeModules .. fname .. "/" .. fn.json_decode(fn.join(fn.readfile(packageJsonPath))).main
-  else
-    return nodeModules .. fname
-  end
+	local nodeModules = "./node_modules/"
+	local packageJsonPath = nodeModules .. fname .. "/package.json"
+	if fn.filereadable(packageJsonPath) == 1 then
+		return nodeModules .. fname .. "/" .. fn.json_decode(fn.join(fn.readfile(packageJsonPath))).main
+	else
+		return nodeModules .. fname
+	end
 end
 o.includeexpr = "v:lua.LoadMainNodeModule(v:fname)"
 

@@ -38,10 +38,13 @@ After the migration from NvChad v2.0 to v2.5 there might be some bugs or things 
 
 ### Dependencies:
 
-- NVIM v0.9+
-- NvChad v2.0+
+Required:
+
+- NVIM v0.9.5+
+- NvChad v2.5+
 - Python 3.10.6+ & pip
 - pip: `pynvim==0.4.3+`
-- Node.js v18.17.0+ & npm
 - npm: `neovim@4.10.1+`
-- Cargo 1.69.0+
+  Recommended:
+- Node.js v21.3.0+
+- Cargo 1.74.1+

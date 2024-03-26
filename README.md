@@ -43,7 +43,7 @@ Required:
 - NVIM v0.9.5+
 - NvChad v2.5+
 - Python 3.10.6+ & pip
-- pip: `pynvim==0.4.3+`
+- pip: `pynvim==0.4.3+`, `ruff-lsp==0.0.53`, `mypy==1.9.0`
 - npm: `neovim@4.10.1+`
 
 Recommended:

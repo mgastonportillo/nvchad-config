@@ -2,8 +2,7 @@ require("nvchad.options")
 
 -- TODO: I need to figure folds out
 
-local wo = vim.wo
-wo.statuscolumn = ""
+vim.wo.statuscolumn = ""
 
 local g = {
 	python3_host_prog = "$HOME/.config/nvim-venv/bin/python",
@@ -38,7 +37,7 @@ local opt = {
 	cursorline = true,
 	-- Making sure backspace works as intended
 	backspace = "indent,eol,start",
-	iskeyword = vim.opt.iskeyword .. ",_@.-",
+	iskeyword = vim.opt.iskeyword:append({ ",", "_", "@", ".", "-" }),
 	-- Improve the way in which node_modules are handled
 	path = ".,src**",
 	suffixesadd = ".js,.jsx",

@@ -1,4 +1,4 @@
-require "nvchad.mappings"
+require("nvchad.mappings")
 
 local map = vim.keymap.set
 
@@ -17,23 +17,23 @@ map("n", "<leader>cv", "<cmd>CccHighlighterToggle<CR>", { desc = "Toggle Color H
 map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Color Picker" })
 -- comment
 map("v", "<leader>_", function()
-  require("Comment.api").toggle.blockwise.current()
+	require("Comment.api").toggle.blockwise.current()
 end, { desc = "Block comment Toggle" })
 -- crates
 map("n", "<leader>cu", function()
-  local crates = require "crates"
-  crates.upgrade_all_crates()
+	local crates = require("crates")
+	crates.upgrade_all_crates()
 end, { desc = "Update crates" })
 -- dap
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
 map("n", "<leader>ds", function()
-  local widgets = require "dap.ui.widgets"
-  local sidebar = widgets.sidebar(widgets.scopes)
-  sidebar.open()
+	local widgets = require("dap.ui.widgets")
+	local sidebar = widgets.sidebar(widgets.scopes)
+	sidebar.open()
 end, { desc = "Open debugging sidebar" })
 --dap-python
 map("n", "<leader>dpr", function()
-  require("dap-python").test_method()
+	require("dap-python").test_method()
 end)
 -- finecmdline
 -- map("n", ":", "<cmd>FineCmdline<CR>", { desc = "CMD enter command mode" })
@@ -46,12 +46,12 @@ map("n", "<leader>a", "<cmd>RustCodeAction<CR>", { desc = "Rust Code Action" })
 map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", { desc = "Enter Searchbox" })
 map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", { desc = "Enter Replace Searchbox" })
 -- swenv
-local api = require "swenv.api"
+local api = require("swenv.api")
 map("n", "<leader>ps", function()
-  api.pick_venv()
+	api.pick_venv()
 end, { desc = "Choose Python venv" })
 map("n", "<leader>pe", function()
-  api.get_current_venv()
+	api.get_current_venv()
 end, { desc = "Show current Python venv" })
 -- trouble
 map("n", "<leader>tt", "<cmd>TroubleToggle<CR>", { desc = "Toggle Trouble panel on/off" })

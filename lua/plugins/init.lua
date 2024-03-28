@@ -150,6 +150,10 @@ return {
 					},
 				},
 			},
+			-- allow statuscolumn to be applied on nvim-tree
+			view = {
+				signcolumn = "no",
+			},
 		},
 	},
 	-- {

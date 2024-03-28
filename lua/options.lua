@@ -5,7 +5,6 @@ require("nvchad.options")
 vim.wo.statuscolumn = ""
 
 local g = {
-	python3_host_prog = "$HOME/.config/nvim-venv/bin/python",
 	dap_virtual_text = true,
 	bookmark_sign = "",
 }

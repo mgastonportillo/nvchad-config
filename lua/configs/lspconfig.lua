@@ -57,7 +57,7 @@ local jq = require("efmls-configs.linters.jq")
 local mdformat = require("efmls-configs.formatters.mdformat")
 local black = require("efmls-configs.formatters.black")
 local rustfmt = require("efmls-configs.formatters.rustfmt")
-local latexindent = require("efmls-configs.formatters.latexindent")
+-- local latexindent = require("efmls-configs.formatters.latexindent")
 local dprint = require("efmls-configs.formatters.dprint")
 
 -- Table of tools per language
@@ -76,7 +76,7 @@ local langs = {
 	rust = { rustfmt },
 	sass = { stylelint, prettier },
 	scss = { stylelint, prettier },
-	tex = { latexindent },
+	-- tex = { latexindent },
 	toml = { dprint },
 	typescript = { prettier },
 }

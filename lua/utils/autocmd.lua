@@ -50,7 +50,7 @@ autocmd({ "InsertEnter", "WinLeave" }, {
 	group = augroup("CursorLine", { clear = true }),
 })
 
---- Remove all trailing whitespace on save
+-- Remove all trailing whitespace on save
 autocmd("BufWritePre", {
 	command = [[:%s/\s\+$//e]],
 	group = augroup("TrimWhiteSpaceGrp", { clear = true }),
@@ -131,7 +131,7 @@ autocmd("TermClose", {
 	end,
 })
 
---Delete [No Name] buffers,
+-- Delete [No Name] buffers,
 autocmd("BufHidden", {
 	callback = function(event)
 		if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
@@ -161,7 +161,7 @@ autocmd("BufEnter", {
 	end,
 })
 
--- prevent weird snippet jumping behavior
+-- Prevent weird snippet jumping behavior
 -- https://github.com/L3MON4D3/LuaSnip/issues/258
 autocmd({ "ModeChanged" }, {
 	pattern = { "s:n", "i:*" },
@@ -189,7 +189,7 @@ autocmd("FileChangedShellPost", {
 	command = [[echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]],
 })
 
--- NEED DEBUGGING
+-- GROUP: NEED DEBUGGING
 
 -- -- prevent comment from being inserted when entering new line in existing comment
 -- autocmd("BufEnter", {

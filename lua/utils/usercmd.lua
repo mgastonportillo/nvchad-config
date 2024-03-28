@@ -39,5 +39,4 @@ create_cmd("BatchUpdate", function()
 	require("lazy").load({ plugins = { "mason.nvim", "nvim-treesitter" } })
 	vim.cmd("MasonUpdate")
 	vim.cmd("TSUpdate")
-	-- vim.cmd "NvChadUpdate"
 end, {})

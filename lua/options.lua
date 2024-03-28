@@ -1,11 +1,8 @@
 require("nvchad.options")
 
--- TODO: I need to figure folds out
-
 vim.wo.statuscolumn = ""
 
 local g = {
-	python3_host_prog = "$HOME/.config/nvim-venv/bin/python",
 	dap_virtual_text = true,
 	bookmark_sign = "",
 }
@@ -25,7 +22,6 @@ local opt = {
 	swapfile = false,
 	-- Always show minimum n lines after current line
 	scrolloff = 10,
-	relativenumber = true,
 	-- True color support
 	termguicolors = true,
 	emoji = false,
@@ -48,9 +44,7 @@ for k, v in pairs(opt) do
 	vim.opt[k] = v
 end
 
---[[
-      Auxiliary functions
-]]
+-- GROUP: [[ Auxiliary functions ]]
 
 function LoadMainNodeModule(fname)
 	local fn = vim.fn

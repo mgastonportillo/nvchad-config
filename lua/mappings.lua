@@ -36,17 +36,6 @@ map("n", "<leader>cu", function()
 	crates.upgrade_all_crates()
 end, { desc = "Update crates" })
 
--- crustacean
-local bufnr = vim.api.nvim_get_current_buf()
-
-map("n", "<C-space>", function()
-	vim.cmd.RustLsp({ "hover", "actions" })
-end, { silent = true, buffer = bufnr })
-map("n", "<leader>a", function()
-	vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
-	-- or vim.lsp.buf.codeAction() if you don't want grouping.
-end, { desc = "Code Action", silent = true, buffer = bufnr })
-
 -- dap
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
 map("n", "<leader>ds", function()
@@ -65,6 +54,17 @@ end)
 
 -- mdpreview
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
+
+-- rustaceanvim
+local bufnr = vim.api.nvim_get_current_buf()
+
+map("n", "<C-space>", function()
+	vim.cmd.RustLsp({ "hover", "actions" })
+end, { silent = true, buffer = bufnr })
+map("n", "<leader>a", function()
+	vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+	-- or vim.lsp.buf.codeAction() if you don't want grouping.
+end, { desc = "Code Action", silent = true, buffer = bufnr })
 
 -- searchbox
 map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", { desc = "Enter Searchbox" })

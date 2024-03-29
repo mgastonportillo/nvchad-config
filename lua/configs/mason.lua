@@ -29,11 +29,12 @@ local opts = {
 		-- Python
 		"debugpy",
 		"mypy",
-		"ruff",
+		"ruff-lsp",
 		"pyright",
 		"python-lsp-server",
 		-- Rust
 		"rust-analyzer",
+		"codelldb",
 		-- toml
 		"dprint",
 	},

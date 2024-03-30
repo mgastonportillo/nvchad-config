@@ -40,17 +40,15 @@ vim.schedule(function()
 	require("mappings")
 end)
 
--- Workaround for my stupid fingers
-local cmd = vim.cmd
-cmd([[
-  command! -nargs=0 Qa qa
-]])
-
 -- Re-activate python and node default providers
 for _, provider in ipairs({ "python3_provider", "node_provider" }) do
 	vim.g["loaded_" .. provider] = nil
-	cmd("runtime " .. provider)
+	vim.cmd("runtime " .. provider)
 end
+
+-- Add Qa and QA aliases for qa to workaround my dumb fingers
+vim.cmd("ca Qa qa")
+vim.cmd("ca QA qa")
 
 require("utils.autocmd")
 require("utils.usercmd")

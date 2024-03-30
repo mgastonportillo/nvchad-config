@@ -56,37 +56,21 @@ autocmd("BufWritePre", {
 	group = augroup("TrimWhiteSpaceGrp", { clear = true }),
 })
 
--- Restore cursor
-autocmd({ "BufReadPost" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.api.nvim_exec('silent! normal! g`"zv', false)
-	end,
-})
-
 -- Windows to close with "q"
 autocmd("FileType", {
 	pattern = {
+		"empty",
 		"help",
 		"startuptime",
 		"qf",
 		"lspinfo",
 		"man",
 		"checkhealth",
-		"tsplayground",
-		"HIERARCHY-TREE-GO",
-		"dap-float",
-		"spectre_panel",
-		"null-ls-info",
-		"empty",
-		"neotest-output",
-		"neotest-summary",
-		"neotest-output-panel",
 	},
 	command = [[
-            nnoremap <buffer><silent> q :close<CR>
-            set nobuflisted
-        ]],
+    nnoremap <buffer><silent> q :close<CR>
+    set nobuflisted
+  ]],
 })
 
 -- Disable diagnostics in node_modules (0 is current buffer only)
@@ -104,31 +88,6 @@ end
 
 autocmd({ "VimEnter" }, {
 	callback = open_file_created,
-})
-
--- Switch to insert mode when terminal is open
-local term_augroup = vim.api.nvim_create_augroup("Terminal", { clear = true })
-autocmd({ "TermOpen", "BufEnter" }, {
-	-- TermOpen: for when terminal is opened for the first time
-	-- BufEnter: when you navigate to an existing terminal buffer
-	group = term_augroup,
-	pattern = "term://*", --> only applicable for "BufEnter", an ignored Lua table key when evaluating TermOpen
-	callback = function()
-		vim.cmd("startinsert")
-	end,
-})
-
--- Automatically close terminal unless exit code isn't 0
-autocmd("TermClose", {
-	group = term_augroup,
-	callback = function()
-		if vim.v.event.status == 0 then
-			vim.api.nvim_buf_delete(0, {})
-			vim.notify_once("Previous terminal job was successful!")
-		else
-			vim.notify_once("Error code detected in the current terminal job!")
-		end
-	end,
 })
 
 -- Delete [No Name] buffers,
@@ -189,32 +148,21 @@ autocmd("FileChangedShellPost", {
 	command = [[echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None]],
 })
 
--- GROUP: NEED DEBUGGING
+-- GROUP: [[ NEED DEBUGGING ]]
 
--- -- prevent comment from being inserted when entering new line in existing comment
--- autocmd("BufEnter", {
--- 	callback = function()
--- 		-- allow <CR> to continue block comments only
--- 		-- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
--- 		vim.opt.comments:remove("://")
--- 		vim.opt.comments:remove(":--")
--- 		vim.opt.comments:remove(":#")
--- 		vim.opt.comments:remove(":%")
--- 	end,
--- })
+-- prevent comment from being inserted when entering new line in existing comment
+autocmd("BufEnter", {
+	callback = function()
+		-- allow <CR> to continue block comments only
+		-- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
+		vim.opt.comments:remove("://")
+		vim.opt.comments:remove(":--")
+		vim.opt.comments:remove(":#")
+		vim.opt.comments:remove(":%")
+	end,
+})
 
--- autocmd("BufEnter", {
--- 	desc = "Prevent auto comment new line",
--- 	command = [[set formatoptions-=cro]],
--- })
-
--- UNUSED BUT POTENTIALLY USEFUL
-
--- Hide cursorline in insert mode
--- autocmd({ "InsertLeave", "WinEnter" }, {
--- 	command = "set cursorline",
--- })
-
--- autocmd({ "InsertEnter", "WinLeave" }, {
--- 	command = "set nocursorline",
--- })
+autocmd("BufEnter", {
+	desc = "Prevent auto comment new line",
+	command = [[set formatoptions-=cro]],
+})

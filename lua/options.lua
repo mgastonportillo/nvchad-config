@@ -5,6 +5,19 @@ vim.wo.statuscolumn = ""
 local g = {
 	dap_virtual_text = true,
 	bookmark_sign = "",
+	-- This is a WSL specific setting to use the Windows clipboard for + and * registers
+	clipboard = {
+		name = "WslClipboard",
+		copy = {
+			["+"] = "clip.exe",
+			["*"] = "clip.exe",
+		},
+		paste = {
+			["+"] = 'pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+			["*"] = 'pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+		},
+		cache_enabled = 0,
+	},
 }
 
 for k, v in pairs(g) do

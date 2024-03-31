@@ -6,6 +6,7 @@
 ### Features:
 
 - Supports NvChad v2.5
+- Target OS: WSL2 (Windows 11) - To use on Linux, comment out clipboard in the g table at `lua/options.lua` and make sure you have something like xclip installed
 - Modularised setup of plugins and configurations
 - Pair with Wezterm using
   <a href="https://github.com/mgastonportillo/wezterm-config">my Wezterm

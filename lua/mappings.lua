@@ -14,21 +14,57 @@ map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 map("n", "<C-z>", "<nop>")
 map("n", "<C-S-z>", "<nop>")
 -- Remove a whole word with Ctrl+Backspace
-map("i", "C-BS", "<Esc>cvb", { expr = true, noremap = true })
+map("i", "<C-BS>", "<Esc>cvb")
 -- Prevent cursor jumping back to where selection started on yank
 map("v", "y", "ygv<Esc>")
 
 -- GROUP: [[ Plugins mappings ]]
 
 -- ccc
-map("n", "<C-S-c>", "<cmd>CccConvert<CR>", { desc = "Change color space" })
-map("n", "<leader>cv", "<cmd>CccHighlighterToggle<CR>", { desc = "Toggle Color Highlighter" })
-map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Color Picker" })
+map("n", "<C-x>", "<cmd> CccConvert <CR>", { desc = "Change color space" })
+map("n", "<leader>cv", "<cmd> CccHighlighterToggle <CR>", { desc = "Toggle Color Highlighter" })
+map("n", "<Leader>cp", "<cmd> CccPick <CR>", { desc = "Color Picker" })
 
 -- comment
-map("v", "<leader>_", function()
+-- Bind a single key that selects between single and multiline comment styles based on the current context
+function _G.__toggle_contextual(vmode)
+	local cfg = require("Comment.config"):get()
+	local U = require("Comment.utils")
+	local Op = require("Comment.opfunc")
+	local range = U.get_region(vmode)
+	local same_line = range.srow == range.erow
+
+	local ctx = {
+		cmode = U.cmode.toggle,
+		range = range,
+		cmotion = U.cmotion[vmode] or U.cmotion.line,
+		ctype = same_line and U.ctype.linewise or U.ctype.blockwise,
+	}
+
+	local lcs, rcs = U.parse_cstr(cfg, ctx)
+	local lines = U.get_lines(range)
+
+	local params = {
+		range = range,
+		lines = lines,
+		cfg = cfg,
+		cmode = ctx.cmode,
+		lcs = lcs,
+		rcs = rcs,
+	}
+
+	if same_line then
+		Op.linewise(params)
+	else
+		Op.blockwise(params)
+	end
+end
+-- "n" is pre-mapped
+map("x", "<leader>/", "<cmd> set operatorfunc=v:lua.__toggle_contextual <CR> g@")
+-- Single line comment block, ideal for GROUP keywords
+map("n", "<leader>_", function()
 	require("Comment.api").toggle.blockwise.current()
-end, { desc = "Block comment Toggle" })
+end)
 
 -- crates
 map("n", "<leader>cu", function()
@@ -37,7 +73,7 @@ map("n", "<leader>cu", function()
 end, { desc = "Update crates" })
 
 -- dap
-map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
+map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>")
 map("n", "<leader>ds", function()
 	local widgets = require("dap.ui.widgets")
 	local sidebar = widgets.sidebar(widgets.scopes)
@@ -53,7 +89,7 @@ end)
 -- map("n", ":", "<cmd>FineCmdline<CR>", { desc = "CMD enter command mode" })
 
 -- mdpreview
-map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
+map("n", "<leader>mp", "<cmd> MarkdownPreviewToggle <CR>", { desc = "Toggle Markdown Preview" })
 
 -- rustaceanvim
 local bufnr = vim.api.nvim_get_current_buf()
@@ -62,13 +98,13 @@ map("n", "<C-space>", function()
 	vim.cmd.RustLsp({ "hover", "actions" })
 end, { silent = true, buffer = bufnr })
 map("n", "<leader>a", function()
-	vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
-	-- or vim.lsp.buf.codeAction() if you don't want grouping.
+	-- vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
+	vim.lsp.buf.codeAction() -- if you don't want grouping.
 end, { desc = "Code Action", silent = true, buffer = bufnr })
 
 -- searchbox
-map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", { desc = "Enter Searchbox" })
-map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", { desc = "Enter Replace Searchbox" })
+map("n", "<leader>s", "<cmd> SearchBoxIncSearch <CR>", { desc = "Enter Searchbox" })
+map("n", "<leader>r", "<cmd> SearchBoxReplace <CR>", { desc = "Enter Replace Searchbox" })
 
 -- swenv
 -- local api = require("swenv.api")
@@ -80,4 +116,4 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", { desc = "Enter Replace Searc
 -- end, { desc = "Show current Python venv" })
 
 -- trouble
-map("n", "<leader>tt", "<cmd>TroubleToggle<CR>", { desc = "Toggle Trouble panel on/off" })
+map("n", "<leader>tt", "<cmd> TroubleToggle <CR>", { desc = "Toggle Trouble panel on/off" })

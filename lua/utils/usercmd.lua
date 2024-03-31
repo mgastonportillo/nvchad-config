@@ -20,21 +20,12 @@ vim.api.nvim_create_user_command("DiagnosticsToggle", function()
 	end
 end, {})
 
--- Toggle colorcolumn
-create_cmd("TCC", function()
-	vim.g.ccenable = not vim.g.ccenable
-
-	if vim.g.ccenable then
-		vim.opt.cc = "0"
-	end
-end, {})
-
 -- Open DapUi
-create_cmd("TDebug", function()
+create_cmd("ToggleDapUI", function()
 	require("dapui").toggle()
 end, {})
 
--- Update nvim
+-- Batch update
 create_cmd("BatchUpdate", function()
 	require("lazy").load({ plugins = { "mason.nvim", "nvim-treesitter" } })
 	vim.cmd("MasonUpdate")

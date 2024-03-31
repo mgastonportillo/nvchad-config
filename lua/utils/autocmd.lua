@@ -150,19 +150,53 @@ autocmd("FileChangedShellPost", {
 
 -- GROUP: [[ NEED DEBUGGING ]]
 
--- prevent comment from being inserted when entering new line in existing comment
-autocmd("BufEnter", {
-	callback = function()
-		-- allow <CR> to continue block comments only
-		-- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
-		vim.opt.comments:remove("://")
-		vim.opt.comments:remove(":--")
-		vim.opt.comments:remove(":#")
-		vim.opt.comments:remove(":%")
-	end,
-})
+-- autocmd("BufEnter", {
+-- 	desc = "Prevent auto comment new line",
+-- 	command = [[set formatoptions-=cro]],
+-- })
+--
+-- -- Prevent comment from being inserted when entering new line in existing comment
+-- autocmd("BufEnter", {
+-- 	callback = function()
+-- 		-- Allow <CR> to continue block comments only
+-- 		-- https://stackoverflow.com/questions/10726373/auto-comment-new-line-in-vim-only-for-block-comments
+-- 		vim.opt.comments:remove("://")
+-- 		vim.opt.comments:remove(":--")
+-- 		vim.opt.comments:remove(":#")
+-- 		vim.opt.comments:remove(":%")
+-- 	end,
+-- })
 
-autocmd("BufEnter", {
-	desc = "Prevent auto comment new line",
-	command = [[set formatoptions-=cro]],
-})
+-- autocmd("BufEnter", {
+-- 	callback = function()
+-- 		for k, v in pairs(vim.opt.formatoptions) do
+-- 			if k == "_value" then
+-- 				print(v)
+-- 			end
+-- 		end
+-- 		if vim.opt.formatoptions ~= nil then
+-- 			vim.opt.formatoptions = vim.opt.formatoptions - "o"
+-- 		end
+-- 	end,
+-- })
+
+-- autocmd("BufEnter", {
+-- 	callback = function()
+-- 		local old = vim.o.comments
+-- 		print("vim.o.comments is:", vim.o.comments)
+--
+-- 		local patterns = { ":---", ":--", "://", ":#", "%" }
+--
+-- 		local new = old:gsub("%f[%c]", function(match)
+-- 			if table.find(patterns, match) then
+-- 				return "f0" .. match
+-- 			else
+-- 				return match
+-- 			end
+-- 		end)
+--
+-- 		if old ~= new then
+-- 			print("vim.o.comments is:", vim.o.comments) -- Inspect the value
+-- 		end
+-- 	end,
+-- })

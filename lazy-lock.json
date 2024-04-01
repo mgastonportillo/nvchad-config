@@ -43,7 +43,6 @@
   "plenary.nvim": { "branch": "master", "commit": "f7adfc4b3f4f91aab6caebf42b3682945fbc35be" },
   "rustaceanvim": { "branch": "master", "commit": "b1433cb70569b888d26a26232da93fdbc76cb4a8" },
   "searchbox.nvim": { "branch": "main", "commit": "110949af8963185b4e732b45ae57beb731bfcede" },
-  "swenv.nvim": { "branch": "main", "commit": "c11eeaa6f8f05abdcbb0a53d0ac290e3f9fabd2c" },
   "telescope.nvim": { "branch": "master", "commit": "c2b8311dfacd08b3056b8f0249025d633a4e71a8" },
   "todo-comments.nvim": { "branch": "main", "commit": "833d8dd8b07eeda37a09e99460f72a02616935cb" },
   "trouble.nvim": { "branch": "main", "commit": "f1168feada93c0154ede4d1fe9183bf69bac54ea" },

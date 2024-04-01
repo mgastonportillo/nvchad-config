@@ -1,6 +1,28 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+vim.g.CAPSON = "Unknown"
+
+autocmd({ "ModeChanged", "BufWrite" }, {
+	desc = "Get Caps Status",
+	group = vim.api.nvim_create_augroup("GetCapsStatus", { clear = true }),
+	callback = function()
+		vim.fn.jobstart('pwsh.exe -c "[console]::CapsLock"', {
+			on_stdout = function(_, data)
+				local output = vim.trim(data[1])
+
+				if output ~= "" then
+					vim.g.CAPSON = output
+
+					vim.fn.timer_start(0, function()
+						vim.cmd("redrawstatus")
+					end)
+				end
+			end,
+		})
+	end,
+})
+
 autocmd("VimResized", {
 	desc = "Auto resize panes when resizing nvim window",
 	pattern = "*",

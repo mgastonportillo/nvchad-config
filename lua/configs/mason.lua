@@ -37,6 +37,7 @@ local opts = {
 		"codelldb",
 		-- toml
 		"dprint",
+		"astro-language-server",
 	},
 }
 

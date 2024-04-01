@@ -1,6 +1,20 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+--[[ local clip = "/mnt/c/Windows/System32/clip.exe"
+if vim.fn.executable(clip) then
+	local opts = {
+		callback = function()
+			if vim.v.event.operator ~= "y" then
+				return
+			end
+			vim.fn.system(clip, vim.fn.getreg(0))
+		end,
+	}
+	opts.group = vim.api.nvim_create_augroup("WSLYank", {})
+	autocmd("TextYankPost", { group = opts.group, callback = opts.callback })
+end ]]
+
 vim.g.CAPSON = "Unknown"
 
 autocmd({ "ModeChanged", "BufWrite" }, {

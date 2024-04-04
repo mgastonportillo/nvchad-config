@@ -7,6 +7,7 @@ local opts = {
 		"vimdoc",
 		"html",
 		"css",
+		"scss",
 		"javascript",
 		"typescript",
 		"tsx",

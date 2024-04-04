@@ -8,6 +8,8 @@ local servers = {
 	"bashls",
 	"clangd",
 	"cssls",
+	"css_variables",
+	"jsonls",
 	"html",
 	"marksman",
 	"pyright",

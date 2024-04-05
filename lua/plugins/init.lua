@@ -82,9 +82,15 @@ return {
 	-- Use treesitter to auto close and auto rename html tags
 	-- https://github.com/windwp/nvim-ts-autotag
 	{ import = "plugins.gale.ts-autotag" },
+	-- TreeSitter plugin for setting the commentstring based on the cursor location in a file
+	-- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+	{ import = "plugins.gale.ts-context-commentstring" },
 	-- TypeScript integration NeoVim deserves
 	-- https://github.com/pmizio/typescript-tools.nvim
 	{ import = "plugins.gale.typescript-tools" },
+	-- Astro language indentation and syntax support
+	-- https://github.com/wuelnerdotexe/vim-astro
+	{ import = "plugins.gale.vim-astro", enabled = false },
 	-- Distraction-free coding
 	-- https://github.com/folke/zen-mode.nvim
 	{ import = "plugins.gale.zen-mode" },
@@ -124,5 +130,10 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = require("configs.nvim-tree"),
+	},
+	-- https://github.com/nvim-tree/nvim-web-devicons
+	{
+		"nvim-tree/nvim-web-devicons",
+		opts = require("configs.nvim-web-devicons"),
 	},
 }

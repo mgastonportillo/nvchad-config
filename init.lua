@@ -50,5 +50,10 @@ end
 vim.cmd("ca Qa qa")
 vim.cmd("ca QA qa")
 
+-- Add support for sass
+require("Comment").setup()
+local ft = require("Comment.ft")
+ft.set("scss", { "//%s", "/*%s*/" })
+
 require("utils.autocmd")
 require("utils.usercmd")

@@ -12,6 +12,7 @@ local servers = {
 	"jsonls",
 	"html",
 	"marksman",
+	-- "tailwindcss",
 	"pyright",
 }
 

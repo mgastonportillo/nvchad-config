@@ -26,6 +26,7 @@ local opts = {
 		"stylelint",
 		"typescript-language-server",
 		"prettier",
+		"tailwindcss-language-server",
 		-- Python
 		"debugpy",
 		"mypy",

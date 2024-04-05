@@ -50,10 +50,11 @@ end
 vim.cmd("ca Qa qa")
 vim.cmd("ca QA qa")
 
--- Add support for sass
+-- Improve Astro commenting and add support for Sass
 require("Comment").setup()
 local ft = require("Comment.ft")
 ft.set("scss", { "//%s", "/*%s*/" })
+ft.set("astro", { "<!--%s-->", "<!--%s-->" })
 
 require("utils.autocmd")
 require("utils.usercmd")

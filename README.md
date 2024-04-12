@@ -1,6 +1,6 @@
 # My custom Nvchad v2.5 configuration
 
-<p align="center"><img src="https://github.com/mgastonportillo/nvchad-config/assets/106234166/674bfdac-6914-41be-b001-3dd6bc610495"></p>
+<p align="center"><img src="https://github.com/mgastonportillo/nvchad-config/assets/106234166/99634136-48db-409b-a8c9-55dd0e31a702"></p>
 <hr>
 
 ### Features:

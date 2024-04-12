@@ -6,7 +6,7 @@ local g = {
 	dap_virtual_text = true,
 	bookmark_sign = "",
 	skip_ts_context_commentstring_module = true,
-	-- This is a WSL specific setting to use the Windows clipboard for + and * registers
+	-- WSL-exclusive setting to use the Windows clipboard for + and * registers
 	clipboard = {
 		name = "wslclipboard",
 		copy = {

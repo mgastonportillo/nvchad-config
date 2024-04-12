@@ -1,25 +1,22 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
---[[ local clip = "/mnt/c/Windows/System32/clip.exe"
-if vim.fn.executable(clip) then
-	local opts = {
-		callback = function()
-			if vim.v.event.operator ~= "y" then
-				return
-			end
-			vim.fn.system(clip, vim.fn.getreg(0))
-		end,
-	}
-	opts.group = vim.api.nvim_create_augroup("WSLYank", {})
-	autocmd("TextYankPost", { group = opts.group, callback = opts.callback })
-end ]]
+-- Add support for mdx
+autocmd({ "BufNewFile", "BufRead" }, {
+	pattern = { "*.mdx" },
+	group = augroup("mdx_support", { clear = true }),
+	callback = function()
+		-- local current_buf = vim.api.nvim_get_current_buf()
+		-- Alt optional values: { buf = current_buf }
+		vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local" })
+	end,
+})
 
+-- Display caps lock status (refreshed at mode change and save)
 vim.g.CAPSON = "Unknown"
-
 autocmd({ "ModeChanged", "BufWrite" }, {
 	desc = "Get Caps Status",
-	group = vim.api.nvim_create_augroup("GetCapsStatus", { clear = true }),
+	group = augroup("GetCapsStatus", { clear = true }),
 	callback = function()
 		vim.fn.jobstart('pwsh.exe -c "[console]::CapsLock"', {
 			on_stdout = function(_, data)
@@ -63,13 +60,13 @@ autocmd("TextYankPost", {
 })
 
 autocmd("ModeChanged", {
-	group = vim.api.nvim_create_augroup("user_diagnostic", { clear = true }),
+	group = augroup("user_diagnostic", { clear = true }),
 	pattern = { "n:i", "n:v", "i:v" },
 	command = "lua vim.diagnostic.disable(0)",
 })
 
 autocmd("ModeChanged", {
-	group = vim.api.nvim_create_augroup("user_diagnostic", { clear = true }),
+	group = augroup("user_diagnostic", { clear = true }),
 	pattern = "i:n",
 	command = "lua vim.diagnostic.enable(0)",
 })

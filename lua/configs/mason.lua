@@ -10,8 +10,6 @@ local opts = {
 		"clang-format",
 		-- Go
 		"golangci-lint",
-		-- Haskell
-		"fourmolu",
 		-- Markdown
 		"marksman",
 		"markdownlint",

@@ -17,6 +17,11 @@ map("n", "<C-S-z>", "<nop>")
 map("i", "<C-BS>", "<Esc>cvb")
 -- Prevent cursor jumping back to where selection started on yank
 map("v", "y", "ygv<Esc>")
+-- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
+map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
+map("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
+map("n", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
+map("n", "<Down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 
 -- GROUP: [[ Plugins mappings ]]
 

@@ -1,6 +1,12 @@
-require("nvchad.mappings")
+require "nvchad.mappings"
 
-local map = vim.keymap.set
+local map = function(mode, lhs, rhs, opts)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.keymap.set(mode, lhs, rhs, options)
+end
 
 -- GROUP: [[ Core mappings ]]
 
@@ -33,61 +39,62 @@ map("n", "<Leader>cp", "<cmd> CccPick <CR>", { desc = "Color Picker" })
 -- comment
 -- Bind a single key that selects between single and multiline comment styles based on the current context
 function _G.__toggle_contextual(vmode)
-	local cfg = require("Comment.config"):get()
-	local U = require("Comment.utils")
-	local Op = require("Comment.opfunc")
-	local range = U.get_region(vmode)
-	local same_line = range.srow == range.erow
+  local cfg = require("Comment.config"):get()
+  local U = require "Comment.utils"
+  local Op = require "Comment.opfunc"
+  local range = U.get_region(vmode)
+  local same_line = range.srow == range.erow
 
-	local ctx = {
-		cmode = U.cmode.toggle,
-		range = range,
-		cmotion = U.cmotion[vmode] or U.cmotion.line,
-		ctype = same_line and U.ctype.linewise or U.ctype.blockwise,
-	}
+  local ctx = {
+    cmode = U.cmode.toggle,
+    range = range,
+    cmotion = U.cmotion[vmode] or U.cmotion.line,
+    ctype = same_line and U.ctype.linewise or U.ctype.blockwise,
+  }
 
-	local lcs, rcs = U.parse_cstr(cfg, ctx)
-	local lines = U.get_lines(range)
+  local lcs, rcs = U.parse_cstr(cfg, ctx)
+  local lines = U.get_lines(range)
 
-	local params = {
-		range = range,
-		lines = lines,
-		cfg = cfg,
-		cmode = ctx.cmode,
-		lcs = lcs,
-		rcs = rcs,
-	}
+  local params = {
+    range = range,
+    lines = lines,
+    cfg = cfg,
+    cmode = ctx.cmode,
+    lcs = lcs,
+    rcs = rcs,
+    cfg,
+  }
 
-	if same_line then
-		Op.linewise(params)
-	else
-		Op.blockwise(params)
-	end
+  if same_line then
+    Op.linewise(params)
+  else
+    Op.blockwise(params)
+  end
 end
 -- "n" is pre-mapped
 map("x", "<leader>/", "<cmd> set operatorfunc=v:lua.__toggle_contextual <CR> g@")
 -- Single line comment block, ideal for GROUP keywords
 map("n", "<leader>_", function()
-	require("Comment.api").toggle.blockwise.current()
+  require("Comment.api").toggle.blockwise.current()
 end)
 
 -- crates
 map("n", "<leader>cu", function()
-	local crates = require("crates")
-	crates.upgrade_all_crates()
+  local crates = require "crates"
+  crates.upgrade_all_crates()
 end, { desc = "Update crates" })
 
 -- dap
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>")
 map("n", "<leader>ds", function()
-	local widgets = require("dap.ui.widgets")
-	local sidebar = widgets.sidebar(widgets.scopes)
-	sidebar.open()
+  local widgets = require "dap.ui.widgets"
+  local sidebar = widgets.sidebar(widgets.scopes)
+  sidebar.open()
 end, { desc = "Open debugging sidebar" })
 
 -- dap-python
 map("n", "<leader>dpr", function()
-	require("dap-python").test_method()
+  require("dap-python").test_method()
 end)
 
 -- finecmdline
@@ -97,7 +104,7 @@ end)
 map("n", "<leader>mp", "<cmd> MarkdownPreviewToggle <CR>", { desc = "Toggle Markdown Preview" })
 
 -- rustaceanvim
-local bufnr = vim.api.nvim_get_current_buf()
+--[[ local bufnr = vim.api.nvim_get_current_buf()
 
 map("n", "<C-space>", function()
 	vim.cmd.RustLsp({ "hover", "actions" })
@@ -105,7 +112,7 @@ end, { silent = true, buffer = bufnr })
 map("n", "<leader>a", function()
 	-- vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
 	vim.lsp.buf.codeAction() -- if you don't want grouping.
-end, { desc = "Code Action", silent = true, buffer = bufnr })
+end, { desc = "Code Action", silent = true, buffer = bufnr }) ]]
 
 -- searchbox
 map("n", "<leader>s", "<cmd> SearchBoxIncSearch <CR>", { desc = "Enter Searchbox" })

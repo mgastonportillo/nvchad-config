@@ -5,45 +5,27 @@
 local M = {}
 
 M.ui = {
-	transparency = true,
-	statusline = {
-		theme = "vscode_colored",
-		order = {
-			"mode",
-			"file",
-			"git",
-			"%=",
-			"lsp_msg",
-			"%=",
-			"diagnostics",
-			"lsp",
-			-- "cursor",
-			"caps_status",
-			"cwd",
-		},
+  transparency = true,
+  theme = "bearded-arc",
+  theme_toggle = { "chadracula-evondev", "bearded-arc" },
 
-		modules = {
-			caps_status = function()
-				if vim.g.CAPSON == "True" then
-					return "%#StText# Caps: ON  "
-				else
-					return "%#StText# Caps: OFF  "
-				end
-			end,
-		},
-	},
-	theme = "bearded-arc",
+  statusline = {
+    theme = "vscode_colored",
+  },
 
-	---@diagnostic disable-next-line
-	theme_toggle = { "chadracula-evondev", "bearded-arc" },
-	telescope = { style = "bordered" },
-	hl_override = {
-		Comment = { italic = true },
-		["@comment"] = { italic = true },
-	},
+  telescope = { style = "bordered" },
 
-	-- hl_add = {}
-	-- nvdash = {}
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+  },
+
+  hl_add = {
+    YankVisual = {
+      bg = "#303847",
+    },
+  },
+  -- nvdash = {}
 }
 
 return M

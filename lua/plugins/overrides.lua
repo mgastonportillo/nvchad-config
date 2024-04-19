@@ -27,8 +27,7 @@ return {
   {
     "numToStr/Comment.nvim",
     config = function()
-      local ts_addon = require "ts_context_commentstring.integrations.comment_nvim"
-      require("Comment").setup { pre_hook = ts_addon.create_pre_hook() }
+      require "configs.comment"
     end,
   },
   -- https://github.com/stevearc/conform.nvim

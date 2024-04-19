@@ -119,7 +119,6 @@ map("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", { desc = "LSP Go to type
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "LSP Prev diagnostics" })
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "LSP Next diagnostics" })
 map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
--- Pressing the key twice will enter the hover window
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "LSP Hover" })
 map("n", "[E", function()
   require("lspsaga.diagnostic"):goto_prev { severity = vim.diagnostic.severity.ERROR }
@@ -152,6 +151,8 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
 
 -- PLUGIN: [[ telescope ]]
 map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope Find references" })
+map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Find help tags" })
+map("n", "<leader>fh", "<cmd>Telescope highlights<CR>", { desc = "Telescope Find highlights" })
 map("n", "<leader>fc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>f.", "<cmd>Telescope git_bcommits<CR>", { desc = "Telescope Git commits in buffer" })
 map("n", "<leader>fs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })

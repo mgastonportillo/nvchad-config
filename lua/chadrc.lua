@@ -21,11 +21,24 @@ M.ui = {
   },
 
   hl_add = {
-    YankVisual = {
-      bg = "#303847",
+    YankVisual = { bg = "#303847" },
+  },
+
+  nvdash = {
+    load_on_startup = false,
+    header = { "Hello from NVIM" },
+  },
+
+  term = {
+    float = {
+      border = "rounded",
     },
   },
-  -- nvdash = {}
+
+  lsp = {
+    signature = false,
+    semantic_tokens = true,
+  },
 }
 
 return M

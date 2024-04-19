@@ -9,7 +9,7 @@ return {
         PLUGIN = { icon = " ", color = "plugin" },
       },
       highlight = { multiline = false },
-      colors = { plugin = "#e89d5d" },
+      colors = { plugin = "#edc4e5" },
     }
   end,
 }

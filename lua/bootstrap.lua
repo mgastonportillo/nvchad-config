@@ -32,7 +32,7 @@ require("lazy").setup({
     end,
   },
 
-  { import = "overrides" },
+  { import = "plugins.overrides" },
   { import = "plugins" },
 }, lazy_config)
 
@@ -41,3 +41,5 @@ dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
+
+vim.api.nvim_del_user_command "Nvdash"

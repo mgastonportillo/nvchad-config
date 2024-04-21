@@ -11,23 +11,17 @@ create_cmd("InlayHintsToggle", function()
   end
 end, { desc = "Toogle inlay hints in current buffer" })
 
-create_cmd("FormatDisable", function(args)
-  if args.bang then
-    -- FormatDisable! will disable formatting just for this buffer
-    vim.b.disable_autoformat = true
+create_cmd("AutoFormatToggle", function()
+  local on_save = vim.g.disable_autoformat
+  if on_save == true then
+    vim.g.disable_autoformat = false
+    print "Auto-format enabled"
   else
     vim.g.disable_autoformat = true
+    print "Auto-format disabled"
   end
 end, {
-  desc = "Disable autoformat-on-save",
-  bang = true,
-})
-
-create_cmd("FormatEnable", function()
-  vim.b.disable_autoformat = false
-  vim.g.disable_autoformat = false
-end, {
-  desc = "Enable autoformat-on-save",
+  desc = "Toggle autoformat-on-save",
 })
 
 create_cmd("DiagnosticsVirtualTextToggle", function()
@@ -48,7 +42,7 @@ create_cmd("DiagnosticsToggle", function()
   end
 end, { desc = "Toggle diagnostics." })
 
-create_cmd("ToggleDapUI", function()
+create_cmd("DapUIToggle", function()
   require("dapui").toggle()
 end, { desc = "Open DapUI." })
 

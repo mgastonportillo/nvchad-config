@@ -1,13 +1,14 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 
--- Bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 
+-- Install lazy if not in path
 if not vim.loop.fs_stat(lazypath) then
   vim.system { "git", "clone", "--filter=blob:none", lazyrepo, "--branch=stable", lazypath }
 end
 
+-- Prepend lazy to runtime path
 vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
@@ -29,10 +30,11 @@ require("lazy").setup({
   { import = "plugins" },
 }, lazy_config)
 
--- Load theme
+-- Load themes
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
 
+-- No dashboard for me
 vim.api.nvim_del_user_command "Nvdash"

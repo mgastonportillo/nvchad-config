@@ -25,11 +25,6 @@ M.ui = {
     YankVisual = { bg = "#303847" },
   },
 
-  nvdash = {
-    load_on_startup = false,
-    header = { "Hello from NVIM" },
-  },
-
   term = {
     float = {
       border = "rounded",

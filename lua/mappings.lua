@@ -9,7 +9,7 @@ local map = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
--- GROUP: [[ Core mappings ]]
+-- GROUP: [[ CORE MAPPINGS ]]
 
 -- Enter cmd mode with ";"
 map("n", ";", ":", { desc = "Enter CMD mode" })
@@ -37,16 +37,16 @@ map("i", "<A-Up>", "<Esc>:m .-2<CR>==gi")
 map("v", "<A-Down>", ":m '>+1<CR>gv=gv")
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 
--- GROUP: [[ Plugin mappings ]]
+-- GROUP: [[ PLUGIN MAPPINGS ]]
 
--- PLUGIN: [[ ccc ]]
+-- PLUGIN: ccc
 map("n", "<C-x>", "<cmd>CccConvert<CR>", { desc = "Change Color Space" })
 map("n", "<leader>cv", "<cmd>CccHighlighterToggle<CR>", {
   desc = "Toggle Color Highlighter",
 })
 map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Color Picker" })
 
--- PLUGIN: [[ comment ]]
+-- PLUGIN: comment
 -- Bind a single key that selects between single and
 -- multiline comment styles based on the current context
 function _G.__toggle_contextual(vmode)
@@ -89,13 +89,13 @@ map("n", "<leader>_", function()
   require("Comment.api").toggle.blockwise.current()
 end)
 
--- PLUGIN: [[ crates ]]
+-- PLUGIN: crates
 map("n", "<leader>cu", function()
   local crates = require "crates"
   crates.upgrade_all_crates()
 end, { desc = "Update crates" })
 
--- PLUGIN: [[ dap ]]
+-- PLUGIN: dap
 local widgets = require "dap.ui.widgets"
 local sidebar = widgets.sidebar(widgets.scopes)
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
@@ -103,12 +103,12 @@ map("n", "<leader>dt", function()
   sidebar.toggle()
 end, { desc = "Toggle debugging sidebar" })
 
--- PLUGIN: [[ dap-python ]]
+-- PLUGIN: dap-python
 map("n", "<leader>dpr", function()
   require("dap-python").test_method()
 end)
 
--- PLUGIN: [[ lsp-saga ]]
+-- PLUGIN: lsp-saga
 map({ "n", "v" }, "cA", "<cmd>Lspsaga code_action<CR>", { desc = "LSP Code action" })
 map("n", "gh", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
 map("n", "cr", "<cmd>Lspsaga rename<CR>", { desc = "LSP Rename in file" })
@@ -127,12 +127,12 @@ map("n", "]E", function()
   require("lspsaga.diagnostic"):goto_next { severity = vim.diagnostic.severity.ERROR }
 end, { desc = "LSP Next error" })
 
--- PLUGIN: [[ md-preview ]]
+-- PLUGIN: md-preview
 map("n", "<leader>mp", "<cmd> MarkdownPreviewToggle <CR>", {
   desc = "Toggle Markdown Preview",
 })
 
--- PLUGIN: [[ rustaceanvim ]]
+-- PLUGIN: rustaceanvim
 map("n", "K", function()
   vim.cmd.RustLsp { "hover", "actions" }
 end, { silent = true, buffer = bufnr, desc = "Rust Hover" })
@@ -141,7 +141,7 @@ map("n", "<leader>a", function()
   vim.lsp.buf.codeAction() -- if you don't want grouping.
 end, { silent = true, buffer = bufnr, desc = "Rust Code actions" })
 
--- PLUGIN: [[ searchbox ]]
+-- PLUGIN: searchbox
 map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", {
   desc = "Enter Searchbox",
 })
@@ -149,7 +149,7 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
   desc = "Enter Replace Searchbox",
 })
 
--- PLUGIN: [[ telescope ]]
+-- PLUGIN: telescope
 map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope Find references" })
 map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Find help tags" })
 map("n", "<leader>fh", "<cmd>Telescope highlights<CR>", { desc = "Telescope Find highlights" })
@@ -157,5 +157,5 @@ map("n", "<leader>fc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git
 map("n", "<leader>f.", "<cmd>Telescope git_bcommits<CR>", { desc = "Telescope Git commits in buffer" })
 map("n", "<leader>fs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 
--- PLUGIN: [[ trouble ]]
+-- PLUGIN: trouble
 map("n", "<leader>tt", "<cmd>TroubleToggle<CR>", { desc = "Toggle Trouble" })

@@ -1,10 +1,10 @@
 -- GROUP: [[ SERVERS ]]
 
+local lspconfig = require "lspconfig"
 local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
 local servers = {
   "astro",
   "bashls",
@@ -28,7 +28,7 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.ruff_lsp.setup {
-  on_attach = function(client, _)
+  on_attach = function(client)
     -- Disable hover in favour of Pyright
     client.server_capabilities.hoverProvider = false
   end,

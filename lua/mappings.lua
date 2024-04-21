@@ -109,7 +109,7 @@ map("n", "<leader>dpr", function()
 end)
 
 -- PLUGIN: [[ lsp-saga ]]
-map({ "n", "v" }, "ca", "<cmd>Lspsaga code_action<CR>", { desc = "LSP Code action" })
+map({ "n", "v" }, "cA", "<cmd>Lspsaga code_action<CR>", { desc = "LSP Code action" })
 map("n", "gh", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
 map("n", "cr", "<cmd>Lspsaga rename<CR>", { desc = "LSP Rename in file" })
 map("n", "cR", "<cmd>Lspsaga rename ++project<CR>", { desc = "LSP Rename in selected files" })

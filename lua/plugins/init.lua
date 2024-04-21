@@ -35,8 +35,6 @@ return {
   { import = "plugins.gale.md-preview" },
   -- https://github.com/ecthelionvi/NeoComposer.nvim
   { import = "plugins.gale.neocomposer", enabled = false },
-  -- https://github.com/folke/neodev.nvim
-  { import = "plugins.gale.neodev" },
   -- https://github.com/rcarriga/nvim-notify
   { import = "plugins.gale.notify" },
   -- https://github.com/ahmedkhalf/project.nvim

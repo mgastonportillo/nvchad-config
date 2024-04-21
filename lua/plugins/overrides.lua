@@ -4,6 +4,7 @@ return {
   -- https://github.com/neovim/nvim-lspconfig
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "folke/neodev.nvim" },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
@@ -20,6 +21,16 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           fallback()
         end),
+      },
+    },
+  },
+  -- https://github.com/nvim-telescope/telescope.nvim
+  {
+    "nvim-telescope/telescope.nvim",
+    opts = {
+      defaults = {
+        selection_caret = " ",
+        entry_prefix = " ",
       },
     },
   },
@@ -62,6 +73,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
+      ui = { border = "rounded" },
       ensure_installed = {
         "bash-language-server",
         "beautysh",

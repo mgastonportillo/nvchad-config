@@ -2,26 +2,19 @@ vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 
 -- Bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 
----@diagnostic disable-next-line
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
-    lazypath,
-  }
+  vim.system { "git", "clone", "--filter=blob:none", lazyrepo, "--branch=stable", lazypath }
 end
 
----@diagnostic disable-next-line
 vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
 -- Load plugins
 require("lazy").setup({
+  { import = "plugins.pre" },
   {
     "NvChad/NvChad",
     lazy = false,

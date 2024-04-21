@@ -18,7 +18,7 @@ local g = {
   dap_virtual_text = true,
   bookmark_sign = "",
   skip_ts_context_commentstring_module = true,
-  -- use Windows clipboard for + and * registers
+  -- use Windows clipboard for + and * registers (WSL)
   clipboard = {
     name = "wslclipboard",
     copy = {
@@ -32,6 +32,8 @@ local g = {
     cache_enabled = 0,
   },
 }
+
+local tabSize = 2
 
 local opt = {
   encoding = "utf-8",
@@ -53,13 +55,14 @@ local opt = {
   textwidth = 0,
   wrapmargin = 0,
   -- Indentation values
+  tabstop = tabSize,
+  shiftwidth = tabSize,
   expandtab = true,
-  tabstop = 2,
-  -- Use tabstop value for shiftwidth
-  shiftwidth = 0,
   autoindent = true,
   cursorline = false,
-  iskeyword = vim.opt.iskeyword:append { ",", "_", "@", ".", "-" },
+  inccommand = "split",
+  ignorecase = true,
+  iskeyword = vim.opt.iskeyword:append { "_", "@", ".", "-" },
 }
 
 -- GROUP: [[ LOOPS ]]

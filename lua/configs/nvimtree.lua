@@ -5,10 +5,10 @@ return {
     icons = {
       glyphs = {
         folder = {
-          default = "¯ù┐",
-          open = "¯ù¥",
-          empty = "¯¬â",
-          empty_open = "¯½À",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
         },
       },
     },

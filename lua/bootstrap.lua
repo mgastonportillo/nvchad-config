@@ -11,11 +11,19 @@ end
 -- Prepend lazy to runtime path
 vim.opt.rtp:prepend(lazypath)
 
-local lazy_config = require "configs.lazy"
-
 -- Load plugins
+local lazy_config = require "configs.lazy"
 require("lazy").setup({
-  { import = "plugins.pre" },
+  {
+    "folke/neodev.nvim",
+    config = function()
+      require("neodev").setup {
+        library = {
+          plugins = { "nvim-dap-ui" },
+        },
+      }
+    end,
+  },
   {
     "NvChad/NvChad",
     lazy = false,
@@ -25,8 +33,7 @@ require("lazy").setup({
       require "options"
     end,
   },
-
-  { import = "plugins.overrides" },
+  { import = "overrides" },
   { import = "plugins" },
 }, lazy_config)
 

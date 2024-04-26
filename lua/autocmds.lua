@@ -69,6 +69,7 @@ autocmd("FileType", {
     "man",
     "checkhealth",
     "nvcheatsheet",
+    "yerbreak",
   },
   command = [[
     nnoremap <buffer><silent> q :close<CR>

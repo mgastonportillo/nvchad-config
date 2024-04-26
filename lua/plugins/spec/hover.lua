@@ -1,5 +1,6 @@
 return {
   "lewis6991/hover.nvim",
+  event = "BufWinEnter",
   config = function()
     require("hover").setup {
       init = function()

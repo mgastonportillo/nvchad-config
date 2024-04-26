@@ -1,6 +1,6 @@
 return {
   "VonHeikemen/searchbox.nvim",
-  event = "VimEnter",
+  event = "VeryLazy",
   init = function() end,
   dependencies = "MunifTanjim/nui.nvim",
 }

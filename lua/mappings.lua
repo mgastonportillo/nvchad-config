@@ -108,6 +108,9 @@ map("n", "<leader>dpr", function()
   require("dap-python").test_method()
 end)
 
+-- PLUGIN: gen-nvim
+map({ "n", "v" }, "<leader>*", "<cmd>Gen<CR>", { desc = "Open gen.nvim" })
+
 -- PLUGIN: lsp-saga
 map({ "n", "v" }, "cA", "<cmd>Lspsaga code_action<CR>", { desc = "LSP Code action" })
 map("n", "gh", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
@@ -131,6 +134,9 @@ end, { desc = "LSP Next error" })
 map("n", "<leader>mp", "<cmd> MarkdownPreviewToggle <CR>", {
   desc = "Toggle Markdown Preview",
 })
+
+-- PLUGIN: popurri
+map("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
 
 -- PLUGIN: rustaceanvim
 map("n", "K", function()
@@ -159,3 +165,6 @@ map("n", "<leader>fs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git 
 
 -- PLUGIN: trouble
 map("n", "<leader>tt", "<cmd>TroubleToggle<CR>", { desc = "Toggle Trouble" })
+
+-- PLUGIN: yerbreak
+map({ "n", "v" }, "<leader>yb", "<cmd>Yerbreak<CR>", { desc = "Toggle Yerbreak" })

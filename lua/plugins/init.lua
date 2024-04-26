@@ -1,8 +1,14 @@
 return {
+  -- https://github.com/mgastonportillo/yerbreak.nvim
+  { import = "plugins.gale.yerbreak" },
+  --
+  { import = "plugins.gale.popurri" },
   -- https://github.com/max397574/better-escape.nvim
   { import = "plugins.spec.better-escape" },
   -- https://github.com/uga-rosa/ccc.nvim
   { import = "plugins.spec.ccc" },
+  -- https://github.com/olimorris/codecompanion.nvim
+  { import = "plugins.spec.codecompanion" },
   -- https://github.com/Saecki/crates.nvim
   { import = "plugins.spec.crates", enabled = false },
   -- https://github.com/mfussenegger/nvim-dap-python
@@ -11,6 +17,8 @@ return {
   { import = "plugins.spec.dap-ui" },
   -- https://github.com/theHamsta/nvim-dap-virtual-text
   { import = "plugins.spec.dap-virtual-text" },
+  -- https://github.com/folke/edgy.nvim
+  { import = "plugins.spec.edgy" },
   -- https://github.com/lewis6991/gitsigns.nvim
   { import = "plugins.spec.gitsigns" },
   -- https://github.com/stevearc/dressing.nvim
@@ -33,7 +41,7 @@ return {
   { import = "plugins.spec.md-preview" },
   -- https://github.com/ecthelionvi/NeoComposer.nvim
   { import = "plugins.spec.neocomposer", enabled = false },
-  --
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   { import = "plugins.spec.treesitter-textobjects" },
   -- https://github.com/rcarriga/nvim-notify
   { import = "plugins.spec.notify" },

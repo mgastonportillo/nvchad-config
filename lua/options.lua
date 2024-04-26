@@ -63,6 +63,7 @@ local opt = {
   inccommand = "split",
   ignorecase = true,
   iskeyword = vim.opt.iskeyword:append { "_", "@", ".", "-" },
+  path = ".,src**",
 }
 
 -- GROUP: [[ LOOPS ]]

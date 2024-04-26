@@ -1,4 +1,4 @@
 return {
-	"gleam-lang/gleam.vim",
-	lazy = false,
+  "gleam-lang/gleam.vim",
+  ft = "gleam",
 }

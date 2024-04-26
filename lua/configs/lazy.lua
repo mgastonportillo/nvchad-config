@@ -1,4 +1,8 @@
 return {
+  dev = {
+    path = "~/workspace/my-projects/neovim/",
+    patterns = { "gale" },
+  },
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
   ui = {

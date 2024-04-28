@@ -1,6 +1,15 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Workaround for nvcheatsheet having a higher zindex than mason
+autocmd("FileType", {
+  pattern = "nvcheatsheet",
+  callback = function()
+    local win = vim.api.nvim_get_current_win()
+    vim.api.nvim_win_set_config(win, { zindex = 44 })
+  end,
+})
+
 autocmd({ "BufNewFile", "BufRead" }, {
   desc = "Add support for .mdx files.",
   group = augroup("mdx_support", { clear = true }),

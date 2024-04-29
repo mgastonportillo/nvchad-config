@@ -163,6 +163,9 @@ map("n", "<leader>fc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git
 map("n", "<leader>f.", "<cmd>Telescope git_bcommits<CR>", { desc = "Telescope Git commits in buffer" })
 map("n", "<leader>fs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 
+-- PLUGIN: treesitter-playground
+map({ "n", "v" }, "<leader>pl", "<cmd>TSPlaygroundToggle<CR>", { desc = "Toggle TSPlayground" })
+
 -- PLUGIN: trouble
 map("n", "<leader>tt", "<cmd>TroubleToggle<CR>", { desc = "Toggle Trouble" })
 

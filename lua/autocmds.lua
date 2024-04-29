@@ -1,13 +1,21 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
--- Workaround for nvcheatsheet having a higher zindex than mason
 autocmd("FileType", {
+  desc = "Workaround for NvCheatsheet being on top of Mason float.",
   pattern = "nvcheatsheet",
   callback = function()
     local win = vim.api.nvim_get_current_win()
     vim.api.nvim_win_set_config(win, { zindex = 44 })
   end,
+})
+
+autocmd({ "BufEnter", "FileType" }, {
+  desc = "Prevent auto-comment on new line.",
+  pattern = "*",
+  command = [[
+    setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+  ]],
 })
 
 autocmd({ "BufNewFile", "BufRead" }, {

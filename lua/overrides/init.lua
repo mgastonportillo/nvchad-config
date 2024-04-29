@@ -39,7 +39,7 @@ return {
   -- https://github.com/nvim-treesitter/nvim-treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects", "nvim-treesitter/playground" },
     opts = require "configs.treesitter",
   },
   -- https://github.com/nvim-tree/nvim-tree.lua

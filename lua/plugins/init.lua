@@ -2,7 +2,7 @@ return {
   -- https://github.com/mgastonportillo/yerbreak.nvim
   { import = "plugins.gale.yerbreak" },
   --
-  { import = "plugins.gale.popurri" },
+  { import = "plugins.gale.popurri", enabled = false },
   -- https://github.com/max397574/better-escape.nvim
   { import = "plugins.spec.better-escape" },
   -- https://github.com/uga-rosa/ccc.nvim

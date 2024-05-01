@@ -4,17 +4,23 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd("FileType", {
   desc = "Workaround for NvCheatsheet being on top of Mason float.",
   pattern = "nvcheatsheet",
-  group = augroup("ui_improvements", { clear = false }),
   callback = function()
     local win = vim.api.nvim_get_current_win()
     vim.api.nvim_win_set_config(win, { zindex = 44 })
   end,
 })
 
+autocmd("FileType", {
+  desc = "Prevent <leader>b from creating a new buffer on top of yerbreak files.",
+  pattern = "yerbreak",
+  callback = function()
+    vim.api.nvim_buf_set_keymap(0, "n", "<leader>b", "<cmd><CR>", { noremap = true, silent = true })
+  end,
+})
+
 autocmd({ "BufEnter", "FileType" }, {
   desc = "Prevent auto-comment on new line.",
   pattern = "*",
-  group = augroup("gale_nitpicks", { clear = false }),
   command = [[
     setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   ]],
@@ -23,7 +29,6 @@ autocmd({ "BufEnter", "FileType" }, {
 autocmd({ "BufNewFile", "BufRead" }, {
   desc = "Add support for .mdx files.",
   pattern = { "*.mdx" },
-  group = augroup("mdx_support", { clear = false }),
   callback = function()
     vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local" })
   end,
@@ -32,7 +37,6 @@ autocmd({ "BufNewFile", "BufRead" }, {
 autocmd("VimResized", {
   desc = "Auto resize panes when resizing nvim window.",
   pattern = "*",
-  group = augroup("ui_improvements", { clear = false }),
   command = [[
     tabdo wincmd =
   ]],
@@ -41,7 +45,6 @@ autocmd("VimResized", {
 autocmd("VimLeavePre", {
   desc = "Close NvimTree before quitting nvim.",
   pattern = { "<buffer>", "*" },
-  group = augroup("ui_improvements", { clear = false }),
   callback = function()
     if vim.bo.filetype == "NvimTree" then
       vim.api.nvim_buf_delete(0, { force = true })
@@ -51,9 +54,8 @@ autocmd("VimLeavePre", {
 
 autocmd("TextYankPost", {
   desc = "Highlight on yank.",
-  group = augroup("ui_improvements", { clear = false }),
   callback = function()
-    vim.highlight.on_yank { higroup = "YankVisual", timeout = 200 }
+    vim.highlight.on_yank { higroup = "YankVisual", timeout = 200, on_visual = true }
   end,
 })
 
@@ -86,9 +88,8 @@ autocmd("ModeChanged", {
 
 autocmd("BufWritePre", {
   desc = "Remove trailing whitespaces on save.",
-  group = augroup("trim_whitespaces", { clear = true }),
   command = [[
-    :%s/\s\+$//e
+    %s/\s\+$//e
   ]],
 })
 
@@ -103,9 +104,7 @@ autocmd("FileType", {
     "man",
     "checkhealth",
     "nvcheatsheet",
-    "yerbreak",
   },
-  group = augroup("ui_improvements", { clear = false }),
   command = [[
     nnoremap <buffer><silent> q :close<CR>
     set nobuflisted
@@ -114,7 +113,6 @@ autocmd("FileType", {
 
 autocmd("VimEnter", {
   desc = "Open file on creation (NvimTree).",
-  group = augroup("ui_improvements", { clear = false }),
   callback = function()
     require("nvim-tree.api").events.subscribe("FileCreated", function(file)
       vim.cmd("edit " .. file.fname)
@@ -124,7 +122,6 @@ autocmd("VimEnter", {
 
 autocmd("BufHidden", {
   desc = "Delete [No Name] buffers.",
-  group = augroup("ui_improvements", { clear = false }),
   callback = function(event)
     if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
       vim.schedule(function()
@@ -137,7 +134,6 @@ autocmd("BufHidden", {
 autocmd("BufEnter", {
   nested = true,
   desc = "Ensure NvimTree is focused and visible after closing last open buffer.",
-  group = augroup("gale_nitpicks", { clear = false }),
   callback = function()
     local api = require "nvim-tree.api"
     -- Check if there's only one window left and the last buffer closed was a file buffer
@@ -159,7 +155,6 @@ autocmd("ModeChanged", {
   -- https://github.com/L3MON4D3/LuaSnip/issues/258
   desc = "Prevent weird snippet jumping behavior.",
   pattern = { "s:n", "i:*" },
-  group = augroup("ui_improvements", { clear = false }),
   callback = function()
     if
       require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
@@ -174,7 +169,6 @@ autocmd("ModeChanged", {
 -- https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
 autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   desc = "Automatically update changed file in nvim.",
-  group = augroup("gale_nitpicks", { clear = false }),
   command = [[
     silent! if mode() != 'c' && !bufexists("[Command Line]") | checktime | endif
   ]],
@@ -183,7 +177,6 @@ autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
 -- https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd("FileChangedShellPost", {
   desc = "Show notification on file change.",
-  group = augroup("gale_nitpicks", { clear = false }),
   command = [[
     echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
   ]],

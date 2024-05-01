@@ -1,6 +1,6 @@
 -- Reload plugin via plenary
-RELOAD = function(...)
-  return require("plenary.reload").reload_module(...)
+RELOAD = function(name)
+  return require("plenary.reload").reload_module(name)
 end
 
 -- Actually reload plugin

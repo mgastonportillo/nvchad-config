@@ -1,9 +1,7 @@
 ; extends
 
-; Extend support for vimscript injection in
-; variables for autocmds and usercmds
-(
-  (function_call
+; Extend support for vimscript injection for autocmds and usercmds variables
+((function_call
     (identifier) @_vimcmd_identifier
     (arguments
       (table_constructor
@@ -16,5 +14,4 @@
 
   (#any-of? @_vimcmd_identifier "autocmd" "usercmd")
   (#lua-match? @vim "^%[%[")
-  (#offset! @vim 0 2 0 -2)
-)
+  (#offset! @vim 0 2 0 -2))

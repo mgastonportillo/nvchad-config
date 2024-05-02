@@ -1,10 +1,6 @@
-vim.g.mapleader = " "
-
 require "bootstrap"
-
-require "autocmds"
-require "usercmds"
-
-require "aliases"
-require "globals"
+require "gale.aliases"
+require "gale.globals"
+require "gale.autocmds"
+require "gale.usercmds"
 require "mappings"

@@ -1,13 +1,7 @@
 require "nvchad.mappings"
 local bufnr = vim.api.nvim_get_current_buf()
-
-local map = function(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.keymap.set(mode, lhs, rhs, options)
-end
+local utils = require "gale.utils"
+local map = utils.glb_map
 
 -- GROUP: [[ CORE MAPPINGS ]]
 
@@ -20,8 +14,11 @@ map({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr>")
 -- Prevent force-closing with Ctrl+z / Ctrl+Z
 map("n", "<C-z>", "<nop>")
 map("n", "<C-S-z>", "<nop>")
+-- Prevent f from jumpingg to matching next pressed key
+map("n", "f", "<nop>")
 -- Remove a whole word with Ctrl+Backspace
-map("i", "<C-BS>", "<Esc>cvb")
+-- https://github.com/neovim/neovim/issues/2048
+map("i", "<C-h>", "<Esc>cvb")
 -- Prevent cursor jumping back to where selection started on yank
 map("v", "y", "ygv<Esc>")
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
@@ -31,63 +28,37 @@ map("n", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true }
 map("n", "<Down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 -- Move lines up/down
 map("n", "<A-Down>", ":m .+1<CR>")
+map("n", "<A-j>", ":m .+1<CR>")
 map("n", "<A-Up>", ":m .-2<CR>")
+map("n", "<A-k>", ":m .-2<CR>")
 map("i", "<A-Down>", "<Esc>:m .+1<CR>==gi")
+map("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
 map("i", "<A-Up>", "<Esc>:m .-2<CR>==gi")
+map("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 map("v", "<A-Down>", ":m '>+1<CR>gv=gv")
+map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
+map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- GROUP: [[ PLUGIN MAPPINGS ]]
 
 -- PLUGIN: ccc
-map("n", "<C-x>", "<cmd>CccConvert<CR>", { desc = "Change Color Space" })
-map("n", "<leader>cv", "<cmd>CccHighlighterToggle<CR>", {
-  desc = "Toggle Color Highlighter",
-})
-map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Color Picker" })
+map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })
+map("n", "ch", "<cmd>CccHighlighterToggle<CR>", { desc = "Toggle Color highlighter" })
+map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Open Color picker" })
 
 -- PLUGIN: comment
 -- Bind a single key that selects between single and
 -- multiline comment styles based on the current context
-function _G.__toggle_contextual(vmode)
-  local cfg = require("Comment.config"):get()
-  local U = require "Comment.utils"
-  local Op = require "Comment.opfunc"
-  local range = U.get_region(vmode)
-  local same_line = range.srow == range.erow
-
-  local ctx = {
-    cmode = U.cmode.toggle,
-    range = range,
-    cmotion = U.cmotion[vmode] or U.cmotion.line,
-    ctype = same_line and U.ctype.linewise or U.ctype.blockwise,
-  }
-
-  local lcs, rcs = U.parse_cstr(cfg, ctx)
-  local lines = U.get_lines(range)
-
-  local params = {
-    range = range,
-    lines = lines,
-    cfg = cfg,
-    cmode = ctx.cmode,
-    lcs = lcs,
-    rcs = rcs,
-    cfg,
-  }
-
-  if same_line then
-    Op.linewise(params)
-  else
-    Op.blockwise(params)
-  end
-end
--- "n" is pre-mapped
+-- "n" is pre-mapped and adding it breaks the functionality
 map("x", "<leader>/", "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR> g@")
--- Single line comment block, ideal for GROUP keywords
+-- Force single-line block-comment
 map("n", "<leader>_", function()
   require("Comment.api").toggle.blockwise.current()
 end)
+
+-- PLUGIN: code-companion
+map({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
 
 -- PLUGIN: crates
 map("n", "<leader>cu", function()
@@ -108,11 +79,9 @@ map("n", "<leader>dpr", function()
   require("dap-python").test_method()
 end)
 
--- PLUGIN: gen-nvim
-map({ "n", "v" }, "<leader>*", "<cmd>Gen<CR>", { desc = "Open gen.nvim" })
-
 -- PLUGIN: lsp-saga
 map({ "n", "v" }, "cA", "<cmd>Lspsaga code_action<CR>", { desc = "LSP Code action" })
+map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
 map("n", "gh", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
 map("n", "cr", "<cmd>Lspsaga rename<CR>", { desc = "LSP Rename in file" })
 map("n", "cR", "<cmd>Lspsaga rename ++project<CR>", { desc = "LSP Rename in selected files" })
@@ -121,7 +90,6 @@ map("n", "gD", "<cmd>Lspsaga goto_definition<CR>", { desc = "LSP Go to definitio
 map("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", { desc = "LSP Go to type definition" })
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "LSP Prev diagnostics" })
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "LSP Next diagnostics" })
-map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "LSP Hover" })
 map("n", "[E", function()
   require("lspsaga.diagnostic"):goto_prev { severity = vim.diagnostic.severity.ERROR }
@@ -131,9 +99,7 @@ map("n", "]E", function()
 end, { desc = "LSP Next error" })
 
 -- PLUGIN: md-preview
-map("n", "<leader>mp", "<cmd> MarkdownPreviewToggle <CR>", {
-  desc = "Toggle Markdown Preview",
-})
+map("n", "<leader>mp", "<cmd> MarkdownPreviewToggle <CR>", { desc = "Toggle Markdown Preview" })
 
 -- PLUGIN: popurri
 map("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
@@ -155,13 +121,30 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
   desc = "Enter Replace Searchbox",
 })
 
+-- PLUGIN: tabufline
+map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Open new buffer" })
+map("n", "<leader>x", "<cmd>NvCloseBuffer<CR>", { desc = "Close current buffer" })
+
+-- PLUGIN: signs
+map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })
+
 -- PLUGIN: telescope
-map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope Find references" })
-map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Find help tags" })
-map("n", "<leader>fh", "<cmd>Telescope highlights<CR>", { desc = "Telescope Find highlights" })
-map("n", "<leader>fc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
-map("n", "<leader>f.", "<cmd>Telescope git_bcommits<CR>", { desc = "Telescope Git commits in buffer" })
-map("n", "<leader>fs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
+map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help tags" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope Search files" })
+local all_files = "Telescope find_files follow=true no_ignore=true hidden=true"
+map("n", "<leader>fa", "<cmd>" .. all_files .. "<CR>", { desc = "Telescope Search all files" })
+map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Search old files" })
+map("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current file" })
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Buffers" })
+map("n", "<leader>tf", "<cmd>Telescope terms<CR>", { desc = "Telescope Terms" })
+map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope NvChad themes" })
+map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope LSP references" })
+map("n", "<leader>ts", "<cmd>Telescope treesitter<CR>", { desc = "Telescope TreeSitter" })
+map("n", "<leader>fvo", "<cmd>Telescope vim_options<CR>", { desc = "Telescope Vim options" })
+map("n", "<leader>fh", "<cmd>Telescope highlights<CR>", { desc = "Telescope Highlights" })
+map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
+map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 
 -- PLUGIN: treesitter-playground
 map({ "n", "v" }, "<leader>pl", "<cmd>TSPlaygroundToggle<CR>", { desc = "Toggle TSPlayground" })

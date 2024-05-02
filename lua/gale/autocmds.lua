@@ -1,26 +1,37 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local utils = require "gale.utils"
+local buf_map = utils.buf_map
 
-autocmd("FileType", {
-  desc = "Workaround for NvCheatsheet being on top of Mason float.",
-  pattern = "nvcheatsheet",
+autocmd("Filetype", {
+  desc = "Prevent <Tab>/<S-Tab> from switching buffers on quickfix splits.",
+  pattern = {
+    "codecompanion",
+    "lazy",
+    "qf",
+  },
+  group = augroup("PreventBufferSwap", { clear = true }),
   callback = function()
-    local win = vim.api.nvim_get_current_win()
-    vim.api.nvim_win_set_config(win, { zindex = 44 })
+    local lhs_list = { "<Tab>", "<S-Tab>" }
+    for _, lhs in ipairs(lhs_list) do
+      buf_map("n", lhs, "<nop>")
+    end
   end,
 })
 
 autocmd("FileType", {
-  desc = "Prevent <leader>b from creating a new buffer on top of yerbreak files.",
-  pattern = "yerbreak",
+  desc = "Workaround for NvCheatsheet being on top of Mason float.",
+  pattern = "nvcheatsheet",
+  group = augroup("FixCheatsheetZindex", { clear = true }),
   callback = function()
-    vim.api.nvim_buf_set_keymap(0, "n", "<leader>b", "<cmd><CR>", { noremap = true, silent = true })
+    vim.api.nvim_win_set_config(0, { zindex = 44 })
   end,
 })
 
 autocmd({ "BufEnter", "FileType" }, {
   desc = "Prevent auto-comment on new line.",
   pattern = "*",
+  group = augroup("NoNewLineComment", { clear = true }),
   command = [[
     setlocal formatoptions-=c formatoptions-=r formatoptions-=o
   ]],
@@ -29,6 +40,7 @@ autocmd({ "BufEnter", "FileType" }, {
 autocmd({ "BufNewFile", "BufRead" }, {
   desc = "Add support for .mdx files.",
   pattern = { "*.mdx" },
+  group = augroup("MdxSupport", { clear = true }),
   callback = function()
     vim.api.nvim_set_option_value("filetype", "markdown", { scope = "local" })
   end,
@@ -37,6 +49,7 @@ autocmd({ "BufNewFile", "BufRead" }, {
 autocmd("VimResized", {
   desc = "Auto resize panes when resizing nvim window.",
   pattern = "*",
+  group = augroup("VimAutoResize", { clear = true }),
   command = [[
     tabdo wincmd =
   ]],
@@ -44,7 +57,8 @@ autocmd("VimResized", {
 
 autocmd("VimLeavePre", {
   desc = "Close NvimTree before quitting nvim.",
-  pattern = { "<buffer>", "*" },
+  pattern = "*",
+  group = augroup("NvimTreeCloseOnExit", { clear = true }),
   callback = function()
     if vim.bo.filetype == "NvimTree" then
       vim.api.nvim_buf_delete(0, { force = true })
@@ -54,6 +68,7 @@ autocmd("VimLeavePre", {
 
 autocmd("TextYankPost", {
   desc = "Highlight on yank.",
+  group = augroup("HighlightOnYank", { clear = true }),
   callback = function()
     vim.highlight.on_yank { higroup = "YankVisual", timeout = 200, on_visual = true }
   end,
@@ -62,7 +77,7 @@ autocmd("TextYankPost", {
 autocmd("ModeChanged", {
   desc = "Strategically disable diagnostics to focus on editing tasks.",
   pattern = { "n:i", "n:v", "i:v" },
-  group = augroup("user_diagnostic", { clear = true }),
+  group = augroup("UserDiagnostic", { clear = true }),
   callback = function()
     vim.diagnostic.disable(0)
   end,
@@ -71,7 +86,7 @@ autocmd("ModeChanged", {
 autocmd({ "BufRead", "BufNewFile" }, {
   desc = "Disable diagnostics in node_modules.",
   pattern = "*/node_modules/*",
-  group = augroup("user_diagnostic", { clear = true }),
+  group = augroup("UserDiagnostic", { clear = true }),
   callback = function()
     vim.diagnostic.disable(0)
   end,
@@ -80,7 +95,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 autocmd("ModeChanged", {
   desc = "Enable diagnostics upon exiting insert mode to resume feedback.",
   pattern = "i:n",
-  group = augroup("user_diagnostic", { clear = true }),
+  group = augroup("UserDiagnostic", { clear = true }),
   callback = function()
     vim.diagnostic.enable(0)
   end,
@@ -88,6 +103,7 @@ autocmd("ModeChanged", {
 
 autocmd("BufWritePre", {
   desc = "Remove trailing whitespaces on save.",
+  group = augroup("TrimWhitespaceOnSave", { clear = true }),
   command = [[
     %s/\s\+$//e
   ]],
@@ -104,7 +120,9 @@ autocmd("FileType", {
     "man",
     "checkhealth",
     "nvcheatsheet",
+    "codecompanion",
   },
+  group = augroup("WinCloseOnQDefinition", { clear = true }),
   command = [[
     nnoremap <buffer><silent> q :close<CR>
     set nobuflisted
@@ -113,6 +131,7 @@ autocmd("FileType", {
 
 autocmd("VimEnter", {
   desc = "Open file on creation (NvimTree).",
+  group = augroup("OpenFileOnCreation", { clear = true }),
   callback = function()
     require("nvim-tree.api").events.subscribe("FileCreated", function(file)
       vim.cmd("edit " .. file.fname)
@@ -122,6 +141,7 @@ autocmd("VimEnter", {
 
 autocmd("BufHidden", {
   desc = "Delete [No Name] buffers.",
+  group = augroup("DeleteNoNameBuffer", { clear = true }),
   callback = function(event)
     if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
       vim.schedule(function()
@@ -134,6 +154,7 @@ autocmd("BufHidden", {
 autocmd("BufEnter", {
   nested = true,
   desc = "Ensure NvimTree is focused and visible after closing last open buffer.",
+  group = augroup("HandleNvimTreeLastBuffer", { clear = true }),
   callback = function()
     local api = require "nvim-tree.api"
     -- Check if there's only one window left and the last buffer closed was a file buffer
@@ -155,6 +176,7 @@ autocmd("ModeChanged", {
   -- https://github.com/L3MON4D3/LuaSnip/issues/258
   desc = "Prevent weird snippet jumping behavior.",
   pattern = { "s:n", "i:*" },
+  group = augroup("PreventSnippetJump", { clear = true }),
   callback = function()
     if
       require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
@@ -169,6 +191,7 @@ autocmd("ModeChanged", {
 -- https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
 autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   desc = "Automatically update changed file in nvim.",
+  group = augroup("AutoupdateOnFileChange", { clear = true }),
   command = [[
     silent! if mode() != 'c' && !bufexists("[Command Line]") | checktime | endif
   ]],
@@ -177,6 +200,7 @@ autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
 -- https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd("FileChangedShellPost", {
   desc = "Show notification on file change.",
+  group = augroup("NotifyOnFileChange", { clear = true }),
   command = [[
     echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
   ]],

@@ -1,6 +1,6 @@
 return {
-  "/home/gale/workspace/my-projects/neovim/yerbreak.nvim",
-  -- "mgastonportillo/yerbreak.nvim",
+  -- "/home/gale/workspace/my-projects/neovim/yerbreak.nvim",
+  "mgastonportillo/yerbreak.nvim",
   dependencies = { "rcarriga/nvim-notify" },
   event = "VeryLazy",
   opts = {

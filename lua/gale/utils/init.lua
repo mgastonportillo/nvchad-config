@@ -27,4 +27,8 @@ M.buf_map = function(mode, lhs, rhs, opts)
   vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, final_opts)
 end
 
+M.del_map = function(mode, lhs)
+  vim.api.nvim_del_keymap(mode, lhs)
+end
+
 return M

@@ -2,6 +2,7 @@ require "nvchad.mappings"
 local bufnr = vim.api.nvim_get_current_buf()
 local utils = require "gale.utils"
 local map = utils.glb_map
+local del = utils.del_map
 
 -- GROUP: [[ CORE MAPPINGS ]]
 
@@ -47,6 +48,10 @@ map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })
 map("n", "ch", "<cmd>CccHighlighterToggle<CR>", { desc = "Toggle Color highlighter" })
 map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Open Color picker" })
 
+-- PLUGIN: code-companion
+map({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
+map({ "n", "v" }, "<leader>ñ", "<cmd>Gen<CR>", { desc = "Toggle Gen" })
+
 -- PLUGIN: comment
 -- Bind a single key that selects between single and
 -- multiline comment styles based on the current context
@@ -57,8 +62,8 @@ map("n", "<leader>_", function()
   require("Comment.api").toggle.blockwise.current()
 end)
 
--- PLUGIN: code-companion
-map({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
+-- PLUGIN: conform
+map("n", "<leader>fm", "<cmd>FormatFile<CR>", { desc = "Format file" })
 
 -- PLUGIN: crates
 map("n", "<leader>cu", function()
@@ -122,13 +127,13 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
 })
 
 -- PLUGIN: tabufline
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Open new buffer" })
 map("n", "<leader>x", "<cmd>NvCloseBuffer<CR>", { desc = "Close current buffer" })
 
 -- PLUGIN: signs
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })
 
 -- PLUGIN: telescope
+del("n", "<leader>fz")
 map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help tags" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope Search files" })
 local all_files = "Telescope find_files follow=true no_ignore=true hidden=true"

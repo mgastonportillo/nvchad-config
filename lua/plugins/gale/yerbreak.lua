@@ -4,8 +4,8 @@ return {
   dependencies = { "rcarriga/nvim-notify" },
   event = "VeryLazy",
   opts = {
-    -- ascii_table = "op",
-    -- delay = 5000,
+    ascii_table = "mate",
+    -- delay = 200,
     border = "none",
   },
   config = function(_, opts)

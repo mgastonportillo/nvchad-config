@@ -2,7 +2,7 @@
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v2.5/nvchad_types/chadrc.lua
 
--- ---@type ChadrcConfig
+--@type ChadrcConfig
 local M = {}
 
 M.ui = {
@@ -19,6 +19,7 @@ M.ui = {
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
+    CursorLine = { bg = "#212122" },
   },
 
   hl_add = {

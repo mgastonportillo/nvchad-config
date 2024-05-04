@@ -1,8 +1,10 @@
 return {
   -- https://github.com/mgastonportillo/yerbreak.nvim
   { import = "plugins.gale.yerbreak" },
-  --
+  -- soon
   { import = "plugins.gale.popurri", enabled = false },
+  -- soon
+  { import = "plugins.gale.flipflop" },
   -- https://github.com/max397574/better-escape.nvim
   { import = "plugins.spec.better-escape" },
   -- https://github.com/uga-rosa/ccc.nvim
@@ -27,6 +29,8 @@ return {
   { import = "plugins.spec.fine-cmdline", enabled = false },
   -- https://github.com/tpope/vim-fugitive
   { import = "plugins.spec.fugitive" },
+  -- https://github.com/ray-x/go.nvim
+  { import = "plugins.spec.go" },
   -- https://github.com/gleam-lang/gleam.vim
   { import = "plugins.spec.gleam", enabled = false },
   -- https://github.com/smoka7/hop.nvim

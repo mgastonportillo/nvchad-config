@@ -84,6 +84,23 @@ map("n", "<leader>dpr", function()
   require("dap-python").test_method()
 end)
 
+-- PLUGIN: harpoon
+local harpoon = require "harpoon"
+
+map("n", "<leader>a", function()
+  harpoon:list():add()
+end)
+map("n", ",", function()
+  harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
+-- Navigate with numbers extension is enabled
+map("n", "<leader>-", function()
+  harpoon:list():prev()
+end)
+map("n", "<leader>+", function()
+  harpoon:list():next()
+end)
+
 -- PLUGIN: lsp-saga
 map({ "n", "v" }, "cA", "<cmd>Lspsaga code_action<CR>", { desc = "LSP Code action" })
 map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
@@ -127,19 +144,20 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
 })
 
 -- PLUGIN: tabufline
+del("n", "<leader>b") -- disable `enew` keymap
 map("n", "<leader>x", "<cmd>NvCloseBuffer<CR>", { desc = "Close current buffer" })
 
 -- PLUGIN: signs
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })
 
 -- PLUGIN: telescope
-del("n", "<leader>fz")
+del("n", "<leader>fz") -- disable default keymap for fuzzy finder in current buffer
 map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help tags" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope Search files" })
 local all_files = "Telescope find_files follow=true no_ignore=true hidden=true"
 map("n", "<leader>fa", "<cmd>" .. all_files .. "<CR>", { desc = "Telescope Search all files" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Search old files" })
-map("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current file" })
+map("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Search in current file" })
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Buffers" })
 map("n", "<leader>tf", "<cmd>Telescope terms<CR>", { desc = "Telescope Terms" })

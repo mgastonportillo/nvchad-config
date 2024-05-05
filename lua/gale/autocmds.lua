@@ -50,9 +50,7 @@ autocmd("VimResized", {
   desc = "Auto resize panes when resizing nvim window.",
   pattern = "*",
   group = augroup("VimAutoResize", { clear = true }),
-  command = [[
-    tabdo wincmd =
-  ]],
+  command = [[ tabdo wincmd = ]],
 })
 
 autocmd("VimLeavePre", {
@@ -104,9 +102,7 @@ autocmd("ModeChanged", {
 autocmd("BufWritePre", {
   desc = "Remove trailing whitespaces on save.",
   group = augroup("TrimWhitespaceOnSave", { clear = true }),
-  command = [[
-    %s/\s\+$//e
-  ]],
+  command = [[ %s/\s\+$//e ]],
 })
 
 autocmd("FileType", {

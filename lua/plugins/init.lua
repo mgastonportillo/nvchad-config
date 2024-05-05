@@ -1,10 +1,10 @@
 return {
-  -- https://github.com/mgastonportillo/yerbreak.nvim
-  { import = "plugins.gale.yerbreak" },
-  -- soon
-  { import = "plugins.gale.popurri", enabled = false },
   -- soon
   { import = "plugins.gale.flipflop" },
+  -- soon
+  { import = "plugins.gale.popurri", enabled = false },
+  -- https://github.com/mgastonportillo/yerbreak.nvim
+  { import = "plugins.gale.yerbreak" },
   -- https://github.com/max397574/better-escape.nvim
   { import = "plugins.spec.better-escape" },
   -- https://github.com/uga-rosa/ccc.nvim
@@ -19,12 +19,12 @@ return {
   { import = "plugins.spec.dap-ui" },
   -- https://github.com/theHamsta/nvim-dap-virtual-text
   { import = "plugins.spec.dap-virtual-text" },
+  -- https://github.com/stevearc/dressing.nvim
+  { import = "plugins.spec.dressing", enabled = false },
   -- https://github.com/folke/edgy.nvim
   { import = "plugins.spec.edgy" },
   -- https://github.com/lewis6991/gitsigns.nvim
   { import = "plugins.spec.gitsigns" },
-  -- https://github.com/stevearc/dressing.nvim
-  { import = "plugins.spec.dressing", enabled = false },
   -- https://github.com/VonHeikemen/fine-cmdline.nvim
   { import = "plugins.spec.fine-cmdline", enabled = false },
   -- https://github.com/tpope/vim-fugitive
@@ -33,6 +33,8 @@ return {
   { import = "plugins.spec.go" },
   -- https://github.com/gleam-lang/gleam.vim
   { import = "plugins.spec.gleam", enabled = false },
+  -- https://github.com/ThePrimeagen/harpoon/tree/harpoon2
+  { import = "plugins.spec.harpoon" },
   -- https://github.com/smoka7/hop.nvim
   { import = "plugins.spec.hop" },
   -- https://github.com/lewis6991/hover.nvim
@@ -45,12 +47,12 @@ return {
   { import = "plugins.spec.md-preview" },
   -- https://github.com/ecthelionvi/NeoComposer.nvim
   { import = "plugins.spec.neocomposer", enabled = false },
-  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-  { import = "plugins.spec.treesitter-textobjects" },
   -- https://github.com/rcarriga/nvim-notify
   { import = "plugins.spec.notify" },
   -- https://github.com/ahmedkhalf/project.nvim
   { import = "plugins.spec.project", enabled = false },
+  --
+  { import = "plugins.spec.rainbow-delimiters" },
   -- https://github.com/bennypowers/nvim-regexplainer
   { import = "plugins.spec.regexplainer" },
   -- https://github.com/mrcjkb/rustaceanvim
@@ -63,6 +65,8 @@ return {
   { import = "plugins.spec.tabby-ml" },
   -- https://github.com/folke/todo-comments.nvim
   { import = "plugins.spec.todo-comments" },
+  -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+  { import = "plugins.spec.treesitter-textobjects" },
   -- https://github.com/folke/trouble.nvim
   { import = "plugins.spec.trouble" },
   -- https://github.com/windwp/nvim-ts-autotag

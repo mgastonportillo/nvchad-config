@@ -19,7 +19,7 @@ M.ui = {
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
-    CursorLine = { bg = "#212122" },
+    CursorLine = { bg = "#202025" },
   },
 
   hl_add = {

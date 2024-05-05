@@ -41,8 +41,6 @@ map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
--- GROUP: [[ PLUGIN MAPPINGS ]]
-
 -- PLUGIN: ccc
 map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })
 map("n", "ch", "<cmd>CccHighlighterToggle<CR>", { desc = "Toggle Color highlighter" })
@@ -50,7 +48,6 @@ map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Open Color picker" })
 
 -- PLUGIN: code-companion
 map({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
-map({ "n", "v" }, "<leader>ñ", "<cmd>Gen<CR>", { desc = "Toggle Gen" })
 
 -- PLUGIN: comment
 -- Bind a single key that selects between single and
@@ -101,18 +98,13 @@ map("n", "<leader>+", function()
   harpoon:list():next()
 end)
 
--- PLUGIN: lsp-saga
-map({ "n", "v" }, "cA", "<cmd>Lspsaga code_action<CR>", { desc = "LSP Code action" })
+-- PLUGIN: lsp / lsp-saga
 map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
-map("n", "gh", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
-map("n", "cr", "<cmd>Lspsaga rename<CR>", { desc = "LSP Rename in file" })
-map("n", "cR", "<cmd>Lspsaga rename ++project<CR>", { desc = "LSP Rename in selected files" })
+map("n", "gl", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
 map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP Peek at definition" })
-map("n", "gD", "<cmd>Lspsaga goto_definition<CR>", { desc = "LSP Go to definition" })
 map("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", { desc = "LSP Go to type definition" })
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "LSP Prev diagnostics" })
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "LSP Next diagnostics" })
-map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { desc = "LSP Hover" })
 map("n", "[E", function()
   require("lspsaga.diagnostic"):goto_prev { severity = vim.diagnostic.severity.ERROR }
 end, { desc = "LSP Prev error" })
@@ -121,7 +113,7 @@ map("n", "]E", function()
 end, { desc = "LSP Next error" })
 
 -- PLUGIN: md-preview
-map("n", "<leader>mp", "<cmd> MarkdownPreviewToggle <CR>", { desc = "Toggle Markdown Preview" })
+map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
 
 -- PLUGIN: popurri
 map("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
@@ -151,21 +143,21 @@ map("n", "<leader>x", "<cmd>NvCloseBuffer<CR>", { desc = "Close current buffer" 
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })
 
 -- PLUGIN: telescope
-del("n", "<leader>fz") -- disable default keymap for fuzzy finder in current buffer
-map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help tags" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope Search files" })
+local telescope_lhs_del = { "<leader>fz", "<leader>fh", "<leader>fo", "<leader>gt" }
+del("n", telescope_lhs_del)
+
 local all_files = "Telescope find_files follow=true no_ignore=true hidden=true"
 map("n", "<leader>fa", "<cmd>" .. all_files .. "<CR>", { desc = "Telescope Search all files" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Search old files" })
+map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help tags" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope Search files" })
 map("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Search in current file" })
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Buffers" })
-map("n", "<leader>tf", "<cmd>Telescope terms<CR>", { desc = "Telescope Terms" })
+map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "Telescope Terms" })
 map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope NvChad themes" })
 map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope LSP references" })
 map("n", "<leader>ts", "<cmd>Telescope treesitter<CR>", { desc = "Telescope TreeSitter" })
-map("n", "<leader>fv", "<cmd>Telescope vim_options<CR>", { desc = "Telescope Vim options" })
-map("n", "<leader>fh", "<cmd>Telescope highlights<CR>", { desc = "Telescope Highlights" })
+map("n", "<leader>fz", "<cmd>Telescope builtin<CR>", { desc = "Telescope Builtin list" })
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 

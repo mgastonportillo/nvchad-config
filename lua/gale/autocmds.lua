@@ -125,16 +125,6 @@ autocmd("FileType", {
   ]],
 })
 
-autocmd("VimEnter", {
-  desc = "Open file on creation (NvimTree).",
-  group = augroup("OpenFileOnCreation", { clear = true }),
-  callback = function()
-    require("nvim-tree.api").events.subscribe("FileCreated", function(file)
-      vim.cmd("edit " .. file.fname)
-    end)
-  end,
-})
-
 autocmd("BufHidden", {
   desc = "Delete [No Name] buffers.",
   group = augroup("DeleteNoNameBuffer", { clear = true }),
@@ -143,27 +133,6 @@ autocmd("BufHidden", {
       vim.schedule(function()
         pcall(vim.api.nvim_buf_delete, event.buf, {})
       end)
-    end
-  end,
-})
-
-autocmd("BufEnter", {
-  nested = true,
-  desc = "Ensure NvimTree is focused and visible after closing last open buffer.",
-  group = augroup("HandleNvimTreeLastBuffer", { clear = true }),
-  callback = function()
-    local api = require "nvim-tree.api"
-    -- Check if there's only one window left and the last buffer closed was a file buffer
-    if #vim.api.nvim_list_wins() == 1 and api.tree.is_tree_buf() then
-      -- It's necessary to defer the action to let the close event complete
-      vim.defer_fn(function()
-        -- Close NvimTree, ensuring it will return to the last hidden buffer
-        api.tree.toggle { find_file = true, focus = true }
-        -- Reopen NvimTree to ensure it's focused and visible
-        api.tree.toggle { find_file = true, focus = true }
-        -- Ensure NvimTree is still the active window, switch to the previous window
-        vim.cmd "wincmd p"
-      end, 0)
     end
   end,
 })

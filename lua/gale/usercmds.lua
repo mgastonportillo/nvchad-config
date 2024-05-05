@@ -1,5 +1,16 @@
 local create_cmd = vim.api.nvim_create_user_command
 
+create_cmd("SrcFile", function()
+  if vim.bo.filetype ~= "" then
+    vim.cmd "so %"
+    vim.notify.dismiss() ---@diagnostic disable-line
+    vim.notify(vim.fn.expand "%" .. " sourced!", vim.log.levels.INFO)
+  else
+    vim.notify.dismiss() ---@diagnostic disable-line
+    vim.notify("No file to source", vim.log.levels.ERROR)
+  end
+end, { desc = "Source current file" })
+
 create_cmd("DiagnosticsVirtualTextToggle", function()
   local current_value = vim.diagnostic.config().virtual_text
   if current_value then

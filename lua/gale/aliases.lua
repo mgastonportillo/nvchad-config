@@ -1,8 +1,6 @@
-local alias = function(target_cmd, alias)
-  vim.cmd("ca " .. alias .. " " .. target_cmd)
-end
+local alias = require("gale.utils").add_alias
 
--- Workaround my dumb fingers
+-- Workarounds for my dumb fingers
 alias("qa", "Qa")
 alias("qa", "QA")
 alias("q", "Q")

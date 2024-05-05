@@ -10,7 +10,7 @@ R = function(name)
 end
 
 -- Add special function to allow detection of comments' context
-function _G.__toggle_contextual(vmode)
+_G.__toggle_contextual = function(vmode)
   local cfg = require("Comment.config"):get()
   local U = require "Comment.utils"
   local Op = require "Comment.opfunc"
@@ -42,4 +42,15 @@ function _G.__toggle_contextual(vmode)
   else
     Op.blockwise(params)
   end
+end
+
+---@param case_table table
+-- Switch/case
+_G.switch = function(param, case_table)
+  local case = case_table[param]
+  if case then
+    return case()
+  end
+  local def = case_table["default"]
+  return def and def() or nil
 end

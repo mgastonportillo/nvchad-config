@@ -45,7 +45,9 @@ return {
   -- https://github.com/nvim-tree/nvim-tree.lua
   {
     "nvim-tree/nvim-tree.lua",
-    opts = require "configs.nvimtree",
+    config = function()
+      require "configs.nvimtree"
+    end,
   },
   -- https://github.com/nvim-tree/nvim-web-devicons
   {

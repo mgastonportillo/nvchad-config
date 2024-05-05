@@ -2,13 +2,13 @@
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v2.5/nvchad_types/chadrc.lua
 
---@type ChadrcConfig
+---@type ChadrcConfig
 local M = {}
 
 M.ui = {
   transparency = true,
   theme = "bearded-arc",
-  theme_toggle = { "chadracula-evondev", "bearded-arc" },
+  theme_toggle = { "bearded-arc", "bearded-arc" },
 
   statusline = {
     theme = "vscode_colored",
@@ -31,6 +31,10 @@ M.ui = {
     float = {
       border = "rounded",
     },
+  },
+
+  tabufline = {
+    enabled = false,
   },
 
   lsp = {

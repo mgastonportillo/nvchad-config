@@ -8,6 +8,7 @@ return {
     html = { "prettier" },
     javascript = { "prettier" },
     javascriptreact = { "prettier" },
+    json = { "biome" },
     typescript = { "prettier" },
     typescriptreact = { "prettier" },
     lua = { "stylua" },

@@ -4,6 +4,7 @@ return {
     "astro-language-server",
     "bash-language-server",
     "beautysh",
+    "biome",
     "clang-format",
     "clangd",
     "codelldb",

@@ -69,7 +69,7 @@ local opt = {
 
 -- GROUP: [[ LOOPS ]]
 
-for _, v in ipairs(providers) do
+for _, v in pairs(providers) do
   vim.g["loaded_" .. v] = nil
   vim.cmd("runtime " .. v)
 end

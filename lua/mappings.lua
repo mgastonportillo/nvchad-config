@@ -1,5 +1,4 @@
 require "nvchad.mappings"
-local bufnr = vim.api.nvim_get_current_buf()
 local utils = require "gale.utils"
 local map = utils.glb_map
 local del = utils.del_map
@@ -91,10 +90,10 @@ map("n", ",", function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 -- Navigate with numbers extension is enabled
-map("n", "<leader>-", function()
+map("n", "<S-Tab>", function()
   harpoon:list():prev()
 end)
-map("n", "<leader>+", function()
+map("n", "<Tab>", function()
   harpoon:list():next()
 end)
 
@@ -118,15 +117,6 @@ map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdo
 -- PLUGIN: popurri
 map("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
 
--- PLUGIN: rustaceanvim
-map("n", "K", function()
-  vim.cmd.RustLsp { "hover", "actions" }
-end, { silent = true, buffer = bufnr, desc = "Rust Hover" })
-map("n", "<leader>a", function()
-  -- vim.cmd.RustLsp("codeAction") -- supports rust-analyzer's grouping
-  vim.lsp.buf.codeAction() -- if you don't want grouping.
-end, { silent = true, buffer = bufnr, desc = "Rust Code actions" })
-
 -- PLUGIN: searchbox
 map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", {
   desc = "Enter Searchbox",
@@ -136,8 +126,8 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
 })
 
 -- PLUGIN: tabufline
-del("n", "<leader>b") -- disable `enew` keymap
-map("n", "<leader>x", "<cmd>NvCloseBuffer<CR>", { desc = "Close current buffer" })
+-- del("n", "<leader>b") -- disable `enew` keymap
+-- map("n", "<leader>x", "<cmd>NvCloseBuffer<CR>", { desc = "Close current buffer" })
 
 -- PLUGIN: signs
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })

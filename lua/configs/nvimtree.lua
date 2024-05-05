@@ -24,6 +24,7 @@ local WIDTH_RATIO = 0.5
 dofile(vim.g.base46_cache .. "nvimtree")
 nvtree.setup {
   on_attach = custom_on_attach,
+  filters = { dotfiles = true }, -- Hide dotfiles by default
   git = { enable = true },
   renderer = {
     highlight_git = true,

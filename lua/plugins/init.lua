@@ -56,7 +56,7 @@ return {
   -- https://github.com/bennypowers/nvim-regexplainer
   { import = "plugins.spec.regexplainer" },
   -- https://github.com/mrcjkb/rustaceanvim
-  { import = "plugins.spec.rustaceanvim", enabled = false },
+  { import = "plugins.spec.rustaceanvim" },
   -- https://github.com/VonHeikemen/searchbox.nvim
   { import = "plugins.spec.searchbox" },
   -- https://github.com/AckslD/swenv.nvim

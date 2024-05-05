@@ -20,6 +20,7 @@ M.ui = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
     CursorLine = { bg = "#202025" },
+    FloatBorder = { fg = "#444c5b" },
   },
 
   hl_add = {

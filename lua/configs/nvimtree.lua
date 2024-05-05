@@ -21,6 +21,7 @@ end)
 local HEIGHT_RATIO = 0.8
 local WIDTH_RATIO = 0.5
 
+dofile(vim.g.base46_cache .. "nvimtree")
 nvtree.setup {
   on_attach = custom_on_attach,
   git = { enable = true },

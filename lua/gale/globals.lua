@@ -1,15 +1,4 @@
--- Reload plugin via plenary
-RELOAD = function(name)
-  return require("plenary.reload").reload_module(name)
-end
-
--- Actually reload plugin
-R = function(name)
-  RELOAD(name)
-  return require(name)
-end
-
--- Add special function to allow detection of comments' context
+-- Automatically detect context for comment string
 _G.__toggle_contextual = function(vmode)
   local cfg = require("Comment.config"):get()
   local U = require "Comment.utils"
@@ -45,7 +34,7 @@ _G.__toggle_contextual = function(vmode)
 end
 
 ---@param case_table table
--- Switch/case
+-- Add Switch/Case functionality
 _G.switch = function(param, case_table)
   local case = case_table[param]
   if case then

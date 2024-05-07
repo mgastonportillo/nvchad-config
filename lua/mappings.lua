@@ -39,6 +39,9 @@ map("v", "<A-Down>", ":m '>+1<CR>gv=gv")
 map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
+-- Switch buffers
+map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Switch to next buffer" })
+map("n", "<S-Tab>", "<cmd>bprev<CR>", { desc = "Switch to next buffer" })
 
 -- PLUGIN: ccc
 map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })
@@ -49,8 +52,6 @@ map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Open Color picker" })
 map({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
 
 -- PLUGIN: comment
--- Bind a single key that selects between single and
--- multiline comment styles based on the current context
 -- "n" is pre-mapped and adding it breaks the functionality
 map("x", "<leader>/", "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR> g@")
 -- Force single-line block-comment
@@ -82,20 +83,33 @@ end)
 
 -- PLUGIN: harpoon
 local harpoon = require "harpoon"
-
-map("n", "<leader>a", function()
+map("n", ",q", function()
+  harpoon:list():select(1)
+end, { desc = "Harpoon Go to 1st buffer" })
+map("n", ",w", function()
+  harpoon:list():select(2)
+end, { desc = "Harpoon Go to 2nd buffer" })
+map("n", ",e", function()
+  harpoon:list():select(3)
+end, { desc = "Harpoon Go to 3rd buffer" })
+map("n", ",r", function()
+  harpoon:list():select(4)
+end, { desc = "Harpoon Go to 4th buffer" })
+map("n", ",a", function()
   harpoon:list():add()
-end)
-map("n", ",", function()
+end, { desc = "Harpoon Add buffer" })
+map("n", ",d", function()
+  harpoon:list():remove()
+end, { desc = "Harpoon Remove buffer" })
+map("n", ",m", function()
   harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
--- Navigate with numbers extension is enabled
-map("n", "<S-Tab>", function()
+end, { desc = "Harpoon Open menu" })
+map("n", ",|", function()
   harpoon:list():prev()
-end)
-map("n", "<Tab>", function()
+end, { desc = "Harpoon Go to prev buffer" })
+map("n", ",<Tab>", function()
   harpoon:list():next()
-end)
+end, { desc = "Harpoon Go to next buffer" })
 
 -- PLUGIN: lsp / lsp-saga
 map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })

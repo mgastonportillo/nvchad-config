@@ -1,17 +1,17 @@
----@class UtilsObject
+---@class Utils
 local M = {}
 
----@param target_cmd string Command to add an alias for
----@param alias string Alias name
+---@param target_cmd string
+---@param alias string
 --- Add an alias to any existing command
 M.add_alias = function(target_cmd, alias)
   vim.cmd("ca " .. alias .. " " .. target_cmd)
 end
 
----@param mode string | table Vim mode
----@param lhs string Trigger key
----@param rhs string | function Action to perform
----@param opts? table | nil Options
+---@param mode string | table
+---@param lhs string
+---@param rhs string | function
+---@param opts? table | nil
 --- Create a global keymap
 M.glb_map = function(mode, lhs, rhs, opts)
   local final_opts = { noremap = true, silent = true }
@@ -21,10 +21,10 @@ M.glb_map = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, final_opts)
 end
 
----@param mode string Vim mode
----@param lhs string Trigger key
----@param rhs string Action to perform
----@param opts? table<string, any> Options
+---@param mode string
+---@param lhs string
+---@param rhs string
+---@param opts? table<string, any>
 --- Create a keymap local to buffer
 M.buf_map = function(mode, lhs, rhs, opts)
   local final_opts = { noremap = true, silent = true }
@@ -43,21 +43,21 @@ M.is_tbl = function(v)
   end
 end
 
----@param mode string | table Can be a single mode or a table of modes
----@param trigger string | table Can be a single trigger or a table or triggers
+---@param mode string | table
+---@param trigger string | table
 --- Delete keymap/s globally
 M.del_map = function(mode, trigger)
   local del = vim.api.nvim_del_keymap
   local is_tbl = M.is_tbl
 
   local get_case = function(vmode, lhs)
-    if is_tbl(vmode) and is_tbl(lhs) then
+    if not is_tbl(vmode) and not is_tbl(lhs) then
       return 1
-    elseif is_tbl(vmode) and not is_tbl(lhs) then
-      return 2
     elseif not is_tbl(vmode) and is_tbl(lhs) then
+      return 2
+    elseif is_tbl(vmode) and not is_tbl(lhs) then
       return 3
-    elseif not is_tbl(vmode) and not is_tbl(lhs) then
+    elseif is_tbl(vmode) and is_tbl(lhs) then
       return 4
     end
   end
@@ -65,6 +65,25 @@ M.del_map = function(mode, trigger)
   local case = get_case(mode, trigger)
   switch(case, {
     [1] = function()
+      ---@cast mode string
+      ---@cast trigger string
+      del(mode, trigger)
+    end,
+    [2] = function()
+      ---@cast mode string
+      ---@cast trigger table
+      for _, triggerval in ipairs(trigger) do
+        del(mode, triggerval)
+      end
+    end,
+    [3] = function()
+      ---@cast mode table
+      ---@cast trigger string
+      for _, modeval in ipairs(mode) do
+        del(modeval, trigger)
+      end
+    end,
+    [4] = function()
       ---@cast mode table
       ---@cast trigger table
       for _, mode_val in ipairs(mode) do
@@ -73,26 +92,15 @@ M.del_map = function(mode, trigger)
         end
       end
     end,
-    [2] = function()
-      ---@cast mode table
-      ---@cast trigger string
-      for _, modeval in ipairs(mode) do
-        del(modeval, trigger)
-      end
-    end,
-    [3] = function()
-      ---@cast mode string
-      ---@cast trigger table
-      for _, triggerval in ipairs(trigger) do
-        del(mode, triggerval)
-      end
-    end,
-    [4] = function()
-      ---@cast mode string
-      ---@cast trigger string
-      del(mode, trigger)
-    end,
   })
+end
+
+---@param padding string
+M.wt_padding = function(padding)
+  local file = "C:\\wt_vimpadding.ps1"
+  local profile = "WSL"
+  local cmd = string.format("silent !pwsh.exe -File '%s' -profile '%s' -padding '%s'", file, profile, padding)
+  vim.cmd(cmd)
 end
 
 return M

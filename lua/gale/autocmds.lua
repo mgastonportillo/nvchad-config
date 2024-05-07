@@ -2,6 +2,26 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local utils = require "gale.utils"
 local buf_map = utils.buf_map
+local wt_padding = utils.wt_padding
+
+autocmd("VimEnter", {
+  desc = "Increase Windows Terminal top padding on VIM enter.",
+  callback = function()
+    -- Detect Windows Terminal session
+    if os.getenv "WT_SESSION" then
+      wt_padding "20,12,0,0"
+    end
+  end,
+})
+
+autocmd("VimLeavePre", {
+  desc = "Reduce Windows Terminal top padding on VIM exit.",
+  callback = function()
+    if os.getenv "WT_SESSION" then
+      wt_padding "20,-8,0,0"
+    end
+  end,
+})
 
 autocmd("Filetype", {
   desc = "Prevent <Tab>/<S-Tab> from switching buffers.",
@@ -20,7 +40,7 @@ autocmd("Filetype", {
 })
 
 autocmd("FileType", {
-  desc = "Workaround for NvCheatsheet being on top of Mason float.",
+  desc = "Workaround for NvCheatsheet's zindex being higher than Mason's.",
   pattern = "nvcheatsheet",
   group = augroup("FixCheatsheetZindex", { clear = true }),
   callback = function()

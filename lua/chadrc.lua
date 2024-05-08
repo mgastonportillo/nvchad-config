@@ -8,10 +8,34 @@ local M = {}
 M.ui = {
   transparency = true,
   theme = "bearded-arc",
-  theme_toggle = { "bearded-arc", "bearded-arc" },
+  theme_toggle = { "bearded-arc", "chadracula-evondev" },
 
   statusline = {
     theme = "vscode_colored",
+    order = {
+      "mode",
+      "tint",
+      "separator",
+      "file",
+      "git",
+      "%=",
+      "lsp_msg",
+      "%=",
+      "diagnostics",
+      "lsp",
+      "separator",
+      "cwd",
+    },
+    modules = {
+      separator = function()
+        return " "
+      end,
+      -- Force grey on modules that absorb neighbour colour
+      -- (because they don't have a highlight set)
+      tint = function()
+        return "%#StText#"
+      end,
+    },
   },
 
   telescope = { style = "bordered" },
@@ -34,11 +58,16 @@ M.ui = {
   },
 
   tabufline = {
-    enabled = false,
+    modules = {
+      fill = function()
+        return "%#TbFill#%="
+      end,
+    },
+    order = { "fill", "tabs", "btns" },
   },
 
   lsp = {
-    signature = false,
+    signature = true,
     semantic_tokens = true,
   },
 }

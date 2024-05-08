@@ -1,18 +1,6 @@
 require "nvchad.options"
-
--- Re-activate providers
-local providers = {
-  "python3_provider",
-  "node_provider",
-}
-
--- Clipboard commands
-local clipboard = {
-  copy = "clip.exe",
-  paste = [[
-    pwsh.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))
-  ]],
-}
+local const = require "gale.constants"
+local wsl_paste = const.WSL_PASTE
 
 local g = {
   dap_virtual_text = true,
@@ -21,20 +9,16 @@ local g = {
   -- use Windows clipboard for + and * registers (WSL)
   clipboard = {
     name = "wslclipboard",
-    copy = {
-      ["+"] = clipboard.copy,
-      ["*"] = clipboard.copy,
-    },
-    paste = {
-      ["+"] = clipboard.paste,
-      ["*"] = clipboard.paste,
-    },
+    copy = { ["+"] = "clip.exe", ["*"] = "clip.exe" },
+    paste = { ["+"] = wsl_paste, ["*"] = wsl_paste },
     cache_enabled = 0,
   },
 }
+for k, v in pairs(g) do
+  vim.g[k] = v
+end
 
 local tabSize = 2
-
 local opt = {
   encoding = "utf-8",
   fileencoding = "utf-8",
@@ -64,20 +48,8 @@ local opt = {
   inccommand = "split",
   ignorecase = true,
   iskeyword = vim.opt.iskeyword:append { "_", "@", ".", "-" },
-  path = ".,src**",
+  path = ".,src**", -- TODO: find a better way to improve `gf`
 }
-
--- GROUP: [[ LOOPS ]]
-
-for _, v in pairs(providers) do
-  vim.g["loaded_" .. v] = nil
-  vim.cmd("runtime " .. v)
-end
-
-for k, v in pairs(g) do
-  vim.g[k] = v
-end
-
 for k, v in pairs(opt) do
   vim.opt[k] = v
 end

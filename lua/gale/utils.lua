@@ -95,12 +95,4 @@ M.del_map = function(mode, trigger)
   })
 end
 
----@param padding string
-M.wt_padding = function(padding)
-  local file = "C:\\wt_vimpadding.ps1"
-  local profile = "WSL"
-  local cmd = string.format("silent !pwsh.exe -File '%s' -profile '%s' -padding '%s'", file, profile, padding)
-  vim.cmd(cmd)
-end
-
 return M

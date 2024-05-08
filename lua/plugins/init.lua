@@ -2,9 +2,11 @@ return {
   -- soon
   { import = "plugins.gale.flipflop" },
   -- soon
-  { import = "plugins.gale.popurri", enabled = false },
+  { import = "plugins.gale.popurri" },
   -- https://github.com/mgastonportillo/yerbreak.nvim
   { import = "plugins.gale.yerbreak" },
+  -- https://github.com/utilyre/barbecue.nvim
+  { import = "plugins.spec.barbecue" },
   -- https://github.com/max397574/better-escape.nvim
   { import = "plugins.spec.better-escape" },
   -- https://github.com/uga-rosa/ccc.nvim
@@ -42,7 +44,9 @@ return {
   -- https://github.com/nvimdev/lspsaga.nvim
   { import = "plugins.spec.lspsaga" },
   -- https://github.com/ray-x/lsp_signature.nvim
-  { import = "plugins.spec.lsp-signature" },
+  { import = "plugins.spec.lsp-signature", enabled = false },
+  -- https://github.com/andymass/vim-matchup
+  { import = "plugins.spec.matchup" },
   -- https://github.com/iamcco/markdown-preview.nvim
   { import = "plugins.spec.md-preview" },
   -- https://github.com/ecthelionvi/NeoComposer.nvim
@@ -57,6 +61,8 @@ return {
   { import = "plugins.spec.regexplainer" },
   -- https://github.com/mrcjkb/rustaceanvim
   { import = "plugins.spec.rustaceanvim" },
+  -- https://github.com/Aasim-A/scrollEOF.nvim
+  { import = "plugins.spec.scrolleof" },
   -- https://github.com/VonHeikemen/searchbox.nvim
   { import = "plugins.spec.searchbox" },
   -- https://github.com/AckslD/swenv.nvim
@@ -67,8 +73,6 @@ return {
   { import = "plugins.spec.todo-comments" },
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
   { import = "plugins.spec.treesitter-textobjects" },
-  -- https://github.com/folke/trouble.nvim
-  { import = "plugins.spec.trouble" },
   -- https://github.com/windwp/nvim-ts-autotag
   { import = "plugins.spec.ts-autotag" },
   -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring

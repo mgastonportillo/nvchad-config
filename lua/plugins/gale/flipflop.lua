@@ -1,5 +1,5 @@
 return {
-  "/home/gale/workspace/my-projects/neovim/flip-flop.nvim",
+  dir = "/home/gale/workspace/my-projects/neovim/flip-flop.nvim",
   event = "VeryLazy",
   config = function()
     require("flipflop").setup()

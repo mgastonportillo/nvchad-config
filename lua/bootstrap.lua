@@ -1,3 +1,5 @@
+-- NOTE: WSL + WT padding recipe: "20,4,0,-4"
+
 vim.g.mapleader = " "
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 
@@ -34,6 +36,7 @@ require("lazy").setup({
       require "options"
     end,
   },
+  { "NvChad/ui", dev = true, dir = "/home/gale/workspace/my-projects/neovim/ui" },
   { import = "overrides" },
   { import = "plugins" },
 }, lazy_config)
@@ -44,5 +47,11 @@ dofile(vim.g.base46_cache .. "statusline")
 
 require "nvchad.autocmds"
 
+-- Re-activate providers
+for _, v in pairs { "python3_provider", "node_provider" } do
+  vim.g["loaded_" .. v] = nil
+  vim.cmd("runtime " .. v)
+end
+
 -- No dashboard for me
-vim.api.nvim_del_user_command "Nvdash"
+--vim.api.nvim_del_user_command "Nvdash"

@@ -56,7 +56,3 @@ create_cmd("AutoFormatToggle", function()
     vim.notify("Auto-format disabled", vim.log.levels.INFO)
   end
 end, { desc = "Toggle autoformat-on-save" })
-
-create_cmd("NvCloseBuffer", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "Close buffer via tabufline" })

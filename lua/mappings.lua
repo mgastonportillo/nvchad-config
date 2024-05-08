@@ -3,7 +3,8 @@ local utils = require "gale.utils"
 local map = utils.glb_map
 local del = utils.del_map
 
--- GROUP: [[ CORE MAPPINGS ]]
+map({ "n", "v", "i" }, "<A-}>", "gt")
+map({ "n", "v", "i" }, "<A-{>", "gT")
 
 -- Enter cmd mode with ";"
 map("n", ";", ":", { desc = "Enter CMD mode" })
@@ -116,6 +117,7 @@ map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" 
 map("n", "gl", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
 map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP Peek at definition" })
 map("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", { desc = "LSP Go to type definition" })
+map("n", "tt", "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>", { desc = "LSP Show cursor diagnostics" })
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "LSP Prev diagnostics" })
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "LSP Next diagnostics" })
 map("n", "[E", function()
@@ -138,10 +140,6 @@ map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", {
 map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
   desc = "Enter Replace Searchbox",
 })
-
--- PLUGIN: tabufline
--- del("n", "<leader>b") -- disable `enew` keymap
--- map("n", "<leader>x", "<cmd>NvCloseBuffer<CR>", { desc = "Close current buffer" })
 
 -- PLUGIN: signs
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })
@@ -167,9 +165,6 @@ map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git 
 
 -- PLUGIN: treesitter-playground
 map({ "n", "v" }, "<leader>pl", "<cmd>TSPlaygroundToggle<CR>", { desc = "Toggle TSPlayground" })
-
--- PLUGIN: trouble
-map("n", "<leader>tt", "<cmd>TroubleToggle<CR>", { desc = "Toggle Trouble" })
 
 -- PLUGIN: yerbreak
 map({ "n", "v" }, "<leader>yb", "<cmd>Yerbreak<CR>", { desc = "Toggle Yerbreak" })

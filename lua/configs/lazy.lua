@@ -1,7 +1,8 @@
 return {
   dev = {
-    path = "~/workspace/my-projects/neovim/",
-    patterns = { "gale" },
+    path = "/home/gale/workspace/my-projects/neovim/",
+    patterns = { "mgastonportillo" },
+    fallback = true,
   },
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },

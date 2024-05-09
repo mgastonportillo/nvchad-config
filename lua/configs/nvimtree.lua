@@ -1,3 +1,5 @@
+dofile(vim.g.base46_cache .. "nvimtree")
+
 local nvtree = require "nvim-tree"
 local api = require "nvim-tree.api"
 
@@ -21,10 +23,10 @@ end)
 local HEIGHT_RATIO = 0.8
 local WIDTH_RATIO = 0.5
 
-dofile(vim.g.base46_cache .. "nvimtree")
 nvtree.setup {
   on_attach = custom_on_attach,
-  filters = { dotfiles = true }, -- Hide dotfiles by default
+  sync_root_with_cwd = true,
+  filters = { custom = { "^.git$" } },
   git = { enable = true },
   renderer = {
     highlight_git = true,
@@ -66,5 +68,10 @@ nvtree.setup {
     width = function()
       return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
     end,
+  },
+  filesystem_watchers = {
+    ignore_dirs = {
+      "node_modules",
+    },
   },
 }

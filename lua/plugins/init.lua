@@ -32,7 +32,7 @@ return {
   -- https://github.com/tpope/vim-fugitive
   { import = "plugins.spec.fugitive" },
   -- https://github.com/ray-x/go.nvim
-  { import = "plugins.spec.go" },
+  { import = "plugins.spec.go", enabled = false },
   -- https://github.com/gleam-lang/gleam.vim
   { import = "plugins.spec.gleam", enabled = false },
   -- https://github.com/ThePrimeagen/harpoon/tree/harpoon2
@@ -55,7 +55,7 @@ return {
   { import = "plugins.spec.notify" },
   -- https://github.com/ahmedkhalf/project.nvim
   { import = "plugins.spec.project", enabled = false },
-  --
+  -- https://github.com/hiphish/rainbow-delimiters.nvim
   { import = "plugins.spec.rainbow-delimiters" },
   -- https://github.com/bennypowers/nvim-regexplainer
   { import = "plugins.spec.regexplainer" },
@@ -64,7 +64,7 @@ return {
   -- https://github.com/Aasim-A/scrollEOF.nvim
   { import = "plugins.spec.scrolleof" },
   -- https://github.com/VonHeikemen/searchbox.nvim
-  { import = "plugins.spec.searchbox" },
+  { import = "plugins.spec.searchbox", enabled = false },
   -- https://github.com/AckslD/swenv.nvim
   { import = "plugins.spec.swenv", enabled = false },
   ---- https://tabby.tabbyml.com/docs/extensions/installation/vim/

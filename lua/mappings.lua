@@ -78,9 +78,9 @@ map("n", "<leader>dt", function()
 end, { desc = "Toggle debugging sidebar" })
 
 -- PLUGIN: dap-python
-map("n", "<leader>dpr", function()
+--[[ map("n", "<leader>dpr", function()
   require("dap-python").test_method()
-end)
+end) ]]
 
 -- PLUGIN: harpoon
 local harpoon = require "harpoon"
@@ -103,7 +103,12 @@ map("n", ",d", function()
   harpoon:list():remove()
 end, { desc = "Harpoon Remove buffer" })
 map("n", ",m", function()
-  harpoon.ui:toggle_quick_menu(harpoon:list())
+  harpoon.ui:toggle_quick_menu(harpoon:list(), {
+    title = "Harpoon btw",
+    title_pos = "center",
+    border = "rounded",
+    ui_width_ratio = 0.40,
+  })
 end, { desc = "Harpoon Open menu" })
 map("n", ",|", function()
   harpoon:list():prev()
@@ -115,8 +120,8 @@ end, { desc = "Harpoon Go to next buffer" })
 -- PLUGIN: lsp / lsp-saga
 map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
 map("n", "gl", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
-map("n", "gp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP Peek at definition" })
-map("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>", { desc = "LSP Go to type definition" })
+map("n", "<leader>dp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP Peek at definition" })
+map("n", "<leader>gt", "<cmd>Lspsaga goto_type_definition<CR>", { desc = "LSP Go to type definition" })
 map("n", "tt", "<cmd>Lspsaga show_cursor_diagnostics ++unfocus<CR>", { desc = "LSP Show cursor diagnostics" })
 map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "LSP Prev diagnostics" })
 map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "LSP Next diagnostics" })
@@ -130,16 +135,21 @@ end, { desc = "LSP Next error" })
 -- PLUGIN: md-preview
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
 
+-- PLUGIN: nvim-tree
+for i = 1, 9 do
+  map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Go to tab " .. i })
+end
+
 -- PLUGIN: popurri
 map("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
 
 -- PLUGIN: searchbox
-map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", {
+--[[ map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", {
   desc = "Enter Searchbox",
 })
 map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
   desc = "Enter Replace Searchbox",
-})
+}) ]]
 
 -- PLUGIN: signs
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })

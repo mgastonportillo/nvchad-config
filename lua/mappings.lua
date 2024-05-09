@@ -13,7 +13,7 @@ map("i", "jk", "<ESC>")
 -- Save using Ctrl+s
 map({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr>")
 -- Prevent force-closing with Ctrl+z / Ctrl+Z
-map("n", "<C-z>", "<nop>")
+-- map("n", "<C-z>", "<nop>")
 map("n", "<C-S-z>", "<nop>")
 -- Prevent f from jumpingg to matching next pressed key
 map("n", "f", "<nop>")

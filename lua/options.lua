@@ -6,7 +6,7 @@ local g = {
   dap_virtual_text = true,
   bookmark_sign = "",
   skip_ts_context_commentstring_module = true,
-  -- use Windows clipboard for + and * registers (WSL)
+  -- :h clipboard-wsl
   clipboard = {
     name = "wslclipboard",
     copy = { ["+"] = "clip.exe", ["*"] = "clip.exe" },

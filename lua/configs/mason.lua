@@ -14,6 +14,7 @@ return {
     "djlint",
     "gopls",
     "html-lsp",
+    "json-lsp",
     "lua-language-server",
     "marksman",
     "markdownlint",

@@ -38,6 +38,8 @@ map("v", "<A-Down>", ":m '>+1<CR>gv=gv")
 map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
+-- Inlay hInts
+map("n", "<leader>ih", "<cmd>ToggleInlayHints<CR>", { desc = "Toggle inlay hints" })
 
 -- PLUGIN: ccc
 map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })

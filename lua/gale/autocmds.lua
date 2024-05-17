@@ -171,18 +171,3 @@ autocmd("FileChangedShellPost", {
     echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
   ]],
 })
-
---[[ autocmd("LspAttach", {
-  group = augroup("UserLspConfig", {}),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-    if client == nil then
-      return
-    end
-
-    if client.server_capabilities.inlayHintProvider then
-      vim.lsp.inlay_hint.enable()
-    end
-  end,
-}) ]]

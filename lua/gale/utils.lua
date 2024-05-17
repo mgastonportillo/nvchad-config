@@ -114,6 +114,7 @@ M.del_map = function(mode, trigger)
   })
 end
 
+--- Custom lsp on attach
 M.on_attach = function(client, bufnr)
   local on_attach = require("nvchad.configs.lspconfig").on_attach
   on_attach(client, bufnr)
@@ -126,6 +127,29 @@ M.on_attach = function(client, bufnr)
 
   if client.server_capabilities.inlayHintProvider then
     vim.lsp.inlay_hint.enable()
+  end
+end
+
+--- Check if the TS inspect window is open
+local is_inspect_tree_open = function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local buf_name = vim.api.nvim_get_option_value("filetype", { buf = buf })
+    if buf_name and buf_name == "query" then
+      return true, win
+    end
+  end
+  return false, nil
+end
+
+--- Function to toggle the Treesitter inspection window
+M.toggle_inspect_tree = function()
+  local open, win = is_inspect_tree_open()
+  if open then
+    ---@cast win integer
+    vim.api.nvim_win_close(win, true)
+  else
+    vim.cmd "InspectTree"
   end
 end
 

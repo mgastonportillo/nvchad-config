@@ -40,6 +40,14 @@ map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 -- Inlay hInts
 map("n", "<leader>ih", "<cmd>ToggleInlayHints<CR>", { desc = "Toggle inlay hints" })
+-- treesitter
+map(
+  { "n", "v" },
+  "<leader>it",
+  "<cmd>lua require('gale.utils').toggle_inspect_tree()<CR>",
+  { desc = "TS Toggle Inspect Tree" }
+)
+map("n", "<leader>ii", "<cmd>Inspect<CR>", { desc = "TS Inspect under cursor" })
 
 -- PLUGIN: ccc
 map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })
@@ -185,9 +193,6 @@ map("n", "<leader>ts", "<cmd>Telescope treesitter<CR>", { desc = "Telescope Tree
 map("n", "<leader>fz", "<cmd>Telescope builtin<CR>", { desc = "Telescope Builtin list" })
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
-
--- PLUGIN: treesitter-playground
-map({ "n", "v" }, "<leader>pl", "<cmd>TSPlaygroundToggle<CR>", { desc = "Toggle TSPlayground" })
 
 -- PLUGIN: yerbreak
 map({ "n", "v" }, "<leader>yb", "<cmd>Yerbreak<CR>", { desc = "Toggle Yerbreak" })

@@ -5,6 +5,8 @@ return {
   { import = "plugins.gale.popurri" },
   -- https://github.com/mgastonportillo/yerbreak.nvim
   { import = "plugins.gale.yerbreak" },
+  -- https://github.com/rmagatti/auto-session
+  { import = "plugins.spec.autosession", enabled = false },
   -- https://github.com/utilyre/barbecue.nvim
   { import = "plugins.spec.barbecue" },
   -- https://github.com/max397574/better-escape.nvim
@@ -56,7 +58,7 @@ return {
   -- https://github.com/ahmedkhalf/project.nvim
   { import = "plugins.spec.project", enabled = false },
   -- https://github.com/hiphish/rainbow-delimiters.nvim
-  { import = "plugins.spec.rainbow-delimiters" },
+  { import = "plugins.spec.rainbow-delimiters", enabled = false }, -- TODO: re-enable once html support improves
   -- https://github.com/bennypowers/nvim-regexplainer
   { import = "plugins.spec.regexplainer" },
   -- https://github.com/mrcjkb/rustaceanvim
@@ -68,7 +70,7 @@ return {
   -- https://github.com/AckslD/swenv.nvim
   { import = "plugins.spec.swenv", enabled = false },
   ---- https://tabby.tabbyml.com/docs/extensions/installation/vim/
-  { import = "plugins.spec.tabby-ml" },
+  { import = "plugins.spec.tabby-ml", enabled = false },
   -- https://github.com/folke/todo-comments.nvim
   { import = "plugins.spec.todo-comments" },
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects
@@ -78,7 +80,7 @@ return {
   -- https://github.com/JoosepAlviste/nvim-ts-context-commentstring
   { import = "plugins.spec.ts-context-commentstring" },
   -- https://github.com/pmizio/typescript-tools.nvim
-  { import = "plugins.spec.typescript-tools" },
+  { import = "plugins.spec.tstools" },
   -- https://github.com/wuelnerdotexe/vim-astro
   { import = "plugins.spec.vim-astro" },
   -- https://github.com/folke/zen-mode.nvim

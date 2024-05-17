@@ -45,11 +45,11 @@ M.ui = {
     ["@comment"] = { italic = true },
     CursorLine = { bg = "#202025" },
     FloatBorder = { link = "TelescopeBorder" },
-    NvimTreeRootFolder = { link = "FloatBorder" },
+    NvimTreeRootFolder = { fg = "#6d8086" },
   },
 
   hl_add = {
-    YankVisual = { bg = "#303847" },
+    YankVisual = { link = "CursorColumn" },
   },
 
   term = {
@@ -64,7 +64,7 @@ M.ui = {
         return "%#TbFill#%="
       end,
     },
-    order = { "fill", "tabs", "btns" },
+    order = { "buffers", "tabs", "btns" },
   },
 
   lsp = {

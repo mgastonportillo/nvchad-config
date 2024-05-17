@@ -1,5 +1,10 @@
 local create_cmd = vim.api.nvim_create_user_command
 
+create_cmd("ToggleInlayHints", function()
+  ---@diagnostic disable-next-line
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toogle inlay hints in current buffer" })
+
 create_cmd("SrcFile", function()
   if vim.bo.filetype ~= "" then
     vim.cmd "so %"
@@ -21,11 +26,11 @@ create_cmd("DiagnosticsVirtualTextToggle", function()
 end, { desc = "Toggle inline diagnostics" })
 
 create_cmd("DiagnosticsToggle", function()
-  local current_value = vim.diagnostic.is_disabled()
+  local current_value = vim.diagnostic.is_enabled()
   if current_value then
-    vim.diagnostic.enable()
+    vim.diagnostic.enable(false)
   else
-    vim.diagnostic.disable()
+    vim.diagnostic.enable(true)
   end
 end, { desc = "Toggle diagnostics" })
 

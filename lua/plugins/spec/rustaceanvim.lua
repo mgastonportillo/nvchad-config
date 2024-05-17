@@ -3,14 +3,29 @@ return {
   version = "^4",
   ft = { "rust" },
   config = function()
-    local map = require("gale.utils").glb_map
-    local bufnr = vim.api.nvim_get_current_buf()
+    local map = require("gale.utils").buf_map
+    map("n", "K", "<cmd>lua vim.cmd.RustLsp({ 'hover', 'actions' })<CR>", { desc = "Rust Hover" })
+    map("n", "<leader>ca", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { desc = "Rust Code actions" })
 
-    map("n", "K", function()
-      vim.cmd.RustLsp { "hover", "actions" }
-    end, { silent = true, buffer = bufnr, desc = "Rust Hover" })
-    map("n", "<leader>a", function()
-      vim.cmd.RustLsp "codeAction"
-    end, { silent = true, buffer = bufnr, desc = "Rust Code actions" })
+    vim.g.rustaceanvim = {
+      -- Plugin configuration
+      tools = {
+        float_win_config = {
+          border = "rounded",
+        },
+      },
+      -- LSP configuration
+      server = {
+        on_attach = function()
+          vim.lsp.inlay_hint.enable()
+        end,
+        default_settings = {
+          -- rust-analyzer language server configuration
+          ["rust-analyzer"] = {},
+        },
+      },
+      -- DAP configuration
+      dap = {},
+    }
   end,
 }

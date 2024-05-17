@@ -1,6 +1,6 @@
 require "nvchad.options"
 local const = require "gale.constants"
-local wsl_paste = const.WSL_PASTE
+local clip = const.CLIPBOARD
 
 local g = {
   dap_virtual_text = true,
@@ -9,8 +9,8 @@ local g = {
   -- :h clipboard-wsl
   clipboard = {
     name = "wslclipboard",
-    copy = { ["+"] = "clip.exe", ["*"] = "clip.exe" },
-    paste = { ["+"] = wsl_paste, ["*"] = wsl_paste },
+    copy = { ["+"] = clip.WSL_COPY, ["*"] = clip.WSL_COPY },
+    paste = { ["+"] = clip.WSL_PASTE, ["*"] = clip.WSL_PASTE },
     cache_enabled = 0,
   },
 }
@@ -22,6 +22,14 @@ local tabSize = 2
 local opt = {
   encoding = "utf-8",
   fileencoding = "utf-8",
+  -- Folds
+  foldmethod = "expr",
+  foldexpr = "v:lua.vim.treesitter.foldexpr()",
+  foldcolumn = "0",
+  foldtext = "",
+  foldlevel = 99,
+  foldlevelstart = 1,
+  foldnestmax = 1,
   -- Prevent issues with some language servers
   backup = false,
   swapfile = false,

@@ -1,7 +1,5 @@
--- GROUP: [[ SERVERS ]]
-
 local lspconfig = require "lspconfig"
-local on_attach = require("nvchad.configs.lspconfig").on_attach
+local on_attach = require("gale.utils").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
@@ -29,7 +27,8 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig.ruff_lsp.setup {
-  on_attach = function(client)
+  on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
     -- Disable hover in favour of Pyright
     client.server_capabilities.hoverProvider = false
   end,
@@ -37,17 +36,37 @@ lspconfig.ruff_lsp.setup {
   capabilities = capabilities,
 }
 
--- GROUP: [[ UI ]]
+lspconfig.lua_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  on_init = on_init,
+  settings = {
+    Lua = {
+      hint = {
+        enable = true,
+      },
+      diagnostics = {
+        globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+          [vim.fn.stdpath "config" .. "/lua"] = true,
+          [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
+          [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+        },
+        maxPreload = 100000,
+        preloadFileSize = 10000,
+      },
+    },
+  },
+}
 
-local border = "rounded" -- "single" | "rounded"
--- local border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
-
+local border = "rounded"
 -- :LspInfo
 local win = require "lspconfig.ui.windows"
 win.default_options = { border = border }
+vim.cmd [[highlight LspInfoBorder guifg=#444c5b]]
 -- vim.diagnostic.open_float()
 vim.diagnostic.config { virtual_text = true, float = { border = border } }
--- vim.lsp.buf.hover()
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
--- vim.lsp.buf.signature_help()
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })

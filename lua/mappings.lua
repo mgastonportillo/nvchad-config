@@ -3,9 +3,7 @@ local utils = require "gale.utils"
 local map = utils.glb_map
 local del = utils.del_map
 
-map({ "n", "v", "i" }, "<A-}>", "gt")
-map({ "n", "v", "i" }, "<A-{>", "gT")
-
+map("n", "z-", "z^")
 -- Enter cmd mode with ";"
 map("n", ";", ":", { desc = "Enter CMD mode" })
 -- Exit insert mode with "jk"
@@ -40,9 +38,6 @@ map("v", "<A-Down>", ":m '>+1<CR>gv=gv")
 map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
--- Switch buffers
-map("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Switch to next buffer" })
-map("n", "<S-Tab>", "<cmd>bprev<CR>", { desc = "Switch to next buffer" })
 
 -- PLUGIN: ccc
 map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })
@@ -84,25 +79,31 @@ end) ]]
 
 -- PLUGIN: harpoon
 local harpoon = require "harpoon"
-map("n", ",q", function()
+map("n", "<A-q>", function()
   harpoon:list():select(1)
 end, { desc = "Harpoon Go to 1st buffer" })
-map("n", ",w", function()
+map("n", "<A-w>", function()
   harpoon:list():select(2)
 end, { desc = "Harpoon Go to 2nd buffer" })
-map("n", ",e", function()
+map("n", "<A-e>", function()
   harpoon:list():select(3)
 end, { desc = "Harpoon Go to 3rd buffer" })
-map("n", ",r", function()
+map("n", "<A-r>", function()
   harpoon:list():select(4)
 end, { desc = "Harpoon Go to 4th buffer" })
-map("n", ",a", function()
+map("n", "<A-t>", function()
+  harpoon:list():select(5)
+end, { desc = "Harpoon Go to 5th buffer" })
+map("n", "<A-y>", function()
+  harpoon:list():select(6)
+end, { desc = "Harpoon Go to 6th buffer" })
+map("n", "<A-a>", function()
   harpoon:list():add()
 end, { desc = "Harpoon Add buffer" })
-map("n", ",d", function()
+map("n", "<A-d>", function()
   harpoon:list():remove()
 end, { desc = "Harpoon Remove buffer" })
-map("n", ",m", function()
+map("n", "<A-m>", function()
   harpoon.ui:toggle_quick_menu(harpoon:list(), {
     title = "Harpoon btw",
     title_pos = "center",
@@ -110,10 +111,10 @@ map("n", ",m", function()
     ui_width_ratio = 0.40,
   })
 end, { desc = "Harpoon Open menu" })
-map("n", ",|", function()
+map("n", "<A-,>", function()
   harpoon:list():prev()
 end, { desc = "Harpoon Go to prev buffer" })
-map("n", ",<Tab>", function()
+map("n", "<A-.>", function()
   harpoon:list():next()
 end, { desc = "Harpoon Go to next buffer" })
 
@@ -135,7 +136,7 @@ end, { desc = "LSP Next error" })
 -- PLUGIN: md-preview
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
 
--- PLUGIN: nvim-tree
+-- PLUGIN: tabufline
 for i = 1, 9 do
   map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Go to tab " .. i })
 end
@@ -155,9 +156,19 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })
 
 -- PLUGIN: telescope
+local telescope = require "telescope.builtin"
+local telescope_last = 0
+local telescope_resume = function()
+  if telescope_last == 0 then
+    telescope_last = 1
+    telescope.find_files() -- default fallback
+  else
+    telescope.resume()
+  end
+end
+map("n", "<leader>fp", telescope_resume)
 local telescope_lhs_del = { "<leader>fz", "<leader>fh", "<leader>fo", "<leader>gt" }
 del("n", telescope_lhs_del)
-
 local all_files = "Telescope find_files follow=true no_ignore=true hidden=true"
 map("n", "<leader>fa", "<cmd>" .. all_files .. "<CR>", { desc = "Telescope Search all files" })
 map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help tags" })

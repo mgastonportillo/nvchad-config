@@ -43,9 +43,20 @@ M.is_tbl = function(v)
   end
 end
 
+local map_exists = function(name, map_mode)
+  local check = vim.fn.maparg(name, map_mode)
+  if check == "" then
+    return false
+  elseif check == {} then
+    return false
+  else
+    return true
+  end
+end
+
 ---@param mode string | table
 ---@param trigger string | table
---- Delete keymap/s globally
+--- Delete keymap/s globally. Does not attempt to unmap if keymap does not exist.
 M.del_map = function(mode, trigger)
   local del = vim.api.nvim_del_keymap
   local is_tbl = M.is_tbl
@@ -67,32 +78,55 @@ M.del_map = function(mode, trigger)
     [1] = function()
       ---@cast mode string
       ---@cast trigger string
-      del(mode, trigger)
+      if map_exists(trigger, mode) then
+        del(mode, trigger)
+      end
     end,
     [2] = function()
       ---@cast mode string
       ---@cast trigger table
       for _, triggerval in ipairs(trigger) do
-        del(mode, triggerval)
+        if map_exists(triggerval, mode) then
+          del(mode, triggerval)
+        end
       end
     end,
     [3] = function()
       ---@cast mode table
       ---@cast trigger string
       for _, modeval in ipairs(mode) do
-        del(modeval, trigger)
+        if map_exists(trigger, modeval) then
+          del(modeval, trigger)
+        end
       end
     end,
     [4] = function()
       ---@cast mode table
       ---@cast trigger table
-      for _, mode_val in ipairs(mode) do
-        for _, trigger_val in ipairs(trigger) do
-          del(mode_val, trigger_val)
+      for _, modeval in ipairs(mode) do
+        for _, triggerval in ipairs(trigger) do
+          if map_exists(triggerval, modeval) then
+            del(modeval, triggerval)
+          end
         end
       end
     end,
   })
+end
+
+M.on_attach = function(client, bufnr)
+  local on_attach = require("nvchad.configs.lspconfig").on_attach
+  on_attach(client, bufnr)
+
+  local border = "rounded"
+  -- vim.lsp.buf.hover()
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+  -- vim.lsp.buf.signature_help()
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+
+  if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable()
+  end
 end
 
 return M

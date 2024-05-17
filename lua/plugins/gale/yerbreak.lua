@@ -1,7 +1,6 @@
 return {
   "mgastonportillo/yerbreak.nvim",
   dir = "/home/gale/workspace/my-projects/neovim/yerbreak.nvim",
-  name = "yerbreak",
   dev = true,
   dependencies = { "rcarriga/nvim-notify" },
   event = "VeryLazy",

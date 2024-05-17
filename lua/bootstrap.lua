@@ -18,16 +18,6 @@ vim.opt.rtp:prepend(lazypath)
 local lazy_config = require "configs.lazy"
 require("lazy").setup({
   {
-    "folke/neodev.nvim",
-    config = function()
-      require("neodev").setup {
-        library = {
-          plugins = { "nvim-dap-ui" },
-        },
-      }
-    end,
-  },
-  {
     "NvChad/NvChad",
     lazy = false,
     branch = "v2.5",
@@ -36,7 +26,6 @@ require("lazy").setup({
       require "options"
     end,
   },
-  { "NvChad/ui", dev = true, dir = "/home/gale/workspace/my-projects/neovim/ui" },
   { import = "overrides" },
   { import = "plugins" },
 }, lazy_config)
@@ -54,4 +43,4 @@ for _, v in pairs { "python3_provider", "node_provider" } do
 end
 
 -- No dashboard for me
---vim.api.nvim_del_user_command "Nvdash"
+vim.api.nvim_del_user_command "Nvdash"

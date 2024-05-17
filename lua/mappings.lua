@@ -48,6 +48,11 @@ map(
   { desc = "TS Toggle Inspect Tree" }
 )
 map("n", "<leader>ii", "<cmd>Inspect<CR>", { desc = "TS Inspect under cursor" })
+-- Quick resize pane
+map("n", "<C-A-h>", "5<C-w>>", { desc = "Increase pane width by 5" })
+map("n", "<C-A-l>", "5<C-w><", { desc = "Decrease pane width by 5" })
+map("n", "<C-A-k>", "5<C-w>+", { desc = "Increase pane height by 5" })
+map("n", "<C-A-j>", "5<C-w>-", { desc = "Decrease pane height by 5" })
 
 -- PLUGIN: ccc
 map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })

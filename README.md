@@ -15,7 +15,9 @@
 - Markdown Preview with live changes in browser
 - Rounded borders as a priority over sharp borders
 
-> [!TIP] Pair with <a href="https://github.com/mgastonportillo/wezterm-config">my Wezterm configuration</a> for a smoother experience
+> [!TIP]
+>
+> Pair with <a href="https://github.com/mgastonportillo/wezterm-config">my Wezterm configuration</a> for a smoother experience
 
 <hr>
 
@@ -35,7 +37,7 @@
 
 Required:
 
-- NVIM Stable v0.9.5+ (Nightlies might work)
+- NVIM Stable v0.10.0+ (Nightlies might work)
 - NvChad v2.5
 - Python 3.11.7+ & pip
 - pip: `pynvim==0.4.3+`

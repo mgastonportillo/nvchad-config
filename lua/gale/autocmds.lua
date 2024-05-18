@@ -4,7 +4,7 @@ local utils = require "gale.utils"
 local buf_map = utils.buf_map
 
 autocmd("Filetype", {
-  desc = "Prevent <Tab>/<S-Tab> from switching buffers.",
+  desc = "Prevent <Tab>/<S-Tab> from switching specific buffers.",
   pattern = {
     "codecompanion",
     "lazy",

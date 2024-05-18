@@ -12,8 +12,14 @@ return {
     on_attach = on_attach,
     settings = {
       tsserver_file_preferences = {
+        includeInlayEnumMemberValueHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayFunctionParameterTypeHints = true,
         includeInlayParameterNameHints = "all",
         includeCompletionsForModuleExports = true,
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayVariableTypeHints = false,
       },
       tsserver_plugins = {
         "@styled/typescript-styled-plugin",

@@ -68,5 +68,6 @@ local border = "rounded"
 local win = require "lspconfig.ui.windows"
 win.default_options = { border = border }
 vim.cmd [[highlight LspInfoBorder guifg=#444c5b]]
+vim.cmd [[highlight LspInlayHint guifg=#4e5665]]
 -- vim.diagnostic.open_float()
 vim.diagnostic.config { virtual_text = true, float = { border = border } }

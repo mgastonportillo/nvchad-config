@@ -114,22 +114,6 @@ M.del_map = function(mode, trigger)
   })
 end
 
---- Custom lsp on attach
-M.on_attach = function(client, bufnr)
-  local on_attach = require("nvchad.configs.lspconfig").on_attach
-  on_attach(client, bufnr)
-
-  local border = "rounded"
-  -- vim.lsp.buf.hover()
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-  -- vim.lsp.buf.signature_help()
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
-
-  if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable()
-  end
-end
-
 --- Check if the TS inspect window is open
 local is_inspect_tree_open = function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
@@ -151,6 +135,22 @@ M.toggle_inspect_tree = function()
   else
     vim.cmd "InspectTree"
   end
+end
+
+--- Custom lsp on attach
+M.on_attach = function(client, bufnr)
+  local on_attach = require("nvchad.configs.lspconfig").on_attach
+  on_attach(client, bufnr)
+
+  local border = "rounded"
+  -- vim.lsp.buf.hover()
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+  -- vim.lsp.buf.signature_help()
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+
+  --[[ if client.server_capabilities.inlayHintProvider then
+    vim.lsp.inlay_hint.enable()
+  end ]]
 end
 
 return M

@@ -3,6 +3,7 @@ local utils = require "gale.utils"
 local map = utils.glb_map
 local del = utils.del_map
 
+map("n", "<F8>", [[:lua print(vim.inspect(vim.fn.getchar()))<CR>]])
 map("n", "z-", "z^")
 -- Enter cmd mode with ";"
 map("n", ";", ":", { desc = "Enter CMD mode" })
@@ -11,10 +12,10 @@ map("i", "jk", "<ESC>")
 -- Save using Ctrl+s
 map({ "n", "i", "v" }, "<C-s>", "<cmd>w<cr>")
 -- Prevent force-closing with Ctrl+z / Ctrl+Z
--- map("n", "<C-z>", "<nop>")
-map("n", "<C-S-z>", "<nop>")
+-- map("n", "<C-z>", "<NOP>")
+map("n", "<C-S-z>", "<NOP>")
 -- Prevent f from jumpingg to matching next pressed key
-map("n", "f", "<nop>")
+map("n", "f", "<NOP>")
 -- Remove a whole word with Ctrl+Backspace
 -- https://github.com/neovim/neovim/issues/2048
 map("i", "<C-h>", "<Esc>cvb")
@@ -38,7 +39,7 @@ map("v", "<A-Down>", ":m '>+1<CR>gv=gv")
 map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
--- Inlay hInts
+-- Inlay hints
 map("n", "<leader>ih", "<cmd>ToggleInlayHints<CR>", { desc = "Toggle inlay hints" })
 -- treesitter
 map(
@@ -50,19 +51,19 @@ map(
 map("n", "<leader>ii", "<cmd>Inspect<CR>", { desc = "TS Inspect under cursor" })
 -- Quick resize pane
 map("n", "<C-A-h>", "5<C-w>>", { desc = "Increase pane width by 5" })
-map("n", "<C-A-l>", "5<C-w><", { desc = "Decrease pane width by 5" })
+map("n", "<C-A-l>", "5<C-w><", { desc = "Increase pane width by 5" })
 map("n", "<C-A-k>", "5<C-w>+", { desc = "Increase pane height by 5" })
 map("n", "<C-A-j>", "5<C-w>-", { desc = "Decrease pane height by 5" })
 
--- PLUGIN: ccc
+--- ccc
 map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })
 map("n", "ch", "<cmd>CccHighlighterToggle<CR>", { desc = "Toggle Color highlighter" })
 map("n", "<Leader>cp", "<cmd>CccPick<CR>", { desc = "Open Color picker" })
 
--- PLUGIN: code-companion
+--- code-companion
 map({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
 
--- PLUGIN: comment
+--- comment
 -- "n" is pre-mapped and adding it breaks the functionality
 map("x", "<leader>/", "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR> g@")
 -- Force single-line block-comment
@@ -70,16 +71,16 @@ map("n", "<leader>_", function()
   require("Comment.api").toggle.blockwise.current()
 end)
 
--- PLUGIN: conform
+--- conform
 map("n", "<leader>fm", "<cmd>FormatFile<CR>", { desc = "Format file" })
 
--- PLUGIN: crates
+--- crates
 map("n", "<leader>cu", function()
   local crates = require "crates"
   crates.upgrade_all_crates()
 end, { desc = "Update crates" })
 
--- PLUGIN: dap
+--- dap
 local widgets = require "dap.ui.widgets"
 local sidebar = widgets.sidebar(widgets.scopes)
 map("n", "<leader>db", "<cmd>DapToggleBreakpoint<CR>")
@@ -87,12 +88,12 @@ map("n", "<leader>dt", function()
   sidebar.toggle()
 end, { desc = "Toggle debugging sidebar" })
 
--- PLUGIN: dap-python
+--- dap-python
 --[[ map("n", "<leader>dpr", function()
   require("dap-python").test_method()
 end) ]]
 
--- PLUGIN: harpoon
+--- harpoon
 local harpoon = require "harpoon"
 map("n", "<A-q>", function()
   harpoon:list():select(1)
@@ -133,7 +134,7 @@ map("n", "<A-.>", function()
   harpoon:list():next()
 end, { desc = "Harpoon Go to next buffer" })
 
--- PLUGIN: lsp / lsp-saga
+--- lsp / lsp-saga
 map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
 map("n", "gl", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
 map("n", "<leader>dp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP Peek at definition" })
@@ -148,18 +149,33 @@ map("n", "]E", function()
   require("lspsaga.diagnostic"):goto_next { severity = vim.diagnostic.severity.ERROR }
 end, { desc = "LSP Next error" })
 
--- PLUGIN: md-preview
+--- luasnip
+local ls = require "luasnip"
+del("n", "<C-j>")
+del("n", "<C-k>")
+map({ "i", "s" }, "<C-j>", function()
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  end
+end)
+map({ "i", "s" }, "<C-k>", function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end)
+
+--- md-preview
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle Markdown Preview" })
 
--- PLUGIN: tabufline
+--- tabufline
 for i = 1, 9 do
   map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Go to tab " .. i })
 end
 
--- PLUGIN: popurri
+--- popurri
 map("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
 
--- PLUGIN: searchbox
+--- searchbox
 --[[ map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", {
   desc = "Enter Searchbox",
 })
@@ -167,10 +183,10 @@ map("n", "<leader>r", "<cmd>SearchBoxReplace<CR>", {
   desc = "Enter Replace Searchbox",
 }) ]]
 
--- PLUGIN: signs
+--- signs
 map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })
 
--- PLUGIN: telescope
+--- telescope
 local telescope = require "telescope.builtin"
 local telescope_last = 0
 local telescope_resume = function()
@@ -199,5 +215,5 @@ map("n", "<leader>fz", "<cmd>Telescope builtin<CR>", { desc = "Telescope Builtin
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 
--- PLUGIN: yerbreak
+--- yerbreak
 map({ "n", "v" }, "<leader>yb", "<cmd>Yerbreak<CR>", { desc = "Toggle Yerbreak" })

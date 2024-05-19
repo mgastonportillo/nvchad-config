@@ -1,7 +1,7 @@
 return {
   -- soon
   { import = "plugins.gale.flipflop" },
-  -- soon
+  -- https://github.com/mgastonportillo/popurri.nvim
   { import = "plugins.gale.popurri" },
   -- https://github.com/mgastonportillo/yerbreak.nvim
   { import = "plugins.gale.yerbreak" },
@@ -70,7 +70,7 @@ return {
   -- https://github.com/AckslD/swenv.nvim
   { import = "plugins.spec.swenv", enabled = false },
   ---- https://tabby.tabbyml.com/docs/extensions/installation/vim/
-  { import = "plugins.spec.tabby-ml", enabled = false },
+  { import = "plugins.spec.tabby-ml" },
   -- https://github.com/folke/todo-comments.nvim
   { import = "plugins.spec.todo-comments" },
   -- https://github.com/nvim-treesitter/nvim-treesitter-textobjects

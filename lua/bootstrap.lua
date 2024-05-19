@@ -7,7 +7,7 @@ local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 
 -- Install lazy if not in path
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.loop or vim.uv).fs_stat(lazypath) then
   vim.system { "git", "clone", "--filter=blob:none", lazyrepo, "--branch=stable", lazypath }
 end
 
@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Load plugins
 local lazy_config = require "configs.lazy"
 require("lazy").setup({
+  { "folke/neodev.nvim" },
   {
     "NvChad/NvChad",
     lazy = false,

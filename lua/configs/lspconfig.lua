@@ -36,6 +36,8 @@ lspconfig.ruff_lsp.setup {
   capabilities = capabilities,
 }
 
+require("neodev").setup {}
+
 lspconfig.lua_ls.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -50,9 +52,10 @@ lspconfig.lua_ls.setup {
       },
       workspace = {
         library = {
+          -- require("neodev.config").types(),
           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
           [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-          [vim.fn.stdpath "config" .. "/lua"] = true,
+          -- [vim.fn.stdpath "config" .. "/lua"] = true,
           [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
           [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
         },

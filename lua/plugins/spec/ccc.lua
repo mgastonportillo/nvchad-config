@@ -1,6 +1,6 @@
 return {
   "uga-rosa/ccc.nvim",
-  event = "VeryLazy",
+  event = "BufEnter",
   config = function()
     require("ccc").setup {
       highlighter = {

@@ -1,5 +1,13 @@
 local create_cmd = vim.api.nvim_create_user_command
 
+create_cmd("TabbyStart", function()
+  require("gale.tabby").start()
+end, { desc = "Start TabbyML docker container" })
+
+create_cmd("TabbyStop", function()
+  require("gale.tabby").stop()
+end, { desc = "Stop TabbyML docker container" })
+
 create_cmd("ToggleInlayHints", function()
   ---@diagnostic disable-next-line
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())

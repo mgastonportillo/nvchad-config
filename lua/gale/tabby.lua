@@ -43,12 +43,12 @@ M.start = start_docker_container
 M.stop = stop_docker_container
 
 if vim.g.loaded_tabby == 1 then
-  autocmd("VimEnter", {
+  --[[ autocmd("VimEnter", {
     callback = function()
       start_docker_container()
     end,
   })
-
+]]
   autocmd("VimLeave", {
     callback = function()
       stop_docker_container()

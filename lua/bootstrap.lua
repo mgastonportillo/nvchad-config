@@ -17,7 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Load plugins
 local lazy_config = require "configs.lazy"
 require("lazy").setup({
-  { "folke/neodev.nvim" },
+  { "folke/neodev.nvim", lazy = false },
   {
     "NvChad/NvChad",
     lazy = false,

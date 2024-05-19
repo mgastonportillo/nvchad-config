@@ -131,9 +131,32 @@ M.toggle_inspect_tree = function()
   local open, win = is_inspect_tree_open()
   if open then
     ---@cast win integer
-    vim.api.nvim_win_close(win, true)
+    local bufnr = vim.api.nvim_win_get_buf(win)
+    vim.api.nvim_buf_delete(bufnr, { force = true })
   else
     vim.cmd "InspectTree"
+  end
+end
+
+local is_grugfar_open = function()
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    local buf_name = vim.api.nvim_get_option_value("filetype", { buf = buf })
+    if buf_name and buf_name == "grug-far" then
+      return true, win
+    end
+  end
+  return false, nil
+end
+
+M.toggle_grugfar = function()
+  local open, win = is_grugfar_open()
+  if open then
+    ---@cast win integer
+    local bufnr = vim.api.nvim_win_get_buf(win)
+    vim.api.nvim_buf_delete(bufnr, { force = true })
+  else
+    vim.cmd "GrugFar"
   end
 end
 

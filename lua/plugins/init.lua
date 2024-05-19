@@ -29,6 +29,8 @@ return {
   { import = "plugins.spec.edgy" },
   -- https://github.com/lewis6991/gitsigns.nvim
   { import = "plugins.spec.gitsigns" },
+  -- https://github.com/MagicDuck/grug-far.nvim
+  { import = "plugins.spec.grug-far" },
   -- https://github.com/VonHeikemen/fine-cmdline.nvim
   { import = "plugins.spec.fine-cmdline", enabled = false },
   -- https://github.com/tpope/vim-fugitive
@@ -81,6 +83,8 @@ return {
   { import = "plugins.spec.ts-context-commentstring" },
   -- https://github.com/pmizio/typescript-tools.nvim
   { import = "plugins.spec.tstools" },
+  -- https://github.com/mbbill/undotree
+  { import = "plugins.spec.undo-tree" },
   -- https://github.com/wuelnerdotexe/vim-astro
   { import = "plugins.spec.vim-astro" },
   -- https://github.com/folke/zen-mode.nvim

@@ -3,7 +3,6 @@ local utils = require "gale.utils"
 local map = utils.glb_map
 local del = utils.del_map
 
-map("n", "<F8>", [[:lua print(vim.inspect(vim.fn.getchar()))<CR>]])
 map("n", "z-", "z^")
 -- Enter cmd mode with ";"
 map("n", ";", ":", { desc = "Enter CMD mode" })
@@ -41,7 +40,12 @@ map("v", "<A-Up>", ":m '<-2<CR>gv=gv")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 -- Inlay hints
 map("n", "<leader>ih", "<cmd>ToggleInlayHints<CR>", { desc = "Toggle inlay hints" })
--- treesitter
+-- Quick resize pane
+map("n", "<C-A-h>", "5<C-w>>", { desc = "Increase pane width by 5" })
+map("n", "<C-A-l>", "5<C-w><", { desc = "Increase pane width by 5" })
+map("n", "<C-A-k>", "5<C-w>+", { desc = "Increase pane height by 5" })
+map("n", "<C-A-j>", "5<C-w>-", { desc = "Decrease pane height by 5" })
+-- TreeSitter
 map(
   { "n", "v" },
   "<leader>it",
@@ -49,11 +53,6 @@ map(
   { desc = "TS Toggle Inspect Tree" }
 )
 map("n", "<leader>ii", "<cmd>Inspect<CR>", { desc = "TS Inspect under cursor" })
--- Quick resize pane
-map("n", "<C-A-h>", "5<C-w>>", { desc = "Increase pane width by 5" })
-map("n", "<C-A-l>", "5<C-w><", { desc = "Increase pane width by 5" })
-map("n", "<C-A-k>", "5<C-w>+", { desc = "Increase pane height by 5" })
-map("n", "<C-A-j>", "5<C-w>-", { desc = "Decrease pane height by 5" })
 
 --- ccc
 map("n", "cc", "<cmd>CccConvert<CR>", { desc = "Change Color space" })
@@ -92,6 +91,9 @@ end, { desc = "Toggle debugging sidebar" })
 --[[ map("n", "<leader>dpr", function()
   require("dap-python").test_method()
 end) ]]
+
+--- grug-far
+map("n", "<leader>gr", "<cmd>lua require('gale.utils').toggle_grugfar()<CR>", { desc = "Toggle GrugFar" })
 
 --- harpoon
 local harpoon = require "harpoon"
@@ -214,6 +216,9 @@ map("n", "<leader>ts", "<cmd>Telescope treesitter<CR>", { desc = "Telescope Tree
 map("n", "<leader>fz", "<cmd>Telescope builtin<CR>", { desc = "Telescope Builtin list" })
 map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
+
+--- undo-tree
+map("n", "<leader>ut", "<cmd>UndotreeToggle<CR>")
 
 --- yerbreak
 map({ "n", "v" }, "<leader>yb", "<cmd>Yerbreak<CR>", { desc = "Toggle Yerbreak" })

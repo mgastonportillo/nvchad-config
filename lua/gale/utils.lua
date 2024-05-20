@@ -159,46 +159,20 @@ M.on_attach = function(client, bufnr)
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 end
 
--- Extract string inside double quotes under the cursor
-local get_string_within_quotes = function()
-  local line = vim.api.nvim_get_current_line()
-  -- Get cursor position
-  local col = vim.fn.col "."
-
-  local start_pos = nil
-  local end_pos = nil
-
-  for i = col - 1, 1, -1 do
-    if line:sub(i, i) == '"' then
-      start_pos = i
-      break
-    end
-  end
-
-  for i = col, #line do
-    if line:sub(i, i) == '"' then
-      end_pos = i
-      break
-    end
-  end
-
-  if start_pos and end_pos and start_pos < end_pos then
-    local string_in_quotes = line:sub(start_pos + 1, end_pos - 1)
-    return string_in_quotes
-  else
-    return nil
-  end
-end
-
-local is_github_string = function(str)
-  local _, count = str:gsub("/", "")
-  return count == 1
-end
-
-M.get_string_within_quotes = get_string_within_quotes
-
+--- Navigate to plugin repo if valid string name under cursor
 M.go_to_github_link = function()
-  local string = get_string_within_quotes()
+  local ts = vim.treesitter
+  local node = ts.get_node()
+  if not node then
+    return
+  end
+
+  local string = ts.get_node_text(node, 0)
+
+  local is_github_string = function(str)
+    local _, count = str:gsub("/", "")
+    return count == 1
+  end
 
   if string then
     local is_valid_string = is_github_string(string)

@@ -1,3 +1,4 @@
+---@diagnostic disable: different-requires
 return {
   {
     "neovim/nvim-lspconfig",

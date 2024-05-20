@@ -4,9 +4,10 @@ return {
   dependencies = "nvim-lua/plenary.nvim",
   config = function(_, opts)
     local crates = require "crates"
+    local cmp = require "cmp"
 
     crates.setup(opts)
-    require("cmp").setup.buffer {
+    cmp.setup.buffer {
       sources = { { name = "crates" } },
     }
     crates.show()

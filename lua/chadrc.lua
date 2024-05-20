@@ -2,8 +2,6 @@
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v2.5/nvchad_types/chadrc.lua
 
-local utils = require "base46.colors"
-
 ---@type ChadrcConfig
 local M = {}
 
@@ -74,10 +72,6 @@ M.ui = {
   lsp = {
     signature = true,
     semantic_tokens = true,
-  },
-
-  cheatsheet = {
-    theme = "grid",
   },
 }
 

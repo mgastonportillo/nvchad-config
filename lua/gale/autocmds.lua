@@ -144,11 +144,11 @@ autocmd("ModeChanged", {
   pattern = { "s:n", "i:*" },
   group = augroup("PreventSnippetJump", { clear = true }),
   callback = function()
-    if
-      require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-      and not require("luasnip").session.jump_active
-    then
-      require("luasnip").unlink_current()
+    local ls = require "luasnip"
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    if ls.session.current_nodes[bufnr] and not ls.session.jump_active then
+      ls.unlink_current()
     end
   end,
 })

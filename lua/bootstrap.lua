@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-field
 -- NOTE: WSL + WT padding recipe: "20,4,0,-4"
 
 vim.g.mapleader = " "

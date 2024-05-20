@@ -11,5 +11,6 @@ return {
   },
   config = function(_, opts)
     require("yerbreak").setup(opts)
+    vim.keymap.set({ "n" }, "<leader>yb", "<cmd>Yerbreak<CR>", { desc = "Toggle Yerbreak" })
   end,
 }

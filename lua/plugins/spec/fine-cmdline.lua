@@ -8,5 +8,8 @@ return {
         prompt = "   ",
       },
     }
+
+    local map = vim.keymap.set
+    map("n", ":", "<cmd>FineCmdline<CR>", { desc = "CMD enter command mode" })
   end,
 }

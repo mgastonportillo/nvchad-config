@@ -22,5 +22,6 @@ return {
         inline = "ollama",
       },
     }
+    vim.keymap.set({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
   end,
 }

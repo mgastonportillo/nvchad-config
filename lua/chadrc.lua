@@ -2,6 +2,8 @@
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
 -- https://github.com/NvChad/ui/blob/v2.5/nvchad_types/chadrc.lua
 
+local utils = require "base46.colors"
+
 ---@type ChadrcConfig
 local M = {}
 
@@ -45,11 +47,13 @@ M.ui = {
     ["@comment"] = { italic = true },
     CursorLine = { bg = "#202025" },
     FloatBorder = { link = "TelescopeBorder" },
-    NvimTreeRootFolder = { fg = "#6d8086" },
+    NvimTreeRootFolder = { link = "TelescopeBorder" },
+    LspInlayHint = { fg = "#4e5665", bg = "NONE" },
   },
 
   hl_add = {
     YankVisual = { link = "CursorColumn" },
+    LspInfoBorder = { fg = "#444c5b" },
   },
 
   term = {
@@ -70,6 +74,10 @@ M.ui = {
   lsp = {
     signature = true,
     semantic_tokens = true,
+  },
+
+  cheatsheet = {
+    theme = "grid",
   },
 }
 

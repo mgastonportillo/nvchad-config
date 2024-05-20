@@ -1,12 +1,10 @@
+local config = require("cmp.config").get()
+local sources = table.insert(config.sources, { name = "crates" })
+
 return {
   mapping = {
-    --[[ ["<Tab>"] = require("cmp").mapping(function(fallback)
-      fallback()
-    end),
-    ["<S-Tab>"] = require("cmp").mapping(function(fallback)
-      fallback()
-    end), ]]
     ["<Tab>"] = vim.NIL,
     ["<S-Tab>"] = vim.NIL,
   },
+  sources = sources,
 }

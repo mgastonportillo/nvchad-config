@@ -8,17 +8,37 @@ M.add_alias = function(target_cmd, alias)
   vim.cmd("ca " .. alias .. " " .. target_cmd)
 end
 
+---@type fun(v: any): boolean
+M.is_tbl = function(v)
+  if type(v) == "table" then
+    return true
+  else
+    return false
+  end
+end
+
 ---@param mode string | table
----@param lhs string
+---@param lhs string | table
 ---@param rhs string | function
 ---@param opts? table | nil
 --- Create a global keymap
 M.glb_map = function(mode, lhs, rhs, opts)
-  local final_opts = { noremap = true, silent = true }
+  local is_tbl = M.is_tbl
+  local options = { noremap = true, silent = true }
+
   if opts then
-    final_opts = vim.tbl_extend("force", final_opts, opts)
+    options = vim.tbl_extend("force", options, opts)
   end
-  vim.keymap.set(mode, lhs, rhs, final_opts)
+
+  if is_tbl(lhs) then
+    ---@cast lhs table
+    for _, trigger in ipairs(lhs) do
+      vim.keymap.set(mode, trigger, rhs, options)
+    end
+  else
+    ---@cast lhs string
+    vim.keymap.set(mode, lhs, rhs, options)
+  end
 end
 
 ---@param mode string
@@ -32,15 +52,6 @@ M.buf_map = function(mode, lhs, rhs, opts)
     final_opts = vim.tbl_extend("force", final_opts, opts)
   end
   vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, final_opts)
-end
-
----@type fun(v: any): boolean
-M.is_tbl = function(v)
-  if type(v) == "table" then
-    return true
-  else
-    return false
-  end
 end
 
 local map_exists = function(name, map_mode)
@@ -114,7 +125,6 @@ M.del_map = function(mode, trigger)
   })
 end
 
---- Check if the TS inspect window is open
 local is_inspect_tree_open = function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
     local buf = vim.api.nvim_win_get_buf(win)
@@ -126,7 +136,6 @@ local is_inspect_tree_open = function()
   return false, nil
 end
 
---- Function to toggle the Treesitter inspection window
 M.toggle_inspect_tree = function()
   local open, win = is_inspect_tree_open()
   if open then
@@ -135,28 +144,6 @@ M.toggle_inspect_tree = function()
     vim.api.nvim_buf_delete(bufnr, { force = true })
   else
     vim.cmd "InspectTree"
-  end
-end
-
-local is_grugfar_open = function()
-  for _, win in ipairs(vim.api.nvim_list_wins()) do
-    local buf = vim.api.nvim_win_get_buf(win)
-    local buf_name = vim.api.nvim_get_option_value("filetype", { buf = buf })
-    if buf_name and buf_name == "grug-far" then
-      return true, win
-    end
-  end
-  return false, nil
-end
-
-M.toggle_grugfar = function()
-  local open, win = is_grugfar_open()
-  if open then
-    ---@cast win integer
-    local bufnr = vim.api.nvim_win_get_buf(win)
-    vim.api.nvim_buf_delete(bufnr, { force = true })
-  else
-    vim.cmd "GrugFar"
   end
 end
 
@@ -170,10 +157,63 @@ M.on_attach = function(client, bufnr)
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
   -- vim.lsp.buf.signature_help()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+end
 
-  --[[ if client.server_capabilities.inlayHintProvider then
-    vim.lsp.inlay_hint.enable()
-  end ]]
+-- Extract string inside double quotes under the cursor
+local get_string_within_quotes = function()
+  local line = vim.api.nvim_get_current_line()
+  -- Get cursor position
+  local col = vim.fn.col "."
+
+  local start_pos = nil
+  local end_pos = nil
+
+  for i = col - 1, 1, -1 do
+    if line:sub(i, i) == '"' then
+      start_pos = i
+      break
+    end
+  end
+
+  for i = col, #line do
+    if line:sub(i, i) == '"' then
+      end_pos = i
+      break
+    end
+  end
+
+  if start_pos and end_pos and start_pos < end_pos then
+    local string_in_quotes = line:sub(start_pos + 1, end_pos - 1)
+    return string_in_quotes
+  else
+    return nil
+  end
+end
+
+local is_github_string = function(str)
+  local _, count = str:gsub("/", "")
+  return count == 1
+end
+
+M.get_string_within_quotes = get_string_within_quotes
+
+M.go_to_github_link = function()
+  local string = get_string_within_quotes()
+
+  if string then
+    local is_valid_string = is_github_string(string)
+
+    if is_valid_string then
+      local gh_link = string.format("https://github.com/%s.git", string)
+      vim.ui.open(gh_link)
+    else
+      vim.notify(" Not a valid GitHub string", vim.log.levels.ERROR, { icon = "" })
+      return
+    end
+  else
+    vim.notify(" Not a string", vim.log.levels.ERROR, { icon = "" })
+    return
+  end
 end
 
 return M

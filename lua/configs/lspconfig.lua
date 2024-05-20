@@ -42,14 +42,12 @@ lspconfig.lua_ls.setup {
   on_init = on_init,
   settings = {
     Lua = {
-      hint = {
-        enable = true,
-      },
-      diagnostics = {
-        globals = { "vim" },
-      },
+      hint = { enable = true },
+      diagnostics = { globals = { "vim" } },
       workspace = {
         library = {
+          vim.env.RUNTIME,
+          ["${3rd}/luv/library"] = true,
           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
           [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
           [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
@@ -66,7 +64,5 @@ local border = "rounded"
 -- :LspInfo
 local win = require "lspconfig.ui.windows"
 win.default_options = { border = border }
-vim.cmd [[highlight LspInfoBorder guifg=#444c5b]]
-vim.cmd [[highlight LspInlayHint guifg=#4e5665]]
 -- vim.diagnostic.open_float()
 vim.diagnostic.config { virtual_text = true, float = { border = border } }

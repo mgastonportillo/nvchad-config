@@ -5,5 +5,6 @@ return {
   event = "VeryLazy",
   config = function()
     require("popurri").setup {}
+    vim.keymap.set("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
   end,
 }

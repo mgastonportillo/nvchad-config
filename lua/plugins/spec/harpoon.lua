@@ -1,15 +1,13 @@
 return {
   "ThePrimeagen/harpoon",
+  event = "BufEnter",
   branch = "harpoon2",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
-  },
+  dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
     local map = vim.keymap.set
     local harpoon = require "harpoon"
 
-    harpoon.setup {}
+    harpoon:setup {}
 
     map("n", "<A-q>", function()
       harpoon:list():select(1)

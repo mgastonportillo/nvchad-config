@@ -1,3 +1,4 @@
+---@diagnostic disable: different-requires
 return {
   "saecki/crates.nvim",
   ft = { "rust", "toml" },

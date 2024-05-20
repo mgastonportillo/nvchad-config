@@ -1,15 +1,15 @@
 -- Automatically detect context for comment string
-_G.__toggle_contextual = function(vmode)
+_G.__toggle_contextual = function(mode)
   local cfg = require("Comment.config"):get()
   local U = require "Comment.utils"
   local Op = require "Comment.opfunc"
-  local range = U.get_region(vmode)
+  local range = U.get_region(mode)
   local same_line = range.srow == range.erow
 
   local ctx = {
     cmode = U.cmode.toggle,
     range = range,
-    cmotion = U.cmotion[vmode] or U.cmotion.line,
+    cmotion = U.cmotion[mode] or U.cmotion.line,
     ctype = same_line and U.ctype.linewise or U.ctype.blockwise,
   }
 

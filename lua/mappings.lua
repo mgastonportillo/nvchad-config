@@ -47,7 +47,7 @@ end, { desc = "TS Toggle Inspect Tree" })
 map("n", "<leader>ii", "<cmd>Inspect<CR>", { desc = "TS Inspect under cursor" })
 
 -- Utils
-map("n", "<leader>gh", function()
+map("n", "gh", function()
   utils.go_to_github_link()
 end, { desc = "Go to GitHub link generated from string" })
 

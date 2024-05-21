@@ -54,9 +54,6 @@ end, { desc = "Go to GitHub link generated from string" })
 --- conform
 map("n", "<leader>fm", "<cmd>FormatFile<CR>", { desc = "Format file" })
 
---- signs
-map("n", "<leader>bl", "<cmd>Gitsigns blame_line<CR>", { desc = "Blame line" })
-
 --- tabufline
 for i = 1, 9 do
   map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Go to tab " .. i })

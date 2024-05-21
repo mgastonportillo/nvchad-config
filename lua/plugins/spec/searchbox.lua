@@ -1,11 +1,9 @@
 return {
   "VonHeikemen/searchbox.nvim",
   event = "VeryLazy",
-  init = function() end,
   dependencies = "MunifTanjim/nui.nvim",
-  config = function()
+  init = function()
     local map = vim.keymap.set
-
     map("n", "<leader>s", "<cmd>SearchBoxIncSearch<CR>", {
       desc = "Enter Searchbox",
     })

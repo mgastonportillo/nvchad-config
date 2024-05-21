@@ -44,9 +44,9 @@ M.ui = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
     CursorLine = { bg = "#202025" },
+    LspInlayHint = { fg = "#4e5665", bg = "NONE" },
     FloatBorder = { link = "TelescopeBorder" },
     NvimTreeRootFolder = { link = "TelescopeBorder" },
-    LspInlayHint = { fg = "#4e5665", bg = "NONE" },
   },
 
   hl_add = {
@@ -54,6 +54,7 @@ M.ui = {
     LspInfoBorder = { fg = "#444c5b" },
     WinBar = { bg = "NONE" },
     WinBarNC = { bg = "NONE" },
+    DropBarMenuCurrentContext = { link = "Visual" },
   },
 
   term = {

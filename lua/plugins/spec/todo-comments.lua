@@ -6,10 +6,8 @@ return {
     require("todo-comments").setup {
       keywords = {
         GROUP = { icon = " ", color = "hint" },
-        PLUGIN = { icon = " ", color = "plugin" },
       },
       highlight = { multiline = false },
-      colors = { plugin = "#edc4e5" },
     }
   end,
 }

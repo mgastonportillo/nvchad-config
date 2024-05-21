@@ -3,8 +3,8 @@ return {
   dir = "/home/gale/workspace/my-projects/neovim/popurri.nvim",
   dev = true,
   event = "VeryLazy",
-  config = function()
-    require("popurri").setup {}
+  init = function()
     vim.keymap.set("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
   end,
+  opts = {},
 }

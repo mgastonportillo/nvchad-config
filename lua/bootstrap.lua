@@ -1,5 +1,5 @@
----@diagnostic disable: undefined-field
 -- NOTE: WSL + WT padding recipe: "20,4,0,-4"
+---@diagnostic disable: undefined-field
 
 vim.g.mapleader = " "
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"

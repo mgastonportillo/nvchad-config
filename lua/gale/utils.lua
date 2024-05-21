@@ -182,10 +182,12 @@ M.go_to_github_link = function()
       local gh_link = string.format("https://github.com/%s.git", string)
       vim.ui.open(gh_link)
     else
+      vim.notify.dismiss() ---@diagnostic disable-line
       vim.notify(" Not a valid GitHub string", vim.log.levels.ERROR, { icon = "" })
       return
     end
   else
+    vim.notify.dismiss() ---@diagnostic disable-line
     vim.notify(" Not a string", vim.log.levels.ERROR, { icon = "" })
     return
   end

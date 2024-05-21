@@ -3,10 +3,6 @@ return {
   version = "^4",
   ft = { "rust" },
   config = function()
-    local map = require("gale.utils").buf_map
-    map("n", "K", "<cmd>lua vim.cmd.RustLsp({ 'hover', 'actions' })<CR>", { desc = "Rust Hover" })
-    map("n", "<leader>ca", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { desc = "Rust Code actions" })
-
     vim.g.rustaceanvim = {
       -- Plugin configuration
       tools = {
@@ -27,5 +23,9 @@ return {
       -- DAP configuration
       dap = {},
     }
+
+    local map = require("gale.utils").buf_map
+    map("n", "K", "<cmd>lua vim.cmd.RustLsp({ 'hover', 'actions' })<CR>", { desc = "Rust Hover" })
+    map("n", "<leader>ca", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { desc = "Rust Code actions" })
   end,
 }

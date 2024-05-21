@@ -6,13 +6,13 @@ return {
   },
   event = "LspAttach",
   config = function()
-    local map = vim.keymap.set
     require("lspsaga").setup {
       symbol_in_winbar = {
         enable = false,
       },
     }
 
+    local map = vim.keymap.set
     map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
     map("n", "gl", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
     map("n", "<leader>dp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP Peek at definition" })

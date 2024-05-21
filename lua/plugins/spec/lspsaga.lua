@@ -9,7 +9,7 @@ return {
     local map = vim.keymap.set
     require("lspsaga").setup {
       symbol_in_winbar = {
-        enable = false, -- Prefer Barbecue
+        enable = false,
       },
     }
 

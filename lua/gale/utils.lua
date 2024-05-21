@@ -163,6 +163,7 @@ end
 M.go_to_github_link = function()
   local ts = vim.treesitter
   local node = ts.get_node()
+
   if not node then
     return
   end

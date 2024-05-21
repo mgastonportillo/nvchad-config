@@ -46,7 +46,6 @@ lspconfig.lua_ls.setup {
       diagnostics = { globals = { "vim" } },
       workspace = {
         library = {
-          vim.env.RUNTIME,
           ["${3rd}/luv/library"] = true,
           [vim.fn.expand "$VIMRUNTIME/lua"] = true,
           [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,

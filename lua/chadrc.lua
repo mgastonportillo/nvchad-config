@@ -52,6 +52,8 @@ M.ui = {
   hl_add = {
     YankVisual = { link = "CursorColumn" },
     LspInfoBorder = { fg = "#444c5b" },
+    WinBar = { bg = "NONE" },
+    WinBarNC = { bg = "NONE" },
   },
 
   term = {

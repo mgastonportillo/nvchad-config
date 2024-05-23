@@ -22,4 +22,9 @@ return {
     end
     return { timeout_ms = 500, lsp_fallback = true }
   end,
+  -- formatters = {
+  --   prettier = {
+  --     args = { "--single-quote", "true", "$FILENAME" },
+  --   },
+  -- },
 }

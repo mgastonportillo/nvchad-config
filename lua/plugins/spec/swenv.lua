@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "AckslD/swenv.nvim",
   ft = "python",
   config = function()

@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "VonHeikemen/fine-cmdline.nvim",
   event = "VimEnter",
   dependencies = "MunifTanjim/nui.nvim",

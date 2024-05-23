@@ -1,4 +1,5 @@
 return {
+  enabled = false,
   "utilyre/barbecue.nvim",
   event = "VeryLazy",
   name = "barbecue",

@@ -27,7 +27,6 @@ require("lazy").setup({
       require "options"
     end,
   },
-  { import = "overrides" },
   { import = "plugins" },
 }, lazy_config)
 

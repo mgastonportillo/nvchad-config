@@ -6,5 +6,7 @@ return {
   init = function()
     vim.keymap.set("n", "<leader>pp", "<cmd>Popurri<CR>", { desc = "Toggle Popurri" })
   end,
-  opts = {},
+  opts = {
+    default_query = "args",
+  },
 }

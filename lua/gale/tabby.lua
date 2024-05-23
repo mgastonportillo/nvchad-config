@@ -16,11 +16,11 @@ local start_docker_container = function()
   if not is_container_running(container_name) then
     local command = "docker start " .. container_name
     os.execute(command)
-    vim.notify.dismiss { silent = true, pending = true }
-    vim.notify(" Docker: TabbyML started!", vim.log.levels.INFO, { icon = "" })
+    vim.notify.dismiss { silent = true, pending = true } ---@diagnostic disable-line
+    vim.notify(" Docker: Tabby started!", vim.log.levels.INFO, { icon = "" })
   else
-    vim.notify.dismiss { silent = true, pending = true }
-    vim.notify(" Docker: TabbyML is already running!", vim.log.levels.WARN, { icon = "" })
+    vim.notify.dismiss { silent = true, pending = true } ---@diagnostic disable-line
+    vim.notify(" Docker: Tabby is already running!", vim.log.levels.WARN, { icon = "" })
   end
 end
 
@@ -31,8 +31,8 @@ local stop_docker_container = function()
       detach = true,
       on_exit = function(_, code, _)
         if code == 0 then
-          vim.notify.dismiss { silent = true, pending = true }
-          vim.notify(" Docker: TabbyML stopped!", vim.log.levels.WARN, { icon = "" })
+          vim.notify.dismiss { silent = true, pending = true } ---@diagnostic disable-line
+          vim.notify(" Docker: Tabby stopped!", vim.log.levels.WARN, { icon = "" })
         end
       end,
     })

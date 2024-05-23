@@ -11,17 +11,17 @@ local reverse_table_in_place = function(tbl)
   end
 end
 
-local normalise_module = function(path)
-  local modified_str, _ = path:gsub("/", "", 1):gsub("/", ".")
+local normalise_module = function(module_path)
+  local modified_str, _ = module_path:gsub("/", "", 1):gsub("/", ".")
   return modified_str
 end
 
-local get_spec_paths = function(path)
-  local spec_paths = {}
-  for file, _ in vim.fs.dir(normalise(config .. path)) do
-    table.insert(spec_paths, normalise_module(path:gsub("lua/", "")) .. "." .. file:gsub(".lua", ""))
+local get_specs_paths = function(module_path)
+  local specs_paths = {}
+  for file, _ in vim.fs.dir(normalise(config .. module_path)) do
+    table.insert(specs_paths, normalise_module(module_path:gsub("lua/", "")) .. "." .. file:gsub(".lua", ""))
   end
-  return spec_paths
+  return specs_paths
 end
 
 local write_file = function(file_path, content)
@@ -42,26 +42,26 @@ local generate_imports = function()
     "}",
   }
 
-  local raw_imports = {}
+  local spec_path_list = {}
   for _, dir in ipairs(modules) do
-    local temp_tbl = get_spec_paths(dir)
-    for _, v in ipairs(temp_tbl) do
-      table.insert(raw_imports, v)
+    local raw_specs_paths = get_specs_paths(dir)
+    for _, spec_path in ipairs(raw_specs_paths) do
+      table.insert(spec_path_list, spec_path)
     end
   end
 
-  local final_imports = {}
-  for _, str in ipairs(raw_imports) do
-    table.insert(final_imports, string.format('{ import = "%s" },', str))
+  local imports = {}
+  for _, str in ipairs(spec_path_list) do
+    table.insert(imports, string.format('{ import = "%s" },', str))
   end
 
-  reverse_table_in_place(final_imports)
-  for _, str in ipairs(final_imports) do
+  reverse_table_in_place(imports)
+  for _, str in ipairs(imports) do
     table.insert(content, insertion_index, string.rep(" ", vim.o.tabstop) .. str)
   end
 
   write_file(output, table.concat(content, "\n"))
-  print(#final_imports .. " imports written to " .. output)
+  print(#imports .. " imports written to " .. output)
 end
 
 generate_imports()

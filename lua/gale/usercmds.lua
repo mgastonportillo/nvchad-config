@@ -1,5 +1,10 @@
 local create_cmd = vim.api.nvim_create_user_command
 
+create_cmd("SrcPlugins", function()
+  local script = vim.fn.stdpath "config"
+  vim.cmd("luafile " .. script .. "/scripts/update-lazy-imports.lua")
+end, { desc = "Update plugins imports" })
+
 create_cmd("TabbyStart", function()
   require("gale.tabby").start()
 end, { desc = "Start TabbyML docker container" })

@@ -8,5 +8,8 @@ return {
     oldfiles = {
       prompt_title = "Recent Files",
     },
+    find_files = {
+      prompt_title = "Files",
+    },
   },
 }

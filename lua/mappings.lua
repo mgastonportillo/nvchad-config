@@ -103,11 +103,11 @@ map("n", "gh", function()
 end, { desc = "Go to GitHub link generated from string" })
 
 --- Tabufline
-map("n", "<tab>", function()
+map("n", "<Tab>", function()
   require("nvchad.tabufline").next()
 end, { desc = "Buffer go to next" })
 
-map("n", "<S-tab>", function()
+map("n", "<S-Tab>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer go to prev" })
 

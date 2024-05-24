@@ -193,4 +193,31 @@ M.go_to_github_link = function()
   end
 end
 
+M.binary_search = function()
+  local total_lines = vim.fn.line "$"
+  local low = 1
+  local high = total_lines
+  local mid = math.floor((low + high) / 2)
+
+  while low <= high do
+    mid = math.floor((low + high) / 2)
+    vim.api.nvim_win_set_cursor(0, { mid, 0 })
+
+    -- Prompt the user for input
+    local input = vim.fn.input("At line " .. mid .. ". Go [U]p, [D]own, or [F]ound? ")
+
+    -- Handle the user input
+    if input == "U" or input == "u" then
+      high = mid - 1
+    elseif input == "D" or input == "d" then
+      low = mid + 1
+    elseif input == "F" or input == "f" then
+      print("Navigation complete. Current line: " .. mid)
+      return
+    else
+      print "Invalid input. Please enter U, D, or F."
+    end
+  end
+end
+
 return M

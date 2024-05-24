@@ -4,16 +4,20 @@ return {
     local map = require("gale.utils").glb_map
     local api = require "Comment.api"
 
-    map(
-      { "x", "n" },
-      "<leader>/",
-      "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR> g@",
-      { desc = "Toggle comment (aware of context)" }
-    )
-
     map("n", "<leader>_", function()
       api.toggle.blockwise.current()
-    end, { desc = "Toggle comment block in single line" })
+    end, { desc = "Comment toggle (block) in single line" })
+
+    map("n", "<leader>/", function()
+      api.toggle.linewise.current()
+    end, { desc = "Comment toggle" })
+
+    map(
+      "x",
+      "<leader>/",
+      "<cmd>set operatorfunc=v:lua.__toggle_contextual<CR>g@",
+      { desc = "Comment toggle (aware of context)" }
+    )
   end,
   config = function()
     require "configs.comment"

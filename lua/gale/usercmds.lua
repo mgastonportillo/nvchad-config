@@ -1,4 +1,7 @@
 local create_cmd = vim.api.nvim_create_user_command
+local utils = require "gale.utils"
+
+create_cmd("BufBinarySearch", utils.binary_search, { desc = "Binary search through a buffer" })
 
 create_cmd("SrcPlugins", function()
   local script = vim.fn.stdpath "config"

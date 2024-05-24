@@ -10,9 +10,9 @@ map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
 map("n", "z-", "z^", { desc = "Remap z^ into z- to match z+" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
 -- https://github.com/neovim/neovim/issues/2048
-map("i", "<C-h>", "<Esc>cvb", { desc = "Remove word" })
+map({ "n", "i" }, "<A-BS>", "<Esc>cvb", { desc = "Remove word" })
 map("v", "y", "ygv<Esc>", { desc = "Yank preventing cursor from jumping back to where selection started" })
-map("n", "<leader>of", function()
+map("n", "<leader>ol", function()
   vim.ui.open(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:h"))
 end, { desc = "Open file location in file explorer" })
 
@@ -22,13 +22,14 @@ map("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 map("n", "<Up>", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 map("n", "<Down>", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 
--- Go to buffer point
+-- Buffer motions
 map("i", "<C-b>", "<ESC>^i", { desc = "Go to beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "Go to end of line" })
-map("i", "<C-h>", "<Left>", { desc = "Go to left" })
-map("i", "<C-l>", "<Right>", { desc = "Go to right" })
-map("i", "<C-j>", "<Down>", { desc = "Go down" })
-map("i", "<C-k>", "<Up>", { desc = "Go up" })
+map("i", "<C-A-h>", "<Left>", { desc = "Go to left" })
+map("i", "<C-A-l>", "<Right>", { desc = "Go to right" })
+map("i", "<C-A-j>", "<Down>", { desc = "Go down" })
+map("i", "<C-A-k>", "<Up>", { desc = "Go up" })
+map("n", "<leader>gm", "<cmd>exe 'normal! ' . line('$')/2 . 'G'<CR>", { desc = "Go to middle of the file" })
 
 -- Move lines up/down
 map("n", "<A-Down>", ":m .+1<CR>", { desc = "Move line down with <A-Down> in normal mode" })
@@ -50,10 +51,10 @@ map("n", "<C-j>", "<C-w>j", { desc = "Buffer switch down" })
 map("n", "<C-k>", "<C-w>k", { desc = "Buffer switch up" })
 
 -- Quick resize pane
-map({ "n", "t" }, "<C-A-h>", "5<C-w>>", { desc = "Window increase width by 5" })
-map({ "n", "t" }, "<C-A-l>", "5<C-w><", { desc = "Window decrease width by 5" })
-map({ "n", "t" }, "<C-A-k>", "5<C-w>+", { desc = "Window increase height by 5" })
-map({ "n", "t" }, "<C-A-j>", "5<C-w>-", { desc = "Window decrease height by 5" })
+map("n", "<C-A-h>", "5<C-w>>", { desc = "Window increase width by 5" })
+map("n", "<C-A-l>", "5<C-w><", { desc = "Window decrease width by 5" })
+map("n", "<C-A-k>", "5<C-w>+", { desc = "Window increase height by 5" })
+map("n", "<C-A-j>", "5<C-w>-", { desc = "Window decrease height by 5" })
 
 -- Togglers
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle line number" })
@@ -64,6 +65,7 @@ map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" }
 -- Term
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Term escape terminal mode" })
 
+--[[
 map("n", "<leader>h", function()
   require("nvchad.term").new { pos = "sp" }
 end, { desc = "Term new horizontal split" })
@@ -71,6 +73,7 @@ end, { desc = "Term new horizontal split" })
 map("n", "<leader>v", function()
   require("nvchad.term").new { pos = "vsp" }
 end, { desc = "Term new vertical split" })
+]]
 
 map({ "n", "t" }, "<A-v>", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }

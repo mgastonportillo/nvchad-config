@@ -13,7 +13,7 @@ return {
     }
 
     local map = vim.keymap.set
-    map("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
+    map("n", "<leader>oo", "<cmd>Lspsaga outline<CR>", { desc = "LSP Toggle outline" })
     map("n", "gl", "<cmd>Lspsaga finder<CR>", { desc = "LSP Find symbol definition" })
     map("n", "<leader>dp", "<cmd>Lspsaga peek_definition<CR>", { desc = "LSP Peek at definition" })
     map("n", "<leader>gt", "<cmd>Lspsaga goto_type_definition<CR>", { desc = "LSP Go to type definition" })

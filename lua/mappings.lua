@@ -10,7 +10,7 @@ map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
 map("n", "z-", "z^", { desc = "Remap z^ into z- to match z+" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
 -- https://github.com/neovim/neovim/issues/2048
-map({ "n", "i" }, "<A-BS>", "<Esc>cvb", { desc = "Remove word" })
+map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })
 map("v", "y", "ygv<Esc>", { desc = "Yank preventing cursor from jumping back to where selection started" })
 map("n", "<leader>ol", function()
   vim.ui.open(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:h"))
@@ -111,7 +111,7 @@ map("n", "<S-Tab>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer go to prev" })
 
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer new" })
+map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Buffer new" })
 
 map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()

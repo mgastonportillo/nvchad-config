@@ -50,7 +50,6 @@ M.ui = {
     LspInlayHint = { fg = "#4e5665", bg = "NONE" },
     FloatBorder = { link = "TelescopeBorder" },
     NvimTreeRootFolder = { link = "TelescopeBorder" },
-    -- St_cwd = { bg = "#feffdb", fg = "black" },
   },
 
   hl_add = {

@@ -1,5 +1,6 @@
 return {
-  { import = "plugins.gale.flipflop" },
+  { import = "plugins.gale.binary-peek" },
+  { import = "plugins.gale.flip-flop" },
   { import = "plugins.gale.popurri" },
   { import = "plugins.gale.yerbreak" },
   { import = "plugins.spec.autosession" },

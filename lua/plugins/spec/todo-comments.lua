@@ -7,7 +7,7 @@ return {
       keywords = {
         GROUP = { icon = " ", color = "hint" },
       },
-      highlight = { multiline = false },
+      highlight = { multiline = true },
     }
   end,
 }

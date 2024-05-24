@@ -171,3 +171,11 @@ autocmd("FileChangedShellPost", {
     echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
   ]],
 })
+
+--[[ autocmd("LspAttach", {
+  callback = function(args)
+    vim.schedule(function()
+      -- add lsp remaps here
+    end)
+  end,
+}) ]]

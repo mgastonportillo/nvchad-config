@@ -14,9 +14,6 @@ local g = {
     cache_enabled = 0,
   },
 }
-for k, v in pairs(g) do
-  vim.g[k] = v
-end
 
 local tabSize = 2
 local opt = {
@@ -55,9 +52,16 @@ local opt = {
   cursorlineopt = "both",
   inccommand = "split",
   ignorecase = true,
+  updatetime = 100,
+  lazyredraw = false,
   iskeyword = vim.opt.iskeyword:append { "_", "@", ".", "-" },
   path = ".,src**", -- TODO: find a better way to improve `gf`
 }
+
+for k, v in pairs(g) do
+  vim.g[k] = v
+end
+
 for k, v in pairs(opt) do
   vim.opt[k] = v
 end

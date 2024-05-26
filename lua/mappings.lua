@@ -9,6 +9,7 @@ map("n", "<C-z>", "<NOP>", { desc = "Unmap force closing with <C-z>" })
 map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
 map("n", "z-", "z^", { desc = "Remap z^ into z- to match z+" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
+map("n", "<leader>cs", "<cmd><CR>", { desc = "Clear statusline" })
 -- https://github.com/neovim/neovim/issues/2048
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })
 map("v", "y", "ygv<Esc>", { desc = "Yank preventing cursor from jumping back to where selection started" })

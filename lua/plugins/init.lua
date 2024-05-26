@@ -54,9 +54,11 @@ return {
   { import = "plugins.override.lspconfig-ov" },
   { import = "plugins.override.luasnip" },
   { import = "plugins.override.mason" },
+  { import = "plugins.override.nvim-colorizer" },
   { import = "plugins.override.nvim-tree-ov" },
   { import = "plugins.override.nvim-treesitter-ov" },
   { import = "plugins.override.nvim-web-devicons" },
   { import = "plugins.override.telescope" },
+  { import = "plugins.override.ui" },
   { import = "plugins.override.whichkey" },
 }

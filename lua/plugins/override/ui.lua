@@ -1,0 +1,3 @@
+return {
+  "NvChad/ui",
+}

@@ -1,7 +1,7 @@
 return {
   override_by_extension = {
     ["astro"] = { icon = "", color = "#fe5d02", name = "astro" },
-    -- ["md"] = { icon = "󰽛", color = "#ffffff" },
+    ["md"] = { icon = "󰽛", color = "#ffffff" },
     ["mdx"] = { icon = "󰽛", color = "#ffffff" },
     ["javascript"] = { icon = "" },
     ["typescript"] = { icon = "󰛦" },

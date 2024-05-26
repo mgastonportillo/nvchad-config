@@ -44,6 +44,7 @@ lspconfig.lua_ls.setup {
     Lua = {
       hint = { enable = true },
       diagnostics = { globals = { "vim" } },
+      telemetry = { enable = false },
       workspace = {
         library = {
           ["${3rd}/luv/library"] = true,

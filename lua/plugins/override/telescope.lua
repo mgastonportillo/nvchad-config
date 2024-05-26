@@ -30,5 +30,19 @@ return {
     map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
     map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope help tags" })
   end,
-  opts = require "configs.telescope",
+  opts = {
+    defaults = {
+      selection_caret = " ",
+      entry_prefix = " ",
+      file_ignore_patterns = { "node_modules" },
+    },
+    pickers = {
+      oldfiles = {
+        prompt_title = "Recent Files",
+      },
+      find_files = {
+        prompt_title = "Files",
+      },
+    },
+  },
 }

@@ -51,7 +51,7 @@ return {
   { import = "plugins.override.cmp" },
   { import = "plugins.override.comment" },
   { import = "plugins.override.conform" },
-  { import = "plugins.override.lspconfig-ov" },
+  { import = "plugins.override.lspconfig" },
   { import = "plugins.override.luasnip" },
   { import = "plugins.override.mason" },
   { import = "plugins.override.nvim-colorizer" },

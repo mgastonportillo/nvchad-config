@@ -193,31 +193,67 @@ M.go_to_github_link = function()
   end
 end
 
-M.binary_search = function()
-  local total_lines = vim.fn.line "$"
-  local low = 1
-  local high = total_lines
-  local mid = math.floor((low + high) / 2)
+M.stl_modules = {
+  hack = "%#@comment#%",
+  separator = " ",
+  -- Force grey on modules that absorb neighbour colour
+  -- (because they don't have a highlight set)
+  tint = "%#StText#",
+  bufnr = function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    return "%#StText#" .. tostring(bufnr)
+  end,
+  harpoon = function()
+    -- https://github.com/letieu/harpoon-lualine
+    local inactive = "%#StText#"
+    local active = "%#St_LspHints#"
 
-  while low <= high do
-    mid = math.floor((low + high) / 2)
-    vim.api.nvim_win_set_cursor(0, { mid, 0 })
+    local options = {
+      icon = active .. " 󱡀 ",
+      separator = " ",
+      indicators = {
+        inactive .. "q",
+        inactive .. "w",
+        inactive .. "e",
+        inactive .. "r",
+        inactive .. "t",
+        inactive .. "y",
+      },
+      active_indicators = { active .. "1", active .. "2", active .. "3", active .. "4", active .. "5", active .. "6" },
+    }
 
-    -- Prompt the user for input
-    local input = vim.fn.input("At line " .. mid .. ". Go [U]p, [D]own, or [F]ound? ")
+    local list = require("harpoon"):list()
+    local root_dir = list.config:get_root_dir()
+    local current_file_path = vim.api.nvim_buf_get_name(0)
+    local length = math.min(list:length(), #options.indicators)
+    local status = { options.icon }
 
-    -- Handle the user input
-    if input == "U" or input == "u" then
-      high = mid - 1
-    elseif input == "D" or input == "d" then
-      low = mid + 1
-    elseif input == "F" or input == "f" then
-      print("Navigation complete. Current line: " .. mid)
-      return
-    else
-      print "Invalid input. Please enter U, D, or F."
+    local get_full_path = function(root, value)
+      if vim.loop.os_uname().sysname == "Windows_NT" then
+        return root .. "\\" .. value
+      end
+
+      return root .. "/" .. value
     end
-  end
-end
+
+    for i = 1, length do
+      local value = list:get(i).value
+      local full_path = get_full_path(root_dir, value)
+
+      if full_path == current_file_path then
+        table.insert(status, options.active_indicators[i])
+      else
+        table.insert(status, options.indicators[i])
+      end
+    end
+
+    if length > 0 then
+      table.insert(status, "")
+      return table.concat(status, options.separator)
+    else
+      return ""
+    end
+  end,
+}
 
 return M

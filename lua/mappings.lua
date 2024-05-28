@@ -3,7 +3,7 @@ local map = utils.glb_map
 
 map("n", ";", ":", { desc = "Enter CMD mode" })
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
-map("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
+map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy file content" })
 map("n", "<C-z>", "<NOP>", { desc = "Unmap force closing with <C-z>" })
 map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })

@@ -55,6 +55,7 @@ return {
               ["${3rd}/luv/library"] = true,
               [vim.fn.expand "$VIMRUNTIME/lua"] = true,
               [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+              -- [vim.fn.expand "$HOME/workspace/my-projects/neovim/ui/nvchad_types"] = true,
               [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
               [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
             },

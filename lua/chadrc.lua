@@ -4,6 +4,8 @@
 
 ---@type ChadrcConfig
 local M = {}
+local utils = require "gale.utils"
+local stl = utils.stl_modules
 
 M.ui = {
   transparency = true,
@@ -23,21 +25,16 @@ M.ui = {
       "%=",
       "diagnostics",
       "lsp",
+      "harpoon",
       "separator",
       "cwd",
     },
     modules = {
-      separator = function()
-        return " "
-      end,
-      -- Force grey on modules that absorb neighbour colour
-      -- (because they don't have a highlight set)
-      tint = function()
-        return "%#StText#"
-      end,
-      hack = function()
-        return "%#@comment#%"
-      end,
+      separator = stl.separator,
+      tint = stl.tint,
+      bufnr = stl.bufnr,
+      harpoon = stl.harpoon,
+      hack = stl.hack,
     },
   },
 
@@ -47,6 +44,7 @@ M.ui = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
     CursorLine = { bg = "#202025" },
+    CursorLineNr = { bg = "#202025" },
     LspInlayHint = { fg = "#4e5665", bg = "NONE" },
     FloatBorder = { link = "TelescopeBorder" },
     NvimTreeRootFolder = { link = "TelescopeBorder" },

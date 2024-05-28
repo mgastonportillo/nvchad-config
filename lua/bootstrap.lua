@@ -24,6 +24,7 @@ require("lazy").setup({
     branch = "v2.5",
     import = "nvchad.plugins",
     config = function()
+      -- require "colorify"
       require "options"
     end,
   },

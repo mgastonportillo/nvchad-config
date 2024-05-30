@@ -4,15 +4,25 @@ return {
     require("nvchad.configs.lspconfig").defaults()
 
     local lspconfig = require "lspconfig"
-    local on_attach = require("gale.utils").on_attach
     local on_init = require("nvchad.configs.lspconfig").on_init
     local capabilities = require("nvchad.configs.lspconfig").capabilities
+    local on_attach = function(client, bufnr)
+      local on_attach = require("nvchad.configs.lspconfig").on_attach
+      on_attach(client, bufnr)
+
+      local border = "rounded"
+      -- vim.lsp.buf.hover()
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+      -- vim.lsp.buf.signature_help()
+      vim.lsp.handlers["textDocument/signatureHelp"] =
+        vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
+    end
 
     local servers = {
       "astro",
       "bashls",
       "clangd",
-      "css_variables",
+      -- "css_variables",
       "cssls",
       "html",
       "gopls",
@@ -20,6 +30,7 @@ return {
       "marksman",
       -- "tailwindcss",
       "pyright",
+      "somesass_ls",
       "taplo",
     }
 
@@ -55,9 +66,10 @@ return {
               ["${3rd}/luv/library"] = true,
               [vim.fn.expand "$VIMRUNTIME/lua"] = true,
               [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-              -- [vim.fn.expand "$HOME/workspace/my-projects/neovim/ui/nvchad_types"] = true,
-              [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
+              [vim.fn.expand "$HOME/workspace/my-projects/neovim/ui/nvchad_types"] = true,
+              -- [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
               [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+              [vim.fn.stdpath "config" .. "/lua/plugins"] = true,
             },
             maxPreload = 100000,
             preloadFileSize = 10000,

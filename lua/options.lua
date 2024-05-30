@@ -6,7 +6,6 @@ local g = {
   dap_virtual_text = true,
   bookmark_sign = "",
   skip_ts_context_commentstring_module = true,
-  -- :h clipboard-wsl
   clipboard = {
     name = "wslclipboard",
     copy = { ["+"] = clip.WSL_COPY, ["*"] = clip.WSL_COPY },
@@ -55,7 +54,7 @@ local opt = {
   updatetime = 100,
   lazyredraw = false,
   iskeyword = vim.opt.iskeyword:append { "_", "@", ".", "-" },
-  path = ".,src**", -- TODO: find a better way to improve `gf`
+  -- path = ".,src**", -- TODO: find a better way to improve `gf`
 }
 
 for k, v in pairs(g) do

@@ -121,3 +121,11 @@ end, { desc = "Buffer close" })
 for i = 1, 9 do
   map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Tab go to tab " .. i })
 end
+
+map("n", "<A-Up>", function()
+  require("colorify.tools").lighten(2)
+end)
+
+map("n", "<A-Down>", function()
+  require("colorify.tools").lighten(-2)
+end)

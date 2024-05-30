@@ -1,6 +1,6 @@
 return {
   "NvChad/ui",
   dir = "/home/gale/workspace/my-projects/neovim/ui",
-  branch = "v2.5",
+  branch = "dev",
   dev = false,
 }

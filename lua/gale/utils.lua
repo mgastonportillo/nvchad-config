@@ -1,14 +1,22 @@
 ---@class Utils
+--- Add an alias to any existing command
+---@field add_alias fun(target_cmd: string, alias: string)
+--- Check if any value is a table
+---@field is_tbl fun(v: any): boolean
+--- Create a global keymap
+---@field glb_map fun(mode: string | table, lhs: string | table, rhs: string | fun(), opts?: table | nil)
+--- Create a keymap local to buffer
+---@field buf_map fun(mode: string, lhs: string, rhs: string, opts?: table)
+--- Delete keymap/s globally. Does not attempt to unmap if keymap does not exist.
+---@field del_map fun(mode: string | table, trigger: string | table)
+--- List of custom modules for statusline
+---@field stl_modules table<string, string | fun(): string>
 local M = {}
 
----@param target_cmd string
----@param alias string
---- Add an alias to any existing command
 M.add_alias = function(target_cmd, alias)
   vim.cmd("ca " .. alias .. " " .. target_cmd)
 end
 
----@type fun(v: any): boolean
 M.is_tbl = function(v)
   if type(v) == "table" then
     return true
@@ -17,11 +25,6 @@ M.is_tbl = function(v)
   end
 end
 
----@param mode string | table
----@param lhs string | table
----@param rhs string | function
----@param opts? table | nil
---- Create a global keymap
 M.glb_map = function(mode, lhs, rhs, opts)
   local is_tbl = M.is_tbl
   local options = { noremap = true, silent = true }
@@ -41,11 +44,6 @@ M.glb_map = function(mode, lhs, rhs, opts)
   end
 end
 
----@param mode string
----@param lhs string
----@param rhs string
----@param opts? table<string, any>
---- Create a keymap local to buffer
 M.buf_map = function(mode, lhs, rhs, opts)
   local final_opts = { noremap = true, silent = true }
   if opts then
@@ -65,9 +63,6 @@ local map_exists = function(name, map_mode)
   end
 end
 
----@param mode string | table
----@param trigger string | table
---- Delete keymap/s globally. Does not attempt to unmap if keymap does not exist.
 M.del_map = function(mode, trigger)
   local del = vim.api.nvim_del_keymap
   local is_tbl = M.is_tbl
@@ -136,6 +131,7 @@ local is_inspect_tree_open = function()
   return false, nil
 end
 
+--- Toggle treesitter inspection tree
 M.toggle_inspect_tree = function()
   local open, win = is_inspect_tree_open()
   if open then
@@ -145,18 +141,6 @@ M.toggle_inspect_tree = function()
   else
     vim.cmd "InspectTree"
   end
-end
-
---- Custom lsp on attach
-M.on_attach = function(client, bufnr)
-  local on_attach = require("nvchad.configs.lspconfig").on_attach
-  on_attach(client, bufnr)
-
-  local border = "rounded"
-  -- vim.lsp.buf.hover()
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-  -- vim.lsp.buf.signature_help()
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 end
 
 --- Navigate to plugin repo if valid string name under cursor
@@ -192,68 +176,5 @@ M.go_to_github_link = function()
     return
   end
 end
-
-M.stl_modules = {
-  hack = "%#@comment#%",
-  separator = " ",
-  -- Force grey on modules that absorb neighbour colour
-  -- (because they don't have a highlight set)
-  tint = "%#StText#",
-  bufnr = function()
-    local bufnr = vim.api.nvim_get_current_buf()
-    return "%#StText#" .. tostring(bufnr)
-  end,
-  harpoon = function()
-    -- https://github.com/letieu/harpoon-lualine
-    local inactive = "%#StText#"
-    local active = "%#St_LspHints#"
-
-    local options = {
-      icon = active .. " 󱡀 ",
-      separator = " ",
-      indicators = {
-        inactive .. "q",
-        inactive .. "w",
-        inactive .. "e",
-        inactive .. "r",
-        inactive .. "t",
-        inactive .. "y",
-      },
-      active_indicators = { active .. "1", active .. "2", active .. "3", active .. "4", active .. "5", active .. "6" },
-    }
-
-    local list = require("harpoon"):list()
-    local root_dir = list.config:get_root_dir()
-    local current_file_path = vim.api.nvim_buf_get_name(0)
-    local length = math.min(list:length(), #options.indicators)
-    local status = { options.icon }
-
-    local get_full_path = function(root, value)
-      if vim.loop.os_uname().sysname == "Windows_NT" then
-        return root .. "\\" .. value
-      end
-
-      return root .. "/" .. value
-    end
-
-    for i = 1, length do
-      local value = list:get(i).value
-      local full_path = get_full_path(root_dir, value)
-
-      if full_path == current_file_path then
-        table.insert(status, options.active_indicators[i])
-      else
-        table.insert(status, options.indicators[i])
-      end
-    end
-
-    if length > 0 then
-      table.insert(status, "")
-      return table.concat(status, options.separator)
-    else
-      return ""
-    end
-  end,
-}
 
 return M

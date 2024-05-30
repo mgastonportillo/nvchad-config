@@ -10,11 +10,12 @@ map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
 map("n", "z-", "z^", { desc = "Remap z^ into z- to match z+" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
 map("n", "<leader>cs", "<cmd><CR>", { desc = "Clear statusline" })
+map("n", "<leader>cm", "<cmd>mes clear<CR>", { desc = "Clear messages" })
 -- https://github.com/neovim/neovim/issues/2048
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })
 map("v", "y", "ygv<Esc>", { desc = "Yank preventing cursor from jumping back to where selection started" })
 map("n", "<leader>ol", function()
-  vim.ui.open(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p:h"))
+  vim.ui.open(vim.fn.expand "%:p:h")
 end, { desc = "Open file location in file explorer" })
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
@@ -67,27 +68,41 @@ map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" }
 -- Term
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Term escape terminal mode" })
 
---[[
-map("n", "<leader>h", function()
-  require("nvchad.term").new { pos = "sp" }
-end, { desc = "Term new horizontal split" })
-
-map("n", "<leader>v", function()
-  require("nvchad.term").new { pos = "vsp" }
-end, { desc = "Term new vertical split" })
-]]
-
 map({ "n", "t" }, "<A-v>", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
 end, { desc = "Term toggle vertical split" })
+
+map({ "n", "t" }, "<C-A-v>", function()
+  require("nvchad.term").toggle {
+    pos = "vsp",
+    id = "vtoggleTermLoc",
+    cmd = "cd " .. vim.fn.expand "%:p:h",
+  }
+end, { desc = "Term toggle vertical split in buffer location" })
 
 map({ "n", "t" }, "<A-h>", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "Term toggle horizontal split" })
 
+map({ "n", "t" }, "<C-A-h>", function()
+  require("nvchad.term").toggle {
+    pos = "sp",
+    id = "htoggleTermLoc",
+    cmd = "cd " .. vim.fn.expand "%:p:h",
+  }
+end, { desc = "Term toggle horizontal split in buffer location" })
+
 map({ "n", "t" }, "<A-i>", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
 end, { desc = "Term toggle floating" })
+
+map({ "n", "t" }, "<C-A-i>", function()
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "floatTermLoc",
+    cmd = "cd " .. vim.fn.expand "%:p:h",
+  }
+end, { desc = "Term toggle floating in buffer location" })
 
 -- TreeSitter
 map({ "n", "v" }, "<leader>it", function()

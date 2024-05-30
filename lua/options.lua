@@ -54,7 +54,7 @@ local opt = {
   updatetime = 100,
   lazyredraw = false,
   iskeyword = vim.opt.iskeyword:append { "_", "@", ".", "-" },
-  -- path = ".,src**", -- TODO: find a better way to improve `gf`
+  path = vim.opt.path:append { "**", "lua", "src" },
 }
 
 for k, v in pairs(g) do

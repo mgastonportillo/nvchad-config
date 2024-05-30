@@ -9,8 +9,6 @@
 ---@field buf_map fun(mode: string, lhs: string, rhs: string, opts?: table)
 --- Delete keymap/s globally. Does not attempt to unmap if keymap does not exist.
 ---@field del_map fun(mode: string | table, trigger: string | table)
---- List of custom modules for statusline
----@field stl_modules table<string, string | fun(): string>
 local M = {}
 
 M.add_alias = function(target_cmd, alias)

@@ -33,17 +33,18 @@ map("i", "<C-A-k>", "<Up>", { desc = "Go up" })
 map("n", "<leader>gm", "<cmd>exe 'normal! ' . line('$')/2 . 'G'<CR>", { desc = "Go to middle of the file" })
 
 -- Move lines up/down
-map("n", "<A-Down>", ":m .+1<CR>", { desc = "Move line down with <A-Down> in normal mode" })
-map("n", "<A-j>", ":m .+1<CR>", { desc = "Move line down with <A-j> in normal mode" })
-map("n", "<A-k>", ":m .-2<CR>", { desc = "Move line up with <A-k> in normal mode" })
-map("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down with <A-Down> in insert mode" })
-map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down with <A-j> in insert mode" })
-map("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up with <A-Up> in insert mode" })
-map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up with <A-k> in insert mode" })
-map("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move line down with <A-Down> in visual mode" })
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down with <A-j> in visual mode" })
-map("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move line up with <A-Up> in visual mode" })
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up with <A-k> in visual mode" })
+map("n", "<A-Down>", ":m .+1<CR>", { desc = "Move line down" })
+map("n", "<A-j>", ":m .+1<CR>", { desc = "Move line down" })
+map("n", "<A-Up>", ":m .-2<CR>", { desc = "Move line up" })
+map("n", "<A-k>", ":m .-2<CR>", { desc = "Move line up" })
+map("i", "<A-Down>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down" })
+map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", { desc = "Move line down" })
+map("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up" })
+map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", { desc = "Move line up" })
+map("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
+map("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
+map("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
+map("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
 -- Switch buffers
 map("n", "<C-h>", "<C-w>h", { desc = "Buffer switch left" })
@@ -122,10 +123,10 @@ for i = 1, 9 do
   map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Tab go to tab " .. i })
 end
 
-map("n", "<A-Up>", function()
+map("n", "<C-Up>", function()
   require("colorify.tools").lighten(2)
 end)
 
-map("n", "<A-Down>", function()
+map("n", "<C-Down>", function()
   require("colorify.tools").lighten(-2)
 end)

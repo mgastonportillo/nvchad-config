@@ -1,4 +1,4 @@
-local on_attach = require("gale.utils").on_attach
+local on_attach = require("gale.custom").custom_on_attach
 
 return {
   "pmizio/typescript-tools.nvim",

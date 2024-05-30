@@ -6,17 +6,7 @@ return {
     local lspconfig = require "lspconfig"
     local on_init = require("nvchad.configs.lspconfig").on_init
     local capabilities = require("nvchad.configs.lspconfig").capabilities
-    local on_attach = function(client, bufnr)
-      local on_attach = require("nvchad.configs.lspconfig").on_attach
-      on_attach(client, bufnr)
-
-      local border = "rounded"
-      -- vim.lsp.buf.hover()
-      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-      -- vim.lsp.buf.signature_help()
-      vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
-    end
+    local on_attach = require("gale.custom").custom_on_attach
 
     local servers = {
       "astro",

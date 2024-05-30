@@ -2,8 +2,25 @@ local on_attach = require("gale.custom").custom_on_attach
 
 return {
   "pmizio/typescript-tools.nvim",
-  event = { "BufReadPre", "BufNewFile" },
-  ft = { "javascript", "typescript", "typescriptreact" },
+  ft = {
+    "astro",
+    "html",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "svelte",
+    "vue",
+    "tsx",
+    "jsx",
+    "rescript",
+    "xml",
+    "php",
+    "markdown",
+    "glimmer",
+    "handlebars",
+    "hbs",
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "neovim/nvim-lspconfig",

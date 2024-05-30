@@ -143,9 +143,22 @@ M.ui = {
 
 M.base46 = {
   integrations = {
+    "dap",
+    "mason",
+    "devicons",
+    "hop",
+    "nvimtree",
+    "cmp",
     "notify",
     "dap",
     "trouble",
+    "todo",
+    "lsp",
+    "whichkey",
+    "blankline",
+    "rainbowdelimiters",
+    "semantic_tokens",
+    "codeactionmenu",
   },
 }
 

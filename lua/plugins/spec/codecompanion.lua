@@ -1,11 +1,14 @@
 return {
   "olimorris/codecompanion.nvim",
-  event = "BufWinEnter",
+  cmd = "CodeCompanionToggle",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-treesitter/nvim-treesitter",
     "nvim-telescope/telescope.nvim",
   },
+  init = function()
+    vim.keymap.set({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
+  end,
   config = function()
     require("codecompanion").setup {
       adapters = {
@@ -22,6 +25,5 @@ return {
         inline = "ollama",
       },
     }
-    vim.keymap.set({ "n", "v" }, "´´", "<cmd>CodeCompanionToggle<CR>", { desc = "Toggle CodeCompanion" })
   end,
 }

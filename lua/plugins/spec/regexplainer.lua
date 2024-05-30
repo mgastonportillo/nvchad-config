@@ -1,5 +1,6 @@
 return {
   "bennypowers/nvim-regexplainer",
+  event = "BufEnter",
   dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "MunifTanjim/nui.nvim",

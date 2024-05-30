@@ -4,7 +4,6 @@ return {
   { import = "plugins.gale.popurri" },
   { import = "plugins.gale.yerbreak" },
   { import = "plugins.spec.autosession" },
-  { import = "plugins.spec.barbecue" },
   { import = "plugins.spec.better-escape" },
   { import = "plugins.spec.ccc" },
   { import = "plugins.spec.codecompanion" },

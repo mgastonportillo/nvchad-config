@@ -1,7 +1,7 @@
 return {
   enabled = false,
   "VonHeikemen/searchbox.nvim",
-  event = "VeryLazy",
+  cmd = { "SearchBoxIncSearch", "SearchBoxReplace" },
   dependencies = "MunifTanjim/nui.nvim",
   init = function()
     local map = vim.keymap.set

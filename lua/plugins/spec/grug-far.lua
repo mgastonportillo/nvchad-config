@@ -1,6 +1,6 @@
 return {
   "MagicDuck/grug-far.nvim",
-  event = "BufEnter",
+  cmd = "GrugFar",
   config = function()
     local map = vim.keymap.set
 

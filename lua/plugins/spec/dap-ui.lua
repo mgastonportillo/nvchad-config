@@ -1,5 +1,6 @@
 return {
   "rcarriga/nvim-dap-ui",
+  event = "LspAttach",
   dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
   opts = {},
   config = function()

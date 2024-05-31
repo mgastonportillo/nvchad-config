@@ -11,6 +11,7 @@ return {
   { import = "plugins.spec.dap-python" },
   { import = "plugins.spec.dap-ui" },
   { import = "plugins.spec.dap-virtual-text" },
+  { import = "plugins.spec.diffview" },
   { import = "plugins.spec.dressing" },
   { import = "plugins.spec.dropbar" },
   { import = "plugins.spec.edgy" },

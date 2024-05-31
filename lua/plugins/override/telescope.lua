@@ -43,6 +43,9 @@ return {
       find_files = {
         prompt_title = "Files",
       },
+      builtin = {
+        prompt_title = "Builtin Pickers",
+      },
     },
   },
 }

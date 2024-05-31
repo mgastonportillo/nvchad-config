@@ -24,7 +24,7 @@ return {
       dap = {},
     }
 
-    local map = require("gale.utils").buf_map
+    local map = vim.keymap.set
     map("n", "K", "<cmd>lua vim.cmd.RustLsp({ 'hover', 'actions' })<CR>", { desc = "Rust Hover" })
     map("n", "<leader>ca", "<cmd>lua vim.cmd.RustLsp('codeAction')<CR>", { desc = "Rust Code actions" })
   end,

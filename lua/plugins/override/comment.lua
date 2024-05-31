@@ -1,7 +1,7 @@
 return {
   "numToStr/Comment.nvim",
   init = function()
-    local map = require("gale.utils").glb_map
+    local map = vim.keymap.set
     local api = require "Comment.api"
 
     map("n", "<leader>_", function()

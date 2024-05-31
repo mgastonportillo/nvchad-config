@@ -1,7 +1,7 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
   init = function()
-    local map = require("gale.utils").glb_map
+    local map = vim.keymap.set
 
     map("n", "<leader>cc", function()
       local config = { scope = {} }

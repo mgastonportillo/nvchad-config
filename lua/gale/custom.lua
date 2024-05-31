@@ -10,7 +10,7 @@ M.custom_on_attach = function(client, bufnr)
   -- vim.lsp.buf.signature_help()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 
-  local map = require("gale.utils").glb_map
+  local map = vim.keymap.set
   map("n", "<leader>gt", vim.lsp.buf.type_definition, { desc = "LSP Go to type definition" })
 end
 

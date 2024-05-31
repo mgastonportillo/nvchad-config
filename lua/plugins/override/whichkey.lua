@@ -1,7 +1,7 @@
 return {
   "folke/which-key.nvim",
   init = function()
-    local map = require("gale.utils").glb_map
+    local map = vim.keymap.set
 
     map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "WhichKey show all keymaps" })
 

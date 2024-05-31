@@ -1,0 +1,12 @@
+{
+	"locmap": {
+		"prefix": "lmap",
+		"body": ["local map = vim.keymap.set"],
+		"description": "Set keymap command as variable"
+	},
+	"locdel": {
+		"prefix": "ldel",
+		"body": ["local del = vim.api.nvim_del_keymap"],
+		"description": "Set keymap del command as variable"
+	}
+}

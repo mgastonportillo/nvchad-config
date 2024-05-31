@@ -3,8 +3,10 @@ return {
   config = function()
     require "nvchad.configs.luasnip"
 
-    local map = require("gale.utils").glb_map
+    local map = vim.keymap.set
     local ls = require "luasnip"
+
+    require("luasnip.loaders.from_vscode").lazy_load { paths = { vim.fn.stdpath "config" .. "/snippets/vscode" } }
 
     map({ "s", "i" }, "<C-y>", function()
       ls.expand()

@@ -1,10 +1,8 @@
+local map = vim.keymap.set
 return {
   "nvim-tree/nvim-tree.lua",
   init = function()
-    local map = require("gale.utils").glb_map
-
     map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
-    -- map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "NvimTree focus" })
   end,
   config = function()
     dofile(vim.g.base46_cache .. "nvimtree")
@@ -19,9 +17,9 @@ return {
       end
 
       api.config.mappings.default_on_attach(bufnr)
-      vim.keymap.set("n", "+", api.tree.change_root_to_node, opts "CD")
-      vim.keymap.set("n", "?", api.tree.toggle_help, opts "Help")
-      vim.keymap.set("n", "<ESC>", api.tree.close, opts "Close")
+      map("n", "+", api.tree.change_root_to_node, opts "CD")
+      map("n", "?", api.tree.toggle_help, opts "Help")
+      map("n", "<ESC>", api.tree.close, opts "Close")
     end
 
     -- Automatically open file upon creation

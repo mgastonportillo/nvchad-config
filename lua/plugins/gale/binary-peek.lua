@@ -5,7 +5,7 @@ return {
   name = "binary-peek",
   event = "VeryLazy",
   init = function()
-    local map = require("gale.utils").glb_map
+    local map = vim.keymap.set
     map("n", "<leader>bs", "<cmd>BinaryPeek<CR>", { desc = "BinaryPeek start" })
     map("n", "<leader>bx", "<cmd>BinaryPeek abort<CR>", { desc = "BinaryPeek abort" })
   end,

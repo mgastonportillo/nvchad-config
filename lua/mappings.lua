@@ -1,5 +1,5 @@
 local utils = require "gale.utils"
-local map = utils.glb_map
+local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "Enter CMD mode" })
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })

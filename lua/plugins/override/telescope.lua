@@ -1,7 +1,7 @@
 return {
   "nvim-telescope/telescope.nvim",
   init = function()
-    local map = require("gale.utils").glb_map
+    local map = vim.keymap.set
     local builtin = require "telescope.builtin"
 
     map("n", "<leader>fa", function()

@@ -53,12 +53,12 @@ return {
           telemetry = { enable = false },
           workspace = {
             library = {
-              ["${3rd}/luv/library"] = true,
-              [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-              [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-              -- [vim.fn.expand "$HOME/workspace/my-projects/neovim/ui/nvchad_types"] = true,
-              [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
-              [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+              "${3rd}/luv/library",
+              vim.fn.expand "$VIMRUNTIME/lua",
+              vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
+              vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+              -- vim.fn.expand "$HOME/workspace/my-projects/neovim/ui/nvchad_types",
+              vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
             },
             maxPreload = 100000,
             preloadFileSize = 10000,

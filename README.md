@@ -15,7 +15,7 @@
 - Markdown Preview with live changes in browser
 - Rounded borders as a priority over sharp borders
 
-> [!TIP]
+> \[!TIP\]
 >
 > Pair with <a href="https://github.com/mgastonportillo/wezterm-config">my Wezterm configuration</a> for a smoother experience
 

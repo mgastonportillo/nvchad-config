@@ -5,6 +5,17 @@ create_cmd("SrcPlugins", function()
   vim.cmd("luafile " .. script .. "/scripts/update-lazy-imports.lua")
 end, { desc = "Update plugins imports" })
 
+create_cmd("SrcFile", function()
+  if vim.bo.filetype ~= "" then
+    vim.cmd "so %"
+    vim.notify.dismiss() ---@diagnostic disable-line
+    vim.notify(vim.fn.expand "%" .. " sourced!", vim.log.levels.INFO)
+  else
+    vim.notify.dismiss() ---@diagnostic disable-line
+    vim.notify("No file to source", vim.log.levels.ERROR)
+  end
+end, { desc = "Source current file" })
+
 create_cmd("TabbyStart", function()
   require("gale.tabby").start()
 end, { desc = "Start TabbyML docker container" })
@@ -17,17 +28,6 @@ create_cmd("ToggleInlayHints", function()
   ---@diagnostic disable-next-line
   vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 end, { desc = "Toogle inlay hints in current buffer" })
-
-create_cmd("SrcFile", function()
-  if vim.bo.filetype ~= "" then
-    vim.cmd "so %"
-    vim.notify.dismiss() ---@diagnostic disable-line
-    vim.notify(vim.fn.expand "%" .. " sourced!", vim.log.levels.INFO)
-  else
-    vim.notify.dismiss() ---@diagnostic disable-line
-    vim.notify("No file to source", vim.log.levels.ERROR)
-  end
-end, { desc = "Source current file" })
 
 create_cmd("DiagnosticsVirtualTextToggle", function()
   local current_value = vim.diagnostic.config().virtual_text

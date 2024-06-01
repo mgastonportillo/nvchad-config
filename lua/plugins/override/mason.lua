@@ -30,6 +30,7 @@ return {
       "shellcheck",
       "stylua",
       "stylelint",
+      "taplo",
       "tailwindcss-language-server",
       "typescript-language-server",
     },

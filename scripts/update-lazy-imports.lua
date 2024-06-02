@@ -1,7 +1,7 @@
 local normalise = vim.fs.normalize
 
 local config = vim.fn.stdpath "config"
-local modules = { "/lua/plugins/gale", "/lua/plugins/spec", "/lua/plugins/override" }
+local modules = { "/lua/plugins/local", "/lua/plugins/spec", "/lua/plugins/override" }
 local output = normalise(config .. "/lua/plugins") .. "/init.lua"
 
 local reverse_table_in_place = function(tbl)

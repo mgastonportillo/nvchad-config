@@ -49,7 +49,7 @@ return {
       settings = {
         Lua = {
           hint = { enable = true },
-          diagnostics = { globals = { "vim" } },
+          diagnostics = { globals = { "bit", "vim", "it", "describe", "before_each", "after_each" } },
           telemetry = { enable = false },
           workspace = {
             library = {

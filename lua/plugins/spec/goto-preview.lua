@@ -4,9 +4,9 @@ return {
   init = function()
     local gtp = require "goto-preview"
 
-    vim.keymap.set("n", "q", function()
+    vim.keymap.set("n", "<leader>q", function()
       gtp.dismiss_preview(0)
-    end, { desc = "" })
+    end, { desc = "Close current definition preview" })
   end,
   config = function()
     require("goto-preview").setup {

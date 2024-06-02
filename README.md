@@ -6,14 +6,14 @@
 ### Features:
 
 - Supports NvChad v2.5
-- Target OS: WSL2 (to use on Linux you'd need to adapt some things)
+- Target OS: WSL2/Linux
 - Modularised setup of plugins and configurations
 - Scripting with Bash, Lua and Toml as smooth as it gets
-- Web development with JS/TS, React and Astro **fully covered** (don't ask for Angular)
-- Development with Rust
+- Web development with JS/TS, React and Astro **fully covered**
+- Development with Rust, C and Go
 - Git integrated using Gitsigns, DiffView, Telescope and VimFugitive
 - Markdown Preview with live changes in browser
-- Rounded borders as a priority over sharp borders
+- Round borders as a priority over sharp borders
 
 > \[!TIP\]
 >
@@ -23,15 +23,15 @@
 
 ### Planned implementations:
 
-- ~~Markdown Preview~~ **added!**
-- ~~Python code completion~~ **added!**
-- Polish setup for development with C and Go
+-✅ ~~Markdown Preview~~
+-✅ ~~Python code completion~~
+-✅ ~~Polish setup for development with C and Go~~
 
 <hr>
 
 ### Bugs:
 
-- Nothing here
+- 🐞
 
 ### Dependencies:
 

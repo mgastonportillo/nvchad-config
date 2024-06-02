@@ -1,6 +1,6 @@
 return {
   "mgastonportillo/yerbreak.nvim",
-  dir = "/home/gale/workspace/my-projects/neovim/yerbreak.nvim",
+  dir = "/home/gale/workspace/neovim/yerbreak.nvim",
   dev = true,
   dependencies = { "rcarriga/nvim-notify" },
   cmd = "Yerbreak",

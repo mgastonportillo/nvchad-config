@@ -1,6 +1,6 @@
 return {
   "mgastonportillo/binary-peek.nvim",
-  dir = "/home/gale/workspace/my-projects/neovim/binary-peek.nvim",
+  dir = "/home/gale/workspace/neovim/binary-peek.nvim",
   dev = true,
   name = "binary-peek",
   event = "VeryLazy",

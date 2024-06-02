@@ -1,23 +1,16 @@
 require "nvchad.options"
-local const = require "gale.constants"
-local clip = const.CLIPBOARD
 
 local g = {
   dap_virtual_text = true,
   bookmark_sign = "",
   skip_ts_context_commentstring_module = true,
-  clipboard = {
-    name = "wslclipboard",
-    copy = { ["+"] = clip.WSL_COPY, ["*"] = clip.WSL_COPY },
-    paste = { ["+"] = clip.WSL_PASTE, ["*"] = clip.WSL_PASTE },
-    cache_enabled = 0,
-  },
 }
 
 local tabSize = 2
 local opt = {
   encoding = "utf-8",
   fileencoding = "utf-8",
+  clipboard = "unnamedplus",
   -- Folds
   foldmethod = "expr",
   foldexpr = "v:lua.vim.treesitter.foldexpr()",

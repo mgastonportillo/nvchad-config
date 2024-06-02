@@ -1,6 +1,6 @@
 return {
   dev = {
-    path = "/home/gale/workspace/my-projects/neovim/",
+    path = "/home/gale/workspace/neovim/",
     patterns = { "mgastonportillo" },
     fallback = true,
   },

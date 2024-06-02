@@ -56,6 +56,7 @@ return {
               "${3rd}/luv/library",
               vim.fn.expand "$VIMRUNTIME/lua",
               vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
+              -- vim.fn.expand "$HOME/workspace/neovim",
               vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
               -- vim.fn.expand "$HOME/workspace/my-projects/neovim/ui/nvchad_types",
               vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",

@@ -6,6 +6,7 @@ return {
   { import = "plugins.spec.autosession" },
   { import = "plugins.spec.better-escape" },
   { import = "plugins.spec.ccc" },
+  { import = "plugins.spec.cd-project" },
   { import = "plugins.spec.codecompanion" },
   { import = "plugins.spec.comment" },
   { import = "plugins.spec.crates" },

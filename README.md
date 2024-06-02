@@ -23,9 +23,9 @@
 
 ### Planned implementations:
 
--✅ ~~Markdown Preview~~
--✅ ~~Python code completion~~
--✅ ~~Polish setup for development with C and Go~~
+- ✅ ~~Markdown Preview~~
+- ✅ ~~Python code completion~~
+- ✅ ~~Polish setup for development with C and Go~~
 
 <hr>
 

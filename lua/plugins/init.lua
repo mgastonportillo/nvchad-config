@@ -32,6 +32,7 @@ return {
   { import = "plugins.spec.matchup" },
   { import = "plugins.spec.md-preview" },
   { import = "plugins.spec.neocomposer" },
+  { import = "plugins.spec.neogit" },
   { import = "plugins.spec.notify" },
   { import = "plugins.spec.outline" },
   { import = "plugins.spec.project" },

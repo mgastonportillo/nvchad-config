@@ -1,6 +1,4 @@
--- This file  needs to have same structure as nvconfig.lua
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
--- https://github.com/NvChad/ui/blob/v2.5/nvchad_types/chadrc.lua
 
 ---@type ChadrcConfig
 local M = {}
@@ -35,6 +33,9 @@ M.ui = {
       separator = " ",
       -- Force grey on modules that absorb neighbour colour
       tint = "%#StText#",
+      fill = function()
+        return "%#TbFill#%="
+      end,
       bufnr = function()
         local bufnr = vim.api.nvim_get_current_buf()
         return "%#StText#" .. tostring(bufnr)
@@ -159,6 +160,7 @@ M.base46 = {
     "rainbowdelimiters",
     "semantic_tokens",
     "codeactionmenu",
+    "neogit",
   },
 }
 

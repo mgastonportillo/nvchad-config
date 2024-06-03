@@ -16,12 +16,15 @@ vim.o.runtimepath = lazypath .. "," .. current_rtp
 local lazy_config = require "configs.lazy"
 require("lazy").setup({
   { "Bilal2453/luvit-meta" },
+  { "justinsgithub/wezterm-types" },
   {
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {
+      enabled = true,
       library = {
         "luvit-meta/library",
+        "wezterm-types/types",
         vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
         --[[
           vim.fn.expand "$HOME/workspace/neovim/ui/nvchad_types",

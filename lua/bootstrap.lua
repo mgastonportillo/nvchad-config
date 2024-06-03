@@ -21,17 +21,12 @@ require("lazy").setup({
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {
-      enabled = true,
       library = {
         "luvit-meta/library",
         "wezterm-types/types",
         vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-        --[[
-          vim.fn.expand "$HOME/workspace/neovim/ui/nvchad_types",
-          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
-          vim.fn.expand "$VIMRUNTIME/lua/vim",
-          "${3rd}/luv/library",
-        ]]
+        -- vim.fn.expand "$HOME/workspace/neovim/ui/nvchad_types",
+        -- "${3rd}/luv/library",
       },
     },
   },

@@ -3,7 +3,7 @@ vim.g.base46_cache = vim.fn.stdpath "data" .. "/nvchad/base46/"
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
 -- Install lazy if not in path
-if not (vim.loop or vim.uv).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
   vim.system { "git", "clone", "--filter=blob:none", lazyrepo, "--branch=stable", lazypath }
 end
@@ -24,11 +24,9 @@ require("lazy").setup({
         "luvit-meta/library",
         vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
         --[[
-          "${3rd}/luv/library",
-          vim.fn.expand "$VIMRUNTIME/lua",
-          vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
-          vim.fn.expand "$HOME/workspace/neovim/ui/nvchad_types",
           vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+          vim.fn.expand "$HOME/workspace/neovim/ui/nvchad_types",
+          "${3rd}/luv/library",
         ]]
       },
     },

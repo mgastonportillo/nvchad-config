@@ -24,8 +24,9 @@ require("lazy").setup({
         "luvit-meta/library",
         vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
         --[[
-          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
           vim.fn.expand "$HOME/workspace/neovim/ui/nvchad_types",
+          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+          vim.fn.expand "$VIMRUNTIME/lua/vim",
           "${3rd}/luv/library",
         ]]
       },

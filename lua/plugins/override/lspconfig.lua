@@ -49,21 +49,13 @@ return {
       settings = {
         Lua = {
           hint = { enable = true },
-          diagnostics = { globals = { "bit", "vim", "it", "describe", "before_each", "after_each" } },
           telemetry = { enable = false },
-          workspace = {
-            library = {
-              "${3rd}/luv/library",
-              vim.fn.expand "$VIMRUNTIME/lua",
-              vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
-              -- vim.fn.expand "$HOME/workspace/neovim",
-              vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-              -- vim.fn.expand "$HOME/workspace/my-projects/neovim/ui/nvchad_types",
-              vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
-            },
-            maxPreload = 100000,
-            preloadFileSize = 10000,
-          },
+          --[[ diagnostics = { globals = { "bit", "vim", "it", "describe", "before_each", "after_each" } },
+          runtime = {
+            version = "LuaJIT",
+            path = vim.split(package.path, ";"),
+          }, ]]
+          -- NOTE: workspace libraries are set during bootstrapping via lazydev
         },
       },
     }

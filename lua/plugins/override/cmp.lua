@@ -16,6 +16,10 @@ return {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = "cmdline" },
+        {
+          name = "lazydev",
+          group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+        },
       },
     })
 

@@ -1,7 +1,5 @@
-.stylua.toml.bck
-
-lazy-lock.json
-
-_archive.lua
-
 .env
+.stylua.toml.bck
+lazy-lock.json
+cd-project.nvim.json
+_archive.lua

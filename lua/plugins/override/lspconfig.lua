@@ -50,12 +50,12 @@ return {
         Lua = {
           hint = { enable = true },
           telemetry = { enable = false },
-          --[[ diagnostics = { globals = { "bit", "vim", "it", "describe", "before_each", "after_each" } },
-          runtime = {
+          diagnostics = { globals = { "bit", "vim", "it", "describe", "before_each", "after_each" } },
+          --[[ runtime = {
             version = "LuaJIT",
             path = vim.split(package.path, ";"),
           }, ]]
-          -- NOTE: workspace libraries are set during bootstrapping via lazydev
+          -- NOTE: workspace libraries are set during lazy bootstrapping via lazydev
         },
       },
     }

@@ -71,6 +71,6 @@ create_cmd("AutoFormatToggle", function()
   else
     vim.g.disable_autoformat = true
     vim.notify.dismiss() ---@diagnostic disable-line
-    vim.notify("Auto-format disabled", vim.log.levels.INFO)
+    vim.notify("Auto-format disabled", vim.log.levels.WARN)
   end
 end, { desc = "Toggle autoformat-on-save" })

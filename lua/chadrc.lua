@@ -150,7 +150,7 @@ M.base46 = {
     "lsp",
     "todo",
     "mason",
-    "neogit",
+    "neogit", ---@diagnostic disable-line
     "notify",
     "nvimtree",
     "whichkey",

@@ -1,11 +1,13 @@
 local utils = require "gale.utils"
-local map = vim.keymap.set
+local map = utils.glb_map
+
+-- TODO: needs fix
+map("n", "<C-z>", "<NOP>", { desc = "Unmap force closing with <C-z>", noremap = false })
 
 map("n", ";", ":", { desc = "Enter CMD mode" })
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy file content" })
-map("n", "<C-z>", "<NOP>", { desc = "Unmap force closing with <C-z>" })
 map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
 map("n", "z-", "z^", { desc = "Remap z^ into z- to match z+" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
@@ -138,10 +140,10 @@ for i = 1, 9 do
   map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Tab go to tab " .. i })
 end
 
-map("n", "<C-Up>", function()
+--[[ map("n", "<C-Up>", function()
   require("colorify.tools").lighten(2)
 end)
 
 map("n", "<C-Down>", function()
   require("colorify.tools").lighten(-2)
-end)
+end) ]]

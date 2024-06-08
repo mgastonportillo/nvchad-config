@@ -51,6 +51,7 @@ return {
   { import = "plugins.spec.tstools" },
   { import = "plugins.spec.undo-tree" },
   { import = "plugins.spec.vim-astro" },
+  { import = "plugins.spec.vim-illuminate" },
   { import = "plugins.spec.zen-mode" },
   { import = "plugins.override.blankline" },
   { import = "plugins.override.cmp" },

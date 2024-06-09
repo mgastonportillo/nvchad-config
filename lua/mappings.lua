@@ -1,17 +1,15 @@
 local utils = require "gale.utils"
 local map = utils.glb_map
 
--- TODO: needs fix
-map("n", "<C-z>", "<NOP>", { desc = "Unmap force closing with <C-z>", noremap = false })
-
 map("n", ";", ":", { desc = "Enter CMD mode" })
 map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy file content" })
-map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
 map("n", "z-", "z^", { desc = "Remap z^ into z- to match z+" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
 map("n", "<leader>cs", "<cmd><CR>", { desc = "Clear statusline" })
+vim.cmd [[nnoremap <C-z> <nop>]] -- map didn't work here
+map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
 map("n", "<leader>cm", "<cmd>mes clear<CR>", { desc = "Clear messages" })
 -- https://github.com/neovim/neovim/issues/2048
 map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })

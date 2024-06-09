@@ -19,6 +19,7 @@ return {
       javascriptreact = { "prettier" },
       json = { "biome" },
       markdown = { "mdformat" },
+      ocaml = { "ocamlformat" },
       typescript = { "prettier" },
       typescriptreact = { "prettier" },
       lua = { "stylua" },

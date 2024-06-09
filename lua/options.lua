@@ -6,11 +6,10 @@ local g = {
   skip_ts_context_commentstring_module = true,
 }
 
-local tabSize = 2
 local opt = {
   encoding = "utf-8",
   fileencoding = "utf-8",
-  clipboard = "unnamedplus",
+  clipboard = "unnamedplus", -- extended via "gale.wsl"
   -- Folds
   foldmethod = "expr",
   foldexpr = "v:lua.vim.treesitter.foldexpr()",
@@ -22,10 +21,8 @@ local opt = {
   -- Prevent issues with some language servers
   backup = false,
   swapfile = false,
-  -- Always show minimum n lines after current line
+  -- Always show minimum n lines after/before current line
   scrolloff = 10,
-  -- Making sure backspace works as intended
-  backspace = "indent,eol,start",
   -- True color support
   termguicolors = true,
   emoji = false,
@@ -36,8 +33,8 @@ local opt = {
   textwidth = 0,
   wrapmargin = 0,
   -- Indentation values
-  tabstop = tabSize,
-  shiftwidth = tabSize,
+  tabstop = 2,
+  shiftwidth = 0, -- 0 forces same value as tabstop
   expandtab = true,
   autoindent = true,
   cursorline = true,

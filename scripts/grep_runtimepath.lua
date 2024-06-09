@@ -6,6 +6,8 @@ local search_paths = table.concat(paths, " ")
 local search_term = "prepend"
 local cmd = "rg --vimgrep " .. search_term .. " " .. search_paths
 
+---@param command string
+---@param raw? boolean
 -- Run a shell command and capture its output
 local function os_capture(command, raw)
   local f = assert(io.popen(command, "r"))

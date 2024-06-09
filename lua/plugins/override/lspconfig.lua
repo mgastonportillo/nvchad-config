@@ -15,12 +15,14 @@ return {
       -- "css_variables",
       "cssls",
       "html",
+      "hls",
       "gopls",
       "jsonls",
       "marksman",
-      -- "tailwindcss",
+      "ocamllsp",
       "pyright",
       "somesass_ls",
+      -- "tailwindcss",
       "taplo",
     }
 

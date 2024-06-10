@@ -3,9 +3,6 @@
 ---@type ChadrcConfig
 local M = {}
 
-vim.cmd "highlight link St_HarpoonInactive StText"
-vim.cmd "highlight link St_HarpoonActive St_LspHints"
-
 M.ui = {
   transparency = true,
   theme = "bearded-arc",
@@ -119,6 +116,8 @@ M.ui = {
     WinBar = { bg = "NONE" },
     WinBarNC = { bg = "NONE" },
     DropBarMenuCurrentContext = { link = "Visual" },
+    St_HarpoonInactive = { link = "StText" },
+    St_HarpoonActive = { link = "St_LspHints" },
   },
 
   term = {

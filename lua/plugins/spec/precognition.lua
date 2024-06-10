@@ -1,6 +1,9 @@
 return {
   "tris203/precognition.nvim",
   event = "VeryLazy",
+  init = function()
+    vim.keymap.set("n", "<leader>pc", "<cmd>Precognition toggle<CR>", { desc = "Precognition toggle" })
+  end,
   opts = {
     startVisible = false,
     showBlankVirtLine = false,
@@ -25,14 +28,6 @@ return {
     },
   },
   config = function(_, opts)
-    local precognition = require "precognition"
-
-    vim.api.nvim_create_user_command("PrecognitionToggle", function()
-      precognition.toggle()
-    end, { desc = "Toggle precognition" })
-
-    vim.keymap.set("n", "<leader>pc", "<cmd>PrecognitionToggle<CR>", { desc = "Precognition toggle" })
-
-    precognition.setup(opts)
+    require("precognition").setup(opts)
   end,
 }

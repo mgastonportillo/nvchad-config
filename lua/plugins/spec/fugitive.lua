@@ -7,4 +7,3 @@ return {
     "tpope/vim-unimpaired",
   },
 }
-

@@ -58,10 +58,6 @@ create_cmd("UpdateAll", function()
   vim.cmd "Lazy sync"
 end, { desc = "Batch update" })
 
-create_cmd("FormatFile", function()
-  require("conform").format { lsp_fallback = true }
-end, { desc = "Format files via conform" })
-
 create_cmd("AutoFormatToggle", function()
   local on_save = vim.g.disable_autoformat
   if on_save == true then
@@ -74,3 +70,33 @@ create_cmd("AutoFormatToggle", function()
     vim.notify("Auto-format disabled", vim.log.levels.WARN)
   end
 end, { desc = "Toggle autoformat-on-save" })
+
+create_cmd("FormatFile", function()
+  require("conform").format { lsp_fallback = true }
+end, { desc = "Format files via conform" })
+
+-- FIX: doesn't work
+create_cmd("FormatWholeProject", function()
+  local project_dir = vim.fn.getcwd()
+  local lua_files = vim.fn.systemlist("find " .. project_dir .. ' -type f -name "*.lua"')
+  for _, file in ipairs(lua_files) do
+    local bufnr = vim.fn.bufadd(file)
+    vim.fn.bufload(bufnr)
+    require("conform").format {
+      lsp_fallback = true,
+      bufnr = bufnr,
+    }
+
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd "w"
+    end)
+
+    if vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
+      vim.api.nvim_buf_call(bufnr, function()
+        vim.cmd "w"
+      end)
+    end
+
+    vim.api.nvim_buf_delete(bufnr, { force = true })
+  end
+end, { desc = "Format whole project" })

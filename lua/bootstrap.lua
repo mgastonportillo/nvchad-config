@@ -9,23 +9,21 @@ if not vim.uv.fs_stat(lazypath) then
 end
 
 -- Prepend lazy to runtime path
-local current_rtp = vim.o.runtimepath
-vim.o.runtimepath = lazypath .. "," .. current_rtp
+vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins
 local lazy_config = require "configs.lazy"
 require("lazy").setup({
-  { "Bilal2453/luvit-meta" },
+  -- { "Bilal2453/luvit-meta" }, -- alternative types for uv ("luvit-meta/library")
   { "justinsgithub/wezterm-types" },
   {
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {
       library = {
-        "luvit-meta/library",
+        "${3rd}/luv/library",
         "wezterm-types/types",
         vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-        -- "${3rd}/luv/library",
         -- vim.fn.expand "$HOME/workspace/neovim/ui/nvchad_types",
       },
     },

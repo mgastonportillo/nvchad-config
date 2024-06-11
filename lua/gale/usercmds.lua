@@ -1,4 +1,5 @@
 local create_cmd = vim.api.nvim_create_user_command
+local utils = require "gale.utils"
 
 create_cmd("SrcPlugins", function()
   local script = vim.fn.stdpath "config"
@@ -78,22 +79,7 @@ end, { desc = "Format files via conform" })
 create_cmd("FormatProject", function()
   local project_dir = vim.fn.getcwd()
   local lua_files = vim.fn.systemlist("find " .. project_dir .. ' -type f -name "*.lua"')
-  for _, file in ipairs(lua_files) do
-    -- Open file in buffer and load it
-    local bufnr = vim.fn.bufadd(file)
-    vim.fn.bufload(bufnr)
-    -- Format buffer
-    require("conform").format {
-      lsp_fallback = true,
-      bufnr = bufnr,
-    }
-    -- Write if modified
-    if vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
-      vim.api.nvim_buf_call(bufnr, function()
-        vim.cmd "w"
-      end)
-    end
-    -- Close buffer
-    vim.api.nvim_buf_delete(bufnr, { force = true })
+  for _, path in ipairs(lua_files) do
+    utils.format_file(path)
   end
-end, { desc = "Format whole project" })
+end, { desc = "Format project via conform" })

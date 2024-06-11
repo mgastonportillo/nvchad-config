@@ -9,6 +9,8 @@
 ---@field buf_map fun(mode: string, lhs: string, rhs: string, opts?: table)
 --- Delete keymap/s globally. Does not attempt to unmap if keymap does not exist.
 ---@field del_map fun(mode: string | table, trigger: string | table)
+--- Format a file based on its path, using conform
+---@field format_file fun(file_path: string)
 local M = {}
 
 M.add_alias = function(target_cmd, alias)
@@ -173,6 +175,24 @@ M.go_to_github_link = function()
     vim.notify(" Not a string", vim.log.levels.ERROR, { icon = "" })
     return
   end
+end
+
+M.format_file = function(file_path)
+  local bufnr = vim.fn.bufadd(file_path)
+  vim.fn.bufload(bufnr)
+
+  require("conform").format {
+    lsp_fallback = true,
+    bufnr = bufnr,
+  }
+
+  if vim.api.nvim_get_option_value("modified", { buf = bufnr }) then
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd "w"
+    end)
+  end
+
+  vim.api.nvim_buf_delete(bufnr, { force = true })
 end
 
 return M

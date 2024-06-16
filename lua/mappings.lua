@@ -120,23 +120,33 @@ map("n", "gh", function()
 end, { desc = "Go to GitHub link generated from string" })
 
 --- Tabufline
+local tabufline = require "nvchad.tabufline"
+
 map("n", "<Tab>", function()
-  require("nvchad.tabufline").next()
+  tabufline.next()
 end, { desc = "Buffer go to next" })
 
 map("n", "<S-Tab>", function()
-  require("nvchad.tabufline").prev()
+  tabufline.prev()
 end, { desc = "Buffer go to prev" })
 
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Buffer new" })
 
 map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
+  tabufline.close_buffer()
 end, { desc = "Buffer close" })
 
 for i = 1, 9 do
   map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Tab go to tab " .. i })
 end
+
+map("n", "<A-Left>", function()
+  tabufline.move_buf(-1)
+end)
+
+map("n", "<A-Right>", function()
+  tabufline.move_buf(1)
+end)
 
 --[[ map("n", "<C-Up>", function()
   require("colorify.tools").lighten(2)

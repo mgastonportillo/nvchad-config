@@ -14,6 +14,7 @@ return {
       "debugpy",
       "dprint",
       "djlint",
+      "eslint-lsp",
       "gopls",
       "haskell-language-server",
       "html-lsp",

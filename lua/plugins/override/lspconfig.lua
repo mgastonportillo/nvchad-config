@@ -14,6 +14,7 @@ return {
       "clangd",
       -- "css_variables",
       "cssls",
+      "eslint",
       "html",
       "hls",
       "gopls",

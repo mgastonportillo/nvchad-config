@@ -22,6 +22,7 @@ return {
       ocaml = { "ocamlformat" },
       typescript = { "prettier" },
       typescriptreact = { "prettier" },
+      vue = { "prettier" },
       lua = { "stylua" },
       toml = { "taplo" },
     },

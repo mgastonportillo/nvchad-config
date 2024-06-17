@@ -9,8 +9,6 @@ return {
     "typescript",
     "javascriptreact",
     "typescriptreact",
-    "svelte",
-    "vue",
     "tsx",
     "jsx",
     "rescript",
@@ -20,6 +18,8 @@ return {
     "glimmer",
     "handlebars",
     "hbs",
+    "svelte",
+    "vue",
   },
   dependencies = {
     "nvim-lua/plenary.nvim",

@@ -5,3 +5,5 @@ alias("qa", "Qa")
 alias("qa", "QA")
 alias("q", "Q")
 alias("w", "W")
+
+alias("CodeCompanion", "cc")

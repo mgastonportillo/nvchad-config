@@ -1,6 +1,6 @@
 local M = {}
 local autocmd = vim.api.nvim_create_autocmd
-local container_name = "inspiring_lehmann"
+local container_name = "pensive_blackburn"
 
 local is_container_running = function(container)
   local handle = io.popen('docker ps --filter "name=' .. container .. '" --filter "status=running" -q')

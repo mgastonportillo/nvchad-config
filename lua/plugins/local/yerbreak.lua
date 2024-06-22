@@ -1,11 +1,11 @@
 return {
   "mgastonportillo/yerbreak.nvim",
-  dir = "/home/gale/workspace/neovim/yerbreak.nvim",
+  dir = vim.fn.expand "$HOME/workspace/neovim/yerbreak.nvim",
   dev = true,
   dependencies = { "rcarriga/nvim-notify" },
   cmd = "Yerbreak",
   init = function()
-    vim.keymap.set({ "n" }, "<leader>yb", "<cmd>Yerbreak<CR>", { desc = "Toggle Yerbreak" })
+    vim.keymap.set("n", "<leader>yb", "<cmd>Yerbreak<CR>", { desc = "Toggle Yerbreak" })
   end,
   opts = {
     ascii_table = "mate",

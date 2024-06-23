@@ -6,7 +6,7 @@ local buf_map = utils.buf_map
 autocmd("BufLeave", {
   desc = "Hide tabufline if only one buffer and one tab are open",
   pattern = "*",
-  group = vim.api.nvim_create_augroup("TabuflineHide", { clear = true }),
+  group = augroup("TabuflineHide", { clear = true }),
   callback = function()
     vim.schedule(function()
       if #vim.t.bufs <= 1 and #vim.api.nvim_list_tabpages() <= 1 then

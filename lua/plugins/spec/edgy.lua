@@ -8,6 +8,7 @@ return {
   opts = {
     right = {
       { ft = "codecompanion", title = "Code Companion Chat", size = { width = 0.45 } },
+      { ft = "jsplayground", title = "JS Playground", size = { width = 0.45 } },
     },
   },
 }

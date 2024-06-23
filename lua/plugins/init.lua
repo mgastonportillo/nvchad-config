@@ -1,6 +1,7 @@
 return {
   { import = "plugins.local.binary-peek" },
   { import = "plugins.local.flip-flop" },
+  { import = "plugins.local.js-playground" },
   { import = "plugins.local.popurri" },
   { import = "plugins.local.yerbreak" },
   { import = "plugins.spec.autosession" },

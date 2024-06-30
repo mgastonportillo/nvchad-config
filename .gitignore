@@ -3,3 +3,4 @@
 lazy-lock.json
 cd-project.nvim.json
 _archive.lua
+.benchmark.lua

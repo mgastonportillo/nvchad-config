@@ -31,11 +31,12 @@ require("lazy").setup({
   },
   {
     "NvChad/NvChad",
+    dir = vim.fn.expand "$HOME/workspace/neovim/NvChad",
+    dev = false,
     lazy = false,
     branch = "v2.5",
     import = "nvchad.plugins",
     config = function()
-      -- require "colorify"
       require "options"
     end,
   },
@@ -49,7 +50,7 @@ dofile(vim.g.base46_cache .. "statusline")
 require "nvchad.autocmds"
 
 -- Re-activate providers
-for _, v in pairs { "python3_provider", "node_provider" } do
+for _, v in ipairs { "python3_provider", "node_provider" } do
   vim.g["loaded_" .. v] = nil
   vim.cmd("runtime " .. v)
 end

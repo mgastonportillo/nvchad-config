@@ -1,6 +1,6 @@
 return {
   "LintaoAmons/cd-project.nvim",
-  dir = "/home/gale/workspace/neovim/cd-project.nvim",
+  dir = vim.fn.expand "$HOME/workspace/neovim/cd-project.nvim",
   dev = false,
   event = "VimEnter",
   opts = {

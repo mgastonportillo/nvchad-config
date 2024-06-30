@@ -48,6 +48,7 @@ return {
   { import = "plugins.spec.tabby-ml" },
   { import = "plugins.spec.todo-comments" },
   { import = "plugins.spec.treesitter-textobjects" },
+  { import = "plugins.spec.trouble" },
   { import = "plugins.spec.ts-autotag" },
   { import = "plugins.spec.ts-context-commentstring" },
   { import = "plugins.spec.tstools" },

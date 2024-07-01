@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 -- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
 
 ---@type ChadrcConfig
@@ -120,12 +121,6 @@ M.ui = {
     St_HarpoonActive = { link = "St_LspHints" },
   },
 
-  term = {
-    float = {
-      border = "rounded",
-    },
-  },
-
   tabufline = {
     modules = {
       fill = function()
@@ -134,10 +129,16 @@ M.ui = {
     },
     order = { "buffers", "tabs", "btns" },
   },
+}
 
-  lsp = {
-    signature = true,
-    semantic_tokens = true,
+M.lsp = {
+  signature = true,
+  semantic_tokens = true,
+}
+
+M.term = {
+  float = {
+    border = "rounded",
   },
 }
 

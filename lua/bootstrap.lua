@@ -31,8 +31,8 @@ require("lazy").setup({
   },
   {
     "NvChad/NvChad",
-    dir = vim.fn.expand "$HOME/workspace/neovim/NvChad",
-    dev = false,
+    -- dir = vim.fn.expand "$HOME/workspace/neovim/NvChad",
+    -- dev = true,
     lazy = false,
     branch = "v2.5",
     import = "nvchad.plugins",

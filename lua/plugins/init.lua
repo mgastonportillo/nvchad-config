@@ -56,6 +56,7 @@ return {
   { import = "plugins.spec.vim-astro" },
   { import = "plugins.spec.vim-illuminate" },
   { import = "plugins.spec.zen-mode" },
+  { import = "plugins.override.base46" },
   { import = "plugins.override.blankline" },
   { import = "plugins.override.cmp" },
   { import = "plugins.override.conform" },

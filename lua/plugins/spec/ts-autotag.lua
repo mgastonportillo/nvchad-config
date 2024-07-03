@@ -6,25 +6,8 @@ end
 
 return {
   "windwp/nvim-ts-autotag",
-  ft = {
-    "astro",
-    "html",
-    "javascript",
-    "typescript",
-    "javascriptreact",
-    "typescriptreact",
-    "svelte",
-    "vue",
-    "tsx",
-    "jsx",
-    "rescript",
-    "xml",
-    "php",
-    "markdown",
-    "glimmer",
-    "handlebars",
-    "hbs",
-  },
+  -- https://github.com/windwp/nvim-ts-autotag?tab=readme-ov-file#a-note-on-lazy-loading
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     auto_tag.setup {
       autotag = {

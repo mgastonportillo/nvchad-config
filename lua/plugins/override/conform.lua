@@ -25,6 +25,7 @@ return {
       vue = { "prettier" },
       lua = { "stylua" },
       toml = { "taplo" },
+      yaml = { "yamlfmt" },
     },
     format_on_save = function(bufnr)
       -- Disable with a global or buffer-local variable
@@ -33,10 +34,10 @@ return {
       end
       return { timeout_ms = 500, lsp_fallback = true }
     end,
-    --[[ formatters = {
-      prettier = {
-        args = { "--single-quote", "true", "$FILENAME" },
+    formatters = {
+      yamlfmt = {
+        args = { "-formatter", "retain_line_breaks_single=true" },
       },
-    }, ]]
+    },
   },
 }

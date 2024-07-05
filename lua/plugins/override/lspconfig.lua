@@ -25,6 +25,7 @@ return {
       "somesass_ls",
       -- "tailwindcss",
       "taplo",
+      "yamlls",
     }
 
     for _, lsp in ipairs(servers) do

@@ -1,5 +1,6 @@
 return {
   "numToStr/Comment.nvim",
+  dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
   init = function()
     local map = vim.keymap.set
     local api = require "Comment.api"

@@ -1,3 +1,4 @@
+---@diagnostic disable: miss-field
 return {
   "JoosepAlviste/nvim-ts-context-commentstring",
   ft = {
@@ -20,6 +21,7 @@ return {
     "hbs",
   },
   config = function()
+    ---@diagnostic disable-next-line
     require("ts_context_commentstring").setup {
       enable_autocmd = false,
     }

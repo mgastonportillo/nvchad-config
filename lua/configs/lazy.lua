@@ -4,6 +4,9 @@ return {
     patterns = { "mgastonportillo" },
     fallback = true,
   },
+  change_detection = {
+    notify = false,
+  },
   defaults = { lazy = true },
   install = { colorscheme = { "nvchad" } },
   ui = {

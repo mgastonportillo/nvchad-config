@@ -9,4 +9,9 @@ return {
       vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
     end, { desc = "WhichKey query lookup" })
   end,
+  opts = {
+    icons = {
+      rules = false,
+    },
+  },
 }

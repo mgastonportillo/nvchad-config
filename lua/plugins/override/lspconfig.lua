@@ -69,6 +69,6 @@ return {
     local win = require "lspconfig.ui.windows"
     win.default_options = { border = border }
     -- vim.diagnostic.open_float()
-    vim.diagnostic.config { virtual_text = true, float = { border = border } }
+    vim.diagnostic.config { virtual_text = false, float = { border = border } }
   end,
 }

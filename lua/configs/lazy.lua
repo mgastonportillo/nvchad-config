@@ -1,7 +1,6 @@
 return {
   dev = {
     path = "/home/gale/workspace/neovim/",
-    patterns = { "mgastonportillo" },
     fallback = true,
   },
   change_detection = {

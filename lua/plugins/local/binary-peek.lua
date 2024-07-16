@@ -1,7 +1,6 @@
 return {
   "mgastonportillo/binary-peek.nvim",
   enabled = false,
-  dir = vim.fn.expand "$HOME/workspace/neovim/binary-peek.nvim",
   dev = true,
   name = "binary-peek",
   event = "VeryLazy",

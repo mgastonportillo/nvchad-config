@@ -1,6 +1,5 @@
 return {
   "mgastonportillo/yerbreak.nvim",
-  dir = vim.fn.expand "$HOME/workspace/neovim/yerbreak.nvim",
   dev = true,
   dependencies = { "rcarriga/nvim-notify" },
   cmd = "Yerbreak",

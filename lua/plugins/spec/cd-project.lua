@@ -1,7 +1,6 @@
 return {
   "LintaoAmons/cd-project.nvim",
-  -- dir = vim.fn.expand "$HOME/workspace/neovim/cd-project.nvim",
-  -- dev = true,
+  dev = false,
   event = "VimEnter",
   opts = {
     projects_config_filepath = vim.fs.normalize(vim.fn.stdpath "data" .. "/cd-project.nvim.json"),

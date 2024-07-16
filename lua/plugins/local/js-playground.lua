@@ -1,7 +1,6 @@
 return {
   "mgastonportillo/js-playground.nvim",
-  dir = vim.fn.expand "$HOME/workspace/neovim/js-playground.nvim",
-  dev = false,
+  dev = true,
   dependencies = { "rcarriga/nvim-notify" },
   cmd = "JSPlayground",
   init = function()

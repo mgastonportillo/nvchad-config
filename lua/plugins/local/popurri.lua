@@ -1,6 +1,5 @@
 return {
   "mgastonportillo/popurri.nvim",
-  dir = vim.fn.expand "$HOME/workspace/neovim/popurri.nvim",
   dev = true,
   cmd = "Popurri",
   init = function()

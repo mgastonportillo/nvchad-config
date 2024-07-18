@@ -27,12 +27,12 @@ M.ui = {
       "cwd",
     },
     modules = {
-      hack = "%#@comment#%",
       separator = " ",
-      -- Force grey on modules that absorb neighbour colour
-      tint = "%#StText#",
-      fill = function()
-        return "%#TbFill#%="
+      hack = "%#@comment#%",
+      tint = "%#StText#", -- Force grey on modules that absorb neighbour colour
+      fill = "%#TbFill#%=",
+      modified = function()
+        return vim.bo.modified and " " or ""
       end,
       bufnr = function()
         local bufnr = vim.api.nvim_get_current_buf()
@@ -122,11 +122,6 @@ M.ui = {
   },
 
   tabufline = {
-    modules = {
-      fill = function()
-        return "%#TbFill#%="
-      end,
-    },
     order = { "buffers", "tabs", "btns" },
   },
 }

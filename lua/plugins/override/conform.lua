@@ -10,6 +10,7 @@ return {
   opts = {
     formatters_by_ft = {
       -- clang should work by default
+      bash = { "shfmt" },
       css = { "prettier" },
       scss = { "prettier" },
       gleam = { "gleam" },

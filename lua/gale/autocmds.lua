@@ -188,9 +188,9 @@ autocmd("FileChangedShellPost", {
 })
 
 autocmd("User", {
-  desc = "Enable Line Number in Telescope Preview",
+  desc = "Enable line number in Telescope preview.",
   pattern = "TelescopePreviewerLoaded",
-  group = augroup("CustomTelescopeConfig", { clear = true }),
+  group = augroup("CustomTelescopePreview", { clear = true }),
   callback = function()
     vim.opt_local.number = true
   end,

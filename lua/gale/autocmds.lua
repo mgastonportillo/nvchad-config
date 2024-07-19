@@ -187,10 +187,11 @@ autocmd("FileChangedShellPost", {
   ]],
 })
 
---[[ autocmd("LspAttach", {
-  callback = function(args)
-    vim.schedule(function()
-      -- add lsp remaps here
-    end)
+autocmd("User", {
+  desc = "Enable Line Number in Telescope Preview",
+  pattern = "TelescopePreviewerLoaded",
+  group = augroup("CustomTelescopeConfig", { clear = true }),
+  callback = function()
+    vim.opt_local.number = true
   end,
-}) ]]
+})

@@ -104,6 +104,14 @@ map({ "n", "t" }, "<C-A-i>", function()
   }
 end, { desc = "Term toggle floating in buffer location" })
 
+local mouseactions = {
+  "<LeftMouse>",
+  "<2-LeftMouse>",
+  "<3-LeftMouse>",
+  "<4-LeftMouse>",
+}
+map("t", mouseactions, "<nop>", { desc = "Prevent from entering NTERMINAL mode when clicking a term" })
+
 -- TreeSitter
 map({ "n", "v" }, "<leader>it", function()
   utils.toggle_inspect_tree()

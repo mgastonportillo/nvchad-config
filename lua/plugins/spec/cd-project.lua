@@ -3,7 +3,7 @@ return {
   dev = false,
   event = "VimEnter",
   opts = {
-    projects_config_filepath = vim.fs.normalize(vim.fn.stdpath "data" .. "/cd-project.nvim.json"),
+    projects_config_filepath = vim.fn.expand "~/.cd-project.nvim.json",
     projects_picker = "telescope", -- "vim-ui" | "telescope"
     hooks = {
       {

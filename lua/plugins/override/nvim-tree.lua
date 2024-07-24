@@ -36,7 +36,7 @@ return {
       filters = { custom = { "^.git$" } },
       git = { enable = true },
       renderer = {
-        highlight_git = true,
+        highlight_git = "none",
         icons = {
           glyphs = {
             folder = {
@@ -44,6 +44,15 @@ return {
               open = "",
               empty = "",
               empty_open = "",
+            },
+            git = {
+              unstaged = "",
+              staged = "",
+              unmerged = "",
+              renamed = "",
+              untracked = "",
+              deleted = "",
+              ignored = "󰴲",
             },
           },
         },

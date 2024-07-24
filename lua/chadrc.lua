@@ -109,6 +109,7 @@ M.ui = {
     LspInlayHint = { fg = "#4e5665", bg = "NONE" },
     FloatBorder = { link = "TelescopeBorder" },
     NvimTreeRootFolder = { link = "TelescopeBorder" },
+    NvimTreeGitDirty = { link = "NvimTreeNormal" },
   },
 
   hl_add = {
@@ -119,6 +120,7 @@ M.ui = {
     DropBarMenuCurrentContext = { link = "Visual" },
     St_HarpoonInactive = { link = "StText" },
     St_HarpoonActive = { link = "St_LspHints" },
+    NvimTreeGitStagedIcon = { fg = "#a6e3a1" },
   },
 
   tabufline = {

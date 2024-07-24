@@ -4,7 +4,7 @@ local utils = require "gale.utils"
 local buf_map = utils.buf_map
 
 autocmd("BufLeave", {
-  desc = "Hide tabufline if only one buffer and one tab are open",
+  desc = "Hide tabufline if only one buffer and one tab are open.",
   pattern = "*",
   group = augroup("TabuflineHide", { clear = true }),
   callback = function()
@@ -26,11 +26,9 @@ autocmd("Filetype", {
     "qf",
   },
   group = augroup("PreventBufferSwap", { clear = true }),
-  callback = function()
+  callback = function(event)
     local lhs_list = { "<Tab>", "<S-Tab>" }
-    for _, lhs in ipairs(lhs_list) do
-      buf_map("n", lhs, "<nop>")
-    end
+    buf_map(event.buf, "n", lhs_list, "<nop>")
   end,
 })
 
@@ -193,5 +191,20 @@ autocmd("User", {
   group = augroup("CustomTelescopePreview", { clear = true }),
   callback = function()
     vim.opt_local.number = true
+  end,
+})
+
+autocmd("TermOpen", {
+  desc = "Prevent left click on terminal buffers from exiting insert mode.",
+  pattern = "*",
+  group = augroup("LeftMouseClickTerm", { clear = true }),
+  callback = function(event)
+    local mouse_actions = {
+      "<LeftMouse>",
+      "<2-LeftMouse>",
+      "<3-LeftMouse>",
+      "<4-LeftMouse>",
+    }
+    buf_map(event.buf, "t", mouse_actions, "<nop>")
   end,
 })

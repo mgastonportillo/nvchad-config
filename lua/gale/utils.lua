@@ -6,7 +6,7 @@
 --- Create a global keymap
 ---@field glb_map fun(mode: string | table, lhs: string | table, rhs: string | fun(), opts?: table | nil)
 --- Create a keymap local to buffer
----@field buf_map fun(mode: string, lhs: string, rhs: string, opts?: table)
+---@field buf_map fun(buf?: integer, mode: string, lhs: string | table, rhs: string, opts?: table)
 --- Delete keymap/s globally. Does not attempt to unmap if keymap does not exist.
 ---@field del_map fun(mode: string | table, trigger: string | table)
 --- Format a file based on its path, using conform
@@ -26,14 +26,13 @@ M.is_tbl = function(v)
 end
 
 M.glb_map = function(mode, lhs, rhs, opts)
-  local is_tbl = M.is_tbl
   local options = { noremap = true, silent = true }
 
   if opts then
     options = vim.tbl_extend("force", options, opts)
   end
 
-  if is_tbl(lhs) then
+  if M.is_tbl(lhs) then
     ---@cast lhs table
     for _, trigger in ipairs(lhs) do
       vim.keymap.set(mode, trigger, rhs, options)
@@ -44,12 +43,22 @@ M.glb_map = function(mode, lhs, rhs, opts)
   end
 end
 
-M.buf_map = function(mode, lhs, rhs, opts)
-  local final_opts = { noremap = true, silent = true }
+M.buf_map = function(buf, mode, lhs, rhs, opts)
+  local options = { noremap = true, silent = true }
+
   if opts then
-    final_opts = vim.tbl_extend("force", final_opts, opts)
+    options = vim.tbl_extend("force", options, opts)
   end
-  vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, final_opts)
+
+  if M.is_tbl(lhs) then
+    ---@cast lhs table
+    for _, trigger in ipairs(lhs) do
+      vim.api.nvim_buf_set_keymap(buf or 0, mode, trigger, rhs, options)
+    end
+  else
+    ---@cast lhs string
+    vim.api.nvim_buf_set_keymap(buf or 0, mode, lhs, rhs, options)
+  end
 end
 
 local map_exists = function(name, map_mode)

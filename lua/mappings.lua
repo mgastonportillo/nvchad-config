@@ -104,13 +104,13 @@ map({ "n", "t" }, "<C-A-i>", function()
   }
 end, { desc = "Term toggle floating in buffer location" })
 
-local mouseactions = {
+--[[ local mouseactions = {
   "<LeftMouse>",
   "<2-LeftMouse>",
   "<3-LeftMouse>",
   "<4-LeftMouse>",
 }
-map("t", mouseactions, "<nop>", { desc = "Prevent from entering NTERMINAL mode when clicking a term" })
+map("t", mouseactions, "<nop>", { desc = "Prevent from entering NTERMINAL mode when clicking a term" }) ]]
 
 -- TreeSitter
 map({ "n", "v" }, "<leader>it", function()
@@ -155,6 +155,18 @@ end)
 map("n", "<A-Right>", function()
   tabufline.move_buf(1)
 end)
+
+--- ++
+map(
+  "n",
+  "<leader>rl",
+  "<cmd>s/[a-zA-Z]/\\=nr2char((char2nr(submatch(0)) - (char2nr(submatch(0)) >= 97 ? 97 : 65) + 13) % 26 + (char2nr(submatch(0)) >= 97 ? 97 : 65))/g<CR>",
+  { desc = "Mum and dad were having fun" }
+)
+
+map("n", "<leader>rf", function()
+  vim.cmd [[%s/[a-zA-Z]/\=nr2char((char2nr(submatch(0)) - (char2nr(submatch(0)) >= 97 ? 97 : 65) + 13) % 26 + (char2nr(submatch(0)) >= 97 ? 97 : 65))/g]]
+end, { desc = "Mum and dad were having fun" })
 
 --[[ map("n", "<C-Up>", function()
   require("colorify.tools").lighten(2)

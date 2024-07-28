@@ -23,6 +23,7 @@ return {
       "markdown_inline",
       "ocaml",
       "rust",
+      "scheme",
       "scss",
       "toml",
       "tsx",

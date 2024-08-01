@@ -208,3 +208,15 @@ autocmd("TermOpen", {
     buf_map(event.buf, "t", mouse_actions, "<nop>")
   end,
 })
+
+autocmd("FileType", {
+  desc = "Set custom conceal level in markdown files.",
+  pattern = "*",
+  callback = function()
+    if vim.bo.ft == "markdown" then
+      vim.opt.conceallevel = 2
+    else
+      vim.opt.conceallevel = 0
+    end
+  end,
+})

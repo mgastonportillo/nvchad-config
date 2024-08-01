@@ -15,6 +15,7 @@ if not vim.uv.fs_stat(lazypath) then
     vim.fn.getchar()
     os.exit(1)
   end
+  vim.cmd "autocmd User LazyDone lua require('nvchad.mason').install_all()"
 end
 vim.opt.rtp:prepend(lazypath)
 

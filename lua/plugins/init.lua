@@ -30,6 +30,7 @@ return {
   { import = "plugins.spec.hop" },
   { import = "plugins.spec.hover" },
   { import = "plugins.spec.lsp-signature" },
+  { import = "plugins.spec.markview" },
   { import = "plugins.spec.matchup" },
   { import = "plugins.spec.md-preview" },
   { import = "plugins.spec.neocomposer" },

@@ -105,7 +105,6 @@ M.ui = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
     CursorLine = { bg = "#202025" },
-    CursorLineNr = { bg = "#202025" },
     LspInlayHint = { fg = "#4e5665", bg = "NONE" },
     FloatBorder = { link = "TelescopeBorder" },
     NvimTreeRootFolder = { link = "TelescopeBorder" },
@@ -121,6 +120,9 @@ M.ui = {
     St_HarpoonInactive = { link = "StText" },
     St_HarpoonActive = { link = "St_LspHints" },
     NvimTreeGitStagedIcon = { fg = "#a6e3a1" },
+    MarkviewLayer2 = { bg = "#171b21" },
+    ["@markup.quote.markdown"] = { bg = "NONE" },
+    ["@markup.raw.block.markdown"] = { link = "MarkviewLayer2" },
   },
 
   tabufline = {

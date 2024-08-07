@@ -109,6 +109,7 @@ M.ui = {
     FloatBorder = { link = "TelescopeBorder" },
     NvimTreeRootFolder = { link = "TelescopeBorder" },
     NvimTreeGitDirty = { link = "NvimTreeNormal" },
+    ["@keyword"] = { italic = true },
   },
 
   hl_add = {
@@ -123,6 +124,7 @@ M.ui = {
     MarkviewLayer2 = { bg = "#171b21" },
     ["@markup.quote.markdown"] = { bg = "NONE" },
     ["@markup.raw.block.markdown"] = { link = "MarkviewLayer2" },
+    ["MarkviewCode"] = { link = "MarkviewLayer2" },
   },
 
   tabufline = {

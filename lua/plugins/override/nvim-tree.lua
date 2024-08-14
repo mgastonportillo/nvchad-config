@@ -31,6 +31,9 @@ return {
     local WIDTH_RATIO = 0.5
 
     nvtree.setup {
+      update_focused_file = {
+        enable = true,
+      },
       on_attach = custom_on_attach,
       sync_root_with_cwd = true,
       filters = { custom = { "^.git$" } },

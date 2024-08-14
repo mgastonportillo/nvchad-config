@@ -104,7 +104,6 @@ M.ui = {
   hl_override = {
     Comment = { italic = true },
     ["@comment"] = { italic = true },
-    CursorLine = { bg = "#202025" },
     LspInlayHint = { fg = "#4e5665", bg = "NONE" },
     FloatBorder = { link = "TelescopeBorder" },
     NvimTreeRootFolder = { link = "TelescopeBorder" },
@@ -140,6 +139,10 @@ M.lsp = {
 M.term = {
   float = {
     border = "rounded",
+    height = 0.5,
+    width = 0.5,
+    col = 0.25,
+    row = 0.2,
   },
 }
 

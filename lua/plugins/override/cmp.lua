@@ -15,10 +15,18 @@ return {
   config = function(_, opts)
     local cmp = require "cmp"
 
+    cmp.setup.cmdline({ "/", "?" }, {
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = {
+        { name = "buffer" },
+      },
+    })
+
     cmp.setup.cmdline(":", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {
         { name = "cmdline" },
+        { name = "path" },
         {
           name = "lazydev",
           group_index = 0, -- set group index to 0 to skip loading LuaLS completions

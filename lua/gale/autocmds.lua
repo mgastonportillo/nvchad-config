@@ -8,6 +8,10 @@ autocmd("BufLeave", {
   pattern = "*",
   group = augroup("TabuflineHide", { clear = true }),
   callback = function()
+    if not vim.g.tabufline_enabled then
+      return
+    end
+
     vim.schedule(function()
       if #vim.t.bufs <= 1 and #vim.api.nvim_list_tabpages() <= 1 then
         vim.o.showtabline = 0

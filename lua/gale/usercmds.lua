@@ -1,6 +1,16 @@
 local create_cmd = vim.api.nvim_create_user_command
 local utils = require "gale.utils"
 
+create_cmd("TabuflineToggle", function()
+  if vim.g.tabufline_visible then
+    vim.o.showtabline = 0
+    vim.g.tabufline_visible = false
+  else
+    vim.o.showtabline = 2
+    vim.g.tabufline_visible = true
+  end
+end, { desc = "Toggle Tabufline" })
+
 create_cmd("SrcPlugins", function()
   local script = vim.fn.stdpath "config"
   vim.cmd("luafile " .. script .. "/scripts/update-lazy-imports.lua")

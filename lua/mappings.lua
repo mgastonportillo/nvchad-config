@@ -156,6 +156,8 @@ map("n", "<A-Right>", function()
   tabufline.move_buf(1)
 end)
 
+map("n", "<A-|>", "<cmd>TabuflineToggle<CR>", { desc = "Toggle Tabufline visibility" })
+
 --- ++
 map(
   "n",

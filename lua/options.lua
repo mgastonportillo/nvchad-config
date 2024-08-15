@@ -4,6 +4,7 @@ local g = {
   dap_virtual_text = true,
   bookmark_sign = "",
   skip_ts_context_commentstring_module = true,
+  tabufline_visible = true,
 }
 
 local opt = {

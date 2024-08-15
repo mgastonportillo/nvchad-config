@@ -27,6 +27,7 @@ return {
   { import = "plugins.spec.goto-preview" },
   { import = "plugins.spec.grug-far" },
   { import = "plugins.spec.harpoon" },
+  { import = "plugins.spec.helpview" },
   { import = "plugins.spec.hop" },
   { import = "plugins.spec.hover" },
   { import = "plugins.spec.lsp-signature" },

@@ -122,9 +122,12 @@ M.ui = {
     St_HarpoonActive = { link = "St_LspHints" },
     NvimTreeGitStagedIcon = { fg = "#a6e3a1" },
     MarkviewLayer2 = { bg = "#171b21" },
+    MarkviewCode = { link = "MarkviewLayer2" },
+    HelpviewCode = { link = "MarkviewLayer2" },
+    HelpviewInlineCode = { link = "MarkviewInlineCode" },
+    HelpviewCodeLanguage = { link = "MarkviewCode" },
     ["@markup.quote.markdown"] = { bg = "NONE" },
     ["@markup.raw.block.markdown"] = { link = "MarkviewLayer2" },
-    ["MarkviewCode"] = { link = "MarkviewLayer2" },
   },
 
   tabufline = {

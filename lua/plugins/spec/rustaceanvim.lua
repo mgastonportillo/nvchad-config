@@ -1,6 +1,6 @@
 return {
   "mrcjkb/rustaceanvim",
-  version = "^4",
+  version = "^5",
   ft = { "rust" },
   config = function()
     vim.g.rustaceanvim = {
@@ -13,7 +13,7 @@ return {
       -- LSP configuration
       server = {
         on_attach = function()
-          vim.lsp.inlay_hint.enable()
+          -- vim.lsp.inlay_hint.enable()
         end,
         default_settings = {
           -- rust-analyzer language server configuration

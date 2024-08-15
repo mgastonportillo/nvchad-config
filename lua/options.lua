@@ -16,8 +16,8 @@ local opt = {
   foldcolumn = "0",
   foldtext = "",
   foldlevel = 99,
-  foldlevelstart = 1,
-  foldnestmax = 1,
+  foldlevelstart = 5,
+  foldnestmax = 5,
   -- Prevent issues with some language servers
   backup = false,
   swapfile = false,

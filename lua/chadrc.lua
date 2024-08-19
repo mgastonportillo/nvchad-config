@@ -106,6 +106,7 @@ M.ui = {
     ["@comment"] = { italic = true },
     CursorLineNr = { fg = "yellow", bold = true },
     LspInlayHint = { fg = "#4e5665", bg = "NONE" },
+    FloatTitle = { link = "Title" },
     FloatBorder = { link = "TelescopeBorder" },
     NvimTreeRootFolder = { link = "TelescopeBorder" },
     NvimTreeGitDirty = { link = "NvimTreeNormal" },
@@ -144,8 +145,8 @@ M.term = {
   float = {
     border = "rounded",
     height = 0.5,
-    width = 0.5,
-    col = 0.25,
+    width = 0.58,
+    col = 0.2,
     row = 0.2,
   },
 }

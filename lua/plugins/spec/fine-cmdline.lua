@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   enabled = false,
   "VonHeikemen/fine-cmdline.nvim",

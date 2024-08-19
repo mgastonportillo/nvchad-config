@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "rcarriga/nvim-notify",
   event = "BufWinEnter",

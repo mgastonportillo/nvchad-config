@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "mgastonportillo/js-playground.nvim",
   dev = true,

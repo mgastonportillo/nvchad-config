@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "mgastonportillo/yerbreak.nvim",
   dev = true,

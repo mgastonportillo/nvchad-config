@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "mgastonportillo/popurri.nvim",
   dev = true,

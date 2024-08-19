@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   -- TODO: re-enable once html support improves
   enabled = false,

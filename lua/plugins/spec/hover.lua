@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "lewis6991/hover.nvim",
   enabled = false,

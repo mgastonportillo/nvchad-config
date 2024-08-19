@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "Bekaboo/dropbar.nvim",
   event = "VeryLazy",

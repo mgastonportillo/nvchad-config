@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "mgastonportillo/binary-peek.nvim",
   enabled = false,

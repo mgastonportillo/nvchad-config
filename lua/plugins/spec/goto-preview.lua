@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "rmagatti/goto-preview",
   event = "LspAttach",

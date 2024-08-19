@@ -1,4 +1,6 @@
 ---@diagnostic disable: different-requires
+
+---@type NvPluginSpec
 return {
   "hrsh7th/nvim-cmp",
   event = { "InsertEnter", "CmdlineEnter" },

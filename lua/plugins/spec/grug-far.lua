@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "MagicDuck/grug-far.nvim",
   cmd = "GrugFar",

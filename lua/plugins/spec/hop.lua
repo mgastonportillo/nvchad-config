@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "smoka7/hop.nvim",
   cmd = { "HopWord", "HopLine", "HopLineStart", "HopWordCurrentLine" },

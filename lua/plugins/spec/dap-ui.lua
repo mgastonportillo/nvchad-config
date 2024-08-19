@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "rcarriga/nvim-dap-ui",
   event = "LspAttach",

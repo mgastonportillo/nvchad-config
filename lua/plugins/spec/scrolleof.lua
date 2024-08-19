@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "Aasim-A/scrollEOF.nvim",
   event = { "CursorMoved", "WinScrolled" },

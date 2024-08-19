@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 ---@diagnostic disable: different-requires
 return {
   "saecki/crates.nvim",

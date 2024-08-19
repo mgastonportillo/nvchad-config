@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   enabled = false,
   "ray-x/go.nvim",

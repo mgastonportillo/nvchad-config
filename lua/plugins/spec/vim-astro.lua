@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "wuelnerdotexe/vim-astro",
   ft = "astro",

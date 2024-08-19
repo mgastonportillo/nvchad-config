@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "tpope/vim-fugitive",
   event = "VeryLazy",

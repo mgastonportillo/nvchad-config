@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "NvChad/nvim-colorizer.lua",
   enabled = false,

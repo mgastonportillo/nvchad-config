@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "theHamsta/nvim-dap-virtual-text",
   event = "LspAttach",

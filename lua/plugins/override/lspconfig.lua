@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "neovim/nvim-lspconfig",
   config = function()

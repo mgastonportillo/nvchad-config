@@ -1,4 +1,6 @@
 local map = vim.keymap.set
+
+---@type NvPluginSpec
 return {
   "nvim-tree/nvim-tree.lua",
   init = function()

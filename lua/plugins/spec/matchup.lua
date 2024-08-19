@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "andymass/vim-matchup",
   event = "LspAttach",

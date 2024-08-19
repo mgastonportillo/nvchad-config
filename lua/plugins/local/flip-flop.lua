@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   dir = vim.fn.expand "$HOME/workspace/neovim/flip-flop.nvim",
   enabled = false,

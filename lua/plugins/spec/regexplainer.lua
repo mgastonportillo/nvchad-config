@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "bennypowers/nvim-regexplainer",
   event = "BufEnter",

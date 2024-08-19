@@ -1,5 +1,6 @@
 local on_attach = require("gale.custom").custom_on_attach
 
+---@type NvPluginSpec
 return {
   "pmizio/typescript-tools.nvim",
   ft = {

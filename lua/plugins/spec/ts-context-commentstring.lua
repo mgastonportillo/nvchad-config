@@ -1,4 +1,6 @@
 ---@diagnostic disable: miss-field
+
+---@type NvPluginSpec
 return {
   "JoosepAlviste/nvim-ts-context-commentstring",
   ft = {

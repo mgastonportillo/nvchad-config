@@ -1,4 +1,6 @@
 ---@diagnostic disable: different-requires
+
+---@type NvPluginSpec
 return {
   "stevearc/conform.nvim",
   event = "BufWritePre",

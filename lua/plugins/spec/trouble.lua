@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "folke/trouble.nvim",
   opts = {},

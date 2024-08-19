@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "mistricky/codesnap.nvim",
   event = "LspAttach",

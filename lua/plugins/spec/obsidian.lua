@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "epwalsh/obsidian.nvim",
   version = "*",

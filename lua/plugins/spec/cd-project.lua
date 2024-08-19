@@ -1,3 +1,4 @@
+---@type NvPluginSpec
 return {
   "LintaoAmons/cd-project.nvim",
   dev = false,

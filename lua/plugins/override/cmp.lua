@@ -49,7 +49,11 @@ return {
       fields = field_arrangement[cmp_style] or { "abbr", "menu", "kind" },
 
       format = function(entry, item)
+        vim.print(item)
+
         local icons = require "nvchad.icons.lspkind"
+        icons.Color = "󱓻"
+
         local icon = (cmp_ui.icons and icons[item.kind]) or ""
 
         if cmp_style == "atom" or cmp_style == "atom_colored" then
@@ -58,7 +62,7 @@ return {
           item.kind = icon
         else
           icon = cmp_ui.lspkind_text and (" " .. icon .. " ") or icon
-          item.kind = string.format("%s %s ", icon, cmp_ui.lspkind_text and item.kind or "")
+          item.kind = string.format("%s%s ", icon, cmp_ui.lspkind_text and item.kind or "")
         end
 
         local entryItem = entry:get_completion_item()
@@ -78,7 +82,7 @@ return {
 
         local highlight_group = utils.create_highlight_name("fg-" .. color_hex)
         vim.api.nvim_set_hl(0, highlight_group, { fg = color_hex, default = true })
-        item.abbr_hl_group = highlight_group
+        item.kind_hl_group = highlight_group
 
         return item
       end,

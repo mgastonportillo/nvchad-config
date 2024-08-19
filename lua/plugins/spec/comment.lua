@@ -21,6 +21,7 @@ return {
       { desc = "Comment toggle (aware of context)" }
     )
   end,
+  ---@param opts CommentConfig
   config = function(_, opts)
     local comment = require "Comment"
     local ts_addon = require "ts_context_commentstring.integrations.comment_nvim"

@@ -8,10 +8,15 @@ return {
     { "hrsh7th/cmp-cmdline" },
     { "brenoprata10/nvim-highlight-colors" },
   },
+  ---@type cmp.ConfigSchema
   opts = {
     mapping = {
-      ["<Tab>"] = vim.NIL,
-      ["<S-Tab>"] = vim.NIL,
+      ["<Tab>"] = function(fallback)
+        fallback()
+      end,
+      ["<S-Tab>"] = function(fallback)
+        fallback()
+      end,
     },
   },
   config = function(_, opts)

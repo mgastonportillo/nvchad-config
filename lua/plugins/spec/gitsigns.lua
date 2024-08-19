@@ -2,6 +2,7 @@
 return {
   "lewis6991/gitsigns.nvim",
   dependencies = "sindrets/diffview.nvim",
+  ---@class Gitsigns.Config
   opts = {
     preview_config = {
       border = "rounded",

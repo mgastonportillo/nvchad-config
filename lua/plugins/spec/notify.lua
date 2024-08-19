@@ -4,6 +4,7 @@ return {
   event = "BufWinEnter",
   config = function()
     dofile(vim.g.base46_cache .. "notify")
+
     vim.notify = require "notify"
     ---@diagnostic disable-next-line
     vim.notify.setup {

@@ -9,6 +9,7 @@ return {
       require("conform").format { lsp_fallback = true }
     end, { desc = "Format files" })
   end,
+  ---@type conform.setupOpts
   opts = {
     formatters_by_ft = {
       -- clang should work by default

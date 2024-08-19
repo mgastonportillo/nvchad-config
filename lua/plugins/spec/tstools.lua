@@ -1,3 +1,4 @@
+-- require("typescript-tools.config")
 local on_attach = require("gale.custom").custom_on_attach
 
 ---@type NvPluginSpec
@@ -28,6 +29,7 @@ return {
   },
   opts = {
     on_attach = on_attach,
+    ---@class Settings
     settings = {
       tsserver_file_preferences = {
         includeInlayEnumMemberValueHints = true,

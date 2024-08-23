@@ -56,8 +56,6 @@ return {
       fields = field_arrangement[cmp_style] or { "abbr", "menu", "kind" },
 
       format = function(entry, item)
-        vim.print(item)
-
         local icons = require "nvchad.icons.lspkind"
         icons.Color = "󱓻"
 

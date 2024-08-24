@@ -69,18 +69,27 @@ create_cmd("UpdateAll", function()
   vim.cmd "Lazy sync"
 end, { desc = "Batch update" })
 
-create_cmd("AutoFormatToggle", function()
-  local on_save = vim.g.disable_autoformat
-  if on_save == true then
-    vim.g.disable_autoformat = false
-    vim.notify.dismiss() ---@diagnostic disable-line
-    vim.notify("Auto-format enabled", vim.log.levels.INFO)
+create_cmd("FormatToggle", function(args)
+  local is_global = not args.bang
+  if is_global then
+    vim.g.disable_autoformat = not vim.g.disable_autoformat
+    if vim.g.disable_autoformat then
+      vim.notify("Format on save disabled", vim.log.levels.WARN)
+    else
+      vim.notify("Format on save enabled", vim.log.levels.INFO)
+    end
   else
-    vim.g.disable_autoformat = true
-    vim.notify.dismiss() ---@diagnostic disable-line
-    vim.notify("Auto-format disabled", vim.log.levels.WARN)
+    vim.b.disable_autoformat = not vim.b.disable_autoformat
+    if vim.b.disable_autoformat then
+      vim.notify("Format on save disabled for this buffer", vim.log.levels.WARN)
+    else
+      vim.notify("Format on save enabled for this buffer", vim.log.levels.INFO)
+    end
   end
-end, { desc = "Toggle autoformat-on-save" })
+end, {
+  desc = "Toggle format on save",
+  bang = true,
+})
 
 create_cmd("FormatFile", function()
   require("conform").format { lsp_fallback = true }

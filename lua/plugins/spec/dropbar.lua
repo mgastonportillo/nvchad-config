@@ -1,7 +1,7 @@
 ---@type NvPluginSpec
 return {
   "Bekaboo/dropbar.nvim",
-  event = "VeryLazy",
+  lazy = false,
   dependencies = {
     "nvim-telescope/telescope-fzf-native.nvim",
   },

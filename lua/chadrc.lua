@@ -4,10 +4,66 @@
 ---@type ChadrcConfig
 local M = {}
 
-M.ui = {
+M.base46 = {
   transparency = true,
   theme = "bearded-arc",
   theme_toggle = { "bearded-arc", "chadracula-evondev" },
+
+  hl_override = {
+    Comment = { italic = true },
+    ["@comment"] = { italic = true },
+    CursorLineNr = { fg = "yellow", bold = true },
+    LspInlayHint = { fg = "#4e5665", bg = "NONE" },
+    FloatTitle = { link = "Title" },
+    FloatBorder = { link = "TelescopeBorder" },
+    NvimTreeRootFolder = { link = "TelescopeBorder" },
+    NvimTreeGitDirty = { link = "NvimTreeNormal" },
+    ["@keyword"] = { italic = true },
+  },
+
+  hl_add = {
+    YankVisual = { link = "CursorColumn" },
+    LspInfoBorder = { fg = "#444c5b" },
+    WinBar = { bg = "NONE" },
+    WinBarNC = { bg = "NONE" },
+    DropBarMenuCurrentContext = { link = "Visual" },
+    St_HarpoonInactive = { link = "StText" },
+    St_HarpoonActive = { link = "St_LspHints" },
+    NvimTreeGitStagedIcon = { fg = "#a6e3a1" },
+    MarkviewLayer2 = { bg = "#171b21" },
+    MarkviewCode = { link = "MarkviewLayer2" },
+    HelpviewCode = { link = "MarkviewLayer2" },
+    HelpviewInlineCode = { link = "MarkviewInlineCode" },
+    HelpviewCodeLanguage = { link = "MarkviewCode" },
+    ["@markup.quote.markdown"] = { bg = "NONE" },
+    ["@markup.raw.block.markdown"] = { link = "MarkviewLayer2" },
+  },
+
+  integrations = {
+    "blankline",
+    "cmp",
+    "codeactionmenu",
+    "dap",
+    "devicons",
+    "hop",
+    "lsp",
+    "mason",
+    "neogit",
+    "notify",
+    "nvimtree",
+    "rainbowdelimiters",
+    "semantic_tokens",
+    "todo",
+    "whichkey",
+  },
+}
+
+M.ui = {
+  telescope = { style = "bordered" },
+
+  tabufline = {
+    order = { "buffers", "tabs", "btns" },
+  },
 
   statusline = {
     theme = "vscode_colored",
@@ -39,7 +95,7 @@ M.ui = {
         return "%#StText#" .. tostring(bufnr)
       end,
       harpoon = function()
-        -- https://github.com/letieu/harpoon-lualine
+        -- inspiration from https://github.com/letieu/harpoon-lualine
         local inactive = "%#St_HarpoonInactive#"
         local active = "%#St_HarpoonActive#"
 
@@ -98,42 +154,6 @@ M.ui = {
       end,
     },
   },
-
-  telescope = { style = "bordered" },
-
-  hl_override = {
-    Comment = { italic = true },
-    ["@comment"] = { italic = true },
-    CursorLineNr = { fg = "yellow", bold = true },
-    LspInlayHint = { fg = "#4e5665", bg = "NONE" },
-    FloatTitle = { link = "Title" },
-    FloatBorder = { link = "TelescopeBorder" },
-    NvimTreeRootFolder = { link = "TelescopeBorder" },
-    NvimTreeGitDirty = { link = "NvimTreeNormal" },
-    ["@keyword"] = { italic = true },
-  },
-
-  hl_add = {
-    YankVisual = { link = "CursorColumn" },
-    LspInfoBorder = { fg = "#444c5b" },
-    WinBar = { bg = "NONE" },
-    WinBarNC = { bg = "NONE" },
-    DropBarMenuCurrentContext = { link = "Visual" },
-    St_HarpoonInactive = { link = "StText" },
-    St_HarpoonActive = { link = "St_LspHints" },
-    NvimTreeGitStagedIcon = { fg = "#a6e3a1" },
-    MarkviewLayer2 = { bg = "#171b21" },
-    MarkviewCode = { link = "MarkviewLayer2" },
-    HelpviewCode = { link = "MarkviewLayer2" },
-    HelpviewInlineCode = { link = "MarkviewInlineCode" },
-    HelpviewCodeLanguage = { link = "MarkviewCode" },
-    ["@markup.quote.markdown"] = { bg = "NONE" },
-    ["@markup.raw.block.markdown"] = { link = "MarkviewLayer2" },
-  },
-
-  tabufline = {
-    order = { "buffers", "tabs", "btns" },
-  },
 }
 
 M.lsp = {
@@ -148,26 +168,6 @@ M.term = {
     width = 0.58,
     col = 0.2,
     row = 0.2,
-  },
-}
-
-M.base46 = {
-  integrations = {
-    "cmp",
-    "dap",
-    "hop",
-    "lsp",
-    "todo",
-    "mason",
-    "neogit",
-    "notify",
-    "nvimtree",
-    "whichkey",
-    "devicons",
-    "blankline",
-    "rainbowdelimiters",
-    "semantic_tokens",
-    "codeactionmenu",
   },
 }
 

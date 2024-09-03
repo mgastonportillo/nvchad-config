@@ -62,4 +62,4 @@ for _, v in ipairs { "python3_provider", "node_provider" } do
 end
 
 -- No dashboard for me
-vim.api.nvim_del_user_command "Nvdash"
+-- vim.api.nvim_del_user_command "Nvdash"

@@ -7,6 +7,9 @@ return {
     local map = vim.keymap.set
     local ls = require "luasnip"
 
+    ls.filetype_extend("javascriptreact", { "html" })
+    ls.filetype_extend("typescriptreact", { "html" })
+
     require("luasnip.loaders.from_vscode").lazy_load { paths = { vim.fn.stdpath "config" .. "/snippets/vscode" } }
 
     map({ "s", "i" }, "<C-y>", function()

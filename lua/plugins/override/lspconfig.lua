@@ -13,7 +13,7 @@ return {
       "astro",
       "bashls",
       "clangd",
-      -- "css_variables",
+      "css_variables",
       "cssls",
       "eslint",
       "html",

@@ -104,14 +104,6 @@ map({ "n", "t" }, "<C-A-i>", function()
   }
 end, { desc = "Term toggle floating in buffer location" })
 
---[[ local mouseactions = {
-  "<LeftMouse>",
-  "<2-LeftMouse>",
-  "<3-LeftMouse>",
-  "<4-LeftMouse>",
-}
-map("t", mouseactions, "<nop>", { desc = "Prevent from entering NTERMINAL mode when clicking a term" }) ]]
-
 -- TreeSitter
 map({ "n", "v" }, "<leader>it", function()
   utils.toggle_inspect_tree()
@@ -150,13 +142,13 @@ end
 
 map("n", "<A-Left>", function()
   tabufline.move_buf(-1)
-end)
+end, { desc = "Tabufline move buffer to the left" })
 
 map("n", "<A-Right>", function()
   tabufline.move_buf(1)
-end)
+end, { desc = "Tabufline move buffer to the right" })
 
-map("n", "<A-|>", "<cmd>TabuflineToggle<CR>", { desc = "Toggle Tabufline visibility" })
+map("n", "<A-|>", "<cmd>TabuflineToggle<CR>", { desc = "Tabufline toggle visibility" })
 
 --- ++
 map(

@@ -225,6 +225,20 @@ autocmd("FileType", {
   end,
 })
 
+autocmd("FileType", {
+  desc = "Set custom conceal level in nvim.ai's chat window.",
+  pattern = "chat-dialog",
+  callback = function()
+    if vim.bo.ft == "chat-dialog" then
+      vim.schedule(function()
+        vim.opt.conceallevel = 2
+      end)
+    else
+      vim.opt.conceallevel = 0
+    end
+  end,
+})
+
 autocmd({ "UIEnter", "ColorScheme" }, {
   callback = function()
     local normal = vim.api.nvim_get_hl(0, { name = "Normal" })

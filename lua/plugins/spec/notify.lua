@@ -1,7 +1,7 @@
 ---@type NvPluginSpec
 return {
   "rcarriga/nvim-notify",
-  event = "BufWinEnter",
+  lazy = false,
   config = function()
     dofile(vim.g.base46_cache .. "notify")
 

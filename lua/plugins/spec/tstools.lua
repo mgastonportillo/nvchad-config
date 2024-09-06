@@ -1,4 +1,3 @@
--- require("typescript-tools.config")
 local on_attach = require("gale.custom").custom_on_attach
 
 ---@type NvPluginSpec

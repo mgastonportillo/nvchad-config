@@ -24,6 +24,7 @@ return {
       json = { "biome" },
       markdown = { "deno_fmt" },
       ocaml = { "ocamlformat" },
+      python = { "ruff_format" },
       typescript = { "prettier" },
       typescriptreact = { "prettier" },
       vue = { "prettier" },

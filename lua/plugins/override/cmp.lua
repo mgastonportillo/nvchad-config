@@ -22,6 +22,10 @@ return {
   config = function(_, opts)
     local cmp = require "cmp"
 
+    cmp.mapping.sources = cmp.config.sources {
+      { name = "nvimai_cmp_source" },
+    }
+
     cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {

@@ -176,7 +176,7 @@ autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI" }, {
   desc = "Automatically update changed file in nvim.",
   group = augroup("AutoupdateOnFileChange", { clear = true }),
   command = [[
-    silent! if mode() != 'c' && !bufexists("[Command Line]") | checktime | endif
+    if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
   ]],
 })
 

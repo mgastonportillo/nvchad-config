@@ -49,6 +49,7 @@ return {
   { import = "plugins.spec.screenkey" },
   { import = "plugins.spec.scrolleof" },
   { import = "plugins.spec.searchbox" },
+  { import = "plugins.spec.supermaven" },
   { import = "plugins.spec.swenv" },
   { import = "plugins.spec.tabby-ml" },
   { import = "plugins.spec.tiny-inline-diagnostic" },

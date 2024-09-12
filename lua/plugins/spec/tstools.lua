@@ -1,4 +1,4 @@
-local on_attach = require("gale.custom").custom_on_attach
+local on_attach = require("gale.lsp").custom_on_attach
 
 ---@type NvPluginSpec
 return {

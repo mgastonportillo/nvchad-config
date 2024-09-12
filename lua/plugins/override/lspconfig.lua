@@ -7,7 +7,7 @@ return {
     local lspconfig = require "lspconfig"
     local on_init = require("nvchad.configs.lspconfig").on_init
     local capabilities = require("nvchad.configs.lspconfig").capabilities
-    local on_attach = require("gale.custom").custom_on_attach
+    local on_attach = require("gale.lsp").custom_on_attach
 
     local servers = {
       "astro",

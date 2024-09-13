@@ -1,22 +1,22 @@
 local utils = require "gale.utils"
 local map = utils.glb_map
 
-map("n", ";", ":", { desc = "Enter CMD mode" })
-map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
-map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "Copy file content" })
-map("n", "z-", "z^", { desc = "Remap z^ into z- to match z+" })
-map("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search highlights" })
-map("n", "<leader>cs", "<cmd><CR>", { desc = "Clear statusline" })
+map("n", ";", ":", { desc = "General enter CMD mode" })
+map("i", "jk", "<ESC>", { desc = "General exit insert mode" })
+map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "General save file" })
+map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy file content" })
+map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear search highlights" })
+map("n", "<leader>cs", "<cmd><CR>", { desc = "General clear statusline" })
 vim.cmd [[nnoremap <C-z> <nop>]] -- map didn't work here
-map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Stop NVIM" })
-map("n", "<leader>cm", "<cmd>mes clear<CR>", { desc = "Clear messages" })
+map("n", "z-", "z^", { desc = "_ Remap z^ into z- to match z+" })
+map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Genaral stop NVIM" })
+map("n", "<leader>cm", "<cmd>mes clear<CR>", { desc = "General clear messages" })
 -- https://github.com/neovim/neovim/issues/2048
-map("i", "<A-BS>", "<C-w>", { desc = "Remove word" })
-map("v", "y", "ygv<Esc>", { desc = "Yank preventing cursor from jumping back to where selection started" })
+map("i", "<A-BS>", "<C-w>", { desc = "General remove word" })
+map("v", "y", "ygv<Esc>", { desc = "_ Yank preventing cursor from jumping back to where selection started" })
 map("n", "<leader>ol", function()
   vim.ui.open(vim.fn.expand "%:p:h")
-end, { desc = "Open file location in file explorer" })
+end, { desc = "General open file location in file explorer" })
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
@@ -84,7 +84,7 @@ map({ "n", "t" }, "<A-h>", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "Term toggle horizontal split" })
 
-map({ "n", "t" }, "<C-A-h>", function()
+map({ "n", "t" }, "<A-S-S-h>", function()
   require("nvchad.term").toggle {
     pos = "sp",
     id = "htoggleTermLoc",
@@ -96,7 +96,7 @@ map({ "n", "t" }, "<A-i>", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
 end, { desc = "Term toggle floating" })
 
-map({ "n", "t" }, "<C-A-i>", function()
+map({ "n", "t" }, "<A-S-i>", function()
   require("nvchad.term").toggle {
     pos = "float",
     id = "floatTermLoc",
@@ -131,6 +131,8 @@ map("n", "<S-Tab>", function()
 end, { desc = "Buffer go to prev" })
 
 map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "Buffer new" })
+map("n", "<leader>bh", "<cmd>split | enew<CR>", { desc = "Buffer new horizontal split" })
+map("n", "<leader>bv", "<cmd>vsplit | enew<CR>", { desc = "Buffer new vertical split" })
 
 map("n", "<leader>x", function()
   tabufline.close_buffer()
@@ -155,17 +157,9 @@ map(
   "n",
   "<leader>rl",
   "<cmd>s/[a-zA-Z]/\\=nr2char((char2nr(submatch(0)) - (char2nr(submatch(0)) >= 97 ? 97 : 65) + 13) % 26 + (char2nr(submatch(0)) >= 97 ? 97 : 65))/g<CR>",
-  { desc = "Mum and dad were having fun" }
+  { desc = "_ Mum and dad were having fun" }
 )
 
 map("n", "<leader>rf", function()
   vim.cmd [[%s/[a-zA-Z]/\=nr2char((char2nr(submatch(0)) - (char2nr(submatch(0)) >= 97 ? 97 : 65) + 13) % 26 + (char2nr(submatch(0)) >= 97 ? 97 : 65))/g]]
-end, { desc = "Mum and dad were having fun" })
-
---[[ map("n", "<C-Up>", function()
-  require("colorify.tools").lighten(2)
-end)
-
-map("n", "<C-Down>", function()
-  require("colorify.tools").lighten(-2)
-end) ]]
+end, { desc = "_ Mum and dad were having fun" })

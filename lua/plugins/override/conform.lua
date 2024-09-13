@@ -7,7 +7,7 @@ return {
   init = function()
     vim.keymap.set("n", "<leader>fm", function()
       require("conform").format { lsp_fallback = true }
-    end, { desc = "Format files" })
+    end, { desc = "General format file" })
   end,
   ---@type conform.setupOpts
   opts = {

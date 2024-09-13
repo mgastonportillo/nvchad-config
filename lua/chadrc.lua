@@ -102,6 +102,10 @@ return {
     telescope = { style = "bordered" },
   },
 
+  cheatsheet = {
+    excluded_groups = { "_" },
+  },
+
   lsp = {
     signature = true,
     semantic_tokens = true,

@@ -21,21 +21,8 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 require("lazy").setup({
-  { "Bilal2453/luvit-meta" },
-  { "justinsgithub/wezterm-types" },
-  {
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = {
-      library = {
-        -- "${3rd}/luv/library",
-        "luvit-meta/library",
-        "wezterm-types/types",
-        vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-        -- vim.fn.expand "$HOME/workspace/neovim/ui/nvchad_types",
-      },
-    },
-  },
+  { import = "gale.wezterm" },
+  { import = "gale.types" },
   {
     "NvChad/NvChad",
     dev = false,

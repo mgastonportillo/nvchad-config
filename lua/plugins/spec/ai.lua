@@ -8,7 +8,7 @@ return {
   opts = {
     provider = "ollama",
     ollama = {
-      model = "llama3.1",
+      model = "llama3",
     },
     keymaps = {
       toggle = "´´",

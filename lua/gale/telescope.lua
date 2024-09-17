@@ -1,7 +1,6 @@
 -- Inspired in <https://github.com/xzbdmw/nvimconfig/blob/main/lua/custom/telescope-pikers.lua>
 -- and <https://github.com/nvim-telescope/telescope.nvim/issues/2014#issuecomment-1541423345>
 local M = {}
-M.pickers = {}
 
 local entry_display = require "telescope.pickers.entry_display"
 local make_entry = require "telescope.make_entry"
@@ -10,7 +9,7 @@ local utils = require "telescope.utils"
 
 -- local devicons = require "nvim-web-devicons"
 -- local icon_width = strings.strdisplaywidth(devicons.get_icon("fname", { default = true }))
-local icon_width = 2
+local icon_width = 2 -- offers the best results
 
 local get_path_and_tail = function(file_name)
   local tail = utils.path_tail(file_name)
@@ -26,7 +25,7 @@ end
 ---@param filetype "find" | "old"
 ---@param opts? table
 -- Generate a custom file finder picker
-M.pickers.files = function(filetype, opts)
+local files = function(filetype, opts)
   local files_opts = {
     previewer = false,
     layout_config = {
@@ -115,7 +114,7 @@ end
 ---@param filetype string | nil
 ---@param opts? table
 -- Generate a custom live grep picker
-M.pickers.grep = function(search, default_text, filetype, opts)
+local grep = function(search, default_text, filetype, opts)
   local grep_opts = {
     layout_strategy = "vertical",
     layout_config = {
@@ -255,7 +254,7 @@ end
 ---@param previewer boolean
 ---@param opts? table
 --- Generate a custom buffer picker
-M.pickers.buffers = function(previewer, opts)
+local buffers = function(previewer, opts)
   local buf_opts = {
     bufnr_width = 0,
     layout_strategy = "horizontal",
@@ -309,5 +308,11 @@ M.pickers.buffers = function(previewer, opts)
 
   require("telescope.builtin").buffers(options)
 end
+
+M.pickers = {
+  files = files,
+  grep = grep,
+  buffers = buffers,
+}
 
 return M

@@ -16,9 +16,11 @@ return {
       LspInlayHint = { fg = "#4e5665", bg = "NONE" },
       FloatTitle = { link = "Title" },
       FloatBorder = { link = "TelescopeBorder" },
+      TelescopeSelection = { bg = { "black", -2 }, bold = true },
       NvimTreeRootFolder = { link = "TelescopeBorder" },
       NvimTreeGitDirty = { link = "NvimTreeNormal" },
       ["@keyword"] = { italic = true },
+      NvimTreeCursorLine = { bg = { "black", -2 } },
     },
 
     hl_add = {
@@ -108,7 +110,6 @@ return {
 
   lsp = {
     signature = true,
-    semantic_tokens = true,
   },
 
   term = {

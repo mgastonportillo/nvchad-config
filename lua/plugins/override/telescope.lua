@@ -31,28 +31,94 @@ return {
     map("n", "<leader>gs", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
     map("n", "<leader>f?", "<cmd>Telescope help_tags<CR>", { desc = "Telescope help tags" })
   end,
-  opts = {
-    defaults = {
-      selection_caret = " ",
-      entry_prefix = " ",
-      file_ignore_patterns = { "node_modules" },
-      mappings = {
-        i = {
-          ["<C-j>"] = require("telescope.actions").move_selection_next,
-          ["<C-k>"] = require("telescope.actions").move_selection_previous,
+  opts = function(_, opts)
+    local custom_entry_maker = function(layout_opts)
+      local devicons = require "nvim-web-devicons"
+      local entry_display = require "telescope.pickers.entry_display"
+
+      layout_opts = layout_opts or {}
+      local default_icons, _ = devicons.get_icon("file", "", { default = true })
+
+      local displayer = entry_display.create {
+        separator = " ",
+        items = {
+          { width = vim.fn.strwidth(default_icons) },
+          { remaining = true },
+          { remaining = true },
+        },
+      }
+
+      local make_display = function(entry)
+        return displayer {
+          { entry.devicons, entry.devicons_highlight },
+          { entry.file_name },
+          { entry.greyed_out, "@comment" },
+        }
+      end
+
+      return function(entry)
+        local greyed_out
+
+        if entry:find "/" == nil then
+          greyed_out = vim.fn.fnamemodify(entry, ":p:h")
+        else
+          greyed_out = entry:gsub("/[^/]*$", "")
+        end
+
+        local file_name = vim.fn.fnamemodify(entry, ":p:t")
+        local icons, highlight = devicons.get_icon(entry, string.match(entry, "%a+$"), { default = true })
+
+        return {
+          valid = true,
+          value = entry,
+          ordinal = entry,
+          display = make_display,
+          devicons = icons,
+          devicons_highlight = highlight,
+          file_name = file_name,
+          greyed_out = greyed_out,
+        }
+      end
+    end
+
+    opts = vim.tbl_deep_extend("force", opts, {
+      defaults = {
+        preview = {
+          hide_on_startup = true,
+        },
+        results_title = false,
+        selection_caret = " ",
+        entry_prefix = " ",
+        file_ignore_patterns = { "node_modules" },
+        mappings = {
+          i = {
+            ["<C-j>"] = require("telescope.actions").move_selection_next,
+            ["<C-k>"] = require("telescope.actions").move_selection_previous,
+            ["<C-h>"] = require("telescope.actions.layout").toggle_preview,
+          },
+          n = {
+            ["<C-h>"] = require("telescope.actions.layout").toggle_preview,
+          },
         },
       },
-    },
-    pickers = {
-      oldfiles = {
-        prompt_title = "Recent Files",
+      pickers = {
+        oldfiles = {
+          prompt_title = "Recent Files",
+          entry_maker = custom_entry_maker(),
+        },
+        find_files = {
+          prompt_title = "Files",
+          entry_maker = custom_entry_maker(),
+        },
+        live_grep = {
+          entry_maker = custom_entry_maker(),
+        },
+        builtin = {
+          prompt_title = "Builtin Pickers",
+        },
       },
-      find_files = {
-        prompt_title = "Files",
-      },
-      builtin = {
-        prompt_title = "Builtin Pickers",
-      },
-    },
-  },
+    })
+
+    return opts
+  end,
 }

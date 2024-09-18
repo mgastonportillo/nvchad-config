@@ -12,9 +12,13 @@ return {
     local servers = {
       astro = {},
       bashls = {
-        settings = {
-          globPattern = "*@(.sh|.inc|.bash|.command|!(.env))",
-        },
+        on_attach = function(client, bufnr)
+          local filename = vim.api.nvim_buf_get_name(bufnr)
+
+          if filename:match "%.env$" then
+            vim.lsp.stop_client(client.id)
+          end
+        end,
       },
       clangd = {},
       css_variables = {},

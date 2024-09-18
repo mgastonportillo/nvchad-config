@@ -4,18 +4,18 @@ return {
   opts = function(_, opts)
     local map = vim.keymap.set
     local pickers = require("gale.telescope").pickers
-    local sizes = {
-      width = 0.66,
-      height = 0.75,
-      preview_width = 0.5,
+    local SIZES = {
+      HEIGHT = 0.75,
+      WIDTH = 0.66,
+      PREVIEW_WIDTH = 0.5,
     }
 
     map("n", "<leader>fa", function()
       pickers.files("find", {
         layout_config = {
           horizontal = {
-            width = sizes.width,
-            height = sizes.height,
+            width = SIZES.WIDTH,
+            height = SIZES.HEIGHT,
           },
         },
         follow = true,
@@ -30,8 +30,8 @@ return {
       pickers.files("find", {
         layout_config = {
           horizontal = {
-            width = sizes.width,
-            height = sizes.height,
+            width = SIZES.WIDTH,
+            height = SIZES.HEIGHT,
           },
         },
         prompt_title = "Files",
@@ -42,8 +42,8 @@ return {
       pickers.files("old", {
         layout_config = {
           horizontal = {
-            width = sizes.width,
-            height = sizes.height,
+            width = SIZES.WIDTH,
+            height = SIZES.HEIGHT,
           },
         },
         prompt_title = "Old Files",
@@ -54,8 +54,8 @@ return {
       pickers.grep("live_grep", nil, nil, {
         layout_config = {
           vertical = {
-            width = sizes.width,
-            height = sizes.height,
+            width = SIZES.WIDTH,
+            height = SIZES.HEIGHT,
           },
         },
         prompt_title = "Live Grep",
@@ -66,8 +66,8 @@ return {
       pickers.buffers(true, {
         layout_config = {
           horizontal = {
-            width = sizes.width,
-            height = sizes.height,
+            width = SIZES.WIDTH,
+            height = SIZES.HEIGHT,
           },
         },
       })
@@ -96,9 +96,9 @@ return {
         entry_prefix = " ",
         layout_config = {
           horizontal = {
-            width = sizes.width,
-            height = sizes.height,
-            preview_width = sizes.preview_width,
+            width = SIZES.WIDTH,
+            height = SIZES.HEIGHT,
+            preview_width = SIZES.PREVIEW_WIDTH,
           },
         },
         file_ignore_patterns = { "node_modules" },
@@ -106,9 +106,11 @@ return {
           i = {
             ["<C-j>"] = require("telescope.actions").move_selection_next,
             ["<C-k>"] = require("telescope.actions").move_selection_previous,
+            ["<C-h>"] = require("telescope.actions.layout").toggle_preview,
             ["<F1>"] = require("telescope.actions.layout").toggle_preview,
           },
           n = {
+            ["<C-h>"] = require("telescope.actions.layout").toggle_preview,
             ["<F1>"] = require("telescope.actions.layout").toggle_preview,
           },
         },

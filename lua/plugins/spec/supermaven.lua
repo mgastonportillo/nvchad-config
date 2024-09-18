@@ -4,7 +4,7 @@ return {
   opts = {
     keymaps = {
       accept_suggestion = "<Tab>",
-      clear_suggestion = "<C-]>",
+      clear_suggestion = "<C-x>",
       accept_word = "<C-y>",
     },
     disable_keymaps = false,

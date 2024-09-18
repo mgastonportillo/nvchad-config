@@ -2,12 +2,14 @@
 return {
   "laytan/cloak.nvim",
   lazy = false,
-  config = function()
-    require("cloak").setup {
+  init = function()
+    vim.keymap.set("n", "<leader><F10>", "<cmd>CloakToggle<CR>", { desc = "Toggle Cloak" })
+  end,
+  opts = function(_, opts)
+    opts = vim.tbl_deep_extend("force", opts, {
       enabled = true,
       cloak_character = "*",
-      -- The applied highlight group (colors) on the cloaking, see `:h highlight`.
-      highlight_group = "Comment",
+      highlight_group = "LazyOperator",
       cloak_length = 12,
       try_all_patterns = true,
       cloak_telescope = true,
@@ -26,6 +28,8 @@ return {
           replace = nil,
         },
       },
-    }
+    })
+
+    return opts
   end,
 }

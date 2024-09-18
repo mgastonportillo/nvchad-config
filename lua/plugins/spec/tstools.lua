@@ -1,4 +1,4 @@
-local on_attach = require("gale.lsp").custom_on_attach
+local create_on_attach = require("gale.lsp").create_on_attach
 
 ---@type NvPluginSpec
 return {
@@ -27,7 +27,7 @@ return {
     "neovim/nvim-lspconfig",
   },
   opts = {
-    on_attach = on_attach,
+    on_attach = create_on_attach,
     ---@class Settings
     settings = {
       tsserver_file_preferences = {

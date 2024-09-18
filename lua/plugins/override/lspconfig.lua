@@ -1,20 +1,21 @@
 ---@type NvPluginSpec
+
 return {
   "neovim/nvim-lspconfig",
   config = function()
-    require("nvchad.configs.lspconfig").defaults()
+    dofile(vim.g.base46_cache .. "lsp")
 
     local lspconfig = require "lspconfig"
-    local on_init = require("nvchad.configs.lspconfig").on_init
-    local capabilities = require("nvchad.configs.lspconfig").capabilities
+    local on_init = require("gale.lsp").on_init
+    local capabilities = require("gale.lsp").capabilities
     local create_on_attach = require("gale.lsp").create_on_attach
+    local inlay_hints_settings = require("gale.lsp").inlay_hints_settings
 
     local servers = {
       astro = {},
       bashls = {
         on_attach = function(client, bufnr)
           local filename = vim.api.nvim_buf_get_name(bufnr)
-
           if filename:match "%.env$" then
             vim.lsp.stop_client(client.id)
           end
@@ -48,8 +49,30 @@ return {
         end,
       },
       somesass_ls = {},
-      tailwindcss = {},
+      -- tailwindcss = {},
       taplo = {},
+      vtsls = {
+        settings = {
+          javascript = {
+            inlayHints = inlay_hints_settings,
+          },
+          typescript = {
+            inlayHints = inlay_hints_settings,
+          },
+          vtsls = {
+            tsserver = {
+              globalPlugins = {
+                "@styled/typescript-styled-plugin",
+              },
+            },
+            experimental = {
+              completion = {
+                enableServerSideFuzzyMatch = true,
+              },
+            },
+          },
+        },
+      },
       yamlls = {},
       zls = {},
     }
@@ -61,10 +84,22 @@ return {
       lspconfig[name].setup(opts)
     end
 
-    -- Customise LSP UI
+    -- LSP UI
     local border = "rounded"
+
+    local x = vim.diagnostic.severity
+    vim.diagnostic.config {
+      virtual_text = false,
+      signs = { text = { [x.ERROR] = "", [x.WARN] = "", [x.INFO] = "", [x.HINT] = "󰌵" } },
+      float = { border = border },
+      underline = true,
+    }
+
+    -- :LspInfo
     local win = require "lspconfig.ui.windows"
-    win.default_options = { border = border } -- :LspInfo
-    vim.diagnostic.config { virtual_text = false, float = { border = border } } -- vim.diagnostic
+    win.default_options = { border = border }
+
+    -- Gutter
+    vim.fn.sign_define("CodeActionSign", { text = "󰉁", texthl = "CodeActionSignHl" })
   end,
 }

@@ -3,6 +3,7 @@ local create_on_attach = require("gale.lsp").create_on_attach
 ---@type NvPluginSpec
 return {
   "pmizio/typescript-tools.nvim",
+  enabled = false,
   ft = {
     "astro",
     "html",
@@ -28,7 +29,11 @@ return {
   },
   opts = {
     on_attach = create_on_attach,
-    ---@class Settings
+    lsp = {
+      code_actions = {
+        previewer = false,
+      },
+    },
     settings = {
       tsserver_file_preferences = {
         includeInlayEnumMemberValueHints = true,

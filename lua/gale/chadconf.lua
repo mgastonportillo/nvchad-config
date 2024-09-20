@@ -67,7 +67,8 @@ M.modules = {
     tint = "%#StText#", -- Force grey on modules that absorb neighbour colour
 
     modified = function()
-      return vim.bo.modified and " " or ""
+      local hl = "%#TbBufOffModified#"
+      return vim.bo.modified and hl .. " " or hl .. ""
     end, -- Show modified indicator
 
     bufnr = function()

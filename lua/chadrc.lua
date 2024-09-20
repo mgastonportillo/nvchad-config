@@ -21,6 +21,8 @@ return {
       NvimTreeGitDirty = { link = "NvimTreeNormal" },
       ["@keyword"] = { italic = true },
       NvimTreeCursorLine = { bg = { "black", -2 } },
+      TbBufOn = { fg = { "white", 10 } },
+      TbBufOffModified = { fg = { "green", "black", 50 } },
     },
 
     hl_add = {
@@ -69,6 +71,8 @@ return {
         "tint",
         "separator",
         "file",
+        "modified",
+        "tint",
         "git",
         "%=",
         "lsp_msg",
@@ -82,6 +86,7 @@ return {
       modules = {
         hack = modules.statusline.hack,
         harpoon = modules.statusline.harpoon,
+        modified = modules.statusline.modified,
         separator = modules.statusline.separator,
         tint = modules.statusline.tint,
       },

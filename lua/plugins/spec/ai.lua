@@ -1,5 +1,6 @@
 return {
   "magicalne/nvim.ai",
+  enabled = false,
   event = "BufEnter",
   dependencies = {
     "nvim-lua/plenary.nvim",

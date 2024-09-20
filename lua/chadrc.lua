@@ -37,6 +37,7 @@ return {
       HelpviewCode = { link = "MarkviewLayer2" },
       HelpviewInlineCode = { link = "MarkviewInlineCode" },
       HelpviewCodeLanguage = { link = "MarkviewCode" },
+      CodeActionSignHl = { fg = "#f9e2af" },
       ["@markup.quote.markdown"] = { bg = "NONE" },
       ["@markup.raw.block.markdown"] = { link = "MarkviewLayer2" },
     },

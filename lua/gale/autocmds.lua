@@ -3,6 +3,22 @@ local autocmd = vim.api.nvim_create_autocmd
 local utils = require "gale.utils"
 local buf_map = utils.buf_map
 
+autocmd("LspAttach", {
+  desc = "Display code action sign in gutter if available.",
+  pattern = "*",
+  group = augroup("UserLspConfig", { clear = true }),
+  callback = function()
+    autocmd({ "CursorMoved", "CursorMovedI" }, {
+      group = augroup("CodeActionSign", { clear = true }),
+      callback = function()
+        vim.schedule(function()
+          utils.code_action_listener()
+        end)
+      end,
+    })
+  end,
+})
+
 autocmd("BufLeave", {
   desc = "Hide tabufline if only one buffer and one tab are open.",
   pattern = "*",

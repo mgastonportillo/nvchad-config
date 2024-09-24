@@ -44,6 +44,44 @@ return {
       },
     })
 
+    local colors = require "nvim-highlight-colors.color.utils"
+    local utils = require "nvim-highlight-colors.utils"
+
+    ---@class cmp.FormattingConfig
+    --- This makes chadrc.ui.cmp take no effect
+    opts.formatting = {
+      fields = { "abbr", "kind", "menu" },
+
+      format = function(entry, item)
+        local icons = require "nvchad.icons.lspkind"
+        icons.Color = "󱓻"
+
+        local icon = " " .. icons[item.kind] .. " "
+        item.kind = string.format("%s%s ", icon, item.kind)
+
+        local entryItem = entry:get_completion_item()
+        if entryItem == nil then
+          return item
+        end
+
+        local entryDoc = entryItem.documentation
+        if entryDoc == nil or type(entryDoc) ~= "string" then
+          return item
+        end
+
+        local color_hex = colors.get_color_value(entryDoc)
+        if color_hex == nil then
+          return item
+        end
+
+        local highlight_group = utils.create_highlight_name("fg-" .. color_hex)
+        vim.api.nvim_set_hl(0, highlight_group, { fg = color_hex, default = true })
+        item.kind_hl_group = highlight_group
+
+        return item
+      end,
+    }
+
     cmp.setup(opts)
   end,
 }

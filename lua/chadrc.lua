@@ -21,8 +21,8 @@ return {
       NvimTreeGitDirty = { link = "NvimTreeNormal" },
       ["@keyword"] = { italic = true },
       NvimTreeCursorLine = { bg = { "black", -2 } },
-      TbBufOn = { fg = { "white", 10 } },
-      TbBufOffModified = { fg = { "green", "black", 50 } },
+      TbBufOn = { fg = { "white", 10 } }, ---@diagnostic disable-line
+      TbBufOffModified = { fg = { "green", "black", 50 } }, ---@diagnostic disable-line
     },
 
     hl_add = {
@@ -94,17 +94,6 @@ return {
 
     tabufline = {
       order = { "buffers", "tabs", "btns" },
-    },
-
-    cmp = {
-      style = "default",
-      icons = true,
-      lspkind_text = true,
-      icons_left = true,
-      format_colors = {
-        tailwind = true,
-        icon = "󱓻",
-      },
     },
 
     telescope = { style = "bordered" },

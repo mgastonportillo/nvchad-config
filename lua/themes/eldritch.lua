@@ -61,6 +61,7 @@ M.base_16 = {
 
 M.polish_hl = {
   defaults = {
+    CursorLine = { bg = M.base_30.black },
     CursorLineNr = { fg = M.base_30.yellow, bold = true },
     FloatBorder = { fg = M.base_30.purple },
     LineNr = { fg = M.base_30.light_grey },
@@ -74,6 +75,11 @@ M.polish_hl = {
   },
   blankline = {
     IblScopeChar = { fg = M.base_30.black2, bold = false },
+  },
+  neogit = {
+    NeogitDiffContextCursor = { bg = M.base_30.light_grey },
+    NeogitDiffContextHighlight = { bg = "NONE" },
+    NeogitDiffContext = { bg = "NONE" },
   },
   tbline = {
     TbBufOn = { fg = M.base_30.green },

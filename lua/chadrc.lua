@@ -6,40 +6,59 @@ local modules = require("gale.chadconf").modules
 return {
   base46 = {
     transparency = true,
-    theme = "bearded-arc",
-    theme_toggle = { "bearded-arc", "chadracula-evondev" },
+    theme = "eldritch", ---@diagnostic disable-line
+    theme_toggle = { "eldritch", "eldritch" }, ---@diagnostic disable-line
+
+    changed_themes = {
+      ["bearded-arc"] = {
+        polish_hl = {
+          defaults = {
+            CursorLineNr = { fg = "#F6D96D", bold = true },
+            FloatBorder = { link = "TelescopeBorder" },
+            LspInfoBorder = { link = "TelescopeBorder" },
+          },
+          tbline = {
+            TbBufOn = { link = "TbBufOnBeardedArc" },
+          },
+          treesitter = {
+            Comment = { fg = "#7589BF", italic = true },
+            ["@comment"] = { fg = "#7589BF", italic = true },
+          },
+        },
+      },
+    },
 
     hl_override = {
-      Comment = { italic = true },
-      ["@comment"] = { italic = true },
-      CursorLineNr = { fg = "yellow", bold = true },
-      LspInlayHint = { fg = "#4e5665", bg = "NONE" },
+      MatchWord = { fg = "NONE", bg = "black2" },
+      MatchBackground = { link = "MatchWord" },
+      LspInlayHint = { fg = "#7589bf", bg = "NONE" },
       FloatTitle = { link = "Title" },
-      FloatBorder = { link = "TelescopeBorder" },
+      TbBufOffModified = { fg = { "green", "black", 50 } }, ---@diagnostic disable-line
+      NeogitDiffContextCursor = { bg = "light_grey" },
+      NeogitDiffContextHighlight = { bg = "NONE" },
+      NeogitDiffContext = { bg = "NONE" },
+      TelescopeBorder = { fg = "purple" },
+      TelescopePromptBorder = { fg = "purple" },
       TelescopeSelection = { bg = { "black", -2 }, bold = true },
-      NvimTreeRootFolder = { link = "TelescopeBorder" },
+      NvimTreeRootFolder = { fg = "vibrant_green" },
       NvimTreeGitDirty = { link = "NvimTreeNormal" },
       ["@keyword"] = { italic = true },
       NvimTreeCursorLine = { bg = { "black", -2 } },
-      TbBufOn = { fg = { "white", 10 } }, ---@diagnostic disable-line
-      TbBufOffModified = { fg = { "green", "black", 50 } }, ---@diagnostic disable-line
+      CmpDocBorder = { fg = "purple" },
     },
 
     hl_add = {
-      YankVisual = { link = "CursorColumn" },
-      LspInfoBorder = { fg = "#444c5b" },
-      WinBar = { bg = "NONE" },
-      WinBarNC = { bg = "NONE" },
-      DropBarMenuCurrentContext = { link = "Visual" },
+      YankVisual = { bg = "lightbg" },
       St_HarpoonInactive = { link = "StText" },
       St_HarpoonActive = { link = "St_LspHints" },
-      NvimTreeGitStagedIcon = { fg = "#a6e3a1" },
+      CodeActionSignHl = { fg = "#f9e2af" },
+      NvimTreeGitStagedIcon = { fg = "vibrant_green" },
+      TbBufOnBeardedArc = { fg = { "white", 10 } }, ---@diagnostic disable-line
       MarkviewLayer2 = { bg = "#171b21" },
       MarkviewCode = { link = "MarkviewLayer2" },
       HelpviewCode = { link = "MarkviewLayer2" },
       HelpviewInlineCode = { link = "MarkviewInlineCode" },
       HelpviewCodeLanguage = { link = "MarkviewCode" },
-      CodeActionSignHl = { fg = "#f9e2af" },
       ["@markup.quote.markdown"] = { bg = "NONE" },
       ["@markup.raw.block.markdown"] = { link = "MarkviewLayer2" },
     },

@@ -6,19 +6,30 @@ local modules = require("gale.chadconf").modules
 return {
   base46 = {
     transparency = true,
-    theme = "eldritch", ---@diagnostic disable-line
-    theme_toggle = { "eldritch", "eldritch" }, ---@diagnostic disable-line
+    theme = "bearded-arc", ---@diagnostic disable-line
+    theme_toggle = { "bearded-arc", "bearded-arc" }, ---@diagnostic disable-line
 
     changed_themes = {
       ["bearded-arc"] = {
         polish_hl = {
           defaults = {
             CursorLineNr = { fg = "#F6D96D", bold = true },
-            FloatBorder = { link = "TelescopeBorder" },
-            LspInfoBorder = { link = "TelescopeBorder" },
+            FloatBorder = { link = "Comment" },
+            LspInfoBorder = { link = "Comment" },
+          },
+          neogit = {
+            NeogitDiffContextCursor = { link = "BoldCursorLine" },
+          },
+          nvimtree = {
+            NvimTreeCursorLine = { link = "BoldCursorLine" },
           },
           tbline = {
-            TbBufOn = { link = "TbBufOnBeardedArc" },
+            TbBufOn = { link = "Normal" },
+          },
+          telescope = {
+            TelescopeBorder = { link = "Comment" },
+            TelescopePromptBorder = { link = "Comment" },
+            TelescopeSelection = { link = "BoldCursorLine" },
           },
           treesitter = {
             Comment = { fg = "#7589BF", italic = true },
@@ -34,26 +45,25 @@ return {
       LspInlayHint = { fg = "#7589bf", bg = "NONE" },
       FloatTitle = { link = "Title" },
       TbBufOffModified = { fg = { "green", "black", 50 } }, ---@diagnostic disable-line
-      NeogitDiffContextCursor = { bg = "light_grey" },
       NeogitDiffContextHighlight = { bg = "NONE" },
       NeogitDiffContext = { bg = "NONE" },
-      TelescopeBorder = { fg = "purple" },
-      TelescopePromptBorder = { fg = "purple" },
-      TelescopeSelection = { bg = { "black", -2 }, bold = true },
       NvimTreeRootFolder = { fg = "vibrant_green" },
       NvimTreeGitDirty = { link = "NvimTreeNormal" },
       ["@keyword"] = { italic = true },
-      NvimTreeCursorLine = { bg = { "black", -2 } },
-      CmpDocBorder = { fg = "purple" },
+      --- use with eldritch
+      -- CmpDocBorder = { fg = "purple" },
+      -- NeogitDiffContextCursor = { bg = "light_grey" },
+      -- TelescopeBorder = { fg = "purple" },
+      -- TelescopePromptBorder = { fg = "purple" },
     },
 
     hl_add = {
+      BoldCursorLine = { bg = { "line", -12 }, bold = true },
       YankVisual = { bg = "lightbg" },
       St_HarpoonInactive = { link = "StText" },
       St_HarpoonActive = { link = "St_LspHints" },
       CodeActionSignHl = { fg = "#f9e2af" },
       NvimTreeGitStagedIcon = { fg = "vibrant_green" },
-      TbBufOnBeardedArc = { fg = { "white", 10 } }, ---@diagnostic disable-line
       MarkviewLayer2 = { bg = "#171b21" },
       MarkviewCode = { link = "MarkviewLayer2" },
       HelpviewCode = { link = "MarkviewLayer2" },

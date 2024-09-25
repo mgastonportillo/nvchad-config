@@ -34,7 +34,7 @@ local harpoon_statusline_indicator = function()
   local status = { options.icon }
 
   local get_full_path = function(root, value)
-    if vim.loop.os_uname().sysname == "Windows_NT" then
+    if vim.uv.os_uname().sysname == "Windows_NT" then
       return root .. "\\" .. value
     end
 

@@ -8,6 +8,10 @@ M.theme_customs = {
     code_action_fg = "#F9E2AF",
     curline_bg = "black",
     curline_fg = "nord_blue",
+    st_bg = "one_bg1",
+    st_cwd_fg = "red",
+    st_normal_fg = "blue",
+    st_insert_fg = "purple",
   },
   ["eldritch"] = {
     border_fg = "purple",
@@ -16,6 +20,10 @@ M.theme_customs = {
     code_action_fg = "yellow",
     curline_bg = "black",
     curline_fg = "purple",
+    st_bg = "statusline_bg",
+    st_cwd_fg = "yellow",
+    st_normal_fg = "blue",
+    st_insert_fg = "purple",
   },
 }
 

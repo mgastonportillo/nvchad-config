@@ -48,6 +48,16 @@ M.base46.hl_override = {
   NvimTreeRootFolder = { fg = "vibrant_green" },
   NvimTreeGitDirty = { link = "NvimTreeNormal" },
   TbBufOn = { link = themed_values.buf_on_link },
+  St_NormalMode = { fg = themed_values.st_normal_fg, bg = themed_values.st_bg },
+  St_InsertMode = { fg = themed_values.st_insert_fg, bg = themed_values.st_bg },
+  St_cwd = { fg = themed_values.st_cwd_fg, bg = themed_values.st_bg },
+  St_CommandMode = { bg = themed_values.st_bg },
+  St_ConfirmMode = { bg = themed_values.st_bg },
+  St_SelectMode = { bg = themed_values.st_bg },
+  St_VisualMode = { bg = themed_values.st_bg },
+  St_ReplaceMode = { bg = themed_values.st_bg },
+  St_TerminalMode = { bg = themed_values.st_bg },
+  St_NTerminalMode = { bg = themed_values.st_bg },
   -- BUG: (types) fg can take a table as an argument
   TbBufOffModified = { fg = { "green", "black", 50 } }, ---@diagnostic disable-line
   FloatTitle = { fg = themed_values.border_fg, bg = "NONE" },

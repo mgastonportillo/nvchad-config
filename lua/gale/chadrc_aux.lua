@@ -1,5 +1,24 @@
 local M = {}
 
+M.theme_customs = {
+  ["bearded-arc"] = {
+    border_fg = "#7589BF",
+    buf_on_link = "Normal",
+    comment_fg = "#7589BF",
+    code_action_fg = "#F9E2AF",
+    curline_bg = "black",
+    curline_fg = "nord_blue",
+  },
+  ["eldritch"] = {
+    border_fg = "purple",
+    buf_on_link = "St_Lsp",
+    comment_fg = "dark_purple",
+    code_action_fg = "yellow",
+    curline_bg = "black",
+    curline_fg = "purple",
+  },
+}
+
 --- Show harpoon indicator in statusline
 local harpoon_statusline_indicator = function()
   -- inspiration from https://github.com/letieu/harpoon-lualine

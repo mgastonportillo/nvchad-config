@@ -51,6 +51,7 @@ return {
   { import = "plugins.spec.supermaven" },
   { import = "plugins.spec.swenv" },
   { import = "plugins.spec.tabby-ml" },
+  { import = "plugins.spec.tiny-code-action" },
   { import = "plugins.spec.tiny-inline-diagnostic" },
   { import = "plugins.spec.todo-comments" },
   { import = "plugins.spec.treesitter-textobjects" },

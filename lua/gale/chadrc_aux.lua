@@ -12,6 +12,8 @@ M.theme_customs = {
     st_cwd_fg = "red",
     st_normal_fg = "blue",
     st_insert_fg = "purple",
+    st_text = "#8386A8",
+    reverse = false,
   },
   ["eldritch"] = {
     border_fg = "purple",
@@ -24,6 +26,8 @@ M.theme_customs = {
     st_cwd_fg = "yellow",
     st_normal_fg = "blue",
     st_insert_fg = "purple",
+    st_text = "grey",
+    reverse = true,
   },
 }
 
@@ -87,6 +91,56 @@ local harpoon_statusline_indicator = function()
   end
 end
 
+local stbufnr = function()
+  return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+end
+
+local filename = function()
+  local icon = "󰈚"
+  local hl = ""
+  local path = vim.api.nvim_buf_get_name(stbufnr())
+  local name = (path == "" and "Empty ") or vim.fs.basename(path)
+  local ext = name:match "%.([^%.]+)$" or name
+
+  if name ~= "Empty " then
+    local devicons_present, devicons = pcall(require, "nvim-web-devicons")
+
+    if devicons_present then
+      hl = "%#DevIcon" .. ext .. "#"
+      local ft_icon = devicons.get_icon(name)
+      icon = (ft_icon ~= nil and ft_icon) or icon
+    end
+  end
+
+  return hl .. icon .. " %#StText#" .. name
+end
+
+local git_custom = function()
+  local bufnr = stbufnr()
+  if not vim.b[bufnr].gitsigns_head or vim.b[bufnr].gitsigns_git_status then
+    return ""
+  end
+
+  local git_status = vim.b[bufnr].gitsigns_status_dict
+  local clear_hl = "%#StText#"
+  local add_hl = "%#St_Lsp#"
+  local changed_hl = "%#StText#"
+  local rm_hl = "%#St_LspError#"
+  local branch_hl = "%#@function#"
+
+  local added = (git_status.added and git_status.added ~= 0) and (add_hl .. "  " .. clear_hl .. git_status.added)
+    or ""
+  local changed = (git_status.changed and git_status.changed ~= 0)
+      and (changed_hl .. "  " .. clear_hl .. git_status.changed)
+    or ""
+  local removed = (git_status.removed and git_status.removed ~= 0)
+      and (rm_hl .. "  " .. clear_hl .. git_status.removed)
+    or ""
+  local branch_name = branch_hl .. " " .. clear_hl .. git_status.head
+
+  return " " .. branch_name .. added .. changed .. removed
+end
+
 M.modules = {
   statusline = {
     separator = " ", -- Add space between modules
@@ -103,6 +157,8 @@ M.modules = {
       return "%#StText#" .. tostring(bufnr)
     end, -- Show current buffer number in statusline
 
+    filename = filename,
+    git_custom = git_custom,
     harpoon = harpoon_statusline_indicator,
   },
 

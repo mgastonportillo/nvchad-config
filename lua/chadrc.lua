@@ -8,9 +8,9 @@ local theme_customs = require("gale.chadrc_aux").theme_customs
 M.base46 = {
   transparency = true,
   -- BUG: (types) theme should be able to accept user themes
-  theme = "bearded-arc", ---@diagnostic disable-line
+  theme = "eldritch", ---@diagnostic disable-line
   -- BUG: (types) theme toggle can be expanded with user themes
-  theme_toggle = { "bearded-arc", "bearded-arc" }, ---@diagnostic disable-line
+  theme_toggle = { "eldritch", "eldritch" }, ---@diagnostic disable-line
 
   integrations = {
     "blankline",
@@ -48,16 +48,17 @@ M.base46.hl_override = {
   NvimTreeRootFolder = { fg = "vibrant_green" },
   NvimTreeGitDirty = { link = "NvimTreeNormal" },
   TbBufOn = { link = themed_values.buf_on_link },
-  St_NormalMode = { fg = themed_values.st_normal_fg, bg = themed_values.st_bg },
-  St_InsertMode = { fg = themed_values.st_insert_fg, bg = themed_values.st_bg },
-  St_cwd = { fg = themed_values.st_cwd_fg, bg = themed_values.st_bg },
-  St_CommandMode = { bg = themed_values.st_bg },
-  St_ConfirmMode = { bg = themed_values.st_bg },
-  St_SelectMode = { bg = themed_values.st_bg },
-  St_VisualMode = { bg = themed_values.st_bg },
-  St_ReplaceMode = { bg = themed_values.st_bg },
-  St_TerminalMode = { bg = themed_values.st_bg },
-  St_NTerminalMode = { bg = themed_values.st_bg },
+  StText = { fg = themed_values.st_text },
+  St_NormalMode = { fg = themed_values.st_normal_fg, bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_InsertMode = { fg = themed_values.st_insert_fg, bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_cwd = { fg = themed_values.st_cwd_fg, bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_CommandMode = { bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_ConfirmMode = { bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_SelectMode = { bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_VisualMode = { bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_ReplaceMode = { bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_TerminalMode = { bg = themed_values.st_bg, reverse = themed_values.reverse },
+  St_NTerminalMode = { bg = themed_values.st_bg, reverse = themed_values.reverse },
   -- BUG: (types) fg can take a table as an argument
   TbBufOffModified = { fg = { "green", "black", 50 } }, ---@diagnostic disable-line
   FloatTitle = { fg = themed_values.border_fg, bg = "NONE" },
@@ -95,10 +96,10 @@ M.ui = {
       "mode",
       "tint",
       "separator",
-      "file",
+      "filename",
       "modified",
       "tint",
-      "git",
+      "git_custom",
       "%=",
       "lsp_msg",
       "%=",
@@ -110,7 +111,9 @@ M.ui = {
     },
     modules = {
       hack = modules.statusline.hack,
+      filename = modules.statusline.filename,
       harpoon = modules.statusline.harpoon,
+      git_custom = modules.statusline.git_custom,
       modified = modules.statusline.modified,
       separator = modules.statusline.separator,
       tint = modules.statusline.tint,

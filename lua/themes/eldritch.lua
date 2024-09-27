@@ -63,8 +63,8 @@ M.polish_hl = {
   defaults = {
     CursorLine = { bg = M.base_30.black },
     CursorLineNr = { fg = M.base_30.yellow, bold = true },
+    LineNr = { fg = M.base_30.dark_purple },
     FloatBorder = { fg = M.base_30.purple },
-    LineNr = { fg = M.base_30.light_grey },
     LspInfoBorder = { fg = M.base_30.purple },
     MatchWord = { bg = M.base_30.black2, fg = M.base_30.grey },
     PmenuSel = { bg = M.base_30.purple },

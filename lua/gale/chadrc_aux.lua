@@ -8,6 +8,7 @@ M.theme_customs = {
     code_action_fg = "#F9E2AF",
     curline_bg = "black",
     curline_fg = "nord_blue",
+    st_harpoon_active = "St_LspHints",
     st_bg = "one_bg1",
     st_cwd_fg = "red",
     st_normal_fg = "blue",
@@ -22,6 +23,7 @@ M.theme_customs = {
     code_action_fg = "yellow",
     curline_bg = "black",
     curline_fg = "purple",
+    st_harpoon_active = "St_Ft",
     st_bg = "statusline_bg",
     st_cwd_fg = "yellow",
     st_normal_fg = "blue",
@@ -96,19 +98,19 @@ local stbufnr = function()
 end
 
 local filename = function()
-  local icon = "󰈚"
+  local icon = "  󰈚"
   local hl = ""
   local path = vim.api.nvim_buf_get_name(stbufnr())
-  local name = (path == "" and "Empty ") or vim.fs.basename(path)
+  local name = (path == "" and "Empty") or vim.fs.basename(path)
   local ext = name:match "%.([^%.]+)$" or name
 
-  if name ~= "Empty " then
+  if name ~= "Empty" then
     local devicons_present, devicons = pcall(require, "nvim-web-devicons")
 
     if devicons_present then
       hl = "%#DevIcon" .. ext .. "#"
       local ft_icon = devicons.get_icon(name)
-      icon = (ft_icon ~= nil and ft_icon) or icon
+      icon = (ft_icon ~= nil and "  " .. ft_icon) or ("  " .. icon)
     end
   end
 
@@ -138,7 +140,7 @@ local git_custom = function()
     or ""
   local branch_name = branch_hl .. " " .. clear_hl .. git_status.head
 
-  return " " .. branch_name .. added .. changed .. removed
+  return " " .. branch_name .. " " .. added .. changed .. removed
 end
 
 M.modules = {
@@ -148,8 +150,7 @@ M.modules = {
     tint = "%#StText#", -- Force grey on modules that absorb neighbour colour
 
     modified = function()
-      local hl = "%#TbBufOffModified#"
-      return vim.bo.modified and hl .. " " or hl .. ""
+      return vim.bo.modified and " *" or " "
     end, -- Show modified indicator
 
     bufnr = function()

@@ -10,7 +10,7 @@ M.base46 = {
   -- BUG: (types) theme should be able to accept user themes
   theme = "eldritch", ---@diagnostic disable-line
   -- BUG: (types) theme toggle can be expanded with user themes
-  theme_toggle = { "eldritch", "bearded-arc" }, ---@diagnostic disable-line
+  theme_toggle = { "eldritch", "eldritch" }, ---@diagnostic disable-line
 
   integrations = {
     "blankline",
@@ -77,7 +77,7 @@ M.base46.hl_add = {
   LspInfoBorder = { link = "FloatBorder" },
   YankVisual = { bg = "lightbg" },
   St_HarpoonInactive = { link = "StText" },
-  St_HarpoonActive = { link = "St_LspHints" },
+  St_HarpoonActive = { link = themed_values.st_harpoon_active },
   CodeActionSignHl = { fg = themed_values.code_action_fg },
   NvimTreeGitStagedIcon = { fg = "vibrant_green" },
   MarkviewLayer2 = { bg = "#171B21" },
@@ -96,7 +96,6 @@ M.ui = {
     order = {
       "mode",
       "tint",
-      "separator",
       "filename",
       "modified",
       "tint",

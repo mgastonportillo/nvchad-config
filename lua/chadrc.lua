@@ -10,7 +10,7 @@ M.base46 = {
   -- BUG: (types) theme should be able to accept user themes
   theme = "eldritch", ---@diagnostic disable-line
   -- BUG: (types) theme toggle can be expanded with user themes
-  theme_toggle = { "eldritch", "eldritch" }, ---@diagnostic disable-line
+  theme_toggle = { "eldritch", "bearded-arc" }, ---@diagnostic disable-line
 
   integrations = {
     "blankline",
@@ -47,6 +47,7 @@ M.base46.hl_override = {
   NeogitDiffContextHighlight = { bg = "NONE" },
   NvimTreeRootFolder = { fg = "vibrant_green" },
   NvimTreeGitDirty = { link = "NvimTreeNormal" },
+  DevIconMd = { fg = "#FFFFFF", bg = "NONE" },
   TbBufOn = { link = themed_values.buf_on_link },
   StText = { fg = themed_values.st_text },
   St_NormalMode = { fg = themed_values.st_normal_fg, bg = themed_values.st_bg, reverse = themed_values.reverse },

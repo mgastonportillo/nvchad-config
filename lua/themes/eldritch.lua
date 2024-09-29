@@ -61,13 +61,13 @@ M.base_16 = {
 
 M.polish_hl = {
   defaults = {
+    FloatBorder = { fg = M.base_30.purple },
+    LspInfoBorder = { link = "FloatBorder" },
+    PmenuSel = { bg = M.base_30.purple },
     CursorLine = { bg = M.base_30.black },
     CursorLineNr = { fg = M.base_30.yellow, bold = true },
     LineNr = { fg = M.base_30.dark_purple },
-    FloatBorder = { fg = M.base_30.purple },
-    LspInfoBorder = { fg = M.base_30.purple },
     MatchWord = { bg = M.base_30.black2, fg = M.base_30.grey },
-    PmenuSel = { bg = M.base_30.purple },
     Visual = { bg = M.base_30.black2 },
   },
   cmp = {

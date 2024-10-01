@@ -23,16 +23,7 @@ local lazy_config = require "configs.lazy"
 require("lazy").setup({
   { import = "gale.wezterm" },
   { import = "gale.types" },
-  {
-    "NvChad/NvChad",
-    dev = false,
-    lazy = false,
-    branch = "v2.5",
-    import = "nvchad.plugins",
-    config = function()
-      require "options"
-    end,
-  },
+  { import = "gale.nvchad" },
   { import = "plugins" },
 }, lazy_config)
 
@@ -47,6 +38,3 @@ for _, v in ipairs { "python3_provider", "node_provider" } do
   vim.g["loaded_" .. v] = nil
   vim.cmd("runtime " .. v)
 end
-
--- No dashboard for me
--- vim.api.nvim_del_user_command "Nvdash"

@@ -75,7 +75,7 @@ return {
 
     map("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope find in current file" })
     map("n", "<leader>ft", "<cmd>Telescope terms<CR>", { desc = "Telescope terms" })
-    map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope NvChad themes" })
+    -- map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope NvChad themes" })
     map("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", { desc = "Telescope LSP references" })
     map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "Telescope find marks" })
     map("n", "<leader>fh", "<cmd>Telescope highlights<CR>", { desc = "Telescope find highlights" })

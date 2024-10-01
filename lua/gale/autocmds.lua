@@ -61,6 +61,17 @@ autocmd("FileType", {
   end,
 })
 
+autocmd("FileType", {
+  desc = "Workaround for NvMenu being below NvimTree.",
+  pattern = "NvMenu",
+  group = augroup("FixNvMenuZindex", { clear = true }),
+  callback = function()
+    if vim.bo.ft == "NvMenu" then
+      vim.api.nvim_win_set_config(0, { zindex = 99 })
+    end
+  end,
+})
+
 autocmd({ "BufEnter", "FileType" }, {
   desc = "Prevent auto-comment on new line.",
   pattern = "*",

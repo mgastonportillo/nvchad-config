@@ -7,10 +7,8 @@ local themes_customs = require("gale.chadrc_aux").themes_customs
 
 M.base46 = {
   transparency = true,
-  -- BUG: (types) theme should be able to accept user themes
   theme = "bearded-arc", ---@diagnostic disable-line
-  -- BUG: (types) theme toggle can be expanded with user themes
-  theme_toggle = { "bearded-arc", "bearded-arc" }, ---@diagnostic disable-line
+  theme_toggle = { "bearded-arc", "eldritch" }, ---@diagnostic disable-line
 
   integrations = {
     "blankline",
@@ -108,6 +106,13 @@ M.ui = {
 
 M.cheatsheet = {
   excluded_groups = { "_" },
+}
+
+M.colorify = {
+  enabled = true,
+  mode = "virtual",
+  virt_text = "󱓻 ",
+  highlight = { hex = true, lspvars = true },
 }
 
 M.lsp = {

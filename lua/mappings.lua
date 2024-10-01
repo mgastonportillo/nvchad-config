@@ -1,14 +1,15 @@
 local utils = require "gale.utils"
 local map = utils.glb_map
 
+vim.cmd [[nnoremap <C-z> <nop>]] -- map didn't work here
 map("n", ";", ":", { desc = "General enter CMD mode" })
 map("i", "jk", "<ESC>", { desc = "General exit insert mode" })
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "General save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy file content" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear search highlights" })
 map("n", "<leader>cs", "<cmd><CR>", { desc = "General clear statusline" })
-vim.cmd [[nnoremap <C-z> <nop>]] -- map didn't work here
-map("n", "z-", "z^", { desc = "_ Remap z^ into z- to match z+" })
+map("n", "z-", "z^", { desc = "_ Remap z^ into z- for convenience" })
+map("n", "g-", "g;", { desc = "_ Remap g; into g- for convenience" })
 map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Genaral stop NVIM" })
 map("n", "<leader>cm", "<cmd>mes clear<CR>", { desc = "General clear messages" })
 -- https://github.com/neovim/neovim/issues/2048
@@ -65,6 +66,42 @@ map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle relative number" })
 map("n", "<leader>ih", "<cmd>ToggleInlayHints<CR>", { desc = "Toggle inlay hints" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" })
 
+-- LSP
+map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+
+-- NvChad
+map("n", "<leader>th", function()
+  require("nvchad.themes").open { style = "flat" }
+end, { desc = "Open NvChad theme selector" })
+
+--NvMenu
+local gale_menu = {
+  {
+    name = "  Lsp Actions",
+    hl = "Exblue",
+    items = "lsp",
+  },
+  { name = "separator" },
+  {
+    name = "  Color Picker",
+    hl = "Exred",
+    cmd = function()
+      require("minty.huefy").open()
+    end,
+  },
+}
+
+map("n", "<C-t>", function()
+  require("menu").open(gale_menu)
+end, { desc = "Open NvChad menu" })
+
+map("n", "<RightMouse>", function()
+  vim.cmd.exec '"normal! \\<RightMouse>"'
+
+  local options = vim.bo.ft == "NvimTree" and "nvimtree" or gale_menu
+  require("menu").open(options, { mouse = true })
+end, { desc = "Open NvChad menu" })
+
 -- Term
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Term escape terminal mode" })
 
@@ -111,14 +148,6 @@ end, { desc = "TreeSitter toggle inspect tree" })
 
 map("n", "<leader>ii", "<cmd>Inspect<CR>", { desc = "TreeSitter inspect under cursor" })
 
--- LSP
-map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
-
--- Utils
-map("n", "gh", function()
-  utils.go_to_github_link()
-end, { desc = "Go to GitHub link generated from string" })
-
 --- Tabufline
 local tabufline = require "nvchad.tabufline"
 
@@ -152,7 +181,11 @@ end, { desc = "Tabufline move buffer to the right" })
 
 map("n", "<A-|>", "<cmd>TabuflineToggle<CR>", { desc = "Tabufline toggle visibility" })
 
---- ++
+-- Utils
+map("n", "gh", function()
+  utils.go_to_github_link()
+end, { desc = "Go to GitHub link generated from string" })
+
 map(
   "n",
   "<leader>rl",

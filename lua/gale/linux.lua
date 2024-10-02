@@ -45,5 +45,3 @@ vim.g.clipboard = {
   },
   cache_enabled = 0,
 }
-
-print("Clipboard configured to use: " .. clipboard_tool)

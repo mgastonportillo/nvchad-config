@@ -10,7 +10,7 @@ return {
   },
   opts = function(_, opts)
     ---@type cmp.ConfigSchema
-    opts = vim.tbl_deep_extend("force", opts, {
+    local custom_opts = {
       mapping = {
         ["<Tab>"] = function(fallback)
           fallback()
@@ -19,7 +19,14 @@ return {
           fallback()
         end,
       },
-    })
+      window = {
+        completion = {
+          border = "rounded",
+        },
+      },
+    }
+
+    opts = vim.tbl_deep_extend("force", opts, custom_opts)
     return opts
   end,
   config = function(_, opts)

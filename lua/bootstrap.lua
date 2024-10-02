@@ -23,7 +23,13 @@ local lazy_config = require "configs.lazy"
 require("lazy").setup({
   { import = "gale.wezterm" },
   { import = "gale.types" },
-  { import = "gale.nvchad" },
+  {
+    "NvChad/NvChad",
+    dev = false,
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
   { import = "plugins" },
 }, lazy_config)
 

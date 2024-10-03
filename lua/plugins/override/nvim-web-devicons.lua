@@ -4,7 +4,7 @@ return {
   opts = {
     override = {
       -- For some reason md changes here don't take effect
-      -- md = { icon = "󰽛", color = "#FFFFFF", name = "Md" },
+      md = { icon = "󰽛", color = "#FFFFFF", name = "Md" },
       mdx = { icon = "󰽛", color = "#FFFFFF", name = "Mdx" },
       markdown = { icon = "󰽛", color = "#FFFFFF", name = "Markdown" },
     },

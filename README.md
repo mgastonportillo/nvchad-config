@@ -1,6 +1,6 @@
 # My custom Neovim configuration
 
-<p align="center"><img src="https://github.com/mgastonportillo/nvchad-config/assets/106234166/1ee24026-0a17-4964-9716-1fe0cb1bd5fc"></p>
+<p align="center"><img src="https://github.com/user-attachments/assets/5fe2b095-1d53-41e9-8ce8-12288bc2b5e1"></p>
 <hr>
 
 ### Features:

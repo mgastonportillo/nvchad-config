@@ -25,6 +25,7 @@ return {
       ["<C-c>"] = false,
       ["q"] = "actions.close",
       ["-"] = "actions.parent",
+      ["<S-Tab>"] = "actions.parent",
       ["_"] = "actions.open_cwd",
       ["`"] = "actions.cd",
       ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" },
@@ -35,17 +36,29 @@ return {
     },
   },
   config = function(_, opts)
-    local toggle_oil = function()
-      if not vim.g.oil_is_open then
-        vim.g.oil_is_open = true
-        require("oil").open()
+    local util = require "oil.util"
+    local map = require("gale.utils").glb_map
+
+    _G.get_oil_winbar = function()
+      local dir = require("oil").get_current_dir()
+      if dir then
+        return "%#OilWinbar#" .. vim.fn.fnamemodify(dir, ":~")
       else
-        vim.g.oil_is_open = false
-        require("oil").close()
+        return "%#OilWinbar#" .. vim.api.nvim_buf_get_name(0)
       end
     end
 
-    local map = require("gale.utils").glb_map
+    _G.oil_is_open = false
+    local toggle_oil = function()
+      if util.is_oil_bufnr(0) and vim.g.oil_is_open then
+        vim.g.oil_is_open = false
+        require("oil").close()
+      else
+        vim.g.oil_is_open = true
+        require("oil").open()
+      end
+    end
+
     map("n", "<C-n>", function()
       toggle_oil()
     end, { desc = "Open Oil" })

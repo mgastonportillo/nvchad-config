@@ -43,15 +43,3 @@ _G.switch = function(param, case_table)
   local def = case_table["default"]
   return def and def() or nil
 end
-
---- Oil helper to retrieve the cwd
-_G.get_oil_winbar = function()
-  local dir = require("oil").get_current_dir()
-  if dir then
-    return vim.fn.fnamemodify(dir, ":~")
-  else
-    return vim.api.nvim_buf_get_name(0)
-  end
-end
-
-_G.oil_is_open = false

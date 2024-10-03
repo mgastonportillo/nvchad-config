@@ -92,10 +92,6 @@ return {
       underline = true,
     }
 
-    -- :LspInfo
-    local win = require "lspconfig.ui.windows"
-    win.default_options = { border = border }
-
     -- Gutter
     vim.fn.sign_define("CodeActionSign", { text = "󰉁", texthl = "CodeActionSignHl" })
   end,

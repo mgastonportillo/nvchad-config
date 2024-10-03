@@ -8,7 +8,7 @@ local themes_customs = require("gale.chadrc_aux").themes_customs
 M.base46 = {
   transparency = true,
   theme = "bearded-arc", ---@diagnostic disable-line
-  theme_toggle = { "bearded-arc", "eldritch" }, ---@diagnostic disable-line
+  theme_toggle = { "bearded-arc", "bearded-arc" }, ---@diagnostic disable-line
   integrations = {
     "blankline",
     "cmp",
@@ -46,8 +46,6 @@ M.base46.hl_override = {
 M.base46.hl_add = {
   YankVisual = { bg = "lightbg" },
   Border = { link = "FloatBorder" },
-  LspInfoBorder = { link = "FloatBorder" },
-  NvimTreeGitStagedIcon = { fg = "vibrant_green" },
   St_HarpoonInactive = { link = "StText" },
   St_HarpoonActive = { link = "St_LspHints" },
   MarkviewLayer2 = { bg = "#171B21" },
@@ -56,6 +54,7 @@ M.base46.hl_add = {
   HelpviewInlineCode = { link = "MarkviewInlineCode" },
   HelpviewCodeLanguage = { link = "MarkviewCode" },
   OilFile = { link = "Normal" },
+  OilWinbar = { fg = "vibrant_green", bold = true },
   CodeActionSignHl = { fg = "#F9E2AF" },
   ["@number.luadoc"] = { fg = "Comment" },
   ["@markup.quote.markdown"] = { bg = "NONE" },

@@ -36,7 +36,7 @@ return {
     end, { desc = "Harpoon Remove buffer" })
     map("n", "<A-m>", function()
       harpoon.ui:toggle_quick_menu(harpoon:list(), {
-        title = "Harpoon btw",
+        title = " Harpoon btw ",
         title_pos = "center",
         border = "rounded",
         ui_width_ratio = 0.40,

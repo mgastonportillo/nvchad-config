@@ -69,37 +69,25 @@ map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" }
 -- LSP
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
+-- Minty
+map("n", "<leader>cp", function()
+  require("minty.huefy").open()
+end, { desc = "Open color picker" })
+
 -- NvChad
 map("n", "<leader>th", function()
   require("nvchad.themes").open { style = "flat" }
-end, { desc = "Open NvChad theme selector" })
+end, { desc = "Open theme picker" })
 
---NvMenu
-local gale_menu = {
-  {
-    name = "  Lsp Actions",
-    hl = "Exblue",
-    items = "lsp",
-  },
-  { name = "separator" },
-  {
-    name = "  Color Picker",
-    hl = "Exred",
-    cmd = function()
-      require("minty.huefy").open()
-    end,
-  },
-}
-
+-- NvMenu
+local menus = utils.menus
 map("n", "<C-t>", function()
-  require("menu").open(gale_menu)
+  require("menu").open(menus.main)
 end, { desc = "Open NvChad menu" })
 
 map("n", "<RightMouse>", function()
   vim.cmd.exec '"normal! \\<RightMouse>"'
-
-  local options = vim.bo.ft == "NvimTree" and "nvimtree" or gale_menu
-  require("menu").open(options, { mouse = true })
+  require("menu").open(menus.main, { mouse = true })
 end, { desc = "Open NvChad menu" })
 
 -- Term

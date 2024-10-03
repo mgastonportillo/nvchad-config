@@ -226,4 +226,48 @@ M.code_action_listener = function()
   end
 end
 
+M.handle_copy = function()
+  local mode = vim.fn.mode()
+  if mode == "v" or mode == "V" or mode == "" then
+    if vim.fn.line "'<" == vim.fn.line "'>" and vim.fn.col "'<" == vim.fn.col "'>" then
+      vim.cmd.normal '"+yy'
+    else
+      vim.cmd.normal '"+y'
+    end
+  else
+    vim.cmd.normal '"+yy'
+  end
+end
+
+M.handle_paste = function()
+  vim.cmd.normal '"+p'
+end
+
+M.menus = {
+  main = {
+    {
+      name = "  Copy",
+      cmd = M.handle_copy,
+    },
+    {
+      name = "  Paste",
+      cmd = M.handle_paste,
+    },
+    { name = "separator" },
+    {
+      name = "󰉁 Lsp Actions",
+      hl = "Exblue",
+      items = "lsp",
+    },
+    { name = "separator" },
+    {
+      name = "  Color Picker",
+      hl = "Exred",
+      cmd = function()
+        require("minty.huefy").open()
+      end,
+    },
+  },
+}
+
 return M

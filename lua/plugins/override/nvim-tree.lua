@@ -1,10 +1,9 @@
-local map = vim.keymap.set
-
 ---@type NvPluginSpec
 return {
   "nvim-tree/nvim-tree.lua",
+  enabled = false,
   init = function()
-    map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+    vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
   end,
   config = function()
     dofile(vim.g.base46_cache .. "nvimtree")
@@ -19,6 +18,7 @@ return {
       end
 
       api.config.mappings.default_on_attach(bufnr)
+      local map = vim.keymap.set
       map("n", "+", api.tree.change_root_to_node, opts "CD")
       map("n", "?", api.tree.toggle_help, opts "Help")
       map("n", "<ESC>", api.tree.close, opts "Close")

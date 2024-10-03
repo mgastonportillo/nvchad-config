@@ -39,6 +39,7 @@ return {
   { import = "plugins.spec.neogit" },
   { import = "plugins.spec.notify" },
   { import = "plugins.spec.obsidian" },
+  { import = "plugins.spec.oil" },
   { import = "plugins.spec.outline" },
   { import = "plugins.spec.precognition" },
   { import = "plugins.spec.project" },

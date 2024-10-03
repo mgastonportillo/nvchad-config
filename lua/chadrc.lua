@@ -9,7 +9,6 @@ M.base46 = {
   transparency = true,
   theme = "bearded-arc", ---@diagnostic disable-line
   theme_toggle = { "bearded-arc", "eldritch" }, ---@diagnostic disable-line
-
   integrations = {
     "blankline",
     "cmp",
@@ -45,7 +44,8 @@ M.base46.hl_override = {
 }
 
 M.base46.hl_add = {
-  YanVisual = { bg = "lightbg" },
+  YankVisual = { bg = "lightbg" },
+  Border = { link = "FloatBorder" },
   LspInfoBorder = { link = "FloatBorder" },
   NvimTreeGitStagedIcon = { fg = "vibrant_green" },
   St_HarpoonInactive = { link = "StText" },
@@ -55,6 +55,7 @@ M.base46.hl_add = {
   HelpviewCode = { link = "MarkviewLayer2" },
   HelpviewInlineCode = { link = "MarkviewInlineCode" },
   HelpviewCodeLanguage = { link = "MarkviewCode" },
+  OilFile = { link = "Normal" },
   CodeActionSignHl = { fg = "#F9E2AF" },
   ["@number.luadoc"] = { fg = "Comment" },
   ["@markup.quote.markdown"] = { bg = "NONE" },

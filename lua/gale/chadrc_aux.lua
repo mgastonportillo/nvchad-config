@@ -130,6 +130,10 @@ local filename = function()
   local ext = name:match "%.([^%.]+)$" or name
 
   if name ~= "Empty" then
+    if vim.bo.filetype == "oil" then
+      return "  %#NonText# Oil btw"
+    end
+
     local devicons_present, devicons = pcall(require, "nvim-web-devicons")
 
     if devicons_present then

@@ -8,7 +8,7 @@ return {
       accept_word = "<C-y>",
     },
     disable_keymaps = false,
-    log_level = "info",
+    log_level = "warn",
     dsable_inline_completion = false,
   },
 }

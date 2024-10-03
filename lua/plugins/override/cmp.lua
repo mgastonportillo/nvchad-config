@@ -23,6 +23,9 @@ return {
         completion = {
           border = "rounded",
         },
+        documentation = {
+          border = "rounded",
+        },
       },
     }
 

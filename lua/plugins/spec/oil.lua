@@ -1,8 +1,8 @@
+---@type NvPluginSpec
 return {
   "stevearc/oil.nvim",
   event = "VeryLazy",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-  ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {
     default_file_explorer = true,

@@ -15,9 +15,21 @@ map("n", "<leader>cm", "<cmd>mes clear<CR>", { desc = "General clear messages" }
 -- https://github.com/neovim/neovim/issues/2048
 map("i", "<A-BS>", "<C-w>", { desc = "General remove word" })
 map("v", "y", "ygv<Esc>", { desc = "_ Yank preventing cursor from jumping back to where selection started" })
+
 map("n", "<leader>ol", function()
   vim.ui.open(vim.fn.expand "%:p:h")
 end, { desc = "General open file location in file explorer" })
+
+map({ "n", "v" }, "y", '"0y', { desc = "Yank selection" })
+map("n", "Y", '"0y$', { desc = "Yank up to EOL" })
+map({ "n", "v" }, "yy", '"0yy', { desc = "Yank line" })
+map({ "n", "v" }, "p", '"0p', { desc = "Paste below" })
+map({ "n", "v" }, "P", '"0P', { desc = "Paste above" })
+map({ "n", "v" }, "<C-y>", '"+y', { desc = "Yank into system clipboard" })
+map("n", "<C-Y>", '"+y$', { desc = "Yank up to EOL into system clipboard" })
+map({ "n", "v" }, "<C-yy>", '"+yy', { desc = "Yank line into system clipboard" })
+map({ "n", "v" }, "<C-p>", '"+p', { desc = "Paste below from system clipboard" })
+map({ "n", "v" }, "<C-P>", '"+P', { desc = "Paste above from system clipboard" })
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })

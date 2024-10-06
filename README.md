@@ -3,7 +3,7 @@
 <p align="center"><img src="https://github.com/user-attachments/assets/5fe2b095-1d53-41e9-8ce8-12288bc2b5e1"></p>
 <hr>
 
-### Features:
+### Features
 
 - Features [NvChad v2.5](https://nvchad.com/news/v2.5_release)
 - Target OS: WSL2/Linux
@@ -20,21 +20,18 @@
   changes in browser
 - Round borders as a priority over sharp borders
 
-> [!TIP]
->
+>[!TIP]
 > Pair with <a href="https://github.com/mgastonportillo/wezterm-config"> my
 > Wezterm configuration</a> for a smoother experience
 
-> [!WARNING]
->
-> **Disclaimer**: I frequently use `git rebase -i` to streamline my
+>[!WARNING] > **Disclaimer**: I frequently use `git rebase -i` to streamline my
 > configuration. if you plan to use `lazy-lock.json` to stick with certain
 > snapshots of the config, you might have a hard time due to changing commit
 > hashes.
 
 <hr>
 
-### Planned implementations:
+### Planned implementations
 
 - ✅ ~~Markdown Preview~~
 - ✅ ~~Python code completion~~
@@ -42,15 +39,15 @@
 
 <hr>
 
-### Bugs:
+### Bugs
 
 - 🐞
 
-### Dependencies:
+### Dependencies
 
 Required:
 
-- NVIM Stable v0.10.0+ (Nightlies might work)
+- NVIM Stable v0.10.1+ (Nightlies might work)
 - NvChad v2.5
 - Python 3.11.7+ & pip
 - pip: `pynvim==0.4.3+`

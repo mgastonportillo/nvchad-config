@@ -62,7 +62,10 @@ return {
       delete_to_trash = true,
       watch_for_changes = true,
       cleanup_delay_ms = 0,
-      win_options = { winbar = "%!v:lua.get_oil_winbar()", signcolumn = "yes:1" },
+      win_options = {
+        winbar = "%!v:lua.get_oil_winbar()",
+        signcolumn = "yes:1",
+      },
       view_options = {
         is_hidden_file = function(name, bufnr)
           local dir = require("oil").get_current_dir(bufnr)
@@ -99,7 +102,7 @@ return {
         ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" },
         ["gs"] = "actions.change_sort",
         ["gx"] = "actions.open_external",
-        ["g."] = "actions.toggle_hidden",
+        ["I"] = "actions.toggle_hidden",
         ["g\\"] = "actions.toggle_trash",
         ["<leader>de"] = {
           callback = function()

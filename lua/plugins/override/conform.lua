@@ -22,7 +22,7 @@ return {
       javascript = { "prettier" },
       javascriptreact = { "prettier" },
       json = { "biome" },
-      markdown = { "deno_fmt" },
+      markdown = { "markdownlint" },
       ocaml = { "ocamlformat" },
       python = { "ruff_format" },
       typescript = { "prettier" },

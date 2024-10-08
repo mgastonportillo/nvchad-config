@@ -4,7 +4,29 @@ return {
   event = "VeryLazy",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = function(_, opts)
-    local detail = false
+    local util = require "oil.util"
+    local map = require("gale.utils").glb_map
+
+    _G.oil_details_expanded = false
+    _G.get_oil_winbar = function()
+      local dir = require("oil").get_current_dir()
+      if dir then
+        return "%#OilWinbar#" .. vim.fn.fnamemodify(dir, ":~")
+      else
+        return "%#OilWinbar#" .. vim.api.nvim_buf_get_name(0)
+      end
+    end
+
+    _G.oil_is_open = false
+    local toggle_oil = function()
+      if util.is_oil_bufnr(0) and vim.g.oil_is_open then
+        vim.g.oil_is_open = false
+        require("oil").close()
+      else
+        vim.g.oil_is_open = true
+        require("oil").open()
+      end
+    end
 
     -- helper function to parse output
     local function parse_output(proc)
@@ -106,8 +128,8 @@ return {
         ["g\\"] = "actions.toggle_trash",
         ["<leader>de"] = {
           callback = function()
-            detail = not detail
-            if detail then
+            vim.g.oil_details_expanded = not vim.g.oil_details_expanded
+            if vim.g.oil_details_expanded then
               require("oil").set_columns { "icon", "permissions", "size", "mtime" }
             else
               require("oil").set_columns { "icon" }
@@ -118,37 +140,11 @@ return {
       },
     }
 
-    opts = vim.tbl_deep_extend("force", opts, new_opts)
-    return opts
-  end,
-  config = function(_, opts)
-    local util = require "oil.util"
-    local map = require("gale.utils").glb_map
-
-    _G.get_oil_winbar = function()
-      local dir = require("oil").get_current_dir()
-      if dir then
-        return "%#OilWinbar#" .. vim.fn.fnamemodify(dir, ":~")
-      else
-        return "%#OilWinbar#" .. vim.api.nvim_buf_get_name(0)
-      end
-    end
-
-    _G.oil_is_open = false
-    local toggle_oil = function()
-      if util.is_oil_bufnr(0) and vim.g.oil_is_open then
-        vim.g.oil_is_open = false
-        require("oil").close()
-      else
-        vim.g.oil_is_open = true
-        require("oil").open()
-      end
-    end
-
     map("n", "<C-n>", function()
       toggle_oil()
     end, { desc = "Open Oil" })
 
-    require("oil").setup(opts)
+    opts = vim.tbl_deep_extend("force", opts, new_opts)
+    return opts
   end,
 }

@@ -1,35 +1,45 @@
 local utils = require "gale.utils"
 local map = utils.glb_map
 
-vim.cmd [[nnoremap <C-z> <nop>]] -- map didn't work here
+map("n", "z-", "z^") -- Remap z^ into z- for convenience
+map("n", "g-", "g;") -- Remap g; into g- for convenience
 map("n", ";", ":", { desc = "General enter CMD mode" })
 map("i", "jk", "<ESC>", { desc = "General exit insert mode" })
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "General save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy file content" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear search highlights" })
 map("n", "<leader>cs", "<cmd><CR>", { desc = "General clear statusline" })
-map("n", "z-", "z^", { desc = "_ Remap z^ into z- for convenience" })
-map("n", "g-", "g;", { desc = "_ Remap g; into g- for convenience" })
 map("n", "<leader><F4>", "<cmd>stop<CR>", { desc = "Genaral stop NVIM" })
 map("n", "<leader>cm", "<cmd>mes clear<CR>", { desc = "General clear messages" })
 -- https://github.com/neovim/neovim/issues/2048
 map("i", "<A-BS>", "<C-w>", { desc = "General remove word" })
-map("v", "y", "ygv<Esc>", { desc = "_ Yank preventing cursor from jumping back to where selection started" })
 
 map("n", "<leader>ol", function()
   vim.ui.open(vim.fn.expand "%:p:h")
 end, { desc = "General open file location in file explorer" })
 
-map({ "n", "v" }, "y", '"0y', { desc = "Yank selection" })
+-- Yank/Paste/Delete/Cut improvements
+-- https://github.com/neovim/neovim/issues/29712
+map({ "n", "v" }, "y", '"0ygv<Esc>', { desc = "Yank selection" })
 map("n", "Y", '"0y$', { desc = "Yank up to EOL" })
 map({ "n", "v" }, "yy", '"0yy', { desc = "Yank line" })
 map({ "n", "v" }, "p", '"0p', { desc = "Paste below" })
 map({ "n", "v" }, "P", '"0P', { desc = "Paste above" })
-map({ "n", "v" }, "<C-y>", '"+y', { desc = "Yank into system clipboard" })
+map("n", "x", '"0x', { desc = "Delete character" })
+map("n", "dd", '"0dd', { desc = "Delete line" })
+map("v", "d", '"0d', { desc = "Delete selection" })
+map("n", "cc", '"0cc', { desc = "Change line" })
+map("v", "c", '"0c', { desc = "Change selection" })
+map({ "n", "v" }, "<C-y>", '"+ygv<Esc>', { desc = "Yank selection into system clipboard" })
 map("n", "<C-Y>", '"+y$', { desc = "Yank up to EOL into system clipboard" })
 map({ "n", "v" }, "<C-yy>", '"+yy', { desc = "Yank line into system clipboard" })
 map({ "n", "v" }, "<C-p>", '"+p', { desc = "Paste below from system clipboard" })
 map({ "n", "v" }, "<C-P>", '"+P', { desc = "Paste above from system clipboard" })
+map("n", "<C-x>", '"0x', { desc = "Delete character (x register)" })
+map("n", "<C-D>", "dd", { desc = "Delete line (x register)" })
+map("v", "<C-d>", "d", { desc = "Delete selection (x register)" })
+map("n", "<C-C>", "cc", { desc = "Change line (x register)" })
+map("v", "<C-c>", "c", { desc = "Change selection (x register)" })
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
@@ -93,11 +103,11 @@ end, { desc = "Open theme picker" })
 
 -- NvMenu
 local menus = utils.menus
-map("n", "<C-t>", function()
+map({ "n", "v" }, "<C-t>", function()
   require("menu").open(menus.main)
 end, { desc = "Open NvChad menu" })
 
-map("n", "<RightMouse>", function()
+map({ "n", "v" }, "<RightMouse>", function()
   vim.cmd.exec '"normal! \\<RightMouse>"'
   require("menu").open(menus.main, { mouse = true })
 end, { desc = "Open NvChad menu" })

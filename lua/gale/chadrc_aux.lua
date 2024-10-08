@@ -1,19 +1,23 @@
 local M = {}
 
+local X_COLOURS = {
+  SUBTLE_PURPLE = "#7589BF",
+  ST_GREY = "#8386A8",
+  D_WHITE = "#DDDDDD",
+}
+
 M.themes_customs = {
   ["bearded-arc"] = {
+    ---@type Base46HLGroupsList
     hl_override = {
-      Comment = { fg = "#7589BF", italic = true },
-      CursorLineNr = { fg = "yellow", bold = true },
-      FloatBorder = { fg = "#7589BF", bg = "NONE" },
-      TelescopeSelection = { bg = "black", fg = "#DDDDDD", bold = true },
-      MatchWord = { fg = "NONE", bg = "black2" },
-      MatchBackground = { link = "MatchWord" },
-      TbBufOn = { link = "Normal" },
-      StText = { fg = "#8386A8" },
+      Comment = { fg = X_COLOURS.SUBTLE_PURPLE },
+      FloatBorder = { fg = X_COLOURS.SUBTLE_PURPLE },
+      LspInlayHint = { fg = X_COLOURS.SUBTLE_PURPLE },
+      TelescopeSelection = { fg = X_COLOURS.D_WHITE },
+      StText = { fg = X_COLOURS.ST_GREY },
+      St_cwd = { fg = "red", bg = "one_bg1" },
       St_NormalMode = { fg = "blue", bg = "one_bg1" },
       St_InsertMode = { fg = "blue", bg = "one_bg1" },
-      St_cwd = { fg = "red", bg = "one_bg1" },
       St_CommandMode = { bg = "one_bg1" },
       St_ConfirmMode = { bg = "one_bg1" },
       St_SelectMode = { bg = "one_bg1" },
@@ -21,24 +25,24 @@ M.themes_customs = {
       St_ReplaceMode = { bg = "one_bg1" },
       St_TerminalMode = { bg = "one_bg1" },
       St_NTerminalMode = { bg = "one_bg1" },
-      LspInlayHint = { fg = "#7589BF", bg = "NONE" },
+      TbBufOn = { link = "Normal" },
+      CursorLineNr = { fg = "yellow" },
+      MatchWord = { fg = "NONE", bg = "black2" },
+      MatchBackground = { link = "MatchWord" },
     },
   },
 
   ["eldritch"] = {
+    ---@type Base46HLGroupsList
     hl_override = {
-      Comment = { fg = "dark_purple", italic = true },
-      CursorLineNr = { fg = "yellow", bold = true },
-      FloatBorder = { fg = "purple", bg = "NONE" },
-      TelescopeSelection = { bg = "black", fg = "#DDDDDD", bold = true },
-      MatchWord = { fg = "NONE", bg = "black2" },
-      MatchBackground = { link = "MatchWord" },
-      CodeActionSignHl = { fg = "yellow" },
-      TbBufOn = { link = "St_Lsp" },
-      StText = { fg = "#8386A8" },
+      Comment = { fg = "dark_purple" },
+      FloatBorder = { fg = "purple" },
+      LspInlayHint = { fg = "dark_purple" },
+      TelescopeSelection = { fg = X_COLOURS.D_WHITE },
+      StText = { fg = X_COLOURS.ST_GREY },
+      St_cwd = { fg = "black", bg = "yellow" },
       St_NormalMode = { bg = "blue", fg = "black" },
       St_InsertMode = { bg = "purple", fg = "black" },
-      St_cwd = { bg = "yellow", fg = "black" },
       St_CommandMode = { bg = "black", reverse = true },
       St_ConfirmMode = { bg = "black", reverse = true },
       St_SelectMode = { bg = "black", reverse = true },
@@ -47,7 +51,11 @@ M.themes_customs = {
       St_TerminalMode = { bg = "black", reverse = true },
       St_NTerminalMode = { bg = "black", reverse = true },
       St_HarpoonActive = { link = "St_Ft" },
-      LspInlayHint = { fg = "dark_purple", bg = "NONE" },
+      TbBufOn = { link = "St_Lsp" },
+      CursorLineNr = { fg = "yellow" },
+      MatchWord = { fg = "NONE", bg = "black2" },
+      MatchBackground = { link = "MatchWord" },
+      CodeActionSignHl = { fg = "yellow" },
     },
   },
 }
@@ -125,7 +133,7 @@ local filename = function()
 
   if name ~= "Empty" then
     if vim.bo.filetype == "oil" then
-      return "  %#NonText# Oil btw"
+      return "  %#St_Oil# Oil btw"
     end
 
     local devicons_present, devicons = pcall(require, "nvim-web-devicons")
@@ -151,7 +159,7 @@ local git_custom = function()
   local add_hl = "%#St_Lsp#"
   local changed_hl = "%#StText#"
   local rm_hl = "%#St_LspError#"
-  local branch_hl = "%#@function#"
+  local branch_hl = "%#St_GitBranch#"
 
   local added = (git_status.added and git_status.added ~= 0) and (add_hl .. "  " .. clear_hl .. git_status.added)
     or ""
@@ -167,6 +175,7 @@ local git_custom = function()
 end
 
 M.modules = {
+  ---@type table<string, string|fun():string>
   statusline = {
     separator = " ", -- Add space between modules
     hack = "%#@comment#%", -- Hack to make module highlight visible
@@ -186,8 +195,11 @@ M.modules = {
     harpoon = harpoon_statusline_indicator,
   },
 
+  ---@type table<string, fun():string>
   tabufline = {
-    fill = "%#TbFill#%=", -- Fill tabufline with TbFill hl
+    fill = function()
+      return "%#TbFill#%="
+    end, -- Fill tabufline with TbFill hl
   },
 }
 

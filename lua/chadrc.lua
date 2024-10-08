@@ -1,4 +1,5 @@
 -- https://github.com/NvChad/ui/blob/v2.5/lua/nvconfig.lua
+
 ---@type ChadrcConfig
 local M = {}
 
@@ -32,13 +33,14 @@ M.base46.hl_override = {
   DevIconMd = { fg = "#FFFFFF", bg = "NONE" },
   FloatTitle = { link = "FloatBorder" },
   CmpBorder = { link = "FloatBorder" },
+  CursorLineNr = { bold = true },
   CmpDocBorder = { link = "FloatBorder" },
   TelescopeBorder = { link = "FloatBorder" },
   TelescopePromptBorder = { link = "FloatBorder" },
   NeogitDiffContext = { bg = "NONE" },
   NeogitDiffContextHighlight = { bg = "NONE" },
-  -- BUG: (types) fg accepts a table
-  TbBufOffModified = { fg = { "green", "black", 50 } }, ---@diagnostic disable-line
+  TbBufOffModified = { fg = { "green", "black", 50 } },
+  Comment = { italic = true },
   ["@comment"] = { link = "Comment" },
   ["@keyword"] = { italic = true },
 }
@@ -48,12 +50,16 @@ M.base46.hl_add = {
   Border = { link = "FloatBorder" },
   St_HarpoonInactive = { link = "StText" },
   St_HarpoonActive = { link = "St_LspHints" },
+  St_GitBranch = { fg = "baby_pink", bg = M.base46.transparency and "NONE" or "statusline_bg" },
+  St_Oil = {
+    fg = M.base46.transparency and "line" or "grey_fg",
+    bg = M.base46.transparency and "NONE" or "statusline_bg",
+  },
   MarkviewLayer2 = { bg = "#171B21" },
   MarkviewCode = { link = "MarkviewLayer2" },
   HelpviewCode = { link = "MarkviewLayer2" },
   HelpviewInlineCode = { link = "MarkviewInlineCode" },
   HelpviewCodeLanguage = { link = "MarkviewCode" },
-  OilFile = { link = "Normal" },
   OilWinbar = { fg = "vibrant_green", bold = true },
   CodeActionSignHl = { fg = "#F9E2AF" },
   ["@number.luadoc"] = { fg = "Comment" },
@@ -120,16 +126,14 @@ M.lsp = {
 }
 
 M.term = {
-  -- BUG: (types) TermFloat values should be optional
-  float = { ---@diagnostic disable-line
+  float = {
     border = "rounded",
     height = 0.5,
     width = 0.58,
     col = 0.2,
     row = 0.2,
   },
-  -- BUG: (types) TermSizes values should be optional
-  sizes = {}, ---@diagnostic disable-line
+  sizes = {},
 }
 
 return M

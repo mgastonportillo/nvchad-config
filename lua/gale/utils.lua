@@ -280,7 +280,7 @@ M.count_words_in_line = function()
   end
 
   if vim.g.st_words_in_line then
-    return " %#StText#L:" .. #words .. " "
+    return " %#StText#LW:" .. #words .. " "
   else
     return ""
   end
@@ -288,15 +288,16 @@ end
 
 M.count_words_in_buffer = function()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  local total_word_count = 0
+  local total_word_count = {}
 
   for _, line in ipairs(lines) do
-    local words = vim.split(line, "%s+")
-    total_word_count = total_word_count + #words
+    for word in string.gmatch(line, "%w+") do
+      table.insert(total_word_count, word)
+    end
   end
 
   if vim.g.st_words_in_buffer then
-    return "/ %#StText#T:" .. total_word_count .. " "
+    return "/ %#StText#TW:" .. #total_word_count .. " "
   else
     return ""
   end

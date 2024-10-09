@@ -1,4 +1,5 @@
 local M = {}
+local utils = require "gale.utils"
 
 local X_COLOURS = {
   SUBTLE_PURPLE = "#7589BF",
@@ -200,6 +201,9 @@ M.modules = {
     filename = filename,
     git_custom = git_custom,
     harpoon = harpoon_statusline_indicator,
+    word_count = function()
+      return utils.count_words_in_line() .. utils.count_words_in_buffer()
+    end,
   },
 
   ---@type table<string, fun():string>

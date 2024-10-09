@@ -32,8 +32,8 @@ M.base46 = {
 M.base46.hl_override = {
   DevIconMd = { fg = "#FFFFFF", bg = "NONE" },
   FloatTitle = { link = "FloatBorder" },
-  CmpBorder = { link = "FloatBorder" },
   CursorLineNr = { bold = true },
+  CmpBorder = { link = "FloatBorder" },
   CmpDocBorder = { link = "FloatBorder" },
   TelescopeBorder = { link = "FloatBorder" },
   TelescopePromptBorder = { link = "FloatBorder" },
@@ -52,10 +52,7 @@ M.base46.hl_add = {
   St_HarpoonInactive = { link = "StText" },
   St_HarpoonActive = { link = "St_LspHints" },
   St_GitBranch = { fg = "baby_pink", bg = M.base46.transparency and "NONE" or "statusline_bg" },
-  St_Oil = {
-    fg = M.base46.transparency and "line" or "grey_fg",
-    bg = M.base46.transparency and "NONE" or "statusline_bg",
-  },
+  St_Oil = { fg = "grey_fg", bg = M.base46.transparency and "NONE" or "statusline_bg" },
   MarkviewLayer2 = { bg = "#171B21" },
   MarkviewCode = { link = "MarkviewLayer2" },
   HelpviewCode = { link = "MarkviewLayer2" },

@@ -125,21 +125,27 @@ local stbufnr = function()
 end
 
 local filename = function()
-  local icon = "  󰈚"
   local hl = ""
+  local icon = "  󰈚"
   local path = vim.api.nvim_buf_get_name(stbufnr())
   local name = (path == "" and "Empty") or vim.fs.basename(path)
   local ext = name:match "%.([^%.]+)$" or name
 
+  -- Pretty sure there's a better solution than hardcoding these
+  local ignore_fts = { "oil", "NeogitStatus", "checkhealth", "yerbreak", "nvcheatsheet" }
+  if vim.tbl_contains(ignore_fts, vim.bo.ft) then
+    return
+  end
+
   if name ~= "Empty" then
-    if vim.bo.filetype == "oil" then
-      return "  %#St_Oil# Oil btw"
-    end
-
     local devicons_present, devicons = pcall(require, "nvim-web-devicons")
-
     if devicons_present then
-      hl = "%#DevIcon" .. ext .. "#"
+      local ft_hl_id = vim.api.nvim_get_hl_id_by_name("DevIcon" .. ext)
+      local ft_hl = vim.api.nvim_get_hl(0, { id = ft_hl_id })
+      local ft_fg = string.format("#%06x", ft_hl.fg)
+      local st_hl_name = "St_DevIcon" .. ext
+      hl = "%#" .. st_hl_name .. "#"
+      vim.api.nvim_set_hl(0, st_hl_name, { bg = "#242d3d", fg = ft_fg })
       local ft_icon = devicons.get_icon(name)
       icon = (ft_icon ~= nil and "  " .. ft_icon) or ("  " .. icon)
     end

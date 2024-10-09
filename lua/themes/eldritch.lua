@@ -1,5 +1,6 @@
 --- Credits to the original authors of [Eldritch](https://github.com/eldritch-theme/eldritch)
 --- This is just a port for NvChad's theme engine: base46
+
 ---@class Base46Table
 local M = {}
 
@@ -16,7 +17,6 @@ M.base_30 = {
   grey_fg2 = "#7C80A3",
   light_grey = "#3B4261",
   red = "#F16C75",
-  bright_red = "#F9515D",
   baby_pink = "#F265B5",
   pink = "#BF4F8E",
   line = "#3B4261",
@@ -35,9 +35,6 @@ M.base_30 = {
   lightbg = "#292E42",
   pmenu_bg = "#37F499",
   folder_bg = "#66E4FD",
-  lavender = "#A48CF2",
-  dark_lavender = "#76639E",
-  magenta3 = "#722F55",
 }
 
 M.base_16 = {
@@ -61,13 +58,14 @@ M.base_16 = {
 
 M.polish_hl = {
   defaults = {
+    NormalFloat = { bg = M.base_30.black },
     FloatBorder = { fg = M.base_30.purple },
-    LspInfoBorder = { link = "FloatBorder" },
     PmenuSel = { bg = M.base_30.purple },
     CursorLine = { bg = M.base_30.black },
     CursorLineNr = { fg = M.base_30.yellow, bold = true },
     LineNr = { fg = M.base_30.dark_purple },
-    MatchWord = { bg = M.base_30.black2, fg = M.base_30.grey },
+    MatchWord = { bg = M.base_30.black2, fg = "NONE" },
+    MatchBackground = { link = "MatchWord" },
     Visual = { bg = M.base_30.black2 },
   },
   cmp = {
@@ -81,9 +79,31 @@ M.polish_hl = {
     NeogitDiffContextHighlight = { bg = "NONE" },
     NeogitDiffContext = { bg = "NONE" },
   },
+  statusline = {
+    StText = { fg = M.base_30.grey_fg },
+    St_NormalMode = { bg = M.base_30.blue, fg = M.base_30.black },
+    St_InsertMode = { bg = M.base_30.purple, fg = M.base_30.black },
+    St_cwd = { bg = M.base_30.yellow, fg = M.base_30.black },
+    St_CommandMode = { bg = M.base_30.black, reverse = true },
+    St_ConfirmMode = { bg = M.base_30.black, reverse = true },
+    St_SelectMode = { bg = M.base_30.black, reverse = true },
+    St_VisualMode = { bg = M.base_30.black, reverse = true },
+    St_ReplaceMode = { bg = M.base_30.black, reverse = true },
+    St_TerminalMode = { bg = M.base_30.black, reverse = true },
+    St_NTerminalMode = { bg = M.base_30.black, reverse = true },
+  },
   tbline = {
     TbBufOn = { fg = M.base_30.green },
+    TbBufOnClose = { fg = M.base_30.baby_pink },
     TbBufOff = { fg = M.base_30.nord_blue },
+    TbTabOn = { fg = M.base_30.baby_pink },
+    TbCloseAllBufsBtn = { bg = M.base_30.pink, fg = M.base_30.black },
+    TbTabTitle = { fg = M.base_30.white, bg = M.base_30.blue },
+  },
+  telescope = {
+    TelescopeBorder = { fg = M.base_30.purple },
+    TelescopePromptBorder = { fg = M.base_30.purple },
+    TelescopeSelection = { bg = M.base_30.black, fg = M.base_30.white, bold = true },
   },
   treesitter = {
     Include = { fg = M.base_30.green },
@@ -117,11 +137,15 @@ M.polish_hl = {
     ["@type.builtin"] = { fg = M.base_30.cyan },
     ["@variable"] = { fg = M.base_30.purple },
     ["Special"] = { fg = M.base_30.purple },
+    ["SpecialChar"] = { fg = M.base_30.baby_pink },
     ["@tag"] = { fg = M.base_30.cyan },
+    ["@attribute"] = { fg = M.base_30.baby_pink },
     ["@comment"] = { fg = M.base_30.dark_purple },
   },
 }
 
 M.type = "dark"
+
+M = require("base46").override_theme(M, "eldritch")
 
 return M

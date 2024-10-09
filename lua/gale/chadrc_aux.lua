@@ -125,6 +125,7 @@ local stbufnr = function()
 end
 
 local filename = function()
+  local transparency = require("chadrc").base46.transparency
   local hl = ""
   local icon = "  󰈚"
   local path = vim.api.nvim_buf_get_name(stbufnr())
@@ -145,7 +146,7 @@ local filename = function()
       local ft_fg = string.format("#%06x", ft_hl.fg)
       local st_hl_name = "St_DevIcon" .. ext
       hl = "%#" .. st_hl_name .. "#"
-      vim.api.nvim_set_hl(0, st_hl_name, { bg = "#242d3d", fg = ft_fg })
+      vim.api.nvim_set_hl(0, st_hl_name, { bg = transparency and "NONE" or "#242d3d", fg = ft_fg })
       local ft_icon = devicons.get_icon(name)
       icon = (ft_icon ~= nil and "  " .. ft_icon) or ("  " .. icon)
     end

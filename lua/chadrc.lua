@@ -43,6 +43,7 @@ M.base46.hl_override = {
   Comment = { italic = true },
   ["@comment"] = { link = "Comment" },
   ["@keyword"] = { italic = true },
+  ["@markup.heading"] = { fg = "NONE", bg = "NONE" },
 }
 
 M.base46.hl_add = {

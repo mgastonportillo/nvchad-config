@@ -48,6 +48,7 @@ M.base46.hl_override = {
 
 M.base46.hl_add = {
   YankVisual = { bg = "lightbg" },
+  DevIconToml = { fg = "#9C4221", bg = "NONE" },
   Border = { link = "FloatBorder" },
   St_HarpoonInactive = { link = "StText" },
   St_HarpoonActive = { link = "St_LspHints" },
@@ -122,7 +123,7 @@ M.colorify = {
 }
 
 M.lsp = {
-  signature = true,
+  signature = false,
 }
 
 M.term = {

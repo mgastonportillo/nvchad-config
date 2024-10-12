@@ -12,7 +12,6 @@ return {
   ---@type conform.setupOpts
   opts = {
     formatters_by_ft = {
-      -- clang should work by default
       bash = { "shfmt" },
       css = { "prettier" },
       scss = { "prettier" },
@@ -38,7 +37,7 @@ return {
       if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
         return
       end
-      return { timeout_ms = 500, lsp_fallback = true }
+      return { timeout_ms = 10000, lsp_fallback = true }
     end,
     formatters = {
       yamlfmt = {

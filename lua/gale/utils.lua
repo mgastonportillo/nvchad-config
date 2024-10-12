@@ -11,6 +11,14 @@
 ---@field del_map fun(mode: string | table, trigger: string | table)
 --- Format a file based on its path, using conform
 ---@field format_file fun(file_path: string)
+--- Helper function to match valid "words" in a line
+---@field word_iterator fun(line: string): function
+--- Helper function to count valid "words" in a line
+---@field count_with_exclude fun(line: string, opts?: table): integer
+--- Helper function to count valid "words" in a buffer
+---@field count_words_in_buffer fun(): string
+--- Helper function to count valid "words" in a line
+---@field count_words_in_line fun(): string
 local M = {}
 
 M.add_alias = function(target_cmd, alias)
@@ -270,17 +278,31 @@ M.menus = {
   },
 }
 
+M.word_iterator = function(line)
+  -- Match sequences of alphanumeric characters, underscores, periods, or hyphens
+  local pattern = "[%w_%-%.]+"
+  return function()
+    return string.gmatch(line, pattern)
+  end
+end
+
+M.count_with_exclude = function(line, opts)
+  opts = opts or {}
+  local word_count = 0
+  for word in M.word_iterator(line)() do
+    if word ~= opts.exclude then
+      word_count = word_count + 1
+    end
+  end
+  return word_count
+end
+
 vim.g.st_words_in_line = true
 M.count_words_in_line = function()
   local line = vim.api.nvim_get_current_line()
-  local words = {}
-
-  for word in string.gmatch(line, "%w+") do
-    table.insert(words, word)
-  end
-
+  local word_count = M.count_with_exclude(line, { exclude = ".." })
   if vim.g.st_words_in_line then
-    return " %#StText#LW:" .. #words .. " "
+    return string.format(" %%#St_GitBranch#%d ", word_count)
   else
     return ""
   end
@@ -288,16 +310,12 @@ end
 
 M.count_words_in_buffer = function()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
-  local total_word_count = {}
-
+  local total_word_count = 0
   for _, line in ipairs(lines) do
-    for word in string.gmatch(line, "%w+") do
-      table.insert(total_word_count, word)
-    end
+    total_word_count = total_word_count + M.count_with_exclude(line, { exclude = ".." })
   end
-
   if vim.g.st_words_in_buffer then
-    return "/ %#StText#TW:" .. #total_word_count .. " "
+    return string.format("%%#StText#[%d] ", total_word_count)
   else
     return ""
   end

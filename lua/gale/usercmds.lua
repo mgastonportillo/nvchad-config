@@ -1,24 +1,18 @@
 local create_cmd = vim.api.nvim_create_user_command
 local utils = require "gale.utils"
 
-create_cmd("ToggleStBufferWordCount", function()
+create_cmd("ToggleWordCount", function()
   if vim.g.st_words_in_buffer then
     vim.g.st_words_in_buffer = false
+    vim.g.st_words_in_line = true
   else
     vim.g.st_words_in_buffer = true
-  end
-end, { desc = "Toggle statusline word count per buffer" })
-
-vim.api.nvim_create_user_command("ToggleStLineWordCount", function()
-  if vim.g.st_words_in_line then
     vim.g.st_words_in_line = false
-  else
-    vim.g.st_words_in_line = true
   end
-end, { desc = "Toggle statusline word count per line" })
+end, { desc = "Toggle word count mode (line/buffer)" })
 
 create_cmd("ToggleShowkeys", function()
-  require("showkeys").toggle { show_count = true }
+  require("showkeys").toggle()
 end, { desc = "Toggle screenkey" })
 
 create_cmd("TabuflineToggle", function()

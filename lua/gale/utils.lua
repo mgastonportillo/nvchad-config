@@ -15,10 +15,10 @@
 ---@field word_iterator fun(line: string): function
 --- Helper function to count valid "words" in a line
 ---@field count_with_exclude fun(line: string, opts?: table): integer
---- Helper function to count valid "words" in a buffer
----@field count_words_in_buffer fun(): string
---- Helper function to count valid "words" in a line
+--- Return count of valid "words" in a line as a string
 ---@field count_words_in_line fun(): string
+--- Return count of valid "words" in a buffer as a string
+---@field count_words_in_buffer fun(): string
 local M = {}
 
 M.add_alias = function(target_cmd, alias)
@@ -315,7 +315,7 @@ M.count_words_in_buffer = function()
     total_word_count = total_word_count + M.count_with_exclude(line, { exclude = ".." })
   end
   if vim.g.st_words_in_buffer then
-    return string.format("%%#StText#[%d] ", total_word_count)
+    return string.format(" %d ", total_word_count)
   else
     return ""
   end

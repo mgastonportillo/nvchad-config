@@ -200,7 +200,7 @@ M.modules = {
     git_custom = git_custom,
     harpoon = harpoon_statusline_indicator,
     word_count = function()
-      return utils.count_words_in_line() .. utils.count_words_in_buffer()
+      return " %#StatusLine#󱀽" .. utils.count_words_in_line() .. utils.count_words_in_buffer()
     end,
   },
 

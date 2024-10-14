@@ -87,7 +87,7 @@ M.ui = {
       "lsp_msg",
       "%=",
       "diagnostics",
-      "lsp",
+      "lspx",
       "harpoon",
       "word_count",
       "separator",
@@ -102,6 +102,7 @@ M.ui = {
       separator = modules.statusline.separator,
       word_count = modules.statusline.word_count,
       tint = modules.statusline.tint,
+      lspx = modules.lspx,
     },
   },
 

@@ -4,6 +4,15 @@ local utils = require "gale.utils"
 local buf_map = utils.buf_map
 
 autocmd("LspAttach", {
+  desc = "Redraw statusline on attaching lsp.",
+  pattern = "*",
+  group = augroup("RedrawStatusline", { clear = true }),
+  callback = function()
+    vim.cmd "redrawstatus"
+  end,
+})
+
+autocmd("LspAttach", {
   desc = "Display code action sign in gutter if available.",
   pattern = "*",
   group = augroup("UserLspConfig", { clear = true }),

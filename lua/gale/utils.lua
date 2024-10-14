@@ -253,7 +253,7 @@ end
 
 M.menus = {
   main = {
-    {
+    --[[ {
       name = "  Copy",
       cmd = M.handle_copy,
     },
@@ -261,7 +261,7 @@ M.menus = {
       name = "  Paste",
       cmd = M.handle_paste,
     },
-    { name = "separator" },
+    { name = "separator" }, ]]
     {
       name = "󰉁 Lsp Actions",
       hl = "Exblue",

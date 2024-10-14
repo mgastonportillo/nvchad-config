@@ -40,6 +40,7 @@ M.base46.hl_override = {
   NeogitDiffContext = { bg = "NONE" },
   NeogitDiffContextHighlight = { bg = "NONE" },
   TbBufOffModified = { fg = { "green", "black", 50 } },
+  FoldColumn = { link = "FloatBorder" },
   Comment = { italic = true },
   ["@comment"] = { link = "Comment" },
   ["@keyword"] = { italic = true },

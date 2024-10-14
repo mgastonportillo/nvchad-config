@@ -43,6 +43,7 @@ return {
   { import = "plugins.spec.rustaceanvim" },
   { import = "plugins.spec.screenkey" },
   { import = "plugins.spec.scrolleof" },
+  { import = "plugins.spec.statuscol" },
   { import = "plugins.spec.supermaven" },
   { import = "plugins.spec.tiny-code-action" },
   { import = "plugins.spec.tiny-inline-diagnostic" },

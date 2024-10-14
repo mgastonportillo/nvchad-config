@@ -1,10 +1,11 @@
 return {
   "luukvbaal/statuscol.nvim",
-  event = "VeryLazy",
+  lazy = false,
   config = function()
     local builtin = require "statuscol.builtin"
     require("statuscol").setup {
-      bt_ignore = { "terminal", "nofile", "NeogitStatus" },
+      bt_ignore = { "terminal", "nofile" },
+      ft_ignore = { "oil" },
       relculright = true,
       segments = {
         { text = { "%s" }, foldclosed = true, click = "v:lua.ScSa" },

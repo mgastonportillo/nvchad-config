@@ -18,6 +18,7 @@ M.base46 = {
     "devicons",
     "hop",
     "lsp",
+    "markview",
     "mason",
     "neogit",
     "notify",

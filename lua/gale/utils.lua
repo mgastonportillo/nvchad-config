@@ -325,4 +325,14 @@ M.clear_registers = function()
   vim.cmd "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor"
 end
 
+M.harpoon_menu = function()
+  local harpoon = require "harpoon"
+  harpoon.ui:toggle_quick_menu(harpoon:list(), {
+    title = " Harpoon btw ",
+    title_pos = "center",
+    border = "rounded",
+    ui_width_ratio = 0.40,
+  })
+end
+
 return M

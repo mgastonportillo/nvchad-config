@@ -5,6 +5,7 @@ return {
   branch = "harpoon2",
   dependencies = { "nvim-lua/plenary.nvim" },
   config = function()
+    local utils = require "gale.utils"
     local map = vim.keymap.set
     local harpoon = require "harpoon"
 
@@ -34,19 +35,14 @@ return {
     map("n", "<A-d>", function()
       harpoon:list():remove()
     end, { desc = "Harpoon Remove buffer" })
-    map("n", "<A-m>", function()
-      harpoon.ui:toggle_quick_menu(harpoon:list(), {
-        title = " Harpoon btw ",
-        title_pos = "center",
-        border = "rounded",
-        ui_width_ratio = 0.40,
-      })
-    end, { desc = "Harpoon Open menu" })
+    map("n", "<A-m>", utils.harpoon_menu, { desc = "Harpoon Open menu" })
     map("n", "<A-,>", function()
       harpoon:list():prev()
     end, { desc = "Harpoon Go to prev buffer" })
     map("n", "<A-.>", function()
       harpoon:list():next()
     end, { desc = "Harpoon Go to next buffer" })
+
+    vim.cmd [[ command! RunHarpoon lua require("gale.utils").harpoon_menu() ]]
   end,
 }

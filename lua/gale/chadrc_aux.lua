@@ -64,6 +64,8 @@ M.themes_customs = {
 --- Show harpoon indicator in statusline
 local harpoon_statusline_indicator = function()
   -- inspiration from https://github.com/letieu/harpoon-lualine
+  local run = "%@RunHarpoon@"
+  local stop = "%X"
   local inactive = "%#St_HarpoonInactive#"
   local active = "%#St_HarpoonActive#"
 
@@ -115,7 +117,7 @@ local harpoon_statusline_indicator = function()
 
   if length > 0 then
     table.insert(status, " ")
-    return table.concat(status, options.separator)
+    return run .. table.concat(status, options.separator) .. stop
   else
     return ""
   end
@@ -155,6 +157,9 @@ local filename = function()
 end
 
 local git_custom = function()
+  local run = "%@RunNeogit@"
+  local stop = "%X"
+
   local bufnr = stbufnr()
   if not vim.b[bufnr].gitsigns_head or vim.b[bufnr].gitsigns_git_status then
     return ""
@@ -177,7 +182,7 @@ local git_custom = function()
     or ""
   local branch_name = branch_hl .. " " .. clear_hl .. git_status.head
 
-  return " " .. branch_name .. " " .. added .. changed .. removed
+  return run .. " " .. branch_name .. " " .. added .. changed .. removed .. stop
 end
 
 local lspx = function()

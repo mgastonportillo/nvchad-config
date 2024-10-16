@@ -180,6 +180,28 @@ local git_custom = function()
   return " " .. branch_name .. " " .. added .. changed .. removed
 end
 
+local lspx = function()
+  local count = 0
+  local display = ""
+  local run = "%@LspHealthCheck@"
+
+  if rawget(vim, "lsp") then
+    for _, client in ipairs(vim.lsp.get_clients()) do
+      if client.attached_buffers[vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)] then
+        count = count + 1
+        display = (vim.o.columns > 100 and run .. " %#St_Lsp#  LSP ~ " .. client.name .. " ")
+          or run .. " %#St_Lsp#  LSP "
+      end
+    end
+  end
+
+  if count > 1 then
+    return run .. " %#St_Lsp#  LSP (" .. count .. ") "
+  else
+    return display
+  end
+end
+
 M.modules = {
   ---@type table<string, string|fun():string>
   statusline = {
@@ -211,25 +233,7 @@ M.modules = {
     end, -- Fill tabufline with TbFill hl
   },
 
-  lspx = function()
-    local count = 0
-    local display = ""
-
-    if rawget(vim, "lsp") then
-      for _, client in ipairs(vim.lsp.get_clients()) do
-        if client.attached_buffers[vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)] then
-          count = count + 1
-          display = (vim.o.columns > 100 and " %#St_Lsp#  LSP ~ " .. client.name .. " ") or " %#St_Lsp#  LSP "
-        end
-      end
-    end
-
-    if count > 1 then
-      return " %#St_Lsp#  LSP (" .. count .. ") "
-    else
-      return display
-    end
-  end,
+  lspx = lspx,
 }
 
 return M

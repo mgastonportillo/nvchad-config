@@ -184,19 +184,20 @@ local lspx = function()
   local count = 0
   local display = ""
   local run = "%@LspHealthCheck@"
+  local stop = "%X"
 
   if rawget(vim, "lsp") then
     for _, client in ipairs(vim.lsp.get_clients()) do
       if client.attached_buffers[vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)] then
         count = count + 1
-        display = (vim.o.columns > 100 and run .. " %#St_Lsp#  LSP ~ " .. client.name .. " ")
-          or run .. " %#St_Lsp#  LSP "
+        display = (vim.o.columns > 100 and run .. " %#St_Lsp#  LSP ~ " .. client.name .. " " .. stop)
+          or run .. " %#St_Lsp#  LSP " .. stop
       end
     end
   end
 
   if count > 1 then
-    return run .. " %#St_Lsp#  LSP (" .. count .. ") "
+    return run .. " %#St_Lsp#  LSP (" .. count .. ") " .. stop
   else
     return display
   end

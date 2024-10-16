@@ -92,7 +92,9 @@ M.ui = {
       "harpoon",
       "word_count",
       "separator",
+      "oil_dir_cwd",
       "cwd",
+      "stop",
     },
     modules = {
       hack = modules.statusline.hack,
@@ -102,6 +104,8 @@ M.ui = {
       modified = modules.statusline.modified,
       separator = modules.statusline.separator,
       word_count = modules.statusline.word_count,
+      oil_dir_cwd = modules.statusline.oil_dir_cwd,
+      stop = modules.statusline.force_stop,
       tint = modules.statusline.tint,
       lspx = modules.lspx,
     },

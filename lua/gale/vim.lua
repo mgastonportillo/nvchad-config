@@ -15,3 +15,9 @@ vim.cmd [[
     RunHarpoon
   endfunction
 ]]
+
+vim.cmd [[
+  function! OilDirCWD(...)
+    Oil ./
+  endfunction
+]]

@@ -214,6 +214,8 @@ M.modules = {
     separator = " ", -- Add space between modules
     hack = "%#@comment#%", -- Hack to make module highlight visible
     tint = "%#StText#", -- Force grey on modules that absorb neighbour colour
+    oil_dir_cwd = "%@OilDirCWD@",
+    force_stop = "%X",
 
     modified = function()
       return vim.bo.modified and " *" or " "

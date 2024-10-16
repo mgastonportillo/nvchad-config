@@ -18,24 +18,24 @@ map("n", "<leader>ol", function()
   vim.ui.open(vim.fn.expand "%:p:h")
 end, { desc = "General open file location in file explorer" })
 
--- Yank/Paste/Delete/Cut improvements
+-- Yank/Paste/Cut improvements
 -- An attempt to workaround https://github.com/neovim/neovim/issues/29712
 map("n", "yy", '"0yy', { desc = "Yank line" })
 map("n", "<C-yy>", '"+yy', { desc = "Yank line (+)" })
 map("n", "Y", '"0yiWE', { desc = "Yank word" })
 map("n", "<C-Y>", '"+yiWE', { desc = "Yank word (+)" })
 map("n", "p", '"0p', { desc = "Paste below" })
-map("n", "<C-p>", '"+p', { desc = "Paste below (+)" })
+map("n", "<C-p>", 'l"+p', { desc = "Paste (+)" })
 map("n", "P", '"0P', { desc = "Paste above" })
-map("n", "<C-P>", '"+P', { desc = "Paste above (+)" })
+map("n", "<C-P>", 'l"+P', { desc = "Paste above (+)" })
 map("n", "x", '"0x', { desc = "Delete character" })
 map("n", "<C-x>", '"0x', { desc = "Delete character (x)" })
 map("n", "dd", '"0dd', { desc = "Delete line" })
 map("n", "cc", '"0cc', { desc = "Change line" })
 map("v", "y", '"0ygv<Esc>', { desc = "Yank selection" })
 map("v", "<C-y>", '"+ygv<Esc>', { desc = "Yank selection (+)" })
-map("v", "<C-d>", '"0d', { desc = "Delete selection" })
-map("v", "<C-c>", '"0c', { desc = "Change selection" })
+map("v", "d", '"0d', { desc = "Delete selection" })
+map("v", "c", '"0c', { desc = "Change selection" })
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
@@ -173,10 +173,6 @@ map("n", "<leader>x", function()
   tabufline.close_buffer()
 end, { desc = "Buffer close" })
 
-for i = 1, 9 do
-  map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Tab go to tab " .. i })
-end
-
 map("n", "<A-Left>", function()
   tabufline.move_buf(-1)
 end, { desc = "Tabufline move buffer to the left" })
@@ -186,6 +182,10 @@ map("n", "<A-Right>", function()
 end, { desc = "Tabufline move buffer to the right" })
 
 map("n", "<A-|>", "<cmd>TabuflineToggle<CR>", { desc = "Tabufline toggle visibility" })
+
+for i = 1, 9 do
+  map("n", "<A-" .. i .. ">", i .. "gt", { desc = "Tab go to tab " .. i })
+end
 
 -- Utils
 map("n", "gh", function()

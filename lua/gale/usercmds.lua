@@ -1,6 +1,10 @@
 local create_cmd = vim.api.nvim_create_user_command
 local utils = require "gale.utils"
 
+create_cmd("WipeReg", function()
+  utils.clear_registers()
+end, { desc = "Wipe registers" })
+
 create_cmd("ToggleWordCount", function()
   if vim.g.st_words_in_buffer then
     vim.g.st_words_in_buffer = false

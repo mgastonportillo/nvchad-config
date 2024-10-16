@@ -321,4 +321,8 @@ M.count_words_in_buffer = function()
   end
 end
 
+M.clear_registers = function()
+  vim.cmd "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor"
+end
+
 return M

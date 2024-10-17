@@ -38,7 +38,6 @@ M.themes_customs = {
     hl_override = {
       Comment = { fg = "dark_purple" },
       FloatBorder = { fg = "purple" },
-      LspInlayHint = { fg = "dark_purple" },
       TelescopeSelection = { fg = X_COLOURS.D_WHITE },
       StText = { fg = X_COLOURS.ST_GREY },
       St_cwd = { fg = "black", bg = "yellow" },
@@ -57,6 +56,7 @@ M.themes_customs = {
       MatchWord = { fg = "NONE", bg = "black2" },
       MatchBackground = { link = "MatchWord" },
       CodeActionSignHl = { fg = "yellow" },
+      NeogitDiffContextCursor = { bg = "black2" },
     },
   },
 }
@@ -230,7 +230,7 @@ M.modules = {
     git_custom = git_custom,
     harpoon = harpoon_statusline_indicator,
     word_count = function()
-      return " %#StatusLine#󱀽" .. utils.count_words_in_line() .. utils.count_words_in_buffer()
+      return " %#StText#󱀽" .. utils.count_words_in_line() .. utils.count_words_in_buffer()
     end,
   },
 

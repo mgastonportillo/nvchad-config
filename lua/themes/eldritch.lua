@@ -15,7 +15,7 @@ M.base_30 = {
   grey = "#ABB4DA",
   grey_fg = "#8386A8",
   grey_fg2 = "#7C80A3",
-  light_grey = "#3B4261",
+  light_grey = "#7E86AD",
   red = "#F16C75",
   baby_pink = "#F265B5",
   pink = "#BF4F8E",
@@ -62,7 +62,8 @@ M.polish_hl = {
     FloatBorder = { fg = M.base_30.purple },
     PmenuSel = { bg = M.base_30.purple },
     CursorLine = { bg = M.base_30.black },
-    CursorLineNr = { fg = M.base_30.yellow, bold = true },
+    CursorLineNr = { fg = M.base_30.yellow },
+    FoldColumn = { fg = M.base_30.purple },
     LineNr = { fg = M.base_30.dark_purple },
     MatchWord = { bg = M.base_30.black2, fg = "NONE" },
     MatchBackground = { link = "MatchWord" },
@@ -74,13 +75,16 @@ M.polish_hl = {
   blankline = {
     IblScopeChar = { fg = M.base_30.black2, bold = false },
   },
+  lsp = {
+    LspInlayHint = { fg = M.base_30.light_grey },
+  },
   neogit = {
     NeogitDiffContextCursor = { bg = M.base_30.light_grey },
     NeogitDiffContextHighlight = { bg = "NONE" },
     NeogitDiffContext = { bg = "NONE" },
   },
   statusline = {
-    StText = { fg = M.base_30.grey_fg },
+    StText = { fg = M.base_30.light_grey },
     St_NormalMode = { bg = M.base_30.blue, fg = M.base_30.black },
     St_InsertMode = { bg = M.base_30.purple, fg = M.base_30.black },
     St_cwd = { bg = M.base_30.yellow, fg = M.base_30.black },
@@ -101,8 +105,8 @@ M.polish_hl = {
     TbTabTitle = { fg = M.base_30.white, bg = M.base_30.blue },
   },
   telescope = {
-    TelescopeBorder = { fg = M.base_30.purple },
-    TelescopePromptBorder = { fg = M.base_30.purple },
+    TelescopeBorder = { link = "FloatBorder" },
+    TelescopePromptBorder = { link = "FloatBorder" },
     TelescopeSelection = { bg = M.base_30.black, fg = M.base_30.white, bold = true },
   },
   treesitter = {

@@ -56,6 +56,7 @@ M.base46.hl_add = {
   St_HarpoonActive = { link = "St_LspHints" },
   St_GitBranch = { fg = "baby_pink", bg = M.base46.transparency and "NONE" or "statusline_bg" },
   St_Oil = { fg = "grey_fg", bg = M.base46.transparency and "NONE" or "statusline_bg" },
+  GitSignsCurrentLineBlame = { link = "Comment" },
   MarkviewLayer2 = { bg = "#171B21" },
   MarkviewCode = { link = "MarkviewLayer2" },
   HelpviewCode = { link = "MarkviewLayer2" },

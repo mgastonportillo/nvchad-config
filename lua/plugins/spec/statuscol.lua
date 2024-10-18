@@ -6,12 +6,10 @@ return {
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "help",
-      group = vim.api.nvim_create_augroup("HelpDocsBePure", { clear = true }),
+      group = vim.api.nvim_create_augroup("SmarterFoldColumn", { clear = true }),
       callback = function()
-        if vim.o.ft == "help" then
-          vim.o.foldcolumn = "0"
-        else
-          vim.o.foldcolumn = "1"
+        if vim.o.buftype == "help" then
+          vim.opt_local.foldcolumn = "0"
         end
       end,
     })

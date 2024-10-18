@@ -322,7 +322,29 @@ M.count_words_in_buffer = function()
 end
 
 M.clear_registers = function()
-  vim.cmd "for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor"
+  vim.cmd "rshada!"
+
+  for i = 0, 9 do
+    vim.fn.setreg(tostring(i), "")
+  end
+
+  for char = string.byte "a", string.byte "z" do
+    vim.fn.setreg(string.char(char), "")
+    vim.fn.setreg(string.char(char):upper(), "")
+  end
+
+  local special_registers = { '"', "-", "_", "*", "+", "=" }
+  for _, reg in ipairs(special_registers) do
+    vim.fn.setreg(reg, "")
+  end
+
+  if vim.fn.bufname "#" ~= "" then
+    vim.fn.setreg("#", "")
+  end
+
+  vim.cmd "let @/ = ''"
+
+  vim.cmd "wshada!"
 end
 
 M.harpoon_menu = function()

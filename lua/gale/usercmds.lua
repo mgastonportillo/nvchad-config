@@ -3,6 +3,7 @@ local utils = require "gale.utils"
 
 create_cmd("WipeReg", function()
   utils.clear_registers()
+  vim.notify(" Registers cleared and shada file successfully updated.", vim.log.levels.INFO)
 end, { desc = "Wipe registers" })
 
 create_cmd("ToggleWordCount", function()

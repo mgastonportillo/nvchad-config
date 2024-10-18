@@ -3,6 +3,18 @@ local autocmd = vim.api.nvim_create_autocmd
 local utils = require "gale.utils"
 local buf_map = utils.buf_map
 
+autocmd("FileType", {
+  desc = "Set custom conceal level in markdown files.",
+  pattern = "markdown",
+  callback = function()
+    if vim.bo.ft == "markdown" then
+      vim.opt.conceallevel = 2
+    else
+      vim.opt.conceallevel = 0
+    end
+  end,
+})
+
 autocmd("LspAttach", {
   desc = "Redraw statusline on attaching lsp.",
   pattern = "*",
@@ -28,29 +40,10 @@ autocmd("LspAttach", {
   end,
 })
 
-autocmd("BufLeave", {
-  desc = "Hide tabufline if only one buffer and one tab are open.",
-  pattern = "*",
-  group = augroup("TabuflineHide", { clear = true }),
-  callback = function()
-    if not vim.g.tabufline_enabled then
-      return
-    end
-
-    vim.schedule(function()
-      if #vim.t.bufs <= 1 and #vim.api.nvim_list_tabpages() <= 1 then
-        vim.o.showtabline = 0
-      else
-        vim.o.showtabline = 2
-      end
-    end)
-  end,
-})
-
 autocmd("Filetype", {
   desc = "Prevent <Tab>/<S-Tab> from switching specific buffers.",
   pattern = {
-    "codecompanion",
+    "mason",
     "lazy",
     "qf",
   },
@@ -67,17 +60,6 @@ autocmd("FileType", {
   group = augroup("FixCheatsheetZindex", { clear = true }),
   callback = function()
     vim.api.nvim_win_set_config(0, { zindex = 44 })
-  end,
-})
-
-autocmd("FileType", {
-  desc = "Workaround for NvMenu being below NvimTree.",
-  pattern = "NvMenu",
-  group = augroup("FixNvMenuZindex", { clear = true }),
-  callback = function()
-    if vim.bo.ft == "NvMenu" then
-      vim.api.nvim_win_set_config(0, { zindex = 99 })
-    end
   end,
 })
 
@@ -104,17 +86,6 @@ autocmd("VimResized", {
   pattern = "*",
   group = augroup("VimAutoResize", { clear = true }),
   command = [[ tabdo wincmd = ]],
-})
-
-autocmd("VimLeavePre", {
-  desc = "Close NvimTree before quitting nvim.",
-  pattern = "*",
-  group = augroup("NvimTreeCloseOnExit", { clear = true }),
-  callback = function()
-    if vim.bo.filetype == "NvimTree" then
-      vim.api.nvim_buf_delete(0, { force = true })
-    end
-  end,
 })
 
 autocmd("TextYankPost", {
@@ -170,25 +141,12 @@ autocmd("FileType", {
     "man",
     "checkhealth",
     "nvcheatsheet",
-    "codecompanion",
   },
   group = augroup("WinCloseOnQDefinition", { clear = true }),
   command = [[
     nnoremap <buffer><silent> q :close<CR>
     set nobuflisted
   ]],
-})
-
-autocmd("BufHidden", {
-  desc = "Delete [No Name] buffers.",
-  group = augroup("DeleteNoNameBuffer", { clear = true }),
-  callback = function(event)
-    if event.file == "" and vim.bo[event.buf].buftype == "" and not vim.bo[event.buf].modified then
-      vim.schedule(function()
-        pcall(vim.api.nvim_buf_delete, event.buf, {})
-      end)
-    end
-  end,
 })
 
 autocmd("ModeChanged", {
@@ -246,31 +204,5 @@ autocmd("TermOpen", {
       "<4-LeftMouse>",
     }
     buf_map(event.buf, "t", mouse_actions, "<nop>")
-  end,
-})
-
-autocmd("FileType", {
-  desc = "Set custom conceal level in markdown files.",
-  pattern = "markdown",
-  callback = function()
-    if vim.bo.ft == "markdown" then
-      vim.opt.conceallevel = 2
-    else
-      vim.opt.conceallevel = 0
-    end
-  end,
-})
-
-autocmd("FileType", {
-  desc = "Set custom conceal level in nvim.ai's chat window.",
-  pattern = "chat-dialog",
-  callback = function()
-    if vim.bo.ft == "chat-dialog" then
-      vim.schedule(function()
-        vim.opt.conceallevel = 2
-      end)
-    else
-      vim.opt.conceallevel = 0
-    end
   end,
 })

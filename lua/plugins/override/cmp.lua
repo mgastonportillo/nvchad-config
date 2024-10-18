@@ -1,5 +1,3 @@
----@diagnostic disable: different-requires
-
 ---@type NvPluginSpec
 return {
   "hrsh7th/nvim-cmp",
@@ -8,30 +6,6 @@ return {
     { "hrsh7th/cmp-cmdline" },
     { "brenoprata10/nvim-highlight-colors" },
   },
-  opts = function(_, opts)
-    ---@type cmp.ConfigSchema
-    local custom_opts = {
-      mapping = {
-        ["<Tab>"] = function(fallback)
-          fallback()
-        end,
-        ["<S-Tab>"] = function(fallback)
-          fallback()
-        end,
-      },
-      window = {
-        completion = {
-          border = "rounded",
-        },
-        documentation = {
-          border = "rounded",
-        },
-      },
-    }
-
-    opts = vim.tbl_deep_extend("force", opts, custom_opts)
-    return opts
-  end,
   config = function(_, opts)
     local cmp = require "cmp"
 
@@ -92,6 +66,27 @@ return {
       end,
     }
 
+    ---@type cmp.ConfigSchema
+    local custom_opts = {
+      mapping = {
+        ["<Tab>"] = function(fallback)
+          fallback()
+        end,
+        ["<S-Tab>"] = function(fallback)
+          fallback()
+        end,
+      },
+      window = {
+        completion = {
+          border = "rounded",
+        },
+        documentation = {
+          border = "rounded",
+        },
+      },
+    }
+
+    opts = vim.tbl_deep_extend("force", opts, custom_opts)
     cmp.setup(opts)
   end,
 }

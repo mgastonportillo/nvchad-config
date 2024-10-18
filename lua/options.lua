@@ -6,6 +6,7 @@ local custom = {
     bookmark_sign = "",
     skip_ts_context_commentstring_module = true,
     tabufline_visible = true,
+    showtabline = 1,
   },
   opt = {
     encoding = "utf-8",

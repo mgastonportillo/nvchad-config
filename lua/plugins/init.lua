@@ -33,6 +33,7 @@ return {
   { import = "plugins.spec.md-preview" },
   { import = "plugins.spec.multicursor" },
   { import = "plugins.spec.neogit" },
+  { import = "plugins.spec.noice" },
   { import = "plugins.spec.notify" },
   { import = "plugins.spec.obsidian" },
   { import = "plugins.spec.oil-vcs-status" },

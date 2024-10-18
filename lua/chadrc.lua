@@ -8,8 +8,8 @@ local themes_customs = require("gale.chadrc_aux").themes_customs
 
 M.base46 = {
   transparency = true,
-  theme = "bearded-arc", ---@diagnostic disable-line
-  theme_toggle = { "bearded-arc", "bearded-arc" }, ---@diagnostic disable-line
+  theme = "bearded-arc",
+  theme_toggle = { "bearded-arc", "eldritch" },
   integrations = {
     "blankline",
     "cmp",
@@ -33,6 +33,7 @@ M.base46 = {
 M.base46.hl_override = {
   DevIconMd = { fg = "#FFFFFF", bg = "NONE" },
   FloatTitle = { link = "FloatBorder" },
+  CursorLine = { bg = "black2" },
   CursorLineNr = { bold = true },
   CmpBorder = { link = "FloatBorder" },
   CmpDocBorder = { link = "FloatBorder" },

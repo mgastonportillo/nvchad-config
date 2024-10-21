@@ -43,8 +43,9 @@ autocmd("LspAttach", {
 autocmd("Filetype", {
   desc = "Prevent <Tab>/<S-Tab> from switching specific buffers.",
   pattern = {
-    "mason",
     "lazy",
+    "mason",
+    "Neogit*",
     "qf",
   },
   group = augroup("PreventBufferSwap", { clear = true }),

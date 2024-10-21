@@ -34,6 +34,7 @@ map("n", "dd", '"0dd', { desc = "Delete line" })
 map("n", "cc", '"0cc', { desc = "Change line" })
 map("v", "y", '"0ygv<Esc>', { desc = "Yank selection" })
 map("v", "<C-y>", '"+ygv<Esc>', { desc = "Yank selection (+)" })
+map("v", "p", '"0p', { desc = "Paste in selection" })
 map("v", "d", '"0d', { desc = "Delete selection" })
 map("v", "c", '"0c', { desc = "Change selection" })
 

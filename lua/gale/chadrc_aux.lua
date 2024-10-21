@@ -57,7 +57,6 @@ M.themes_customs = {
       MatchWord = { bg = "black2", fg = "NONE" },
       MatchBackground = { link = "MatchWord" },
       CodeActionSignHl = { fg = "yellow" },
-      NeogitDiffContextCursor = { bg = "black2" },
       TbBufOn = { fg = "green" },
       TbBufOnClose = { fg = "baby_pink" },
       TbBufOff = { fg = "nord_blue" },

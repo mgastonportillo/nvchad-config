@@ -16,10 +16,6 @@ create_cmd("ToggleWordCount", function()
   end
 end, { desc = "Toggle word count mode (line/buffer)" })
 
-create_cmd("ToggleShowkeys", function()
-  require("showkeys").toggle()
-end, { desc = "Toggle screenkey" })
-
 create_cmd("TabuflineToggle", function()
   if vim.g.tabufline_visible then
     vim.o.showtabline = 0

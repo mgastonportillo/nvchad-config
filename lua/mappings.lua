@@ -110,38 +110,39 @@ map({ "n", "v" }, "<RightMouse>", function()
 end, { desc = "Open NvChad menu" }) ]]
 
 -- Term
+local term = require "nvchad.term"
+
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Term escape terminal mode" })
 
 map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
+  term.toggle { pos = "vsp", id = "vtoggleTerm" }
 end, { desc = "Term toggle vertical split" })
 
-map({ "n", "t" }, "<C-A-v>", function()
-  require("nvchad.term").toggle {
-    pos = "vsp",
-    id = "vtoggleTermLoc",
-    cmd = "cd " .. vim.fn.expand "%:p:h",
-  }
-end, { desc = "Term toggle vertical split in buffer location" })
-
 map({ "n", "t" }, "<A-h>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
+  term.toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "Term toggle horizontal split" })
 
-map({ "n", "t" }, "<A-S-S-h>", function()
-  require("nvchad.term").toggle {
+map({ "n", "t" }, "<C-A-l>", function()
+  term.toggle {
     pos = "sp",
     id = "htoggleTermLoc",
     cmd = "cd " .. vim.fn.expand "%:p:h",
   }
 end, { desc = "Term toggle horizontal split in buffer location" })
 
+map({ "n", "t" }, "<C-A-h>", function()
+  term.new {
+    pos = "sp",
+    id = "hnewTerm",
+  }
+end, { desc = "Term toggle horizontal split in buffer location" })
+
 map({ "n", "t" }, "<A-i>", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+  term.toggle { pos = "float", id = "floatTerm" }
 end, { desc = "Term toggle floating" })
 
 map({ "n", "t" }, "<A-S-i>", function()
-  require("nvchad.term").toggle {
+  term.toggle {
     pos = "float",
     id = "floatTermLoc",
     cmd = "cd " .. vim.fn.expand "%:p:h",

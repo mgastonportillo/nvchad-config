@@ -1,5 +1,6 @@
 require "gale.globals"
 require "bootstrap"
+require "gale.filetypes"
 require "gale.usercmds"
 require "gale.autocmds"
 require "gale.aliases"

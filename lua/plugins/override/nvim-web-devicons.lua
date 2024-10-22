@@ -5,6 +5,7 @@ return {
     override = {
       md = { icon = "󰽛", color = "#FFFFFF", name = "Md" },
       mdx = { icon = "󰽛", color = "#FFFFFF", name = "Mdx" },
+      jsonl = { icon = "", color = "#CBCB41", name = "Jsonl" },
       markdown = { icon = "󰽛", color = "#FFFFFF", name = "Markdown" },
     },
     override_by_extension = {

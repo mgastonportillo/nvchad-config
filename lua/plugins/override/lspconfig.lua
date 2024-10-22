@@ -83,7 +83,6 @@ return {
 
     -- LSP UI
     local border = "rounded"
-
     local x = vim.diagnostic.severity
     vim.diagnostic.config {
       virtual_text = false,

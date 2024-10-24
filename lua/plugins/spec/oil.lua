@@ -4,8 +4,12 @@ return {
   event = "VeryLazy",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = function(_, opts)
+    local autocmd = vim.api.nvim_create_autocmd
+    local augroup = vim.api.nvim_create_augroup
     local util = require "oil.util"
-    local map = require("gale.utils").glb_map
+    local utils = require "gale.utils"
+    local map = utils.glb_map
+    local buf_map = utils.buf_map
 
     _G.oil_details_expanded = false
     _G.get_oil_winbar = function()
@@ -13,13 +17,13 @@ return {
       if dir then
         return "%#OilWinbar#" .. vim.fn.fnamemodify(dir, ":~")
       else
-        return "%#OilWinbar#" .. vim.api.nvim_buf_get_name(0)
+        return "%#OilWinbar#" .. vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
       end
     end
 
     _G.oil_is_open = false
     local toggle_oil = function()
-      if util.is_oil_bufnr(0) and vim.g.oil_is_open then
+      if util.is_oil_bufnr(vim.api.nvim_get_current_buf()) and vim.g.oil_is_open then
         vim.g.oil_is_open = false
         require("oil").close()
       else
@@ -77,6 +81,15 @@ return {
       git_status = new_git_status()
       orig_refresh(...)
     end
+
+    autocmd("FileType", {
+      desc = "Disable Oil toggler in telescope buffers.",
+      pattern = "Telescope*",
+      group = augroup("OilTelescope", { clear = true }),
+      callback = function(event)
+        buf_map(event.buf, "n", "<C-n>", "<nop>")
+      end,
+    })
 
     ---@type oil.SetupOpts
     local new_opts = {

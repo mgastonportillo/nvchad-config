@@ -198,6 +198,7 @@ autocmd("TermOpen", {
   pattern = "*",
   group = augroup("LeftMouseClickTerm", { clear = true }),
   callback = function(event)
+    vim.opt_local.foldcolumn = "0"
     local mouse_actions = {
       "<LeftMouse>",
       "<2-LeftMouse>",

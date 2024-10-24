@@ -6,6 +6,7 @@ return {
   opts = function(_, opts)
     local autocmd = vim.api.nvim_create_autocmd
     local augroup = vim.api.nvim_create_augroup
+    local oil = require "oil"
     local util = require "oil.util"
     local utils = require "gale.utils"
     local map = utils.glb_map
@@ -13,7 +14,7 @@ return {
 
     _G.oil_details_expanded = false
     _G.get_oil_winbar = function()
-      local dir = require("oil").get_current_dir()
+      local dir = oil.get_current_dir()
       if dir then
         return "%#OilWinbar#" .. vim.fn.fnamemodify(dir, ":~")
       else
@@ -24,7 +25,7 @@ return {
     -- Workaround to issue with oil-vcs-status when toggling too quickly
     local debounced_close = utils.debounce(function()
       vim.g.oil_is_open = false
-      require("oil").close()
+      oil.close()
     end, 100)
 
     _G.oil_is_open = false
@@ -33,7 +34,7 @@ return {
         debounced_close()
       else
         vim.g.oil_is_open = true
-        require("oil").open()
+        oil.open()
       end
     end
 
@@ -108,7 +109,7 @@ return {
       },
       view_options = {
         is_hidden_file = function(name, bufnr)
-          local dir = require("oil").get_current_dir(bufnr)
+          local dir = oil.get_current_dir(bufnr)
           local is_dotfile = vim.startswith(name, ".") and name ~= ".."
           -- if no local directory (e.g. for ssh connections), just hide dotfiles
           if not dir then
@@ -148,9 +149,9 @@ return {
           callback = function()
             vim.g.oil_details_expanded = not vim.g.oil_details_expanded
             if vim.g.oil_details_expanded then
-              require("oil").set_columns { "icon", "permissions", "size", "mtime" }
+              oil.set_columns { "icon", "permissions", "size", "mtime" }
             else
-              require("oil").set_columns { "icon" }
+              oil.set_columns { "icon" }
             end
           end,
           desc = "Toggle file detail view",

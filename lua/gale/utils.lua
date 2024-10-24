@@ -19,6 +19,8 @@
 ---@field count_words_in_line fun(): string
 --- Return count of valid "words" in a buffer as a string
 ---@field count_words_in_buffer fun(): string
+--- Debounce a function by timeout
+---@field debounce fun(func: function, timeout: integer): function
 local M = {}
 
 M.add_alias = function(target_cmd, alias)
@@ -355,6 +357,17 @@ M.harpoon_menu = function()
     border = "rounded",
     ui_width_ratio = 0.40,
   })
+end
+
+M.debounce = function(func, timeout)
+  local timer = vim.uv.new_timer()
+  return function(...)
+    timer:stop()
+    local args = { ... }
+    timer:start(timeout, 0, function()
+      vim.schedule_wrap(func)(unpack(args))
+    end)
+  end
 end
 
 return M

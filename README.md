@@ -22,7 +22,7 @@
 
 >[!TIP]
 > Pair with <a href="https://github.com/mgastonportillo/wezterm-config"> my
-> Wezterm configuration</a> for a smoother experience
+> Wezterm configuration</a> for a smooth experience
 
 >[!WARNING]
 > **Disclaimer**: I frequently use `git rebase -i` to streamline my
@@ -34,27 +34,27 @@
 
 ### Planned implementations
 
-- ✅ ~~Markdown Preview~~
-- ✅ ~~Python code completion~~
-- ✅ ~~Polish setup for development with C and Go~~
+- 💡 I'm all ears for suggestions and ideas
 
 <hr>
 
-### Bugs
+### Known bugs
 
-- 🐞
+- 🐞 If you find any, please open an issue
 
 ### Dependencies
 
 Required:
 
-- NVIM Stable v0.10.1+ (Nightlies might work)
-- NvChad v2.5
-- Python 3.11.7+ & pip
+- [NVIM](https://neovim.io/) Stable v0.10.1+ (Nightlies might work)
+- [NvChad](https://nvchad.com/) v2.5
+- Any [NerdFont](https://www.nerdfonts.com/) or patched font (I use [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip))
+- [win32yank](https://github.com/equalsraf/win32yank) (recent choice, only required for WSL users)
+- Python 3.11.7+ & pip 23.3.1+
 - pip: `pynvim==0.4.3+`
 - Node.js v22+
 - npm: `neovim@4.10.1+`
 
 Recommended:
 
-- Cargo 1.74.1+
+- Cargo 1.80.1+

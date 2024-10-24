@@ -42,6 +42,8 @@
 
 - 🐞 If you find any, please open an issue
 
+<hr>
+
 ### Dependencies
 
 Required:

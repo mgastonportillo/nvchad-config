@@ -21,11 +21,16 @@ return {
       end
     end
 
+    -- Workaround to issue with oil-vcs-status when toggling too quickly
+    local debounced_close = utils.debounce(function()
+      vim.g.oil_is_open = false
+      require("oil").close()
+    end, 100)
+
     _G.oil_is_open = false
     local toggle_oil = function()
       if util.is_oil_bufnr(vim.api.nvim_get_current_buf()) and vim.g.oil_is_open then
-        vim.g.oil_is_open = false
-        require("oil").close()
+        debounced_close()
       else
         vim.g.oil_is_open = true
         require("oil").open()

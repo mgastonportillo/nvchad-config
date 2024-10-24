@@ -17,28 +17,6 @@ map("n", "<leader>ol", function()
   vim.ui.open(vim.fn.expand "%:p:h")
 end, { desc = "General open file location in file explorer" })
 
--- Yank/Paste/Cut improvements
--- An attempt to workaround https://github.com/neovim/neovim/issues/29712
-map("n", "y", '"0y', { desc = "Yank" })
-map("n", "<C-y>", '"+y', { desc = "Yank (+)" })
-map("n", "Y", '"0y$', { desc = "Yank" })
-map("n", "yy", '"0yy', { desc = "Yank line" })
-map("n", "p", '"0p', { desc = "Paste below" })
-map("n", "<C-p>", '"+p', { desc = "Paste below (+)" })
-map("n", "P", '"0P', { desc = "Paste above" })
-map("n", "<C-P>", '"+P', { desc = "Paste above" })
-map("n", "x", '"0x', { desc = "Delete character" })
-map("n", "dd", '"0dd', { desc = "Delete line" })
-map("n", "cc", '"0cc', { desc = "Change line" })
-map("n", "<C-c>", "<cmd>%y0<CR>", { desc = "Yank file" })
-map("n", "<C-C>", "<cmd>%y+<CR>", { desc = "Yank file (+)" })
-map("v", "y", '"0ygv<Esc>', { desc = "Yank selection" })
-map("v", "<C-y>", '"+ygv<Esc>', { desc = "Yank selection (+)" })
-map("v", "p", '"0p', { desc = "Paste in selection" })
-map("v", "<C-p>", '"+p', { desc = "Paste in selection (+)" })
-map("v", "d", '"0d', { desc = "Delete selection" })
-map("v", "c", '"0c', { desc = "Change selection" })
-
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 map("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })

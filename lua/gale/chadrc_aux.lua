@@ -28,8 +28,6 @@ M.themes_customs = {
       St_NTerminalMode = { bg = "one_bg1" },
       TbBufOn = { link = "Normal" },
       CursorLineNr = { fg = "yellow" },
-      MatchWord = { fg = "NONE", bg = "black2" },
-      MatchBackground = { link = "MatchWord" },
     },
   },
 
@@ -54,7 +52,7 @@ M.themes_customs = {
       St_NTerminalMode = { bg = "black", reverse = true },
       St_HarpoonActive = { link = "St_Ft" },
       CursorLineNr = { fg = "yellow", bold = true },
-      MatchWord = { bg = "black2", fg = "NONE" },
+      MatchWord = { bg = "#444C5B", fg = "#ABB7C1" },
       MatchBackground = { link = "MatchWord" },
       CodeActionSignHl = { fg = "yellow" },
       TbBufOn = { fg = "green" },
@@ -63,7 +61,6 @@ M.themes_customs = {
       TbTabOn = { fg = "baby_pink" },
       TbCloseAllBufsBtn = { bg = "pink", fg = "black" },
       TbTabTitle = { fg = "white", bg = "blue" },
-      -- Directory = { fg = "cyan" },
     },
   },
 }

@@ -5,6 +5,7 @@ map("n", "z-", "z^") -- Remap z^ into z- for convenience
 map("n", "g-", "g;") -- Remap g; into g- for convenience
 map("n", ";", ":", { desc = "General enter CMD mode" })
 map("i", "jk", "<ESC>", { desc = "General exit insert mode" })
+map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General copy file content" })
 map({ "n", "i" }, "<C-s>", "<cmd>w<CR>", { desc = "General save file" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General clear search highlights" })
 map("n", "<leader>cs", "<cmd><CR>", { desc = "General clear statusline" })

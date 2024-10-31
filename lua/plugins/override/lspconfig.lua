@@ -21,7 +21,10 @@ return {
       clangd = {},
       css_variables = {},
       cssls = {},
-      eslint = {},
+      denols = {
+        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+      },
+      -- eslint = {},
       html = {},
       hls = {},
       gopls = {},
@@ -49,6 +52,8 @@ return {
       -- tailwindcss = {},
       taplo = {},
       vtsls = {
+        root_dir = lspconfig.util.root_pattern "use_vtsls",
+        single_file_support = false,
         settings = {
           javascript = {
             inlayHints = lsp.inlay_hints_settings,

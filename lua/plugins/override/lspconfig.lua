@@ -6,7 +6,8 @@ return {
     dofile(vim.g.base46_cache .. "lsp")
 
     local lspconfig = require "lspconfig"
-    local lsp = require "gale.lsp"
+    local glsp = require "gale.lsp"
+    local lsp = glsp.lsp
 
     local servers = {
       astro = {},
@@ -52,14 +53,13 @@ return {
       -- tailwindcss = {},
       taplo = {},
       vtsls = {
-        root_dir = lspconfig.util.root_pattern "use_vtsls",
         single_file_support = false,
         settings = {
           javascript = {
-            inlayHints = lsp.inlay_hints_settings,
+            inlayHints = lsp.vtsls.inlay_hints_settings,
           },
           typescript = {
-            inlayHints = lsp.inlay_hints_settings,
+            inlayHints = lsp.vtsls.inlay_hints_settings,
           },
           vtsls = {
             tsserver = {
@@ -80,9 +80,9 @@ return {
     }
 
     for name, opts in pairs(servers) do
-      opts.on_init = lsp.on_init
-      opts.on_attach = lsp.create_on_attach(opts.on_attach)
-      opts.capabilities = lsp.capabilities
+      opts.on_init = glsp.on_init
+      opts.on_attach = glsp.generate_on_attach(opts.on_attach)
+      opts.capabilities = glsp.capabilities
       lspconfig[name].setup(opts)
     end
 

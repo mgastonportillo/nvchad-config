@@ -33,7 +33,7 @@ end
 
 ---@param custom_on_attach? OnAttach
 ---@return OnAttach # A new function that combines default and custom on_attach behaviour
-M.create_on_attach = function(custom_on_attach)
+M.generate_on_attach = function(custom_on_attach)
   return function(client, bufnr)
     on_attach(client, bufnr)
 
@@ -71,21 +71,25 @@ capabilities.textDocument.completion.completionItem = {
 
 M.capabilities = capabilities
 
-M.inlay_hints_settings = {
-  parameterNames = {
-    enabled = "all",
-  },
-  parameterTypes = {
-    enabled = true,
-  },
-  variableTypes = {
-    enabled = true,
-  },
-  propertyDeclarationTypes = {
-    enabled = true,
-  },
-  functionLikeReturnTypes = {
-    enabled = true,
+M.lsp = {
+  vtsls = {
+    inlay_hints_settings = {
+      parameterNames = {
+        enabled = "all",
+      },
+      parameterTypes = {
+        enabled = true,
+      },
+      variableTypes = {
+        enabled = true,
+      },
+      propertyDeclarationTypes = {
+        enabled = true,
+      },
+      functionLikeReturnTypes = {
+        enabled = true,
+      },
+    },
   },
 }
 

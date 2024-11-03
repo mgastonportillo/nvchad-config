@@ -3,6 +3,29 @@ local autocmd = vim.api.nvim_create_autocmd
 local utils = require "gale.utils"
 local buf_map = utils.buf_map
 
+autocmd("LspAttach", {
+  desc = "Unattach vtsls if denols is detected.",
+  callback = function(event)
+    vim.schedule(function()
+      local lsps = vim.lsp.get_clients()
+      local is_deno_project = false
+      local vtsls_id = -1
+
+      for _, lsp in ipairs(lsps) do
+        if lsp.name == "denols" then
+          is_deno_project = true
+        elseif lsp.name == "vtsls" then
+          vtsls_id = lsp.id
+        end
+      end
+
+      if is_deno_project and vtsls_id ~= -1 then
+        vim.lsp.stop_client(vtsls_id)
+      end
+    end)
+  end,
+})
+
 autocmd("FileType", {
   desc = "Set custom conceal level in markdown files.",
   pattern = "markdown",

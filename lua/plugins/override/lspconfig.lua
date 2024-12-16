@@ -43,7 +43,7 @@ return {
       marksman = {},
       ocamllsp = {},
       pyright = {},
-      ruff_lsp = {
+      ruff = {
         on_attach = function(client, _)
           -- prefer pyright's hover provider
           client.server_capabilities.hoverProvider = false

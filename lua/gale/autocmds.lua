@@ -5,7 +5,7 @@ local buf_map = utils.buf_map
 
 autocmd("LspAttach", {
   desc = "Unattach vtsls if denols is detected.",
-  callback = function(event)
+  callback = function()
     vim.schedule(function()
       local lsps = vim.lsp.get_clients()
       local is_deno_project = false

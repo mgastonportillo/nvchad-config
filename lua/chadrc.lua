@@ -2,9 +2,9 @@
 
 ---@type ChadrcConfig
 local M = {}
-
-local modules = require("gale.chadrc_aux").modules
-local themes_customs = require("gale.chadrc_aux").themes_customs
+local aux = require "gale.chadrc_aux"
+local modules = aux.modules
+local themes_customs = aux.themes_customs
 
 M.base46 = {
   transparency = true,

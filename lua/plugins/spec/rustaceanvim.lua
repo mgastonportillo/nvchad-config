@@ -1,8 +1,8 @@
 ---@type NvPluginSpec
 return {
   "mrcjkb/rustaceanvim",
+  lazy = false,
   version = "^5",
-  ft = { "rust" },
   config = function()
     vim.g.rustaceanvim = {
       -- Plugin configuration

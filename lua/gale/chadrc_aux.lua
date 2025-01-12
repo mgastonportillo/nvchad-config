@@ -28,6 +28,7 @@ M.themes_customs = {
       St_NTerminalMode = { bg = "one_bg1" },
       TbBufOn = { link = "Normal" },
       CursorLineNr = { fg = "yellow" },
+      ColorColumn = { bg = "black2" },
     },
   },
 
@@ -61,6 +62,7 @@ M.themes_customs = {
       TbTabOn = { fg = "baby_pink" },
       TbCloseAllBufsBtn = { bg = "pink", fg = "black" },
       TbTabTitle = { fg = "white", bg = "blue" },
+      ColorColumn = { bg = "black2" },
     },
   },
 }

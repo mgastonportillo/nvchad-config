@@ -3,8 +3,8 @@ return {
   "epwalsh/obsidian.nvim",
   version = "*",
   event = {
-    "BufReadPre " .. vim.fn.expand "~" .. "/vault/**.md",
-    "BufNewFile " .. vim.fn.expand "~" .. "/vault/**.md",
+    "BufReadPre " .. vim.fn.expand "~" .. "/notes/**.md",
+    "BufNewFile " .. vim.fn.expand "~" .. "/notes/**.md",
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -16,15 +16,15 @@ return {
     workspaces = {
       {
         name = "learning",
-        path = "~/vault/learning",
+        path = "~/notes/learning",
       },
       {
         name = "personal",
-        path = "~/vault/personal",
+        path = "~/notes/personal",
       },
       {
         name = "work",
-        path = "~/vault/work",
+        path = "~/notes/work",
       },
     },
   },

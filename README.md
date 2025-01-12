@@ -32,6 +32,15 @@
 
 <hr>
 
+### Steps
+
+1. Clone the repo
+2. Open nvim and let Lazy bootstrap the new configuration
+3. Reopen nvim and run `:MasonInstallAll`
+4. Enjoy
+
+<hr>
+
 ### Planned implementations
 
 - 💡 I'm all ears for suggestions and ideas
@@ -60,3 +69,4 @@ Required:
 Recommended:
 
 - Cargo 1.80.1+
+- `opam`, `ghcup`, `go`

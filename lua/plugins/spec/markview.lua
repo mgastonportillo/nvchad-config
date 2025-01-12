@@ -20,7 +20,7 @@ return {
       callbacks = {
         on_enable = function(_, win)
           -- https://github.com/OXY2DEV/markview.nvim/issues/75
-          vim.wo[win].wrap = false
+          -- vim.wo[win].wrap = false
 
           -- https://segmentfault.com/q/1010000000532491
           vim.wo[win].conceallevel = 2

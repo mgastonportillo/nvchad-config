@@ -13,27 +13,31 @@ return {
     ---@type markview.configuration
     ---@diagnostic disable-next-line
     local new_opts = {
-      modes = { "i", "n", "v", "vs", "V", "Vs", "no", "c" },
-      hybrid_modes = { "i" },
-      highlight_groups = "dynamic",
-      ---@diagnostic disable-next-line
-      callbacks = {
-        on_enable = function(_, win)
-          -- https://github.com/OXY2DEV/markview.nvim/issues/75
-          -- vim.wo[win].wrap = false
+      preview = {
+        modes = { "i", "n", "v", "vs", "V", "Vs", "no", "c" },
+        hybrid_modes = { "i" },
+        ---@diagnostic disable-next-line
+        callbacks = {
+          on_enable = function(_, win)
+            -- https://github.com/OXY2DEV/markview.nvim/issues/75
+            -- vim.wo[win].wrap = false
 
-          -- https://segmentfault.com/q/1010000000532491
-          vim.wo[win].conceallevel = 2
-          vim.wo[win].concealcursor = "nivc"
-        end,
+            -- https://segmentfault.com/q/1010000000532491
+            vim.wo[win].conceallevel = 2
+            vim.wo[win].concealcursor = "nivc"
+          end,
+        },
       },
-      headings = presets.headings.arrowed,
+      markdown = {
+        headings = presets.headings.arrowed,
+        tables = {
+          use_virt_lines = true,
+        },
+      },
+      highlight_groups = "dynamic",
       checkboxes = presets.checkboxes.nerd,
       ---@diagnostic disable-next-line
-      tables = {
-        use_virt_lines = true,
-      },
-      html = {
+      markdown_inline = {
         enable = true,
         ---@diagnostic disable-next-line
         tags = {

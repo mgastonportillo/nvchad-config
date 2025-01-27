@@ -33,8 +33,8 @@ local custom = {
     -- Line break/wrap behaviours
     wrap = true,
     linebreak = true,
-    textwidth = 120,
-    wrapmargin = 0,
+    textwidth = 104,
+    -- wrapmargin = 0,
     colorcolumn = "+1",
     -- Indentation values
     tabstop = 2,

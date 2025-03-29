@@ -1,6 +1,9 @@
 local create_cmd = vim.api.nvim_create_user_command
 local utils = require "gale.utils"
 
+create_cmd("CombineLists", utils.combine_lists, {})
+create_cmd("MergeLists", utils.combine_lists, {})
+
 create_cmd("WipeReg", function()
   utils.clear_registers()
   vim.notify(" Registers cleared and shada file successfully updated.", vim.log.levels.INFO)

@@ -21,6 +21,8 @@
 ---@field count_words_in_buffer fun(): string
 --- Debounce a function by timeout
 ---@field debounce fun(func: function, timeout: integer): function
+--- Combine two lists of strings
+---@field combine_lists fun()
 local M = {}
 
 M.add_alias = function(target_cmd, alias)
@@ -368,6 +370,54 @@ M.debounce = function(func, timeout)
       vim.schedule_wrap(func)(unpack(args))
     end)
   end
+end
+
+M.combine_lists = function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+
+  -- Find the first empty line that acts as a separator.
+  -- We use a pattern to catch any whitespace-only line.
+
+  local separator_index = nil
+  for i, line in ipairs(lines) do
+    if line:match "^%s*$" then
+      separator_index = i
+      break
+    end
+  end
+
+  if not separator_index then
+    vim.notify("Separator (empty line) not found!", vim.log.levels.ERROR)
+    return
+  end
+
+  -- Build list1 (lines before the separator) and list2 (lines after)
+  local list1 = {}
+  local list2 = {}
+
+  for i = 1, separator_index - 1 do
+    table.insert(list1, lines[i])
+  end
+
+  for i = separator_index + 1, #lines do
+    table.insert(list2, lines[i])
+  end
+
+  if #list1 ~= #list2 then
+    vim.notify("The lists have different lengths!", vim.log.levels.ERROR)
+    return
+  end
+
+  -- Combine the two lists, adding " - " between each pair.
+  local combined = {}
+  for i = 1, #list1 do
+    table.insert(combined, list1[i] .. " - " .. list2[i])
+  end
+
+  -- Replace the entire buffer with the combined lines.
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, combined)
+  vim.notify "Lists combined successfully!"
 end
 
 return M

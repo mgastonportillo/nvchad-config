@@ -32,6 +32,7 @@ return {
   { import = "plugins.spec.matchup" },
   { import = "plugins.spec.md-preview" },
   { import = "plugins.spec.multicursor" },
+  { import = "plugins.spec.mylorem" },
   { import = "plugins.spec.neogit" },
   { import = "plugins.spec.noice" },
   { import = "plugins.spec.notify" },

@@ -41,7 +41,9 @@ return {
         },
       },
       marksman = {},
+      nim_langserver = {},
       ocamllsp = {},
+      perlnavigator = {},
       pyright = {},
       ruff = {
         on_attach = function(client, _)

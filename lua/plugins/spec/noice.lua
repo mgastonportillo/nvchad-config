@@ -2,6 +2,7 @@ return {
   "folke/noice.nvim",
   event = "VeryLazy",
   dependencies = { "MunifTanjim/nui.nvim" },
+  ---@module "noice"
   opts = {
     cmdline = {
       enabled = false,
@@ -16,20 +17,27 @@ return {
       enabled = false,
     },
     lsp = {
+      override = {
+        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+        ["vim.lsp.util.stylize_markdown"] = true,
+        ["cmp.entry.get_documentation"] = true,
+      },
       hover = {
         enabled = true,
+        ---@type NoiceViewOptions
         opts = {
-          border = "rounded",
-        },
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
+          size = {
+            max_width = vim.api.nvim_win_get_width(0) - 6,
+          },
         },
       },
       signature = {
         enabled = true,
+        ---@type NoiceViewOptions
         opts = {
-          border = "rounded",
+          size = {
+            max_width = vim.api.nvim_win_get_width(0) - 6,
+          },
         },
       },
       progress = {
@@ -38,6 +46,9 @@ return {
       message = {
         enabled = false,
       },
+    },
+    presets = {
+      lsp_doc_border = true,
     },
   },
 }

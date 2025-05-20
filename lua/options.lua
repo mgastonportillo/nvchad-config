@@ -13,6 +13,7 @@ local custom = {
     fileencoding = "utf-8",
     clipboard = "unnamedplus",
     -- Folds
+    foldenable = true,
     foldmethod = "expr",
     foldexpr = "v:lua.vim.treesitter.foldexpr()",
     foldcolumn = "1",

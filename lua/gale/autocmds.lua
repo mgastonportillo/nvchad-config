@@ -47,7 +47,8 @@ autocmd("LspAttach", {
   end,
 })
 
-autocmd("LspAttach", {
+-- TODO: Fix this
+--[[ autocmd("LspAttach", {
   desc = "Display code action sign in gutter if available.",
   pattern = "*",
   group = augroup("UserLspConfig", { clear = true }),
@@ -61,7 +62,7 @@ autocmd("LspAttach", {
       end,
     })
   end,
-})
+}) ]]
 
 autocmd("Filetype", {
   desc = "Prevent <Tab>/<S-Tab> from switching specific buffers.",

@@ -205,6 +205,7 @@ M.format_file = function(file_path)
 end
 
 --- Listener for code actions capabilities
+-- TODO: Fix this
 M.code_action_listener = function()
   local buffer = vim.api.nvim_get_current_buf()
   local clients = vim.lsp.get_clients { bufnr = buffer }
@@ -218,9 +219,9 @@ M.code_action_listener = function()
   end, clients)[1] ~= nil
 
   if has_code_action_support then
-    local context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics(buffer) }
-    local params = vim.lsp.util.make_range_params()
-    params.context = context
+    -- local context = { diagnostics = vim.lsp.diagnostic.get_line_diagnostics(buffer) }
+    local params = vim.lsp.util.make_range_params(0, "utf-8")
+    -- params.context = context
 
     vim.lsp.buf_request(buffer, "textDocument/codeAction", params, function(_, result, _, _)
       vim.fn.sign_unplace("code_action_gear", { buffer = buffer })

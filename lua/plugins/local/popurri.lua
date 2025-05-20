@@ -1,6 +1,7 @@
 ---@type NvPluginSpec
 return {
   "mgastonportillo/popurri.nvim",
+  enabled = false, -- needs a couple fixes
   dev = true,
   cmd = "Popurri",
   init = function()

@@ -1,6 +1,7 @@
 ---@type NvPluginSpec
 return {
   "rmagatti/goto-preview",
+  dependencies = "rmagatti/logger.nvim",
   event = "LspAttach",
   init = function()
     local gtp = require "goto-preview"

@@ -7,11 +7,12 @@ local custom = {
     skip_ts_context_commentstring_module = true,
     tabufline_visible = true,
     showtabline = 1,
+    python3_host_prog = "/usr/bin/python3",
+    clipboard = "wl-copy",
   },
   opt = {
     encoding = "utf-8",
     fileencoding = "utf-8",
-    clipboard = "unnamedplus",
     -- Folds
     foldenable = true,
     foldmethod = "expr",
@@ -21,7 +22,14 @@ local custom = {
     foldlevel = 99,
     foldlevelstart = 5,
     foldnestmax = 5,
-    fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", lastline = " " },
+    fillchars = {
+      eob = " ",
+      fold = " ",
+      foldopen = "",
+      foldsep = " ",
+      foldclose = "",
+      lastline = " ",
+    },
     -- Prevent issues with some language servers
     backup = false,
     swapfile = false,

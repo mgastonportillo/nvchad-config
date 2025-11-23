@@ -22,7 +22,6 @@ return {
       javascriptreact = { "prettier" },
       json = { "biome" },
       markdown = { "markdownlint" },
-      ocaml = { "ocamlformat" },
       python = { "ruff_format" },
       typescript = { "prettier" },
       typescriptreact = { "prettier" },

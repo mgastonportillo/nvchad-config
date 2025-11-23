@@ -5,7 +5,6 @@ return {
   config = function()
     dofile(vim.g.base46_cache .. "lsp")
 
-    local lspconfig = require "lspconfig"
     local glsp = require "gale.lsp"
     local lsp = glsp.lsp
 
@@ -22,12 +21,11 @@ return {
       clangd = {},
       css_variables = {},
       cssls = {},
-      denols = {
+      --[[ denols = {
         root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-      },
+      }, ]]
       -- eslint = {},
       html = {},
-      hls = {},
       gopls = {},
       jsonls = {},
       lua_ls = {
@@ -41,8 +39,6 @@ return {
         },
       },
       marksman = {},
-      nim_langserver = {},
-      ocamllsp = {},
       perlnavigator = {},
       pyright = {},
       ruff = {
@@ -51,6 +47,7 @@ return {
           client.server_capabilities.hoverProvider = false
         end,
       },
+      qmlls = {},
       somesass_ls = {},
       -- tailwindcss = {},
       taplo = {},
@@ -85,8 +82,10 @@ return {
       opts.on_init = glsp.on_init
       opts.on_attach = glsp.generate_on_attach(opts.on_attach)
       opts.capabilities = glsp.capabilities
-      lspconfig[name].setup(opts)
+      vim.lsp.config(name, opts)
     end
+
+    vim.lsp.enable(vim.tbl_keys(servers))
 
     -- LSP UI
     local border = "rounded"

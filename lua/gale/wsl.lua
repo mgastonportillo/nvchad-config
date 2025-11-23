@@ -7,6 +7,7 @@ vim.g.is_wsl = true
 
 local copy = vim.fn.expand "$WIN" .. "/Utils/win32yank/win32yank.exe -i --crlf"
 local paste = vim.fn.expand "$WIN" .. "/Utils/win32yank/win32yank.exe -o --lf"
+
 vim.g.clipboard = {
   name = "wslclipboard",
   copy = { ["+"] = copy, ["*"] = copy },

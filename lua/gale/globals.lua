@@ -1,35 +1,23 @@
 -- Automatically detect context for comment string
-_G.__toggle_contextual = function(mode)
-  local cfg = require("Comment.config"):get()
+_G.__toggle_contextual = function(vmode)
+  local api = require "Comment.api"
   local U = require "Comment.utils"
-  local Op = require "Comment.opfunc"
-  local range = U.get_region(mode)
+  local ft = require "Comment.ft"
+
+  local range = U.get_region(vmode)
   local same_line = range.srow == range.erow
 
-  local ctx = {
-    cmode = U.cmode.toggle,
-    range = range,
-    cmotion = U.cmotion[mode] or U.cmotion.line,
-    ctype = same_line and U.ctype.linewise or U.ctype.blockwise,
-  }
+  -- Does this filetype have a block comment?
+  -- Comment.ft stores:
+  --   - string: only line comments
+  --   - { line, block }: line + block
+  local cstr = ft.get(vim.bo.filetype)
+  local has_block = type(cstr) == "table" and cstr[2] ~= nil
 
-  local lcs, rcs = U.parse_cstr(cfg, ctx)
-  local lines = U.get_lines(range)
-
-  local params = {
-    range = range,
-    lines = lines,
-    cfg = cfg,
-    cmode = ctx.cmode,
-    lcs = lcs,
-    rcs = rcs,
-    cfg,
-  }
-
-  if same_line then
-    Op.linewise(params)
+  if same_line or not has_block then
+    api.toggle.linewise(vmode)
   else
-    Op.blockwise(params)
+    api.toggle.blockwise(vmode)
   end
 end
 

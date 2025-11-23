@@ -79,7 +79,7 @@ map("n", "<leader>th", function()
 end, { desc = "Open theme picker" })
 
 -- NvMenu
---[[ local menus = utils.menus
+local menus = utils.menus
 map({ "n", "v" }, "<C-t>", function()
   require("menu").open(menus.main)
 end, { desc = "Open NvChad menu" })
@@ -87,7 +87,7 @@ end, { desc = "Open NvChad menu" })
 map({ "n", "v" }, "<RightMouse>", function()
   vim.cmd.exec '"normal! \\<RightMouse>"'
   require("menu").open(menus.main, { mouse = true })
-end, { desc = "Open NvChad menu" }) ]]
+end, { desc = "Open NvChad menu" })
 
 -- Term
 local term = require "nvchad.term"

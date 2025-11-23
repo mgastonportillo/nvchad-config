@@ -14,6 +14,7 @@ return {
     ---@diagnostic disable-next-line
     local new_opts = {
       preview = {
+        enable = true,
         modes = { "i", "n", "v", "vs", "V", "Vs", "no", "c" },
         hybrid_modes = { "i" },
         ---@diagnostic disable-next-line

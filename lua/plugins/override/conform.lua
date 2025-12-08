@@ -15,6 +15,7 @@ return {
       bash = { "shfmt" },
       css = { "prettier" },
       scss = { "prettier" },
+      fish = { "fish_indent" },
       gleam = { "gleam" },
       go = { "gofmt" },
       html = { "prettier" },

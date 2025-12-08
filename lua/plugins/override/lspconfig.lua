@@ -25,7 +25,9 @@ return {
         root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
       }, ]]
       -- eslint = {},
+      fish_lsp = {},
       html = {},
+      hyprls = {},
       gopls = {},
       jsonls = {},
       lua_ls = {

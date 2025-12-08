@@ -23,6 +23,8 @@
 ---@field debounce fun(func: function, timeout: integer): function
 --- Combine two lists of strings
 ---@field combine_lists fun()
+--- Fix single line json content
+---@field fix_json_content fun()
 local M = {}
 
 M.add_alias = function(target_cmd, alias)
@@ -419,6 +421,68 @@ M.combine_lists = function()
   -- Replace the entire buffer with the combined lines.
   vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, combined)
   vim.notify "Lists combined successfully!"
+end
+
+M.fix_json_content = function()
+  -- Save the view to prevent cursor jumping
+  local view = vim.fn.winsaveview()
+  local bufnr = vim.api.nvim_get_current_buf()
+
+  local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+  local modified = false
+
+  -- Handling sandwich brackets
+  local open_idx, close_idx
+  for i, line in ipairs(lines) do
+    if line:match "^%s*%[" then
+      open_idx = i
+    end
+    if line:match "^%s*%]" then
+      close_idx = i
+    end
+  end
+
+  if open_idx and close_idx then
+    -- Remove them from their current sorted positions
+    if open_idx > close_idx then
+      table.remove(lines, open_idx)
+      table.remove(lines, close_idx)
+    else
+      table.remove(lines, close_idx)
+      table.remove(lines, open_idx)
+    end
+
+    -- Insert them at the correct positions
+    table.insert(lines, 1, "[")
+    table.insert(lines, "]")
+    modified = true
+  end
+
+  -- Remove comma from the LAST element
+  for i = 2, #lines - 1 do
+    local line = lines[i]
+
+    -- Ensure EVERY object line ends with a comma first
+    if line:match "}%s*$" then
+      lines[i] = line:gsub("}%s*$", "},")
+      modified = true
+    end
+
+    -- If it's the LAST item, remove any existing comma
+    if i == #lines - 1 then
+      if lines[i]:match "},%s*$" then
+        lines[i] = lines[i]:gsub("},%s*$", "}")
+        modified = true
+      end
+    end
+  end
+
+  if modified then
+    vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, lines)
+    print "JSON Fixed: Brackets re-sandwiched & commas normalized"
+  end
+
+  vim.fn.winrestview(view)
 end
 
 return M

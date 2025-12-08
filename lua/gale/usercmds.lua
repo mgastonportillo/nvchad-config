@@ -1,6 +1,7 @@
 local create_cmd = vim.api.nvim_create_user_command
 local utils = require "gale.utils"
 
+create_cmd("FixJson", utils.fix_json_content, {})
 create_cmd("CombineLists", utils.combine_lists, {})
 create_cmd("MergeLists", utils.combine_lists, {})
 

@@ -174,6 +174,10 @@ map("n", "gh", function()
   utils.go_to_github_link()
 end, { desc = "Go to GitHub link generated from string" })
 
+map({ "v", "n" }, "<leader>fj", "<cmd>sort i<CR><cmd>FixJson<CR>", {
+  desc = "Sort JSON lines and fix commas",
+})
+
 map(
   "n",
   "<leader>rl",

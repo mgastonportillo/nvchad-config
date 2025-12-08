@@ -9,8 +9,13 @@ return {
       keywords = {
         GROUP = { icon = " ", color = "hint" },
         HERE = { icon = " ", color = "here" },
+        GALE = { icon = " ", color = "gale" },
+        -- GALE = { icon = " ", color = "gale" },
       },
-      colors = { here = "#fdf5a4" },
+      colors = {
+        here = "#fdf5a4",
+        gale = "#69C3FF",
+      },
       highlight = { multiline = true },
     }
   end,
